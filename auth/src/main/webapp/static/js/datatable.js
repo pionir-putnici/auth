@@ -1,47 +1,47 @@
-//$(document).ready( function () {
-//	 var table = $('#vrstePaletaTable').DataTable({
-//			"sAjaxSource": "/vrstepaleta",
-//			"sAjaxDataProp": "",
-//			"order": [[ 0, "asc" ]],
-//			"aoColumns": [
-//			      { "mData": "uid"},
-//		          { "mData": "code" },
-//				  { "mData": "name" },
-//				  { "mData": "remark" },
-//				  { "mData": "timestamp"},
-//				  { "mData": "aktivan" },
-//				  { "mData": "akcija"}
-//			]
-//	 })	 
-//});
+$(document).ready( function () {
+	 var table = $('#vrstePaletaTable').DataTable({
+			"sAjaxSource": "/vrstepaleta",
+			"sAjaxDataProp": "",
+			"order": [[ 0, "asc" ]],
+			"aoColumns": [
+			      { "mData": "uid"},
+		          { "mData": "code" },
+				  { "mData": "name" },
+				  { "mData": "remark" },
+				  { "mData": "timestamp"},
+				  { "mData": "aktivan" },
+				  { "mData": "akcija"}
+			]
+	 })	 
+});
 
-var editor; // use a global for the submit and return data rendering in the examples
-
-$(document).ready(function() {
-    editor = new $.fn.dataTable.Editor( {
-        ajax: "/vrstepaleta",
-        table: "#vrstePaletaTable",
-        fields: [ {
-                label: "Uid:",
-                name: "uid"
-            }, {
-                label: "Code:",
-                name: "code"
-            }, {
-                label: "Name:",
-                name: "name"
-            }, {
-                label: "Remark:", 
-                name: "remark"
-            }, {
-                label: "Timestampa:",
-                name: "timestamp",
-                type: "datetime"
-            }, {
-                label: "Aktivan:",
-                name: "aktivan"
-            }
-            
+//var editor; // use a global for the submit and return data rendering in the examples
+//
+//$(document).ready(function() {
+//    editor = new $.fn.dataTable.Editor( {
+//        ajax: "/vrstepaleta",
+//        table: "#vrstePaletaTable",
+//        fields: [ {
+//                label: "Uid:",
+//                name: "uid"
+//            }, {
+//                label: "Code:",
+//                name: "code"
+//            }, {
+//                label: "Name:",
+//                name: "name"
+//            }, {
+//                label: "Remark:", 
+//                name: "remark"
+//            }, {
+//                label: "Timestampa:",
+//                name: "timestamp",
+//                type: "datetime"
+//            }, {
+//                label: "Aktivan:",
+//                name: "aktivan"
+//            }
+//            
 //        ]
 //    } );
 // 
@@ -58,15 +58,15 @@ $(document).ready(function() {
 //            { data: "name" },
 //            { data: "timestamp" },
 //            { data: "aktivan" }
-        ],
-        select: true,
-        buttons: [
-            { extend: "create", editor: editor },
-            { extend: "edit",   editor: editor },
-            { extend: "remove", editor: editor }
-        ]
-    } );
-} );
+//        ],
+//        select: true,
+//        buttons: [
+//            { extend: "create", editor: editor },
+//            { extend: "edit",   editor: editor },
+//            { extend: "remove", editor: editor }
+//        ]
+//    } );
+//} );
 
 
 
