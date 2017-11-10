@@ -1,0 +1,26 @@
+.invisible-at-first {
+	display: none;
+}
+
+.table-hover {
+
+	table-hover>tbody>tr:hover>td,.table-hover>tbody>tr:hover>th{background-color:#ccc}
+}
+
+.margin-top-10 {
+	margin-top: 25px; 
+}
+
+.border-radius-0 { border-radius: 0;}
+
+.edit-delete-icon {font-size: 20px;
+margin: 0 15px 0 15px;
+}
+
+/* .button-novi { */
+/* 	margin-top: 5px; margin-bottom: 5px; border-radius: 0; */
+/* } */
+
+.panel-body {
+    padding: 1px;
+}
