@@ -11,11 +11,6 @@
 
 		<div id="page-wrapper">
 			<div class='row'>
-				<!-- 				<div class='col-lg-12'> -->
-				<!-- 					<h3 class='page-header'>Lista paleta</h3> -->
-				<!-- 				</div> -->
-			</div>
-			<div class='row'>
 
 				<div class='col-lg-12 '>
 					<div class='panel panel-default margin-top-10 border-radius-0'>
