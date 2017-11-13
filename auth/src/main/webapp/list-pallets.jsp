@@ -24,7 +24,10 @@
 							<div class='row spacer-bottom'>
 								<div class='col-lg-12'>
 								<a href="/new-vrste-paleta.html">
-								<button class = 'btn btn-lg btn-success button-novi border-radius-0'><span class='glyphicon glyphicon-file'></span>Novi</button>
+								<button class = 'btn btn-lg btn-success button-novi border-radius-0'><span class='glyphicon glyphicon-file'></span> Novi</button>
+								</a>
+								<a href="#">
+								<button class = 'btn btn-lg btn-success button-novi border-radius-0 margin-left-10'><span class='fa fa-print'></span> Štampa</button>
 								</a>
 								</div>
 							</div>
