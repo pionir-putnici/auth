@@ -48,7 +48,7 @@
 
 
 
-		 method="POST" action="save-vrste-paleta.html"
+		 <form:form method="POST" action="save-vrste-paleta.html"
 			modelAttribute="vrstePaleta">
 
 
