@@ -3,7 +3,7 @@
 		<div class="sidebar-nav navbar-collapse">
 			<ul class="nav" id="side-menu">
 				<li>
-					<a href="index.php"><i class="fa fa-dashboard fa-fw"></i> Početna</a>
+					<a href="index.php"><i class="fa fa-dashboard fa-fw"></i> Po&#269etna</a>
 				</li>
 				<li>
 					<a href='#'><i class="fa fa-info fa-fw"></i> Vrste paleta<span class="fa arrow"></span></a>

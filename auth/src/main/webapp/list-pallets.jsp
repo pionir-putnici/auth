@@ -21,12 +21,15 @@
 					<div class='panel panel-default margin-top-10 border-radius-0'>
 						<div class='panel-heading'>Vrste Paleta</div>
 						<div class='panel-body'>
-							<div class='row'>
+							<div class='row spacer-bottom'>
 								<div class='col-lg-12'>
 								<a href="/new-vrste-paleta.html">
 								<button class = 'btn btn-sm btn-success button-novi'><span class='glyphicon glyphicon-file'></span>Novi</button>
 								</a>
 								</div>
+							</div>
+							<div class='row spacer-bottom border-bottom'>
+							
 							</div>
 							<table id="vrstePaletaTable"
 								class="display table table-striped table-bordered table-hover border-radius-0">

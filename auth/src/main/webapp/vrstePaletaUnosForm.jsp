@@ -169,8 +169,6 @@ salary
  
  <div>${vrstePaleta.code} ${vrstePaleta.name}
 				${vrstePaleta.aktivan}</div>
- 
- a
 			<div class="form-group">
 				<input type="submit" class="btn btn-primary" value="Save" />
 			</div>
