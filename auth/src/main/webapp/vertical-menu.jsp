@@ -8,8 +8,8 @@
 				<li>
 					<a href='#'><i class="fa fa-info fa-fw"></i> Vrste paleta<span class="fa arrow"></span></a>
 					<ul class="nav nav-second-level">
-						<li><a href='list-pallets.php'>Pregled paleta</a></li>
-						<li><a href='enter-new-pallete.php'>Unos paleta</a></li>
+						<li><a href='list-pallets.jsp'>Pregled paleta</a></li>
+						<li><a href='new-vrste-paleta.html'>Unos paleta</a></li>
 					</ul>
 				</li>
 				<li>

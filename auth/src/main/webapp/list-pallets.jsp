@@ -24,7 +24,7 @@
 							<div class='row spacer-bottom'>
 								<div class='col-lg-12'>
 								<a href="/new-vrste-paleta.html">
-								<button class = 'btn btn-sm btn-success button-novi'><span class='glyphicon glyphicon-file'></span>Novi</button>
+								<button class = 'btn btn-lg btn-success button-novi border-radius-0'><span class='glyphicon glyphicon-file'></span>Novi</button>
 								</a>
 								</div>
 							</div>
