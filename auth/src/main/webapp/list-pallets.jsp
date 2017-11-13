@@ -46,18 +46,6 @@
 										<th style="width: 12%;">Akcija</th>
 									</tr>
 								</thead>
-								<!-- Footer Table -->
-								<tfoot>
-									<tr>
-										<th>Id</th>
-										<th>Šifra</th>
-										<th>Naziv</th>
-										<th>Napomena</th>
-										<th>Vreme</th>
-										<th>Act</th>
-										<th>Akcija</th>
-									</tr>
-								</tfoot>
 							</table>
 
 
