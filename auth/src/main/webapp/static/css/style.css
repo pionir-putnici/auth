@@ -113,3 +113,46 @@ table.dataTable.no-footer{
 	box-shadow: inset 0px 1px 3px 0px rgba(51,122,183,1);
 	transition: box-shadow .3s , -webkit-box-shadow .3s , -moz-box-shadow .3s;
 }
+
+
+.padding-align-15px{
+	padding: 0 15px 5px 15px;
+}
+
+.thumbnail-header{
+	background-color:#337AB7;
+	color:#f3f3f3;
+}
+
+.thumbnail-border{
+	border:1px solid #337AB7;
+}
+
+
+@media(min-width:1200px){
+	.margin-thumbnail-align{
+		margin: 0 50px 0 50px;
+	}
+}
+
+@media(max-width:1199px){
+	.margin-thumbnail-align{
+		margin:15px 0 15px 0;
+	}
+}
+
+.thumbnail-icon-size{
+	font-size:72px;
+	color:#337AB7;
+}
+
+.margin-top-bottom-40{
+	margin-top:40px;
+	margin-bottom:40px;
+}
+
+.thumbnail-link{
+	font-size:18px;
+	color:#337AB7;
+	text-decoration:none;
+}
