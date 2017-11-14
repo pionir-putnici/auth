@@ -29,9 +29,7 @@
 							<div class='row spacer-bottom border-bottom'>
 							
 							</div>
-							<table id="vrstePaletaTable"
-								class="display table table-striped table-bordered table-hover border-radius-0">
-
+							<table id="vrstePaletaTable" class="display table table-striped table-bordered table-hover border-radius-0">
 								<!-- Header Table -->
 								<thead>
 									<tr>
