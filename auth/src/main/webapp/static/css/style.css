@@ -156,3 +156,23 @@ table.dataTable.no-footer{
 	color:#337AB7;
 	text-decoration:none;
 }
+
+
+.login-form-text-input{
+	margin:0 auto 10px auto;
+	border-radius:0;
+	box-shadow:none;
+}
+
+.login-form-heading{
+	display:block;
+	width:70%;
+}
+
+.login-form-button{
+	border-radius:0;
+}
+
+.login-form{
+	
+}
