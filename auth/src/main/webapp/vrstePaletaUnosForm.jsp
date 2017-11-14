@@ -66,8 +66,7 @@
 <!-- 				</div> -->
 <!-- 			</div> -->
 
-					<form:input type="hidden" class="form-control" name="uid" path="uid"
-						value="${vrstePalata.uid}"  /> 
+					<form:input type="hidden" class="form-control" name="uid" path="uid" value="${vrstePalata.uid}"  /> 
 
 			<div class="form-group">
 				<label class="control-label col-md-3">Code</label>

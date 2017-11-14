@@ -23,6 +23,7 @@
 	background-color:#eee;
 	color:#333;
 	border:none;
+	border-radius:0;
 }
 
 .button-novi:hover{
@@ -37,6 +38,10 @@
 
 .spacer-bottom{
 	margin-bottom:10px;
+}
+
+.spacer-bottom-30{
+	margin-bottom:30px;
 }
 
 .border-bottom{
@@ -54,6 +59,7 @@
 
 .panel-default{
 	border:1px solid #337AB7;
+	border-radius:0;
 }
 
 .panel-default > .panel-body{

@@ -100,7 +100,7 @@
 											<c:set var="salary" scope="session" value="checked" />
 										</c:if>
 
-										<div class='form-group'>
+										<div class='form-group spacer-bottom-30'>
 											<label>Aktivan</label><br /> <label class="radio-inline">
 												<!--                                     	<input type="radio" name="aktivan"  path='aktivan' -->
 												<%--                                     	 checked  value="${task.aktivan}" >Da   --%>
@@ -116,13 +116,8 @@
 										<input type="hidden" name="${_csrf.parameterName}"
 											value="${_csrf.token}" />
 
-										<button type="submit"
-											class="btn btn-success btn-circle btn-lg">
-											<i class="fa fa-check"></i>
-										</button>
-										<button type="reset" class="btn btn-danger btn-circle btn-lg">
-											<i class="fa fa-times"></i>
-										</button>
+										<button type="reset" class="btn-lg button-novi"><i class='fa fa-reply'></i> Nazad</button>
+										<button type="submit" class="btn-lg button-novi"><i class='fa fa-floppy-o'></i> Sačuvaj</button>
 
 <!-- 										</form> -->
 												</form:form>
