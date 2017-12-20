@@ -21,7 +21,7 @@
 								<a href="/new-vrste-paleta.html">
 								<button class = 'btn btn-lg btn-success button-novi border-radius-0'><span class='glyphicon glyphicon-file'></span> Novi</button>
 								</a>
-								<a href="#">
+								<a href="/vrste_paleta_pdf.html">
 								<button class = 'btn btn-lg btn-success button-novi border-radius-0 margin-left-10'><span class='fa fa-print'></span> Štampa</button>
 								</a>
 								</div>
@@ -57,6 +57,7 @@
 	</div>
 
 	<%@ include file="scripts.jsp"%>
+	<script src="static/js/datatable-vrstepaleta.js"></script>
 	<!-- Page-Level Demo Scripts - Tables - Use for reference -->
 	<script>
 		function ConfirmDelete() {

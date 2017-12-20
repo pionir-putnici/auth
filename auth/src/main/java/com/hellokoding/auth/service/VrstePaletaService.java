@@ -1,6 +1,5 @@
 package com.hellokoding.auth.service;
 
-
 import java.util.List;
 import com.hellokoding.auth.model.VrstePaleta;
 
@@ -15,9 +14,5 @@ public interface VrstePaletaService {
     void delete(Long id);
 
 	public List<VrstePaleta> getAllVrstePaleta();
-	// public List<Employee> getAllEmployees();
-    
-    
-    
-//    void update(VrstePaleta vrstepaleta);
+
 }

@@ -34,21 +34,28 @@
 										<form:input type="hidden" name="uid" path="uid"
 											value="${vrstePalata.uid}" />
 
-
-										<div class='form-group'>
-											<label class='font-roboto'>Šifra</label>
+		
+<!-- 			<div> -->
+<%-- 			<c:out value="${error}" />			 --%>
+<!-- 			</div> -->
+		
+		
+										<div class='form-group ${error != null ? 'has-error' : ''}'>
+											<label class='font-oxygen'>Šifra</label>
 											<!-- 									<input class="form-control" name='code' path='code' -->
 											<%-- 												placeholder='Unesite šifru' value="${task.code}"> --%>
-											<form:input type="text" class="form-control" name="code"
+											<form:input type="text" class="form-control " name="code"
 												path="code" value="${vrstePalata.code}" autofocus="true"
 												placeholder='Unesite šifru' />
+												
 											<p class="help-block">
-												<form:errors path="code" class="help-block" />
-											</p>
+												<form:errors path="code" class="help-block text-danger" /> 
+											</p> 
 										</div>
 
-										<div class='form-group'>
-											<label class='font-roboto'>Naziv</label>
+										
+										<div class='form-group ${error != null ? 'has-error' : ''}'>
+											<label class='font-awesome'>Naziv</label>
 											<%-- 									<input class="form-control" name='name' path='name' placeholder='Unesite naziv' value="${task.name}"> --%>
 
 											<form:input type="text" class="form-control" id="name"
@@ -116,8 +123,9 @@
 										<input type="hidden" name="${_csrf.parameterName}"
 											value="${_csrf.token}" />
 
-										<button type="reset" class="btn-lg button-novi"><i class='fa fa-reply'></i> Nazad</button>
-										<button type="submit" class="btn-lg button-novi"><i class='fa fa-floppy-o'></i> Sačuvaj</button>
+<button type="submit" class="btn-md button-novi"><i class='fa fa-floppy-o'></i> Save</button>
+										<button type="reset" class="btn-md button-novi"><i class='fa fa-reply'></i> Cancel</button>
+										
 
 <!-- 										</form> -->
 												</form:form>

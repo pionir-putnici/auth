@@ -6,13 +6,9 @@ import com.hellokoding.auth.model.VrstePaleta;
 //import com.hellokoding.auth.repository.RoleRepository;
 //import com.hellokoding.auth.repository.UserRepository;
 import com.hellokoding.auth.repository.VrstePaletaRepository;
-
-
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
-
 import java.util.HashSet;
 import java.util.List;
 
@@ -20,13 +16,13 @@ import java.util.List;
 public class VrstePaletaServiceImpl implements VrstePaletaService {
     @Autowired
     private VrstePaletaRepository vrstePaletaRepository;
+    
 //    @Autowired
 //    private RoleRepository roleRepository;
 //    @Autowired
 //    private BCryptPasswordEncoder bCryptPasswordEncoder;
 
-//	@Autowired
-//	private EmployeeRepository employeeRepository;
+
 
 	@Override
 	public List<VrstePaleta> getAllVrstePaleta() {
@@ -50,21 +46,9 @@ public class VrstePaletaServiceImpl implements VrstePaletaService {
 		return vrstePaletaRepository.findOne(id);
 	}
 	
-//    public void delete(VrstePaleta vrstePaleta) {
-////      user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
-////      user.setRoles(new HashSet<>(roleRepository.findAll()));
-//      vrstePaletaRepository.delete(vrstePaleta);
-//  }	
-    
-
     public void delete(Long id)
     {
     	vrstePaletaRepository.delete(id);
     }
 
-//	@Override
-//	public void delete(VrstePaleta vrstepaleta) {
-//		// TODO Auto-generated method stub
-//		
-//	}
 }

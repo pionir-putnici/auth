@@ -18,9 +18,9 @@
 	<div class='col-lg-12'>
         <div class="form-group ${error != null ? 'has-error' : ''}">
             <span>${message}</span>
-            <input name="username" type="text" class="form-control login-form-text-input" placeholder="Username"
+            <input name="username" type="text" class="form-control login-form-text-input" placeholder="user"
                    autofocus="true"/>
-            <input name="password" type="password" class="form-control login-form-text-input" placeholder="Password"/>
+            <input name="password" type="password" class="form-control login-form-text-input" placeholder="user"/>
             <span>${error}</span>
             <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 

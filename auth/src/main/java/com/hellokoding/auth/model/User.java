@@ -1,6 +1,8 @@
 package com.hellokoding.auth.model;
 
 import javax.persistence.*;
+
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -52,6 +54,17 @@ public class User {
     public Set<Role> getRoles() {
         return roles;
     }
+    
+
+//    public void setRoles(Set<Role> list) { 
+//	  if (this.roles == null) {
+//  	    this.roles = list;
+//  	  } else {
+//  	    this.roles.retainAll(list);
+//  	   this.roles.addAll(list);
+//  	  }
+//    }
+  
 
     public void setRoles(Set<Role> roles) {
         this.roles = roles;

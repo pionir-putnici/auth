@@ -19,7 +19,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-
 import com.hellokoding.auth.dao.VrstePaletaDao;
 //import com.hellokoding.auth.model.User;
 import com.hellokoding.auth.model.VrstePaleta;
@@ -47,7 +46,7 @@ public class TypesOfPalletsController {
 	public List<VrstePaleta> getAllVrstePalets(){
 //		List<VrstePaleta> aa = vrstePaletaDao.findAll();
 //		return vrstePaletaDao.findAll(); // redirect:/	
-		return vrstePaletaService.getAllVrstePaleta();		
+		return vrstePaletaDao.findAll();		
 	}	
 	
 	@RequestMapping(value = "/test", method = RequestMethod.GET)
@@ -62,11 +61,11 @@ public class TypesOfPalletsController {
 	public String loginPost(Model model, String error, String logout) {
 		model.addAttribute("mode", "MODE_HOME");
 		model.addAttribute("title", "Evidence of pallets");
-		return "firstPage"; // redirect:/
+		return "index"; // redirect:/
 	}
 
 	@RequestMapping(value = "/vrste-paleta.html", method = RequestMethod.GET)
-	public String helloForm(Model model) {
+	public String typesPaletsForm(Model model) {
 		model.addAttribute("tasks", vrstePaletaDao.findAll());
 		model.addAttribute("mode", "MODE_TASKS");
 		model.addAttribute("title", "Type of pallets");
@@ -98,8 +97,8 @@ public class TypesOfPalletsController {
 //	}
 
 	@RequestMapping(value = "/save-vrste-paleta.html", method = RequestMethod.POST)
-	public String addCustomer(@ModelAttribute("vrstePaleta") @Valid VrstePaleta vrstePaleta, 
-			BindingResult result) { // , @PathVariable int aktivan
+	public String addType(@ModelAttribute("vrstePaleta") @Valid VrstePaleta vrstePaleta, 
+			BindingResult result, Model model) { // , @PathVariable int aktivan
 
 //        if (aktivan == 1) {
 //        	vrstePaleta.setAktivan(true);
@@ -108,7 +107,8 @@ public class TypesOfPalletsController {
 //        }
         
 		if (result.hasErrors()) {
-			return "vrstePaletaUnosForm";
+			model.addAttribute("error", "error");
+			return "vrstePaletaUnosFormNew";
 		}
 
 		vrstePaletaService.save(vrstePaleta);
@@ -143,22 +143,15 @@ public class TypesOfPalletsController {
 //    }
     
     @RequestMapping(value = "/update-vrste-paleta.html")
-	public String updateTask(@RequestParam Long id, HttpServletRequest request){
+	public String updateTypePallet(@RequestParam Long id, HttpServletRequest request){
 		request.setAttribute("vrstePaleta", vrstePaletaService.findByOne(id));
 		request.setAttribute("mode", "MODE_UPDATE");
 		return "vrstePaletaUnosFormNew";
 	}
     
-//	@RequestMapping(value = "/delete-vrste-paleta.html", method = RequestMethod.DELETE)
-//	public String deleteVrstePaleta(@ModelAttribute("vrstePaleta")  VrstePaleta vrstePaleta, @RequestParam Long id, HttpServletRequest request) {
-//      request.setAttribute("vrstePaleta", vrstePaletaDao.findByUid(id)); //  dao.getAllProdajeId("where id = " + sid));
-////		vrstePaletaService.save(vrstePaleta);
-//		vrstePaletaService.delete(id);
-//		return "vrstePaletaForm";
-//	}    
 
 	@RequestMapping(value = "/delete-vrste-paleta.html")
-	public String deleteVrstePaleta(@RequestParam Long id, HttpServletRequest request) {
+	public String deleteTypePallet(@RequestParam Long id, HttpServletRequest request) {
 //      request.setAttribute("vrstePaleta", vrstePaletaDao.findByUid(id)); //  dao.getAllProdajeId("where id = " + sid));
 //		vrstePaletaService.save(vrstePaleta);
 		vrstePaletaService.delete(id);

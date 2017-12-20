@@ -17,6 +17,7 @@ public class VrstePaletaValidator implements Validator {
         return VrstePaleta.class.equals(aClass);
     }
 
+    
     @Override
     public void validate(Object o, Errors errors) {
         VrstePaleta vrstePaleta = (VrstePaleta) o;
