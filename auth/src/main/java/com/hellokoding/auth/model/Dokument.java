@@ -8,7 +8,10 @@ package com.hellokoding.auth.model;
 import java.io.Serializable;
 import java.util.Collection;
 import java.util.Date;
+import java.util.Set;
+
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -23,6 +26,11 @@ import javax.persistence.TemporalType;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
+
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
+
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 /**
  *
@@ -85,8 +93,9 @@ public class Dokument implements Serializable {
     private String video;
     private String zvuk;
     
-    @OneToMany(mappedBy = "idDokument")
-    private Collection<DokumentStavke> dokumentStavkeCollection;
+    @OneToMany(mappedBy = "idDokument", orphanRemoval = true, cascade = CascadeType.ALL)
+    @JsonManagedReference
+    private Set<DokumentStavke> dokumentStavkeCollection;
     
 
     public Dokument() {
@@ -209,13 +218,13 @@ public class Dokument implements Serializable {
 	}
 
 	@XmlTransient
-    public Collection<DokumentStavke> getDokumentStavkeCollection() {
+    public Set<DokumentStavke> getDokumentStavkeCollection() {
         return dokumentStavkeCollection;
     }
 
-    public void setDokumentStavkeCollection(Collection<DokumentStavke> dokumentStavkeCollection) {
+    public void setDokumentStavkeCollection(Set<DokumentStavke> dokumentStavkeCollection) {
         this.dokumentStavkeCollection = dokumentStavkeCollection;
-    }
+    }    
 
     @Override
     public int hashCode() {

@@ -95,6 +95,11 @@ public class UserController {
     public String Error403(){
         return "403";
     }
+
+    @RequestMapping(value="/404")
+    public String Error404(){
+        return "404";
+    }
     
     private String getLoggedUserName(ModelMap model) {
     	
