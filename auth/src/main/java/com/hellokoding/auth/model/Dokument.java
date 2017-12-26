@@ -29,36 +29,38 @@ import javax.xml.bind.annotation.XmlTransient;
  * @author ms
  */
 @Entity
-@Table(name = "prijemnica")
+@Table(name = "dokument")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Prijemnica.findAll", query = "SELECT p FROM Prijemnica p")
-    , @NamedQuery(name = "Prijemnica.findById", query = "SELECT p FROM Prijemnica p WHERE p.id = :id")
-    , @NamedQuery(name = "Prijemnica.findByBrojPrijemnice", query = "SELECT p FROM Prijemnica p WHERE p.brojPrijemnice = :brojPrijemnice")
-    , @NamedQuery(name = "Prijemnica.findByIdMagacin", query = "SELECT p FROM Prijemnica p WHERE p.idMagacin = :idMagacin")
-    , @NamedQuery(name = "Prijemnica.findByIdKomitent", query = "SELECT p FROM Prijemnica p WHERE p.idKomitent = :idKomitent")
-    , @NamedQuery(name = "Prijemnica.findByDatum", query = "SELECT p FROM Prijemnica p WHERE p.datum = :datum")
-    , @NamedQuery(name = "Prijemnica.findByNapomena", query = "SELECT p FROM Prijemnica p WHERE p.napomena = :napomena")
-    , @NamedQuery(name = "Prijemnica.findByAktivan", query = "SELECT p FROM Prijemnica p WHERE p.aktivan = :aktivan")
-    , @NamedQuery(name = "Prijemnica.findByDatumVreme", query = "SELECT p FROM Prijemnica p WHERE p.datumVreme = :datumVreme")
-    , @NamedQuery(name = "Prijemnica.findByAkcija", query = "SELECT p FROM Prijemnica p WHERE p.akcija = :akcija")
-    , @NamedQuery(name = "Prijemnica.findByHost", query = "SELECT p FROM Prijemnica p WHERE p.host = :host")
-    , @NamedQuery(name = "Prijemnica.findByUser", query = "SELECT p FROM Prijemnica p WHERE p.user = :user")})
-public class Prijemnica implements Serializable {
+    @NamedQuery(name = "Dokument.findAll", query = "SELECT p FROM Dokument p")
+    , @NamedQuery(name = "Dokument.findById", query = "SELECT p FROM Dokument p WHERE p.id = :id")
+    , @NamedQuery(name = "Dokument.findByBrojPrijemnice", query = "SELECT p FROM Dokument p WHERE p.brojPrijemnice = :brojPrijemnice")
+    , @NamedQuery(name = "Dokument.findByIdMagacin", query = "SELECT p FROM Dokument p WHERE p.idMagacin = :idMagacin")
+    , @NamedQuery(name = "Dokument.findByIdKomitent", query = "SELECT p FROM Dokument p WHERE p.idKomitent = :idKomitent")
+    , @NamedQuery(name = "Dokument.findByDatum", query = "SELECT p FROM Dokument p WHERE p.datum = :datum")
+    , @NamedQuery(name = "Dokument.findByNapomena", query = "SELECT p FROM Dokument p WHERE p.napomena = :napomena")
+    , @NamedQuery(name = "Dokument.findByAktivan", query = "SELECT p FROM Dokument p WHERE p.aktivan = :aktivan")
+    , @NamedQuery(name = "Dokument.findByDatumVreme", query = "SELECT p FROM Dokument p WHERE p.datumVreme = :datumVreme")
+    , @NamedQuery(name = "Dokument.findByAkcija", query = "SELECT p FROM Dokument p WHERE p.akcija = :akcija")
+    , @NamedQuery(name = "Dokument.findByHost", query = "SELECT p FROM Dokument p WHERE p.host = :host")
+    , @NamedQuery(name = "Dokument.findByUser", query = "SELECT p FROM Dokument p WHERE p.user = :user")})
+public class Dokument implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "id")
-    private Integer id;
+    private Long id;
     @Size(max = 45)
     @Column(name = "brojPrijemnice")
     private String brojPrijemnice;
     @Column(name = "id_magacin")
-    private Integer idMagacin;
+    private Long idMagacin;
+    @Column(name = "id_vrsta_dokumenta")
+    private Long idVrstaDokumenta;
     @Column(name = "id_komitent")
-    private Integer idKomitent;
+    private Long idKomitent;
     @Column(name = "datum")
     @Temporal(TemporalType.DATE)
     private Date datum;
@@ -79,21 +81,26 @@ public class Prijemnica implements Serializable {
     @Size(max = 45)
     @Column(name = "user")
     private String user;
-    @OneToMany(mappedBy = "idPrijemnica")
-    private Collection<PrijemnicaStavke> prijemnicaStavkeCollection;
+    private String slika;
+    private String video;
+    private String zvuk;
+    
+    @OneToMany(mappedBy = "idDokument")
+    private Collection<DokumentStavke> dokumentStavkeCollection;
+    
 
-    public Prijemnica() {
+    public Dokument() {
     }
 
-    public Prijemnica(Integer id) {
+    public Dokument(Long id) {
         this.id = id;
     }
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -105,19 +112,19 @@ public class Prijemnica implements Serializable {
         this.brojPrijemnice = brojPrijemnice;
     }
 
-    public Integer getIdMagacin() {
+    public Long getIdMagacin() {
         return idMagacin;
     }
 
-    public void setIdMagacin(Integer idMagacin) {
+    public void setIdMagacin(Long idMagacin) {
         this.idMagacin = idMagacin;
     }
 
-    public Integer getIdKomitent() {
+    public Long getIdKomitent() {
         return idKomitent;
     }
 
-    public void setIdKomitent(Integer idKomitent) {
+    public void setIdKomitent(Long idKomitent) {
         this.idKomitent = idKomitent;
     }
 
@@ -176,14 +183,38 @@ public class Prijemnica implements Serializable {
     public void setUser(String user) {
         this.user = user;
     }
+        
+    public String getSlika() {
+		return slika;
+	}
 
-    @XmlTransient
-    public Collection<PrijemnicaStavke> getPrijemnicaStavkeCollection() {
-        return prijemnicaStavkeCollection;
+	public void setSlika(String slika) {
+		this.slika = slika;
+	}
+
+	public String getVideo() {
+		return video;
+	}
+
+	public void setVideo(String video) {
+		this.video = video;
+	}
+
+	public String getZvuk() {
+		return zvuk;
+	}
+
+	public void setZvuk(String zvuk) {
+		this.zvuk = zvuk;
+	}
+
+	@XmlTransient
+    public Collection<DokumentStavke> getDokumentStavkeCollection() {
+        return dokumentStavkeCollection;
     }
 
-    public void setPrijemnicaStavkeCollection(Collection<PrijemnicaStavke> prijemnicaStavkeCollection) {
-        this.prijemnicaStavkeCollection = prijemnicaStavkeCollection;
+    public void setDokumentStavkeCollection(Collection<DokumentStavke> dokumentStavkeCollection) {
+        this.dokumentStavkeCollection = dokumentStavkeCollection;
     }
 
     @Override
@@ -196,10 +227,10 @@ public class Prijemnica implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Prijemnica)) {
+        if (!(object instanceof Dokument)) {
             return false;
         }
-        Prijemnica other = (Prijemnica) object;
+        Dokument other = (Dokument) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -208,7 +239,7 @@ public class Prijemnica implements Serializable {
 
     @Override
     public String toString() {
-        return "com.mycompany.mavenwebapplication.Prijemnica[ id=" + id + " ]";
+        return "com.mycompany.mavenwebapplication.Dokument[ id=" + id + " ]";
     }
     
 }

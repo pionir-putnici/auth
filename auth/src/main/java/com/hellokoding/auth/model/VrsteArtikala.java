@@ -133,6 +133,8 @@ public class VrsteArtikala implements Serializable {
     public Set<Artikli> getArtikli(){
     	return this.artikli;
     }
+    
+  //  parent.getChildren.addAll(children);
 
 	@Override
 	public String toString() {

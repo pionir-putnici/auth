@@ -23,7 +23,7 @@ import org.springframework.web.servlet.view.jasperreports.JasperReportsPdfView;
 import com.hellokoding.auth.model.CompanyDetails;
 import com.hellokoding.auth.model.Drzave;
 import com.hellokoding.auth.repository.DrzaveRepository;
-
+import com.hellokoding.auth.model.PttBrojevi;
 
 @Controller
 public class DrzaveController {
@@ -36,7 +36,9 @@ public class DrzaveController {
 	@Autowired
 	private CompanyDetails companyDetails;
 	
-
+//	@Autowired
+//	private PttBrojevi pttBrojevi;
+	
 	@RequestMapping(value = "/states.html")
 	public String MeasureTypesDisplay(HttpServletRequest request) {
 
@@ -77,6 +79,13 @@ public class DrzaveController {
 			return "statesForm";
 		}
 
+		String rr = states.getName();
+		Long tt = states.getId();
+		
+//		if (states.getId() != null) {
+//			PttBrojevi pttBrojevi = new PttBrojevi();
+//			pttBrojevi.setDrzave(states);
+//		}
 		statesRepository.save(states);
 
 //		request.setAttribute("mode", "MODE_TASKS");

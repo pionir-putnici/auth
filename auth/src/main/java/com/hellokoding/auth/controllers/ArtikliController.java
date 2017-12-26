@@ -126,9 +126,7 @@ public class ArtikliController {
 		aa.setAktivan(true);
 		
 
-		HttpSession sess = request.getSession();
-//      System.out.println("Shashi");
-		
+		HttpSession sess = request.getSession();		
         Map<Long, String> dept = new HashMap<>();
   
       

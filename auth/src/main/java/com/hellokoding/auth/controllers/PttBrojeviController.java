@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 //import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
@@ -21,7 +22,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.jasperreports.JasperReportsPdfView;
 import com.hellokoding.auth.model.CompanyDetails;
+import com.hellokoding.auth.model.Drzave;
 import com.hellokoding.auth.model.PttBrojevi;
+import com.hellokoding.auth.model.VrsteArtikala;
+import com.hellokoding.auth.repository.DrzaveRepository;
 import com.hellokoding.auth.repository.ZipCodesRepository;
 
 
@@ -30,6 +34,9 @@ public class PttBrojeviController {
 	@Autowired
 	private ZipCodesRepository zipCodesRepository;
 
+	@Autowired
+	private DrzaveRepository drzaveRepository;
+	
     @Autowired
     private ApplicationContext appContext;
     
@@ -48,7 +55,7 @@ public class PttBrojeviController {
 	}	
 
 	@RequestMapping(value = "/zipCodes_new.html", method = RequestMethod.GET)
-	public ModelAndView newTypeArticles(Model model) { 
+	public ModelAndView newTypeArticles(Model model, HttpServletRequest request) { 
 		model.addAttribute("title", "New zipCodes");
 //		model.addAttribute("model_atribut", "zipCodes");
 
@@ -57,6 +64,17 @@ public class PttBrojeviController {
 	    aa.setAktivan(true);
 	    Date date = new Date();
 	    aa.setTimestamp(date);
+	    
+	      Drzave km = new Drzave();
+	      List<Drzave> deptList = drzaveRepository.findAll(); 
+	      
+	    Map<Long, String> dept = new HashMap<>();
+		HttpSession sess = request.getSession();
+		
+		for (Drzave d : deptList) {
+	          dept.put(d.getId(), d.getName());
+	      }
+	      sess.setAttribute("eDept", dept);	    
 	    
 		return new ModelAndView("zipCodesForm", "zipCodes", aa);
 		// return new ModelAndView("vrstePaletaUnosForm", "vrstePaleta", new VrstePaleta());

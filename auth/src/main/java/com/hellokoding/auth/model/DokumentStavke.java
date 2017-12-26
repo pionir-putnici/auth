@@ -29,48 +29,61 @@ import javax.xml.bind.annotation.XmlRootElement;
  * @author ms
  */
 @Entity
-@Table(name = "prijemnica_stavke")
+@Table(name = "dokument_stavke")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "PrijemnicaStavke.findAll", query = "SELECT p FROM PrijemnicaStavke p")
-    , @NamedQuery(name = "PrijemnicaStavke.findById", query = "SELECT p FROM PrijemnicaStavke p WHERE p.id = :id")
-    , @NamedQuery(name = "PrijemnicaStavke.findByDatum", query = "SELECT p FROM PrijemnicaStavke p WHERE p.datum = :datum")
-    , @NamedQuery(name = "PrijemnicaStavke.findByIdRoba", query = "SELECT p FROM PrijemnicaStavke p WHERE p.idRoba = :idRoba")
-    , @NamedQuery(name = "PrijemnicaStavke.findByRobaNaziv", query = "SELECT p FROM PrijemnicaStavke p WHERE p.robaNaziv = :robaNaziv")
-    , @NamedQuery(name = "PrijemnicaStavke.findByKolicina", query = "SELECT p FROM PrijemnicaStavke p WHERE p.kolicina = :kolicina")
-    , @NamedQuery(name = "PrijemnicaStavke.findByCena", query = "SELECT p FROM PrijemnicaStavke p WHERE p.cena = :cena")
-    , @NamedQuery(name = "PrijemnicaStavke.findByIznos", query = "SELECT p FROM PrijemnicaStavke p WHERE p.iznos = :iznos")
-    , @NamedQuery(name = "PrijemnicaStavke.findByAktivan", query = "SELECT p FROM PrijemnicaStavke p WHERE p.aktivan = :aktivan")
-    , @NamedQuery(name = "PrijemnicaStavke.findByDatumvreme", query = "SELECT p FROM PrijemnicaStavke p WHERE p.datumvreme = :datumvreme")
-    , @NamedQuery(name = "PrijemnicaStavke.findByAkcija", query = "SELECT p FROM PrijemnicaStavke p WHERE p.akcija = :akcija")
-    , @NamedQuery(name = "PrijemnicaStavke.findByHost", query = "SELECT p FROM PrijemnicaStavke p WHERE p.host = :host")
-    , @NamedQuery(name = "PrijemnicaStavke.findByUlaz", query = "SELECT p FROM PrijemnicaStavke p WHERE p.ulaz = :ulaz")
-    , @NamedQuery(name = "PrijemnicaStavke.findByIzlaz", query = "SELECT p FROM PrijemnicaStavke p WHERE p.izlaz = :izlaz")
-    , @NamedQuery(name = "PrijemnicaStavke.findByNapomena", query = "SELECT p FROM PrijemnicaStavke p WHERE p.napomena = :napomena")
-    , @NamedQuery(name = "PrijemnicaStavke.findByPrijemnicaStavkecol", query = "SELECT p FROM PrijemnicaStavke p WHERE p.prijemnicaStavkecol = :prijemnicaStavkecol")})
-public class PrijemnicaStavke implements Serializable {
+    @NamedQuery(name = "DokumentStavke.findAll", query = "SELECT p FROM DokumentStavke p")
+    , @NamedQuery(name = "DokumentStavke.findById", query = "SELECT p FROM DokumentStavke p WHERE p.id = :id")
+    , @NamedQuery(name = "DokumentStavke.findByDatum", query = "SELECT p FROM DokumentStavke p WHERE p.datum = :datum")
+    , @NamedQuery(name = "DokumentStavke.findByIdRoba", query = "SELECT p FROM DokumentStavke p WHERE p.idRoba = :idRoba")
+    , @NamedQuery(name = "DokumentStavke.findByRobaNaziv", query = "SELECT p FROM DokumentStavke p WHERE p.robaNaziv = :robaNaziv")
+    , @NamedQuery(name = "DokumentStavke.findByKolicina", query = "SELECT p FROM DokumentStavke p WHERE p.kolicina = :kolicina")
+    , @NamedQuery(name = "DokumentStavke.findByCena", query = "SELECT p FROM DokumentStavke p WHERE p.cena = :cena")
+    , @NamedQuery(name = "DokumentStavke.findByIznos", query = "SELECT p FROM DokumentStavke p WHERE p.iznos = :iznos")
+    , @NamedQuery(name = "DokumentStavke.findByAktivan", query = "SELECT p FROM DokumentStavke p WHERE p.aktivan = :aktivan")
+    , @NamedQuery(name = "DokumentStavke.findByDatumvreme", query = "SELECT p FROM DokumentStavke p WHERE p.datumvreme = :datumvreme")
+    , @NamedQuery(name = "DokumentStavke.findByAkcija", query = "SELECT p FROM DokumentStavke p WHERE p.akcija = :akcija")
+    , @NamedQuery(name = "DokumentStavke.findByHost", query = "SELECT p FROM DokumentStavke p WHERE p.host = :host")
+    , @NamedQuery(name = "DokumentStavke.findByUlaz", query = "SELECT p FROM DokumentStavke p WHERE p.ulaz = :ulaz")
+    , @NamedQuery(name = "DokumentStavke.findByIzlaz", query = "SELECT p FROM DokumentStavke p WHERE p.izlaz = :izlaz")
+    , @NamedQuery(name = "DokumentStavke.findByNapomena", query = "SELECT p FROM DokumentStavke p WHERE p.napomena = :napomena")
+    , @NamedQuery(name = "DokumentStavke.findByDokumentStavkecol", query = "SELECT p FROM DokumentStavke p WHERE p.dokumentStavkecol = :dokumentStavkecol")})
+
+public class DokumentStavke implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "id")
-    private Integer id;
+    private Long id;
+    @Column(name = "id_vrsta_dokumenta")
+    private Long idVrstaDokumenta;    
     @Column(name = "datum")
     @Temporal(TemporalType.DATE)
     private Date datum;
+    @Column(name = "id_magacin")
+    private Long idMagacin;    
     @Column(name = "id_roba")
-    private Integer idRoba;
+    private Long idRoba;
     @Size(max = 45)
     @Column(name = "roba_naziv")
     private String robaNaziv;
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Column(name = "kolicina")
     private BigDecimal kolicina;
+    @Column(name = "ulaz")
+    private BigDecimal ulaz;
+    @Column(name = "izlaz")
+    private BigDecimal izlaz;    
     @Column(name = "cena")
     private BigDecimal cena;
     @Column(name = "iznos")
     private BigDecimal iznos;
+    @Column(name = "duguje")
+    private BigDecimal duguje;
+    @Column(name = "potrazuje")
+    private BigDecimal potrazuje;       
     @Column(name = "aktivan")
     private Boolean aktivan;
     @Column(name = "datumvreme")
@@ -82,32 +95,29 @@ public class PrijemnicaStavke implements Serializable {
     @Size(max = 45)
     @Column(name = "host")
     private String host;
-    @Column(name = "ulaz")
-    private BigDecimal ulaz;
-    @Column(name = "izlaz")
-    private BigDecimal izlaz;
     @Size(max = 255)
     @Column(name = "napomena")
     private String napomena;
     @Size(max = 45)
-    @Column(name = "prijemnica_stavkecol")
-    private String prijemnicaStavkecol;
-    @JoinColumn(name = "id_prijemnica", referencedColumnName = "id")
+    @Column(name = "dokument_stavkecol")
+    private String dokumentStavkecol;
+    
+    @JoinColumn(name = "id_dokument", referencedColumnName = "id")
     @ManyToOne
-    private Prijemnica idPrijemnica;
+    private Dokument idDokument;
 
-    public PrijemnicaStavke() {
+    public DokumentStavke() {
     }
 
-    public PrijemnicaStavke(Integer id) {
+    public DokumentStavke(Long id) {
         this.id = id;
     }
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -119,11 +129,11 @@ public class PrijemnicaStavke implements Serializable {
         this.datum = datum;
     }
 
-    public Integer getIdRoba() {
+    public Long getIdRoba() {
         return idRoba;
     }
 
-    public void setIdRoba(Integer idRoba) {
+    public void setIdRoba(Long idRoba) {
         this.idRoba = idRoba;
     }
 
@@ -214,21 +224,53 @@ public class PrijemnicaStavke implements Serializable {
     public void setNapomena(String napomena) {
         this.napomena = napomena;
     }
+    
+    public Long getIdVrstaDokumenta() {
+		return idVrstaDokumenta;
+	}
 
-    public String getPrijemnicaStavkecol() {
-        return prijemnicaStavkecol;
+	public void setIdVrstaDokumenta(Long idVrstaDokumenta) {
+		this.idVrstaDokumenta = idVrstaDokumenta;
+	}
+
+	public Long getIdMagacin() {
+		return idMagacin;
+	}
+
+	public void setIdMagacin(Long idMagacin) {
+		this.idMagacin = idMagacin;
+	}
+
+	public BigDecimal getDuguje() {
+		return duguje;
+	}
+
+	public void setDuguje(BigDecimal duguje) {
+		this.duguje = duguje;
+	}
+
+	public BigDecimal getPotrazuje() {
+		return potrazuje;
+	}
+
+	public void setPotrazuje(BigDecimal potrazuje) {
+		this.potrazuje = potrazuje;
+	}
+
+	public String getDokumentStavkecol() {
+        return dokumentStavkecol;
     }
 
-    public void setPrijemnicaStavkecol(String prijemnicaStavkecol) {
-        this.prijemnicaStavkecol = prijemnicaStavkecol;
+    public void setDokumentStavkecol(String dokumentStavkecol) {
+        this.dokumentStavkecol = dokumentStavkecol;
     }
 
-    public Prijemnica getIdPrijemnica() {
-        return idPrijemnica;
+    public Dokument getIdDokument() {
+        return idDokument;
     }
 
-    public void setIdPrijemnica(Prijemnica idPrijemnica) {
-        this.idPrijemnica = idPrijemnica;
+    public void setIdDokument(Dokument idDokument) {
+        this.idDokument = idDokument;
     }
 
     @Override
@@ -241,10 +283,10 @@ public class PrijemnicaStavke implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof PrijemnicaStavke)) {
+        if (!(object instanceof DokumentStavke)) {
             return false;
         }
-        PrijemnicaStavke other = (PrijemnicaStavke) object;
+        DokumentStavke other = (DokumentStavke) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -253,7 +295,7 @@ public class PrijemnicaStavke implements Serializable {
 
     @Override
     public String toString() {
-        return "com.mycompany.mavenwebapplication.PrijemnicaStavke[ id=" + id + " ]";
+        return "com.mycompany.mavenwebapplication.DokumentStavke[ id=" + id + " ]";
     }
     
 }

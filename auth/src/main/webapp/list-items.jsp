@@ -79,10 +79,13 @@
 				<c:when test="${title == 'Types of warehouse'}">
 			<script src="static/js/datatable-vrstemagacina.js"></script>
 		</c:when>
-
-				<c:when test="${title == 'States'}">
+		<c:when test="${title == 'States'}">
 			<script src="static/js/datatable-states.js"></script>
 		</c:when>
+		<c:when test="${title == 'Zip Codes'}">
+			<script src="static/js/datatable-zipcodes.js"></script>
+		</c:when>
+		
 	</c:choose>
 
 
