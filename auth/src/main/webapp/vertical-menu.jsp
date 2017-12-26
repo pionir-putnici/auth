@@ -32,9 +32,9 @@
 					<a href='#'><i class='fa fa-users fa-fw'></i> Komitenti<span class='fa arrow'></span></a>
 					<ul class='nav nav-second-level'>
 						<li><a href='/partners.html'>Komitenti</a></li>
-						<li><a href='/states.html'>Drzave</a></li>
-						<li><a href='/statesDataAngularJS.html'>States angular</a></li>
+						<li><a href='/states.html'>Drzave</a></li>	
 						<li><a href='/zipCodes.html'>Zip codes</a></li>
+						<li><a href='/states.jsp'>Države novo</a>
 					</ul>
 				</li>
 				
@@ -44,6 +44,13 @@
 						<li><a href='login.jsp'><i class="fa fa-user fa-fw"></i>Login</a></li>
 						<li><a href='registration'><i class="fa fa-gear fa-fw"></i>Registration</a></li>
 						<li><a href="logout.html"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+					</ul>
+				</li>
+				<li>
+					<a href='#'><i class="fa fa-info fa-fw"></i> Examples<span class="fa arrow"></span></a>
+					<ul	class='nav nav-second-level'>
+						<li><a href='/statesDataAngularJS.html'>Angular states table</a></li>
+						<li><a href='/angular-pagination.html'>Angular pagination</a></li>
 					</ul>
 				</li>				
 			</ul>

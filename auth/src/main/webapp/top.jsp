@@ -38,4 +38,12 @@
 
 	<link rel="stylesheet" href="https://cdn.datatables.net/1.10.12/css/jquery.dataTables.css">
 	<link rel="stylesheet" href="static/css/style.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.4/angular.js"></script>
+	
+	
+	<script src="static/js/testController.js"></script>
+	
+	<!-- Test kontroleri -->
+	<script src='static/js/paginationController.js'></script>
+	
 </head>
