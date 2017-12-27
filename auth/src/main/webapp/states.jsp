@@ -42,15 +42,13 @@
 										<div class='col-lg-6'>
 											<div class='form-group'>
 											<label class='font-oxygen'>Napomena</label>
-											<textarea ng-model="stateForm.remark" class="form-control"></textarea>
+											<textarea rows='3' ng-model="stateForm.remark" class="form-control textarea-resize-disable"></textarea>
 										</div>
 										</div>
 									</div>
-
-									
-			
-
-										<c:set var="salary" scope="session" value="checked">
+									<div class='row'>
+										<div class='col-lg-12'>
+											<c:set var="salary" scope="session" value="checked">
 										</c:set>
 										<c:set var="salary1" scope="session" value="">
 										</c:set>
@@ -85,6 +83,9 @@
 											</td>
 										</div>
 									</form>
+										</div>
+									</div>
+										
 								</div>
 							</div>
 						</div>

@@ -190,3 +190,11 @@ table.dataTable.no-footer{
 .horizontal-divider{
 	border-top:1px solid #333;
 }
+
+.textarea-resize-disable{
+	resize:none;
+}
+
+.textarea-height-150{
+	height:300px;
+}
