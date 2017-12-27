@@ -49,8 +49,9 @@
 				<li>
 					<a href='#'><i class="fa fa-info fa-fw"></i> Examples<span class="fa arrow"></span></a>
 					<ul	class='nav nav-second-level'>
-						<li><a href='/statesDataAngularJS.html'>Angular states table</a></li>
-						<li><a href='/angular-pagination.html'>Angular pagination</a></li>
+						<li><a href='/test/angular/simplePagination/index.html'>Angular states table</a></li>
+						<li><a href='/test/angular/statesCRUD/statesDataAngularJS.html'>Angular states pagination</a></li>
+						<li><a href='/test/angular/angularPagination/index.html'>Angular states pagination</a></li>
 					</ul>
 				</li>				
 			</ul>
