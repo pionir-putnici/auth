@@ -19,9 +19,10 @@
 
 						<div class='panel-body'>
 							<div class='row'>
-								<div class='col-lg-6'>
-
-									<form ng-submit="submitState()">
+								<div class='col-lg-12'>
+									<div class='row'>
+										<div class='col-lg-6'>
+											<form ng-submit="submitState()">
 										<input type="hidden" name="${_csrf.parameterName}"
 											value="${_csrf.token}" />
 
@@ -37,10 +38,17 @@
 											<label class='font-oxygen'>Naziv</label> <input type="text"
 												ng-model="stateForm.name" class='form-control' />
 										</div>
-										<div class='form-group'>
+										</div>
+										<div class='col-lg-6'>
+											<div class='form-group'>
 											<label class='font-oxygen'>Napomena</label>
 											<textarea ng-model="stateForm.remark" class="form-control"></textarea>
 										</div>
+										</div>
+									</div>
+
+									
+			
 
 										<c:set var="salary" scope="session" value="checked">
 										</c:set>
@@ -115,73 +123,6 @@
 					</div>
 				</div>
 			</div>
-			<div class="pagination text-center" ng-show="paginator.pageCount() > 1">
-    <ul>
-        <li ng-click="paginator.firstPage()" ng-class="paginator.isFirstPage() && 'disabled'">
-            <a>
-                <i class="icon-fast-backward" ng-class="paginator.isFirstPage() && 'icon-white'"></i>
-            </a>
-        </li>
-        <li ng-click="paginator.perviousPage()" ng-class="paginator.isFirstPage() && 'disabled'">
-            <a>
-                <i class="icon-step-backward" ng-class="paginator.isFirstPage() && 'icon-white'"></i>
-            </a>
-        </li>
-        <li ng-click="paginator.setPage(i)" ng-repeat="i in [] | forLoop:0:paginator.pageCount()" ng-class="paginator.page==i && 'active'">
-            <a>{{i+1}}</a>
-        </li>
-        <li ng-click="paginator.nextPage()" ng-class="paginator.isLastPage() && 'disabled'">
-            <a>
-                <i class="icon-step-forward" ng-class="paginator.isLastPage() && 'icon-white'"></i>
-            </a>
-        </li>
-        <li ng-click="paginator.lastPage()" ng-class="paginator.isLastPage() && 'disabled'">
-            <a>
-                <i class="icon-fast-forward" ng-class="paginator.isLastPage() && 'icon-white'"></i>
-            </a>
-        </li>
-    </ul>
-</div>
-  </script>
-  <div class="container" ng-controller="TestCrtl">
-      <h1>AngularJS client side pagination module example</h1>
-      <h2><a target="_blank" href="http://www.cacodaemon.de/">by cacodaemon.de</a></h2>
-      <table class="table table-bordered table-condensed">
-          <thead>
-              <tr>
-                  <td>Value<td>
-              </tr>
-          </thead>
-          <tbody>
-              <tr ng-repeat="value in testValues | paginate:rowsPerPage">
-                  <td>{{value}}</td>
-              </tr>
-          </tbody>
-          <tfoot>
-              <tr>
-                  <td>
-                      <div class="control-group">
-                          <label class="control-label" for="rows-per-page">Rows per page</label>
-                          <div class="controls">
-                            <select id="rows-per-page"" ng-model="rowsPerPage" class="input-xlarge">
-                              <option>50</option>
-                              <option>100</option>
-                              <option>200</option>
-                              <option>500</option>
-                            </select>
-                          </div>
-                      </div>
-                  </td>
-              </tr>
-              <tr>
-                  <td>
-                      <paginator></paginator>
-                  </td>
-              </tr>
-          </tfoot>
-      </table>
-
-  </div>
 	<%@ include file="scripts.jsp"%>
 
 	<script src="static/js/datatable-artikli.js"></script>

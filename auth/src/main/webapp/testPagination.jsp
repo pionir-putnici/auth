@@ -115,7 +115,8 @@
 					</div>
 				</div>
 			</div>
-	<%@ include file="scripts.jsp"%>
+			
+	<%@ include file="scripts.jsp"%>	
 
 	<script src="static/js/datatable-artikli.js"></script>
 </body>
