@@ -12,6 +12,7 @@ todos.controller('TodoController', function($scope) {
       $scope.todos.push({ text:'todo '+i, done:false});
     }
   };
+  
   $scope.makeTodos(); 
   
   $scope.numPages = function () {
@@ -24,4 +25,5 @@ todos.controller('TodoController', function($scope) {
     
     $scope.filteredTodos = $scope.todos.slice(begin, end);
   });
+  
 });

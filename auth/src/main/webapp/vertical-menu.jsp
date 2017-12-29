@@ -34,7 +34,7 @@
 						<li><a href='/partners.html'>Komitenti</a></li>
 						<li><a href='/states.html'>Drzave</a></li>	
 						<li><a href='/zipCodes.html'>Zip codes</a></li>
-						<li><a href='/states.jsp'>Države novo</a>
+						<li><a href='/statesAngular.jsp'>States</a>
 					</ul>
 				</li>
 				
@@ -49,9 +49,10 @@
 				<li>
 					<a href='#'><i class="fa fa-info fa-fw"></i> Examples<span class="fa arrow"></span></a>
 					<ul	class='nav nav-second-level'>
-						<li><a href='/test/angular/simplePagination/index.html'>Angular states table</a></li>
-						<li><a href='/test/angular/statesCRUD/statesDataAngularJS.html'>Angular states pagination</a></li>
-						<li><a href='/test/angular/angularPagination/index.html'>Angular states pagination</a></li>
+
+						<li><a href='/test/angular/statesCRUD/statesDataAngularJS.html'>Angular states </a></li>
+						<li><a href='/test/angular/simplePagination/index.html'>Angular simple pagination</a></li>
+						<li><a href='/test/angular/angularPagination/index.html'>Angular pagination with search</a></li>
 					</ul>
 				</li>				
 			</ul>

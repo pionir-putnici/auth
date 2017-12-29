@@ -1,28 +1,57 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <div th:replace="fragments/header :: header-css"/>
+<style>
+body {
+	background-image:
+		url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABoAAAAaCAYAAACpSkzOAAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAALEgAACxIB0t1+/AAAABZ0RVh0Q3JlYXRpb24gVGltZQAxMC8yOS8xMiKqq3kAAAAcdEVYdFNvZnR3YXJlAEFkb2JlIEZpcmV3b3JrcyBDUzVxteM2AAABHklEQVRIib2Vyw6EIAxFW5idr///Qx9sfG3pLEyJ3tAwi5EmBqRo7vHawiEEERHS6x7MTMxMVv6+z3tPMUYSkfTM/R0fEaG2bbMv+Gc4nZzn+dN4HAcREa3r+hi3bcuu68jLskhVIlW073tWaYlQ9+F9IpqmSfq+fwskhdO/AwmUTJXrOuaRQNeRkOd5lq7rXmS5InmERKoER/QMvUAPlZDHcZRhGN4CSeGY+aHMqgcks5RrHv/eeh455x5KrMq2yHQdibDO6ncG/KZWL7M8xDyS1/MIO0NJqdULLS81X6/X6aR0nqBSJcPeZnlZrzN477NKURn2Nus8sjzmEII0TfMiyxUuxphVWjpJkbx0btUnshRihVv70Bv8ItXq6Asoi/ZiCbU6YgAAAABJRU5ErkJggg==);
+}
+
+.error-template {
+	padding: 40px 15px;
+	text-align: center;
+}
+
+.error-actions {
+	margin-top: 15px;
+	margin-bottom: 15px;
+}
+
+.error-actions .btn {
+	margin-right: 10px;
+}
+</style>
+
 </head>
 <body>
 
-<div th:replace="fragments/header :: header"/>
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12">
+				<div class="error-template">
+					<h1>Oops!</h1>
+					<h2>403 Access denied</h2>
+<!-- 					<div class="error-details">Sorry, an error has occured, -->
+<!-- 						Requested page not found! -->
+<!-- 					</div> -->
+					<div th:inline="text">${pageContext.request.userPrincipal.name}
+						you do not have permission to access this page.
+					</div>
+					<div class="error-actions">
+						<a href="/" class="btn btn-primary btn-lg"><span
+							class="glyphicon glyphicon-home"></span> Take Me Home </a><a href="#"
+							class="btn btn-default btn-lg"><span
+							class="glyphicon glyphicon-envelope"></span> Contact Support </a>
+					</div>
 
-<div class="container">
+					<div th:inline="text">${pageContext.request.userPrincipal.name}
+						you do not have permission to access this page.
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 
-    <div class="starter-template">
-        <h1>403 - Access is denied</h1>
-        
-<%--         <div th:inline="text">Hello '[[${#httpServletRequest.remoteUser}]]', you do not have permission to access this page.</div> --%>
-        <div th:inline="text">${pageContext.request.userPrincipal.name}  you do not have permission to access this page.</div>
-<h1>
-      <a href="/">Go to Home Page</a> 
-      </h1>
-    </div>
-
-</div>
-<!-- /.container -->
-
-<div th:replace="fragments/footer :: footer"/>
 
 </body>
 </html>

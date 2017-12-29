@@ -41,9 +41,9 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.4/angular.js"></script>
 	
 	
-	<script src="static/js/testController.js"></script>
+<!-- 	<script src="static/js/testController.js"></script> -->
 	
-	<!-- Test kontroleri -->
-	<script src='static/js/paginationController.js'></script>
+<!-- 	<!-- Test kontroleri --> 
+<!-- 	<script src='static/js/paginationController.js'></script> -->
 	
 </head>

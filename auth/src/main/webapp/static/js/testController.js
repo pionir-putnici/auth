@@ -8,6 +8,7 @@ var app = angular.module("StatesManagement", []);
 //             $httpProvider.defaults.headers.delete['X-CSRF-Token'] = csrfToken
 //             ]
             //Controller Part
+
             app.controller("StatesAngularJSController", function($scope, $http) {
          
                 $scope.states = [];
