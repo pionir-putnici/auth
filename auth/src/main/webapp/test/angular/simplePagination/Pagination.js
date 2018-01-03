@@ -15,18 +15,18 @@
 
         initController();
 
-        /* Private Methods */
-        //HTTP GET- get all customers collection
-        function _refreshStateData() {
-            $http({
-                method : 'GET',
-                url : 'http://localhost:8080/states'
-            }).then(function successCallback(response) {
-                $scope.states = response.data;
-            }, function errorCallback(response) {
-                console.log(response.statusText);
-            });
-        }
+//        /* Private Methods */
+//        //HTTP GET- get all customers collection
+//        function _refreshStateData() {
+//            $http({
+//                method : 'GET',
+//                url : 'http://localhost:8080/states'
+//            }).then(function successCallback(response) {
+//                $scope.states = response.data;
+//            }, function errorCallback(response) {
+//                console.log(response.statusText);
+//            });
+//        }
         
         function initController() {
             // initialize to page 1

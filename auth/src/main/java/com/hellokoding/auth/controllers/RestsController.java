@@ -15,12 +15,14 @@ import com.hellokoding.auth.model.Artikli;
 import com.hellokoding.auth.model.Drzave;
 import com.hellokoding.auth.model.JediniceMera;
 import com.hellokoding.auth.model.Klasifikacije;
+import com.hellokoding.auth.model.Partner;
 import com.hellokoding.auth.model.PoreskeGrupe;
 import com.hellokoding.auth.model.PttBrojevi;
 import com.hellokoding.auth.model.User;
 import com.hellokoding.auth.model.VrsteArtikala;
 import com.hellokoding.auth.model.VrsteMagacina;
 import com.hellokoding.auth.model.VrstePaleta;
+import com.hellokoding.auth.repository.CostumersRepository;
 import com.hellokoding.auth.repository.DrzaveRepository;
 import com.hellokoding.auth.repository.ZipCodesRepository;
 import com.hellokoding.auth.service.ArtikliService;
@@ -56,6 +58,8 @@ public class RestsController {
 	private DrzaveRepository drzaveRepository;
 	@Autowired
 	private ZipCodesRepository zipCodesRepository;
+	@Autowired
+	private CostumersRepository costumersRepository;
 	
 	@RequestMapping(path="/vrstepaleta", method=RequestMethod.GET)
 	public List<VrstePaleta> getAllPalletsTypes(){
@@ -218,6 +222,28 @@ public class RestsController {
 
 		        Date tt = pttBrojevi.getTimestamp();
 		        pttBrojevi.setVideo(simpleDateFormat.format(tt));
+
+		}
+
+		return aa; 
+	}	
+	
+	
+	@RequestMapping(path="/costumers", method=RequestMethod.GET)
+	public List<Partner> getJsonCostumers(){
+		
+		List<Partner> aa = costumersRepository.findAll();
+	
+		 for (Iterator iterator = aa.iterator(); iterator.hasNext();) {
+			 Partner partner = (Partner) iterator.next();
+			 partner.setAkcija("<a href=\"update_customer.html?id=" + partner.getId() + "\"> " + "<i class=\"fa fa-pencil-square-o edit-delete-icon\"></i> </a> "
+					+ "            <a href=\"delete_customer.html?id=" + partner.getId() + "\" Onclick=\"return ConfirmDelete();\"> " + "<i class=\"fa fa-trash-o edit-delete-icon\"></i> </a>");
+			 
+		        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy'");
+//		        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy' 'HH:mm:ss:S");
+
+		        Date tt = partner.getTimestamp();
+		        partner.setVideo(simpleDateFormat.format(tt));
 
 		}
 

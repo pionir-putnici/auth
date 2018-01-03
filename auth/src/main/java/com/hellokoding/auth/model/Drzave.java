@@ -177,8 +177,17 @@ public class Drzave implements Serializable {
 
 	@Override
 	public String toString() {
-		return "VrsteArtikala [id=" + id + ", name=" + name  + "]";
+		return "Drzave [id=" + id + ", name=" + name + ", code=" + code + ", remark=" + remark + ", akcija=" + akcija
+				+ ", timestamp=" + timestamp + ", aktivan=" + aktivan + ", slika=" + slika + ", video=" + video
+				+ ", zvuk=" + zvuk + "]";
 	}
+
+	
+	
+//	@Override
+//	public String toString() {
+//		return "VrsteArtikala [id=" + id + ", name=" + name  + "]";
+//	}
     
 //    public String toString(){
 //    	String info = "";

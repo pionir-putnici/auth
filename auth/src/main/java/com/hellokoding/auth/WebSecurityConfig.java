@@ -80,7 +80,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 //        http //.csrf().disable()
         http.csrf().disable()
         .authorizeRequests()
-            .antMatchers("/resources/**",  "/static/**",  "/getAll*").permitAll()
+            .antMatchers("/resources/**",  "/static/**").permitAll()
             .antMatchers("/registration").hasRole("ADMIN") //"/registration",
             .anyRequest().authenticated()
             .and()

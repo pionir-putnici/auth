@@ -31,7 +31,7 @@
 				<li>
 					<a href='#'><i class='fa fa-users fa-fw'></i> Komitenti<span class='fa arrow'></span></a>
 					<ul class='nav nav-second-level'>
-						<li><a href='/partners.html'>Komitenti</a></li>
+						<li><a href='/partner.html'>Komitenti</a></li>
 						<li><a href='/states.html'>Drzave</a></li>	
 						<li><a href='/zipCodes.html'>Zip codes</a></li>
 						<li><a href='/statesAngular.jsp'>States</a>

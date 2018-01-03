@@ -23,7 +23,7 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
-@Table(name="ptt_brojevi")
+@Table(name="partner")
 
 public class Partner implements Serializable {
 	

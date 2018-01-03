@@ -4,15 +4,20 @@ import java.util.List;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.hellokoding.auth.model.Drzave;
 import com.hellokoding.auth.repository.DrzaveRepository;
+
+
 
 @RestController
 public class StatesAngularJSController {
@@ -20,12 +25,15 @@ public class StatesAngularJSController {
 	@Autowired
 	DrzaveRepository drzaveRepository;	
 
-	@RequestMapping(value = "/getAllStates", method = RequestMethod.GET, headers = "Accept=application/json")
-	public List<Drzave> getAllCustomers(Model model) {
+	@RequestMapping(value = "/getAllStates", method = RequestMethod.GET, 
+			headers = "Accept=application/json")
+	public @ResponseBody List<Drzave> getAllStatess() { // Model model
 
 		List<Drzave> listOfStates = drzaveRepository.findAll();
-		model.addAttribute("state", new Drzave());
-		model.addAttribute("listOfStates", listOfStates);
+//		model.addAttribute("state", new Drzave());
+//		model.addAttribute("listOfStates", listOfStates);
+//		List<Drzave> aaa = listOfStates;
+	//	System.out.println(aaa);
 		return listOfStates;
 	}
 
@@ -50,7 +58,7 @@ public class StatesAngularJSController {
 	}
 	
 	@RequestMapping(value = "/deleteState/{id}", method = RequestMethod.GET, headers = "Accept=application/json") // DELETE
-	public void deleteCustomer(@PathVariable("id") Long id) {
+	public void deleteStateAJ(@PathVariable("id") Long id) {
 		drzaveRepository.delete(id);
 	}	
 
