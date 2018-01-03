@@ -124,6 +124,18 @@ public class PartnerController {
 		request.setAttribute("partner", partnerRepository.findOne(id));
 		request.setAttribute("mode", "MODE_UPDATE");
 		request.setAttribute("title", "Update partner");	
+		
+	      PttBrojevi km = new PttBrojevi();
+	      List<PttBrojevi> deptList = zipCodesRepository.findAll(); 
+	      
+	    Map<Long, String> dept = new HashMap<>();
+		HttpSession sess = request.getSession();
+		
+		for (PttBrojevi d : deptList) {
+	          dept.put(d.getId(), d.getName());
+	      }
+	      sess.setAttribute("eDept", dept);	 
+	      
 		return "partnerForm";
 	}
     

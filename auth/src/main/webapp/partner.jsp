@@ -1,10 +1,12 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <!-- <%@ page import="java.util.Date"%> -->
 <!-- <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%> -->
 <!-- <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%> -->
 <!-- <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %> -->
 
-<html ng-app="myApp" ng-app lang="en"> 
+<html ng-app="myApp"> 
 <!--  ng-app lang="en" -->
 <head>
 <!--  first part -->
@@ -106,9 +108,8 @@
 <!--     </div> -->
 <!-- </div> -->
 
-
-<div ng-controller="customersCrtl">
-<div class="container">
+<div class='row'>
+<div class='col-lg-12' ng-controller="customersCrtl">
 <!-- <br/> -->
 <!-- <blockquote><h4><a href="http://angularcode.com/angularjs-datagrid-paging-sorting-filter-using-php-and-mysql/">Simple Datagrid with search, sort and paging using AngularJS + PHP + MySQL</a></h4></blockquote> -->
 <!-- <br/> -->
@@ -132,13 +133,14 @@
     <br/>
     <div class="row">
         <div class="col-md-12" ng-show="filteredItems > 0">
-            <table class="table table-striped table-bordered">
+            <table class="display table table-striped table-bordered table-hover border-radius-0">
             <thead>
-            <th>Id&nbsp;<a ng-click="sort_by('id');"><i class="glyphicon glyphicon-sort"></i></a></th>
-            <th>Code&nbsp;<a ng-click="sort_by('code');"><i class="glyphicon glyphicon-sort"></i></a></th>
-            <th>Name&nbsp;<a ng-click="sort_by('name');"><i class="glyphicon glyphicon-sort"></i></a></th>
-            <th>Remark&nbsp;<a ng-click="sort_by('remark');"><i class="glyphicon glyphicon-sort"></i></a></th>
-            <th>Akcija&nbsp;<a ng-click="sort_by('akcija');"><i class="glyphicon glyphicon-sort"></i></a></th>
+            <th style="width: 7%;">ID&nbsp;<a ng-click="sort_by('id');"><i class="glyphicon glyphicon-sort sort-arrows"></i></a></th>
+            <th style="width: 15%;">ŠIFRA&nbsp;<a ng-click="sort_by('code');"><i class="glyphicon glyphicon-sort sort-arrows"></i></a></th>
+            <th style="width: 35%;">NAZIV&nbsp;<a ng-click="sort_by('name');"><i class="glyphicon glyphicon-sort sort-arrows"></i></a></th>
+            <th style="width: 20%;">NAPOMENA&nbsp;<a ng-click="sort_by('remark');"><i class="glyphicon glyphicon-sort sort-arrows"></i></a></th>
+            <th style="width: 6%;">AKTIVAN&nbsp;<a ng-click="sort_by('akcija');"><i class="glyphicon glyphicon-sort sort-arrows"></i></a></th>
+            <th style="width: 12%;">AKCIJA&nbsp;<a ng-click="sort_by('akcija');"><i class="glyphicon glyphicon-sort sort-arrows"></i></a></th>
 <!--             <th>Country&nbsp;<a ng-click="sort_by('zvuk');"><i class="glyphicon glyphicon-sort"></i></a></th> -->
 <!--             <th>Credit Limit&nbsp;<a ng-click="sort_by('slika');"><i class="glyphicon glyphicon-sort"></i></a></th> -->
             </thead>
@@ -148,7 +150,8 @@
                     <td>{{data.code}}</td>
                     <td>{{data.name}}</td>
                     <td>{{data.remark}}</td>
-                    <td>{{data.akcija}}</td>
+                    <td>{{data.aktivan}}</td>
+                    <td><a href="update_partner.html?id={{data.id}}"><i class="fa fa-pencil-square-o edit-delete-icon"></i></a> <a href="delete_partner.html?id={{data.id}}" onClick="return ConfirmDelete();"><i class="fa fa-trash-o edit-delete-icon"></i></a></td>
 <!--                     <td>{{data.video}}</td> -->
 <!--                     <td>{{data.zvuk}}</td> -->
 <!--                     <td>{{data.slika}}</td> -->
@@ -177,10 +180,19 @@
 
 <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/2.5.0/ui-bootstrap-tpls.js"></script> -->
 <!-- <script src="angular.min.js"></script> -->
-
+<%@ include file="scripts.jsp"%>
 <script src="https://code.angularjs.org/1.2.32/angular.js"></script>
 <script src="ui-bootstrap-tpls-0.10.0.min.js"></script>
 <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/2.5.0/ui-bootstrap-tpls.js"></script> -->
-<script src="partner.js"></script>         
+<script src="partner.js"></script>
+<script>
+		function ConfirmDelete() {
+			var x = confirm("Are you sure you want to delete?");
+			if (x)
+				return true;
+			else
+				return false;
+		}
+	</script>         
     </body>
 </html>

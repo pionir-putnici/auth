@@ -194,3 +194,7 @@ table.dataTable.no-footer{
 .textarea-resize-disable{
 	resize:none;
 }
+
+.sort-arrows{
+	font-size:10px;
+}
