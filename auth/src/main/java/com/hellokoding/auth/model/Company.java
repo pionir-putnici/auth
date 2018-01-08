@@ -22,8 +22,8 @@ public class Company {
 	private int id;
     private String name;
     
-    @OneToMany(mappedBy = "company", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    private Set<Product> products;
+//    @OneToMany(mappedBy = "company", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+//    private Set<Product> products;
     
     public Company(){
     }
@@ -42,13 +42,13 @@ public class Company {
     }
     
     // products
-    public void setProducts(Set<Product> products){
-    	this.products = products;
-    }
-    
-    public Set<Product> getProducts(){
-    	return this.products;
-    }
+//    public void setProducts(Set<Product> products){
+//    	this.products = products;
+//    }
+//    
+//    public Set<Product> getProducts(){
+//    	return this.products;
+//    }
     
     public String toString(){
     	String info = "";
@@ -56,13 +56,13 @@ public class Company {
         jsonInfo.put("name",this.name);
         
         JSONArray productArray = new JSONArray();
-        if(this.products != null){
+//        if(this.products != null){
 //            this.products.forEach(product->{
 //                JSONObject subJson = new JSONObject();
 //                subJson.put("name", product.getName());
 //                productArray.put(subJson);
 //            });
-        }
+//        }
         jsonInfo.put("products", productArray);
         info = jsonInfo.toString();
         return info;

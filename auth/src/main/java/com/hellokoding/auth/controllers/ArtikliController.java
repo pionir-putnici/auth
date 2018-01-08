@@ -170,10 +170,47 @@ public class ArtikliController {
 	public String updateArtikli(@RequestParam Long id, HttpServletRequest request){
 		request.setAttribute("artikli", artikliService.findByOne(id));
 		request.setAttribute("mode", "MODE_UPDATE");
-		return "artikliUnosForm";
+		
+		HttpSession sess = request.getSession();		
+        Map<Long, String> dept = new HashMap<>();
+  
+      
+      VrsteArtikala km = new VrsteArtikala();
+      List<VrsteArtikala> deptList = vrsteArtikalaService.getAllVrsteArtikala(); 
+      for (VrsteArtikala d : deptList) {
+          dept.put(d.getId(), d.getName());
+      }
+      sess.setAttribute("eDept", dept);
+      
+      Map<Long, String> pgm = new HashMap<>(); 
+      PoreskeGrupe pg = new PoreskeGrupe();
+      List<PoreskeGrupe> pgList = poreskeGrupeService.getAllPoreskeGrupe(); 
+      for (PoreskeGrupe d : pgList) {
+          pgm.put(d.getId(), d.getName());
+      }
+      sess.setAttribute("ePg", pgm);
+      
+      Map<Long, String> pjm = new HashMap<>(); 
+      JediniceMera pj = new JediniceMera();
+      List<JediniceMera> pjmList = jediniceMeraService.getAllJediniceMera(); 
+      for (JediniceMera d : pjmList) {
+          pjm.put(d.getId(), d.getName());
+      }
+      sess.setAttribute("ePjm", pjm);
+      
+      Map<Long, String> pkl = new HashMap<>(); 
+      Klasifikacije pk = new Klasifikacije();
+      List<Klasifikacije> pklList = klasifikacijeService.getAllKlasifikacije(); // .getAllKlasifikacijeOrderByCode();
+      for (Klasifikacije d : pklList) {
+          pkl.put(d.getId(), d.getName());
+      }
+      sess.setAttribute("ePkl", pkl);     				
+		
+	  return "artikliUnosForm";
 	}
     
 //	
+    
 @PreAuthorize("hasAnyRole('ADMIN')")
     
 	@RequestMapping(value = "/delete-artikli.html")

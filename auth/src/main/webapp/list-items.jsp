@@ -86,6 +86,9 @@
 			<script src="static/js/datatable-zipcodes.js"></script>
 		</c:when>
 		
+		<c:when test="${title == 'Types of Documents'}">
+			<script src="static/js/datatable-typesofdocuments.js"></script>
+		</c:when>
 	</c:choose>
 
 

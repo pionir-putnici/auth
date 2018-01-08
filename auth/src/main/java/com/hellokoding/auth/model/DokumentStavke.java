@@ -38,7 +38,7 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
     @NamedQuery(name = "DokumentStavke.findAll", query = "SELECT p FROM DokumentStavke p")
     , @NamedQuery(name = "DokumentStavke.findById", query = "SELECT p FROM DokumentStavke p WHERE p.id = :id")
     , @NamedQuery(name = "DokumentStavke.findByDatum", query = "SELECT p FROM DokumentStavke p WHERE p.datum = :datum")
-    , @NamedQuery(name = "DokumentStavke.findByIdRoba", query = "SELECT p FROM DokumentStavke p WHERE p.idRoba = :idRoba")
+ //   , @NamedQuery(name = "DokumentStavke.findByIdRoba", query = "SELECT p FROM DokumentStavke p WHERE p.idRoba = :idRoba")
     , @NamedQuery(name = "DokumentStavke.findByRobaNaziv", query = "SELECT p FROM DokumentStavke p WHERE p.robaNaziv = :robaNaziv")
     , @NamedQuery(name = "DokumentStavke.findByKolicina", query = "SELECT p FROM DokumentStavke p WHERE p.kolicina = :kolicina")
     , @NamedQuery(name = "DokumentStavke.findByCena", query = "SELECT p FROM DokumentStavke p WHERE p.cena = :cena")
@@ -50,6 +50,8 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
     , @NamedQuery(name = "DokumentStavke.findByUlaz", query = "SELECT p FROM DokumentStavke p WHERE p.ulaz = :ulaz")
     , @NamedQuery(name = "DokumentStavke.findByIzlaz", query = "SELECT p FROM DokumentStavke p WHERE p.izlaz = :izlaz")
     , @NamedQuery(name = "DokumentStavke.findByNapomena", query = "SELECT p FROM DokumentStavke p WHERE p.napomena = :napomena")
+//    , @NamedQuery(name = "DokumentStavke.findByIdDokument", query = "SELECT p FROM DokumentStavke p WHERE p.idDokument = :idDokument")
+
     , @NamedQuery(name = "DokumentStavke.findByDokumentStavkecol", query = "SELECT p FROM DokumentStavke p WHERE p.dokumentStavkecol = :dokumentStavkecol")})
 
 public class DokumentStavke implements Serializable {
@@ -60,15 +62,32 @@ public class DokumentStavke implements Serializable {
     @Basic(optional = false)
     @Column(name = "id")
     private Long id;
-    @Column(name = "id_vrsta_dokumenta")
-    private Long idVrstaDokumenta;    
+    
+//    @Column(name = "id_vrsta_dokumenta")
+//    private Long idVrstaDokumenta;    
+    
+    @ManyToOne(optional = false)
+    @JoinColumn(name="id_vrsta_dokumenta")
+    private TypesOfDocuments typesofdocuments;   
+    
     @Column(name = "datum")
     @Temporal(TemporalType.DATE)
     private Date datum;
-    @Column(name = "id_magacin")
-    private Long idMagacin;    
-    @Column(name = "id_roba")
-    private Long idRoba;
+    
+    @ManyToOne(optional = false)
+    @JoinColumn(name="id_magacin")
+    private Magacini magacini;  
+
+    @ManyToOne(optional = false)
+    @JoinColumn(name="id_roba")
+    private Artikli artikli; 
+    
+//    @Column(name = "id_magacin")
+//    private Long idMagacin;    
+    
+//    @Column(name = "id_roba")
+//    private Long idRoba;
+    
     @Size(max = 45)
     @Column(name = "roba_naziv")
     private String robaNaziv;
@@ -133,14 +152,21 @@ public class DokumentStavke implements Serializable {
         this.datum = datum;
     }
 
-    public Long getIdRoba() {
-        return idRoba;
-    }
+//    public Long getIdRoba() {
+//        return idRoba;
+//    }
+//
+//    public void setIdRoba(Long idRoba) {
+//        this.idRoba = idRoba;
+//    }
 
-    public void setIdRoba(Long idRoba) {
-        this.idRoba = idRoba;
+    public Artikli getArtikli() {
+        return artikli;
     }
-
+ 
+    public void setArtikli(Artikli artikli) {
+        this.artikli = artikli;
+    }
     public String getRobaNaziv() {
         return robaNaziv;
     }
@@ -229,22 +255,38 @@ public class DokumentStavke implements Serializable {
         this.napomena = napomena;
     }
     
-    public Long getIdVrstaDokumenta() {
-		return idVrstaDokumenta;
-	}
+//    public Long getIdVrstaDokumenta() {
+//		return idVrstaDokumenta;
+//	}
+//
+//	public void setIdVrstaDokumenta(Long idVrstaDokumenta) {
+//		this.idVrstaDokumenta = idVrstaDokumenta;
+//	}
 
-	public void setIdVrstaDokumenta(Long idVrstaDokumenta) {
-		this.idVrstaDokumenta = idVrstaDokumenta;
-	}
+    public TypesOfDocuments getTypesOfDocuments() {
+        return typesofdocuments;
+    }
+ 
+    public void setTypesOfDocuments(TypesOfDocuments typesofdocuments) {
+        this.typesofdocuments = typesofdocuments;
+    }
+    
+//	public Long getIdMagacin() {
+//		return idMagacin;
+//	}
+//
+//	public void setIdMagacin(Long idMagacin) {
+//		this.idMagacin = idMagacin;
+//	}
 
-	public Long getIdMagacin() {
-		return idMagacin;
-	}
-
-	public void setIdMagacin(Long idMagacin) {
-		this.idMagacin = idMagacin;
-	}
-
+    public Magacini getMagacini() {
+        return magacini;
+    }
+ 
+    public void setMagacini(Magacini magacini) {
+        this.magacini = magacini;
+    }
+    
 	public BigDecimal getDuguje() {
 		return duguje;
 	}
