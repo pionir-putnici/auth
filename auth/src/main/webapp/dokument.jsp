@@ -153,7 +153,7 @@
                     <td>{{data.datum | date:"dd.MM.yyyy"}}</td>
                     <td>{{data.iznos | number:2}}</td>
 <!--                     <td>{{data.aktivan}}</td> -->
-                    <td> <a href="dokumentStavke.html?id={{data.id}}">aaa</a>   <a href="update_dokument.html?id={{data.id}}"><i class="fa fa-pencil-square-o edit-delete-icon"></i></a> <a href="delete_dokument.html?id={{data.id}}" onClick="return ConfirmDelete();"><i class="fa fa-trash-o edit-delete-icon"></i></a></td>
+                    <td> <a href="dokumentStavke.html?id={{data.id}}"><i class="fa fa-clone edit-delete-icon"></i></a>   <a href="update_dokument.html?id={{data.id}}"><i class="fa fa-pencil-square-o edit-delete-icon"></i></a> <a href="delete_dokument.html?id={{data.id}}" onClick="return ConfirmDelete();"><i class="fa fa-trash-o edit-delete-icon"></i></a></td>
 <!--                     <td>{{data.video}}</td> -->
 <!--                     <td>{{data.zvuk}}</td> -->
 <!--                     <td>{{data.slika}}</td> -->
