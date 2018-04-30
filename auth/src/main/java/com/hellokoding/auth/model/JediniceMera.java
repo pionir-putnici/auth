@@ -44,12 +44,12 @@ public class JediniceMera implements Serializable {
 	private Date timestamp;
 	private boolean aktivan;
     
- //   @OneToMany(mappedBy = "jediniceMera", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @OneToMany(mappedBy = "jediniceMera", orphanRemoval = true, cascade = CascadeType.PERSIST)
-    
-    @Fetch (FetchMode.SELECT)
-    @JsonManagedReference
-    private Set<Artikli> artikli;
+ //   @OneToMany(mappedBy = "jediniceMera", cascade = CascadeType.ALL, fetch = FetchType.EAGER) or
+//    @OneToMany(mappedBy = "jediniceMera", orphanRemoval = true, cascade = CascadeType.PERSIST)
+//    
+//    @Fetch (FetchMode.SELECT)
+//    @JsonManagedReference
+//    private Set<Artikli> artikli;
     
     public JediniceMera(){
     }
@@ -137,17 +137,17 @@ public class JediniceMera implements Serializable {
 	}
 
 	// articles
-    public void setArtikli(Set<Artikli> artikli){
-    	this.artikli = artikli;
-    }
-    
-    public Set<Artikli> getArtikli(){
-    	return this.artikli;
-    }
+//    public void setArtikli(Set<Artikli> artikli){
+//    	this.artikli = artikli;
+//    }
+//    
+//    public Set<Artikli> getArtikli(){
+//    	return this.artikli;
+//    }
 
 	@Override
 	public String toString() {
-		return "JediniceMera [id=" + id + ", name=" + name + ", artikli=" + artikli + "]";
+		return "JediniceMera [id=" + id + ", name=" + name + ", artikli=" +   "]"; // + artikli
 	}
     
 //    public String toString(){

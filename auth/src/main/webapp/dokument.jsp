@@ -67,19 +67,33 @@
 						<div class='panel-body'>
 							<div class='row spacer-bottom'>
 								<div class='col-lg-12'>
+									<c:url value="/" var="displayURL">
+<%-- 										<c:param name="brDokumenta" value="${param.id}" /> --%>
+<%-- 										<c:param name="page" value="${param.page}" /> --%>
+									</c:url>
+									
+									<a href='<c:out value="${displayURL}" />'>
+										<button
+											class='btn btn-lg btn-success button-novi border-radius-0'>
+											<span class='glyphicon glyphicon-arrow-left'></span> Back
+										</button>										
+									</a> 
+								
+								
 									<a href="${new_item}">
 										<button
 											class='btn btn-lg btn-success button-novi border-radius-0'>
 											<span class='glyphicon glyphicon-file'></span> New
 										</button>
-									</a> <a href="${print_item}" target="_blank">
+									</a> 
+									<a href="${print_item}" target="_blank">
 										<button
 											class='btn btn-lg btn-success button-novi border-radius-0 margin-left-10'>
 											<span class='fa fa-print'></span> Print
 										</button>
 										            <div class="col-md-12">
-                <h4>{{error}}</h4>             		
-            </div>
+                										<h4>{{error}}</h4>             		
+            										</div>
 									</a>
 								</div>
 							</div>
@@ -109,6 +123,7 @@
 <!-- <br/> -->
 <!-- <blockquote><h4><a href="http://angularcode.com/angularjs-datagrid-paging-sorting-filter-using-php-and-mysql/">Simple Datagrid with search, sort and paging using AngularJS + PHP + MySQL</a></h4></blockquote> -->
 <!-- <br/> -->
+
     <div class="row">
         <div class="col-md-2">PageSize:
             <select ng-model="entryLimit" class="form-control">
@@ -136,15 +151,15 @@
             <th style="width: 15%;">Broj dokumenta&nbsp;<a ng-click="sort_by('name');"><i class="glyphicon glyphicon-sort sort-arrows"></i></a></th>
             <th style="width: 10%;">Magacin&nbsp;<a ng-click="sort_by('code');"><i class="glyphicon glyphicon-sort sort-arrows"></i></a></th>
             <th style="width: 10%;">Partner&nbsp;<a ng-click="sort_by('code');"><i class="glyphicon glyphicon-sort sort-arrows"></i></a></th>
-            <th style="width: 16%;">Datum&nbsp;<a ng-click="sort_by('remark');"><i class="glyphicon glyphicon-sort sort-arrows"></i></a></th>
+            <th style="width: 14%;">Datum&nbsp;<a ng-click="sort_by('remark');"><i class="glyphicon glyphicon-sort sort-arrows"></i></a></th>
             <th style="width: 10%;">Iznos&nbsp;<a ng-click="sort_by('akcija');"><i class="glyphicon glyphicon-sort sort-arrows"></i></a> </th>
-            <th style="width: 12%;">AKCIJA&nbsp;<a ng-click="sort_by('akcija');"><i class="glyphicon glyphicon-sort sort-arrows"></i></a></th>
+            <th style="width: 14%;">AKCIJA&nbsp;<a ng-click="sort_by('akcija');"><i class="glyphicon glyphicon-sort sort-arrows"></i></a></th>
 <!--             <th>Country&nbsp;<a ng-click="sort_by('zvuk');"><i class="glyphicon glyphicon-sort"></i></a></th> -->
 <!--             <th>Credit Limit&nbsp;<a ng-click="sort_by('slika');"><i class="glyphicon glyphicon-sort"></i></a></th> -->
             </thead>
             <tbody>
                 <tr ng-repeat="data in filtered = (list | filter:search | orderBy : predicate :reverse) | startFrom:(currentPage-1)*entryLimit | limitTo:entryLimit">
-                    <td>{{data.id}}</td>
+                    <td ng-init="init({{data.id}}">{{data.id}} </td>
                     <td>{{data.typesOfDocuments.name}}</td>
                     <td>{{data.brojDokumenta}}</td>
                     
@@ -153,10 +168,20 @@
                     <td>{{data.datum | date:"dd.MM.yyyy"}}</td>
                     <td>{{data.iznos | number:2}}</td>
 <!--                     <td>{{data.aktivan}}</td> -->
-                    <td> <a href="dokumentStavke.html?id={{data.id}}"><i class="fa fa-clone edit-delete-icon"></i></a>   <a href="update_dokument.html?id={{data.id}}"><i class="fa fa-pencil-square-o edit-delete-icon"></i></a> <a href="delete_dokument.html?id={{data.id}}" onClick="return ConfirmDelete();"><i class="fa fa-trash-o edit-delete-icon"></i></a></td>
+
+<!-- radi                    <td> <a href="dokumentstavkefinal.html?page=0&id={{data.id}}"><i class="fa fa-clone edit-delete-icon"></i></a>   <a href="/printing/index.html?id={{data.id}}" target="_blank"> <i class="fa fa-print edit-delete-icon"></i></a> <a href="update_dokument.html?id={{data.id}}"><i class="fa fa-pencil-square-o edit-delete-icon"></i></a> <a href="delete_dokument.html?id={{data.id}}" onClick="return ConfirmDelete();"><i class="fa fa-trash-o edit-delete-icon"></i></a></td> -->
+                    
+                    <td> <a href="dokumentstavkefinal.html?page=0&id={{data.id}}"><i class="fa fa-clone edit-delete-icon"></i></a>
+                         <a href="printDocument.html?id={{data.id}}" target="_blank"> <i class="fa fa-print edit-delete-icon"></i></a> 
+                         <a href="update_dokument.html?id={{data.id}}"><i class="fa fa-pencil-square-o edit-delete-icon"></i></a> 
+                         <a href="delete_dokument.html?id={{data.id}}" onClick="return ConfirmDelete();"><i class="fa fa-trash-o edit-delete-icon"></i></a>
+                     </td>
+                    
+<!--                     <td> <a href="view_dokumentStavke.html?id={{data.id}}"><i class="fa fa-clone edit-delete-icon"></i></a>   <a href="/printing/index.html?id={{data.id}}" target="_blank"> <i class="fa fa-print edit-delete-icon"></i></a> <a href="update_dokument.html?id={{data.id}}"><i class="fa fa-pencil-square-o edit-delete-icon"></i></a> <a href="delete_dokument.html?id={{data.id}}" onClick="return ConfirmDelete();"><i class="fa fa-trash-o edit-delete-icon"></i></a></td> -->
 <!--                     <td>{{data.video}}</td> -->
 <!--                     <td>{{data.zvuk}}</td> -->
 <!--                     <td>{{data.slika}}</td> -->
+<!-- ng-init="init({{data.id}})" -->
                 </tr>
             </tbody>
             </table>

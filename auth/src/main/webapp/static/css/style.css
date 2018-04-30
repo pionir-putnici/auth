@@ -26,6 +26,12 @@
 	border-radius:0;
 }
 
+.button-novi:focus{
+	background-color:#337AB7;
+	color:#f3f3f3;
+	transition: background-color .3s, color .2s;
+}
+
 .button-novi:hover{
 	background-color:#337AB7;
 	color:#f3f3f3;

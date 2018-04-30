@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.persistence.EntityNotFoundException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 //import javax.servlet.http.HttpServletRequest;
@@ -76,7 +77,16 @@ public class MagaciniController {
 			return "magaciniUnosForm";
 		}
 
-		magaciniService.save(magacini);
+//		if(id==1){
+//			throw new EntityNotFoundException(id);
+//			
+			try {
+				magaciniService.save(magacini);
+			}
+			catch (Exception e) {
+				return "414";
+			}
+			
 		// return "redirect:vrste-paleta.html"; 
 		return "list-magacini"; 
 	}

@@ -6,6 +6,9 @@ import java.util.Iterator;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -289,8 +292,8 @@ public class RestsController {
 		return aa; 
 	}		
 	
-	@RequestMapping(path="/dokumentstavke", method=RequestMethod.GET)
-	public List<DokumentStavke> getJsonDokumentiStavke(@RequestParam(value="itemid") Long id){
+	@RequestMapping(path="/dokumentstavketest1", method=RequestMethod.GET)
+	public List<DokumentStavke> getJsonDokumentiStavkeRest(@RequestParam(value="id") Long id){
 
 		Dokument aa1 = dokumentRepository.findOne(id);
 		
@@ -325,7 +328,10 @@ public class RestsController {
 		}
 
 		return aa; 
-	}	
+	}
+	
+
+	
 	@RequestMapping(path="/typesofdocuments", method=RequestMethod.GET)
 	public List<TypesOfDocuments> getJsonTypesOfDocuments(){
 		

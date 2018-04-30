@@ -58,6 +58,16 @@
 												<form:errors path="name" class="help-block" />
 											</p>
 										</div>
+										
+										<div class='form-group ${error != null ? 'has-error' : ''}'>
+											<label class='font-oxygen'>Stopa</label>
+ 											<form:input type="number" class="form-control" id="stopa" 
+ 												path="stopa" placeholder='stopa' tabindex="2"
+ 												value="${poreskeGrupe.stopa}" /> 
+											<p class="help-block">
+ 												<form:errors path="stopa" class="help-block" /> 
+											</p>
+										</div>										
 
 										<div class='form-group'>
 											<label class='font-roboto'>Napomena</label>

@@ -17,6 +17,7 @@ import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
 import javax.persistence.Table;
 
+import org.hibernate.validator.constraints.NotEmpty;
 import org.json.JSONObject;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
@@ -84,6 +85,7 @@ public class Magacini implements Serializable {
         this.akcija = akcija;
     }
     // name
+    @NotEmpty
     public String getName() {
         return name;
     }
@@ -117,6 +119,7 @@ public class Magacini implements Serializable {
         this.timestamp = timestamp;
     }   
     
+    @NotEmpty
     public String getCode() {
 		return code;
 	}
@@ -166,6 +169,7 @@ public class Magacini implements Serializable {
 	}
 
 	// vrste magacina
+
     public void setVrsteMagacina(VrsteMagacina vrsteMagacina){
     	this.vrsteMagacina = vrsteMagacina;
     }

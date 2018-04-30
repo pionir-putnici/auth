@@ -27,6 +27,7 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 @Entity
 @Table(name="types_of_documents")
 public class TypesOfDocuments implements Serializable {
+
 	/**
 	 * 
 	 */
@@ -42,6 +43,7 @@ public class TypesOfDocuments implements Serializable {
     private String code;
     private String remark;
 	private String akcija;
+	private Long strana;	
 	private Date timestamp;
 	private boolean aktivan;
 	private String slika;
@@ -81,7 +83,8 @@ public class TypesOfDocuments implements Serializable {
         this.id = id;
     }
     
-	@Column(name = "code")
+    
+	@Column(name = "code", unique=true)
 	@NotEmpty  
     public String getCode() {
 		return code;
@@ -108,7 +111,25 @@ public class TypesOfDocuments implements Serializable {
 	public void setAkcija(String akcija) {
 		this.akcija = akcija;
 	}
+		
+	@Column(name = "strana")
 	
+	public Long getStrana() {
+		return strana;
+	}
+
+	public void setStrana(Long strana) {
+		this.strana = strana;
+	}
+
+	public String getSlika() {
+		return slika;
+	}
+
+	public void setSlika(String slika) {
+		this.slika = slika;
+	}
+
 	@Column(name="timestamp", columnDefinition="TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
 	public Date getTimestamp() {
 		return timestamp;

@@ -9,7 +9,7 @@
 			<%-- 	<%@ include file="index.jsp" %> --%>
 			<div class='row'>
 				<div class="col-lg-12">
-					<h3 class="page-header">Evidencija proizvoda i robe</h3>
+					<h4 class="page-header">Evidencija proizvoda i robe (Records of goods and packaging) </h4>
 				</div>
 				<div class='col-lg-12 '>
 					<div class='row spacer-bottom'>
@@ -24,7 +24,7 @@
 						<div class='col-lg-3 col-lg-offset-1 thumbnail-border'>
 							<div class='row border-bottom thumbnail-header'>
 								<div class='col-lg-12'>
-									<h4>Prijemnice</h4>
+<!-- 									<h4>Prijemnice</h4> -->
 								</div>
 							</div>
 							<div class='row'>
@@ -36,7 +36,7 @@
 						<div class='col-lg-3 col-lg-offset-1 thumbnail-border margin-thumbnail-align'>
 							<div class='row border-bottom thumbnail-header'>
 								<div class='col-lg-12'>
-									<h4>Otpremnice</h4>
+<!-- 									<h4>Otpremnice</h4> -->
 								</div>
 							</div>
 							<div class='row'>
@@ -48,7 +48,7 @@
 						<div class='col-lg-3 thumbnail-border'>
 							<div class='row border-bottom thumbnail-header'>
 								<div class='col-lg-12'>
-									<h4>Pregled magacina</h4>
+<!-- 									<h4>Pregled magacina</h4> -->
 								</div>
 							</div>
 							<div class='row'>
@@ -60,7 +60,9 @@
 					</div>
 				</div>
 		</div><!-- end of page wrapper -->
+	</div>
 	</div><!-- end of wrapper -->
+	
 	<%@ include file="scripts.jsp"%>
 </body>
 </html>

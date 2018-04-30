@@ -1,6 +1,7 @@
 package com.hellokoding.auth.model;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.util.Date;
 import java.util.Set;
 
@@ -38,12 +39,13 @@ public class PoreskeGrupe implements Serializable {
     private String code;
     private String remark;
 	private String akcija;
+	private BigDecimal stopa;
 	private Date timestamp;
 	private boolean aktivan;
     
  //   @OneToMany(mappedBy = "poreskeGrupe", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @OneToMany(mappedBy = "poreskeGrupe", orphanRemoval = true, cascade = CascadeType.PERSIST)
-    
+	
+    @OneToMany(mappedBy = "poreskeGrupe", orphanRemoval = true, cascade = CascadeType.PERSIST)    
     @Fetch (FetchMode.SELECT)
     @JsonManagedReference
     private Set<Artikli> artikli;
@@ -88,6 +90,15 @@ public class PoreskeGrupe implements Serializable {
 
 	public String getRemark() {
 		return remark;
+	}	 
+
+	@Column(name = "stopa")
+	public BigDecimal getStopa() {
+		return stopa;
+	}
+
+	public void setStopa(BigDecimal stopa) {
+		this.stopa = stopa;
 	}
 
 	public void setRemark(String remark) {
@@ -95,7 +106,6 @@ public class PoreskeGrupe implements Serializable {
 	}
 	
 	@Column(name = "akcija")
-
 	public String getAkcija() {
 		return akcija;
 	}

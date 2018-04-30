@@ -10,6 +10,8 @@ public interface DokumentStavkeRepository extends JpaRepository<DokumentStavke, 
 	
 	List<DokumentStavke> findAllByOrderByIdDesc();
 	List<DokumentStavke> findByIdDokument(Dokument dokument);
+//	List<DokumentStavke> findByIdRoba();
+	
 //	List<DokumentStavke> findByIdDokument(Long id);
 //	List<DokumentStavke> findByIdDokument(String alo);
 //	List<DokumentStavke> findByDokument(Dokument aa1);

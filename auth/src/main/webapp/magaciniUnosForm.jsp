@@ -34,12 +34,12 @@
 										<form:input type="hidden" name="id" path="id"
 											value="${magacini.id}" />
 
-		
-<!-- 			<div> -->
-<%-- 			<c:out value="${error}" />			 --%>
-<!-- 			</div> -->
-		
-		
+
+										<!-- 			<div> -->
+										<%-- 			<c:out value="${error}" />			 --%>
+										<!-- 			</div> -->
+
+
 										<div class='form-group ${error != null ? 'has-error' : ''}'>
 											<label class='font-oxygen'>Šifra</label>
 											<!-- 									<input class="form-control" name='code' path='code' -->
@@ -47,13 +47,13 @@
 											<form:input type="text" class="form-control " name="code"
 												path="code" value="${magacini.code}" autofocus="true"
 												placeholder='Unesite šifru' />
-												
+
 											<p class="help-block">
-												<form:errors path="code" class="help-block text-danger" /> 
-											</p> 
+												<form:errors path="code" class="help-block text-danger" />
+											</p>
 										</div>
 
-										
+
 										<div class='form-group ${error != null ? 'has-error' : ''}'>
 											<label class='font-awesome'>Naziv</label>
 											<%-- 									<input class="form-control" name='name' path='name' placeholder='Unesite naziv' value="${task.name}"> --%>
@@ -65,20 +65,19 @@
 												<form:errors path="name" class="help-block" />
 											</p>
 										</div>
-										
-		   <div class="form-group"${error != null ? 'has-error' : ''}'>  
-            <label  class='font-awesome'>Vrsta magacina</label>
 
-                <form:select path="vrsteMagacina.id" class="form-control">
-                    <form:option value="0" label="--- Select ---" />
-                    <form:options items="${eDept}" />
-                </form:select>
+										<div class="form-group"${error != null ? 'has-error' : ''}'>
+											<label class='font-awesome'>Vrsta magacina</label>
+
+											<form:select path="vrsteMagacina.id" class="form-control">
+												<form:option value="" label="--- Select ---" />
+												<form:options items="${eDept}" />
+											</form:select>
 
 											<p class="help-block">
 												<form:errors path="vrsteMagacina.id" class="help-block" />
 											</p>
-
-        </div>   
+										</div>
 
 										<div class='form-group'>
 											<label class='font-roboto'>Napomena</label>
@@ -94,12 +93,12 @@
 
 										<!--         value="1" value="0" -->
 
-<%-- 										<c:out value="${model.magacini.aktivan}" /> --%>
+										<%-- 										<c:out value="${model.magacini.aktivan}" /> --%>
 
 
-<%-- 										<c:if test="${magacini.aktivan}"> --%>
-<%-- 											<c:out value="${magacini.code}" /> --%>
-<%-- 										</c:if> --%>
+										<%-- 										<c:if test="${magacini.aktivan}"> --%>
+										<%-- 											<c:out value="${magacini.code}" /> --%>
+										<%-- 										</c:if> --%>
 
 
 										<c:set var="salary" scope="session" value="checked">
@@ -137,12 +136,22 @@
 										<input type="hidden" name="${_csrf.parameterName}"
 											value="${_csrf.token}" />
 
-<button type="submit" class="btn-md button-novi"><i class='fa fa-floppy-o'></i> Save</button>
-										<button type="reset" class="btn-md button-novi"><i class='fa fa-reply'></i> Cancel</button>
-										
+										<button type="submit" class="btn-lg button-novi">
+											<i class='fa fa-floppy-o'></i> Save
+										</button>
+										<input type="button"
+											onclick="location.href='/list-magacini.jsp'" value="Cancel"
+											class="btn-lg button-novi" />
 
-<!-- 										</form> -->
-												</form:form>
+										<!-- 										<button type="reset" class="btn-lg button-novi"> -->
+										<!-- 											<i class='fa fa-reply'></i> Cancel -->
+										<!-- 										</button> -->
+
+										<!-- 										<button type="reset" class="btn-md button-novi"><i class='fa fa-reply'></i> Cancel</button> -->
+
+
+										<!-- 										</form> -->
+									</form:form>
 								</div>
 							</div>
 						</div>

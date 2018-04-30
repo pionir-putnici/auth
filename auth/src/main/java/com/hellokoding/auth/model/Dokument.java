@@ -118,7 +118,6 @@ public class Dokument implements Serializable {
     @Column(name = "akcija")
     
     private String akcija;
- //   @Size(max = 45)
     
     @Column(name = "iznos")
     private BigDecimal iznos;
@@ -137,11 +136,10 @@ public class Dokument implements Serializable {
     private String video;
     private String zvuk;
     
-    @OneToMany(mappedBy = "idDokument", orphanRemoval = true, cascade = CascadeType.ALL)
-    @JsonManagedReference
-    
-    
-    private Set<DokumentStavke> dokumentStavkeCollection;
+//    @OneToMany(mappedBy = "idDokument", orphanRemoval = true, cascade = CascadeType.ALL)
+//    @JsonManagedReference
+        
+//    private Set<DokumentStavke> dokumentStavkeCollection;
     
 
     public Dokument() {
@@ -313,14 +311,18 @@ public class Dokument implements Serializable {
 	public void setIznos_bez_poreza(BigDecimal iznos_bez_poreza) {
 		this.iznos_bez_poreza = iznos_bez_poreza;
 	}
-	@XmlTransient
-    public Collection<DokumentStavke> getDokumentStavkeCollection() {
-        return dokumentStavkeCollection;
-    }
-
-    public void setDokumentStavkeCollection(Set<DokumentStavke> dokumentStavkeCollection) {
-        this.dokumentStavkeCollection = dokumentStavkeCollection;
-    }    
+	
+	
+	
+// if you have one to many
+//	@XmlTransient
+//    public Collection<DokumentStavke> getDokumentStavkeCollection() {
+//        return dokumentStavkeCollection;
+//    }
+//
+//    public void setDokumentStavkeCollection(Set<DokumentStavke> dokumentStavkeCollection) {
+//        this.dokumentStavkeCollection = dokumentStavkeCollection;
+//    }    
 
     @Override
     public int hashCode() {

@@ -20,6 +20,9 @@
 						<div class='panel-body'>
 							<div class='row spacer-bottom'>
 								<div class='col-lg-12'>
+
+    								<input type="button" onclick="/" value="Cancel"  class="btn-lg button-novi"/>
+								
 									<a href="/new-artikli.html">
 										<button
 											class='btn btn-lg btn-success button-novi border-radius-0'>

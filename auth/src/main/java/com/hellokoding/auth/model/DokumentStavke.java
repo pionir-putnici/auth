@@ -126,7 +126,7 @@ public class DokumentStavke implements Serializable {
     
     @JoinColumn(name = "id_dokument", referencedColumnName = "id")
     @ManyToOne
-    @JsonBackReference
+//    @JsonBackReference
     private Dokument idDokument;
         
     public DokumentStavke() {
@@ -310,7 +310,7 @@ public class DokumentStavke implements Serializable {
     public void setDokumentStavkecol(String dokumentStavkecol) {
         this.dokumentStavkecol = dokumentStavkecol;
     }
-
+    
     public Dokument getIdDokument() {
         return idDokument;
     }

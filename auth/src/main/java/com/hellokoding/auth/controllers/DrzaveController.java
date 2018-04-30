@@ -21,6 +21,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.jasperreports.JasperReportsPdfView;
 import com.hellokoding.auth.model.CompanyDetails;
+import com.hellokoding.auth.model.Dokument;
+import com.hellokoding.auth.model.DokumentStavke;
 import com.hellokoding.auth.model.Drzave;
 import com.hellokoding.auth.repository.DrzaveRepository;
 import com.hellokoding.auth.model.PttBrojevi;
@@ -137,5 +139,25 @@ public class DrzaveController {
         params.put("city",  companyDetails.companyDetails3);
         return new ModelAndView(view, params);
     }
-	
+
+    
+//    @RequestMapping(path = "/print_states.html", method = RequestMethod.GET)
+//    public ModelAndView printStates() {
+//
+//        return new ModelAndView(view, params);
+//    }
+//    
+    
+    @RequestMapping(value="/printCodebook.html")
+    public String selectTag(HttpServletRequest request) {
+      //  ModelAndView mav = new ModelAndView("/printing/printCodebook");
+         
+        List<Drzave> states = statesRepository.findAll();      
+		request.setAttribute("states", states);
+        // mav.addObject("states", states);
+         
+        return "/printing/printCodebook";    
+    }    
+    
+    
 }

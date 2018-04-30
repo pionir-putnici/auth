@@ -65,7 +65,7 @@ public class Artikli implements Serializable {
     
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "jediniceMera_id")
-  //  @JsonIgnore
+    @JsonIgnore
     @JsonBackReference
     private JediniceMera jediniceMera;  
     

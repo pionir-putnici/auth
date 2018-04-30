@@ -26,6 +26,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.jasperreports.JasperReportsPdfView;
 import com.hellokoding.auth.model.CompanyDetails;
+import com.hellokoding.auth.model.Magacini;
 import com.hellokoding.auth.model.TypesOfDocuments;
 import com.hellokoding.auth.repository.TypesOfDocumentsRepository;
 
@@ -52,6 +53,7 @@ public class TypesOfDocumentsController {
 		request.setAttribute("title", "Type of Documents");
 		request.setAttribute("new_item", "/typesOfDocuments_new.html");
 		request.setAttribute("print_item", "/typesOfDocuments_pdf.html");
+		
 		return "typesOfDocuments";
 	}	
 
@@ -99,11 +101,40 @@ public class TypesOfDocumentsController {
 	
     
     @RequestMapping(value = "/update_typesOfDocuments.html")
-	public String updateTypetypeOfDocuments(@RequestParam Long id, HttpServletRequest request){
-		request.setAttribute("typesOfDocuments", typesOfDocumentsRepository.findOne(id));
-		request.setAttribute("mode", "MODE_UPDATE");
-		request.setAttribute("title", "Update typesOfDocuments");	
-		return "typesOfDocumentsForm";
+	public ModelAndView updateTypetypeOfDocuments(@RequestParam Long id, HttpServletRequest request){
+    	
+    	ModelAndView mav = new ModelAndView("typesOfDocumentsForm");
+    	
+        Map< String, String > phones = new HashMap<String, String>();
+        phones.put("samsung", "SAMSUNG");
+        phones.put("nokia", "NOKIA");
+        phones.put("iphone", "IPHONE");
+         
+        mav.addObject("phonesMap", phones);
+        mav.addObject("typesOfDocuments", typesOfDocumentsRepository.findOne(id));
+        mav.addObject("mode", "MODE_UPDATE");
+        mav.addObject("title", "Update typesOfDocuments");
+                
+//		request.setAttribute("typesOfDocuments", typesOfDocumentsRepository.findOne(id));
+//		request.setAttribute("mode", "MODE_UPDATE");
+//		request.setAttribute("title", "Update typesOfDocuments");	
+		
+//		Magacini km = new Magacini();
+//	      List<Magacini> deptList = magaciniRepository.findAll(); 
+	      
+	    Map<Long, String> dept = new HashMap<>();
+		HttpSession sess = request.getSession();
+		
+//		for (Magacini d : deptList) {
+//	          dept.put(d.getId(), d.getName());
+//	      }
+		
+		dept.put(1L,"Ulaz");
+		dept.put(2L,"Izlaz");
+	    sess.setAttribute("eStrana", dept);	 		
+		
+		
+		return mav;
 	}
     
 //    @ControllerAdvice

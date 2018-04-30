@@ -12,8 +12,8 @@
 <meta http-equiv="Cache-Control" content="no-cache">
 <meta http-equiv="Expires" content="Sat, 01 Dec 2001 00:00:00 GMT">
 
-<title>${title}</title>
-
+<%-- <title>${title}</title> --%>
+<title>Evidence of goods and packages</title>
     <!-- Bootstrap Core CSS -->
     <link href="static/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
@@ -38,8 +38,9 @@
 
 	<link rel="stylesheet" href="https://cdn.datatables.net/1.10.12/css/jquery.dataTables.css">
 	<link rel="stylesheet" href="static/css/style.css">
-	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.4/angular.js"></script>
 	
+
+<!-- 	<script type="text/javascript" src="static/vendor/bootstrap/js/bootstrap.js"></script> -->
 	
 <!-- 	<script src="static/js/testController.js"></script> -->
 	

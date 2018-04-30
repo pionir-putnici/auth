@@ -26,10 +26,12 @@ import com.hellokoding.auth.model.Drzave;
 import com.hellokoding.auth.model.Magacini;
 import com.hellokoding.auth.model.Partner;
 import com.hellokoding.auth.model.Dokument;
+import com.hellokoding.auth.model.DokumentStavke;
 import com.hellokoding.auth.model.PttBrojevi;
 import com.hellokoding.auth.model.TypesOfDocuments;
 import com.hellokoding.auth.repository.CostumersRepository;
 import com.hellokoding.auth.repository.DokumentRepository;
+import com.hellokoding.auth.repository.DokumentStavkeRepository;
 import com.hellokoding.auth.repository.MagaciniRepository;
 import com.hellokoding.auth.repository.TypesOfDocumentsRepository;
 
@@ -53,7 +55,8 @@ public class DokumentController {
 	@Autowired
 	private TypesOfDocumentsRepository typesOfDocumentsRepository;
 	
-	
+	@Autowired
+	private DokumentStavkeRepository dokumentStavkeRepository;
 	
 	@RequestMapping(value = "/dokument.html")
 	public String MeasureTypesDisplay(HttpServletRequest request) {
@@ -180,7 +183,18 @@ public class DokumentController {
 		      }
 	      sess.setAttribute("eTypesOfDocuments", tdl);	 
 	      
-	      
+		    // partner
+		    Partner kmp = new Partner();
+		      List<Partner> partList = partnerRepository.findAll(); 
+		      
+		    Map<Long, String> deptp = new HashMap<>();
+			// HttpSession sess = request.getSession();
+			
+			for (Partner d : partList) {
+		          deptp.put(d.getId(), d.getName());
+		      }
+		      sess.setAttribute("ePartner", deptp);	
+		      
 		return "dokumentForm";
 	}
     
@@ -210,5 +224,45 @@ public class DokumentController {
         params.put("city",  companyDetails.companyDetails3);
         return new ModelAndView(view, params);
     }
-	
+
+    @RequestMapping(path = "/printing/printDocument.html", method = RequestMethod.GET)
+    public ModelAndView printDocumentReport() {
+
+    	
+        JasperReportsPdfView view = new JasperReportsPdfView();
+        view.setUrl("classpath:rpt_Items1.jrxml");
+        view.setApplicationContext(appContext);
+       
+        Map<String, Object> params = new HashMap<>();
+        params.put("datasource", dokumentRepository.findAllByOrderByIdDesc());
+        params.put("title", "Dokuments - angular");
+
+        params.put("company",  companyDetails.companyDetails1);
+        params.put("adress",  companyDetails.companyDetails2);
+        params.put("city",  companyDetails.companyDetails3);
+        return new ModelAndView(view, params);
+    }
+    
+
+    	
+
+    @RequestMapping(value="printDocument.html")
+    public ModelAndView selectTag(@RequestParam Long id, HttpServletRequest request) {
+        ModelAndView mav = new ModelAndView("/printing/printDocument");
+         
+        Dokument dokument = dokumentRepository.findOne(id);
+        List<DokumentStavke> dokumentStavke = dokumentStavkeRepository.findByIdDokument(dokument);
+        
+        Map< String, String > phones = new HashMap<String, String>();
+        phones.put("samsung", "SAMSUNG");
+        phones.put("nokia", "NOKIA");
+        phones.put("iphone", "IPHONE");
+         
+        mav.addObject("dokument", dokument);
+        mav.addObject("dokumentStavke", dokumentStavke);
+        
+        // mav.addObject("smartphone", new Smartphone());
+         
+        return mav;    
+    }
 }
