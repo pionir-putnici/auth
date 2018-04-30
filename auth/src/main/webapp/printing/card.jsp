@@ -10,7 +10,7 @@
 <head>
 <title>PrintDocument</title>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-<link rel='stylesheet' href='style.css' type='text/css' />
+<link rel='stylesheet' href='/printing/style.css' type='text/css' />
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 </head>
 
@@ -22,7 +22,7 @@
             <div class='row spacer-top-20' id='article-card-title'>
                 <div class='col-xs-12'>
                     <div class='row text-center'>
-                        <h4>Kartica artikla za period od 01.01.2018. do 01.02.2018.</h4>
+                        <h4>Kartica artikla za period od 01.01.2018. do 01.02.2018. </h4>
                     </div>
                 </div>
                 <div class='col-xs-12 spacer-top-15' id="document-info">
@@ -79,6 +79,19 @@
                                 <td>0,00</td>
                                 <td>100</td>
                             </tr>
+                            
+							<c:forEach items="${stavke}" var="stavka">                     
+                            <tr>
+                                <td>${stavka.id}</td>
+                                <td>${stavka.datum}</td>
+                                <td>${stavka.idDokument.brojDokumenta}</td>
+                                <td>${stavka.ulaz}</td>
+                                <td class='text-right'>${stavka.izlaz}</td>
+                                <td class='text-right'>${stavka.izlaz}</td>
+                                <td class='text-right'>${stavka.cena}</td>
+                            </tr>
+                        	    </c:forEach>                            
+                            
                             <tr>
                                 <td colspan='3'>TOTAL</td>
                                 <td>Total ulaz</td>
