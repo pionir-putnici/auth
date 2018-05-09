@@ -32,6 +32,12 @@ public interface ArtikliRepository extends JpaRepository<Artikli, Long> {
 	
 	List<Artikli> findArtikliWithoutRelations();
 	
+
+	@Query(" from Artikli order by name ")	
+	List<Artikli> findAllByOrderByNameAsc();
+	
+		
+	
 	
 //	  @Query("select t from #{#entityName} t where t.attribute = ?1")
 //	  List<T> findAllByAttribute(String attribute);

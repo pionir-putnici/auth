@@ -387,18 +387,6 @@ public class DokumentStavkeController {
 	}
 	
 	
-    @RequestMapping(value = "/find_article_for_warehouse.html")
-	public String fafw(@RequestParam Long id_roba, @RequestParam Long id_magacin,  HttpServletRequest request){
-    	
-    	
-    	List<DokumentStavke> dd = dokumentStavkeRepository.findArticleInWarehouse(id_magacin, id_roba);
-    	System.out.print(dd.toString());
-    	// List<DokumentStavke> dd = dokumentStavkeRepository.findArticleInWarehouse(id_magacin, id_roba);	    	
-		request.setAttribute("stavke", dd);
-		request.setAttribute("title", "Update dokumentStavke");
-		
-		return ("/printing/card");
-	}	
-	
+
 	
 }

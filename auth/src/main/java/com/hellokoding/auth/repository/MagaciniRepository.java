@@ -1,5 +1,6 @@
 package com.hellokoding.auth.repository;
 
+import com.hellokoding.auth.model.Artikli;
 import com.hellokoding.auth.model.Magacini;
 
 import java.util.List;
@@ -31,6 +32,9 @@ public interface MagaciniRepository extends JpaRepository<Magacini, Long> {
 			+ "  " )	
 	
 	List<Magacini> findMagacinisWithoutRelations();
+	
+	@Query(" from Magacini order by name ")	
+	List<Magacini> findAllByOrderByNameAsc();
 	
 	
 //	  @Query("select t from #{#entityName} t where t.attribute = ?1")
