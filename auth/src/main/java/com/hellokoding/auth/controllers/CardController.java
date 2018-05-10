@@ -1,7 +1,9 @@
 package com.hellokoding.auth.controllers;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
+import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -105,19 +107,58 @@ public class CardController {
 //	@Autowired
 //	private VrsteArtikalaDao vrsteartikalaDao;
 
+ 
+    	
 	
     @RequestMapping(value = "/find_article_for_warehouse.html")
-    // public String controllerMethod(@RequestParam(value="select2") List<Long> myParam,  HttpServletRequest request)
-	 public String fafw(@RequestParam Long id_roba, @RequestParam Long id_magacin,  HttpServletRequest request)
+    
+	 // public String fafw(@RequestParam Long id_roba, @RequestParam Long id_magacin,  @RequestParam String action, HttpServletRequest request)
+	 public String fafw(@RequestParam String action, @RequestParam String[] select2, HttpServletRequest request)
     
     {
     	
-    	System.out.print("Roba je: " + id_roba);    	
-    	List<DokumentStavke> dd = dokumentStavkeRepository.findArticleInWarehouse(id_magacin, id_roba);
-    	System.out.print(dd.toString());
-    	// List<DokumentStavke> dd = dokumentStavkeRepository.findArticleInWarehouse(id_magacin, id_roba);
+        if( action.equals("cancel-warehouse") ){
+            //handle save
+        	System.out.print("cancel warehouse");
+        	
+         }
+         else if( action.equals("cancel-article") ){
+        	 System.out.print("cancel article");
+        	 System.out.print(select2);
+        	 System.out.println(Arrays.toString(select2));
+        	 
+        	 HttpSession session = request.getSession();
+             Enumeration e = (Enumeration) (session.getAttributeNames());
+
+             while ( e.hasMoreElements())
+             {
+                 Object tring;
+                 if((tring = e.nextElement())!=null)
+                 {
+                	 System.out.println(e.toString());
+                     System.out.println(session.getValue((String) tring));
+                     System.out.println("<br/>");
+                 }
+
+             }        	 
+             
+             // String Schema=(String)session.getAttribute("SCHEMA");
+             List<Artikli> aa = (List<Artikli>)session.getAttribute("izabraneVrednostiArtikli");
+        	 
+        	 // Object mm = request.getParameterValues(izabraneVrednostiArtikli);
+        	 System.out.println(aa.toString());
+        	 
+        	 // sess.setAttribute("izabraneVrednostiArtikli", izabraneVrednostiArtikli);
+            //handle renew
+         }
     	
-		request.setAttribute("stavke", dd);
+    	
+//    	System.out.print("Roba je: " + id_roba);    	
+//    	List<DokumentStavke> dd = dokumentStavkeRepository.findArticleInWarehouse(id_magacin, id_roba);
+//    	System.out.print(dd.toString());
+    	
+    	
+//		request.setAttribute("stavke", dd);
 		request.setAttribute("title", "Update dokumentStavke");
 		
 		return ("/printing/card");
@@ -186,7 +227,8 @@ public class CardController {
 		return "redirect:find_all_articles.html";
 
 		
-	}    
+	}
     
+
     
 }

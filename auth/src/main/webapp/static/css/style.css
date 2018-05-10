@@ -204,3 +204,25 @@ table.dataTable.no-footer{
 .sort-arrows{
 	font-size:10px;
 }
+
+#selected-warehouse-articles select {width:100%; display:block; }
+
+.spacer-top-20 { 
+	margin-top:20px;
+}
+
+.input-warehouse-article {
+	display:block; width:100%;
+}
+
+.glyphicon-plus {
+	color:#50C878;
+}
+
+.glyphicon-minus {
+	color:red;
+}
+
+.inline-button {
+	display:inline-block;
+}
