@@ -19,6 +19,21 @@ public interface DokumentStavkeRepository extends JpaRepository<DokumentStavke, 
     List<DokumentStavke> findArticleInWarehouse(@Param("id_magacin") Long id_magacin,
     		@Param("id_roba") Long id_roba);    
 
+    @Query("SELECT t FROM DokumentStavke t where t.artikli.id = :id_roba "
+    		+ "and t.magacini.id = :id_magacin and datum between :oddana and :dodana and t.aktivan=true order by t.datum "
+    		+ " " ) 
+    List<DokumentStavke> findArticleInWarehouseForDate(@Param("id_magacin") Long id_magacin,
+    		@Param("id_roba") Long id_roba, @Param("oddana") String oddana, @Param("dodana") String dodana);   
+    
+    
+    @Query("SELECT t FROM DokumentStavke t where :conditions  "
+    		+ " " ) 
+    List<DokumentStavke> upitKonacni(
+    		@Param("conditions") String conditions);       
+    
+//    SELECT   p   FROM Product p WHERE p.type= :type AND (p.available IN 
+//    		('foo', 'bar') OR p.available = :available) 
+    
     
     
 //	List<DokumentStavke> findByIdRoba();	

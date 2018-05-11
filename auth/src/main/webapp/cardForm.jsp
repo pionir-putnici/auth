@@ -92,7 +92,7 @@
 													<div class='col-lg-6'>
 													<div class='row'>
 													<div class='col-lg-8'>
-														<select name="select1[]" size="10" multiple="multiple"
+														<select name="select1" size="10" multiple="multiple"
 															tabindex="1">
 
 															<c:forEach items="${izabraneVrednostiMagacini}"
@@ -150,7 +150,7 @@
 											
 											<div class='row text-center spacer-top-20'>
 												<div class='col-lg-12'>
-													<button type="submit" class="btn-lg button-novi">
+													<button type="submit" class="btn-lg button-novi" name="action" value="main-submit">
 														<i class='fa fa-floppy-o'></i> Save
 													</button>
 													<button type="reset" class="btn-lg button-novi">

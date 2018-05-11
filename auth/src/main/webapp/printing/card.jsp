@@ -28,7 +28,7 @@
 		<div class='row spacer-top-20' id='article-card-title'>
 			<div class='col-xs-12'>
 				<div class='row text-center'>
-					<h4>Kartica artikla za period od 01.01.2018. do 01.02.2018.</h4>
+					<h4>Kartica artikla za period od dana ${oddana} do dana ${dodana}</h4> 
 				</div>
 			</div>
 			<div class='col-xs-12 spacer-top-15' id="document-info">
@@ -37,7 +37,7 @@
 						<p>Datum izrade:</p>
 					</div>
 					<div class='col-xs-2'>
-						<p>03.04.2018.</p>
+						<p>${currentdate}</p>
 					</div>
 				</div>
 			</div>
@@ -45,14 +45,20 @@
 		<div class='row spacer-top-15' id='article-info-storage-location'>
 			<div class='col-xs-2'>
 				<p>Magacin:</p>
+				
 			</div>
 			<div class='col-xs-10'>
-				<p>Magacin 1</p>
+
+				<c:forEach items="${magkart}" var="magkart">
+					
+							<p>	${magkart.code} ${magkart.name} </p>
+							
+				</c:forEach>
 			</div>
 		</div>
 		<div class='row' id='article-info'>
 			<div class='col-xs-2'>
-				<p>Å¡ifra</p>
+				<p>Šifra</p>
 			</div>
 			<div class='col-xs-2'>
 				<p>naziv</p>
@@ -64,8 +70,8 @@
 					<thead id="table-head-first-row">
 						<th></th>
 						<th colspan="2">DOKUMENT</th>
-						<th>KOLIÄINA</th>
-						<th>KOLIÄINA</th>
+						<th>KOLIČINA</th>
+						<th>KOLIČINA</th>
 						<th></th>
 						<th></th>
 						<th>IZNOS</th>
