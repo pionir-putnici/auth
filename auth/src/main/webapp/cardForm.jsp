@@ -13,7 +13,7 @@
 
 			<div class="row">
 				<div class="col-lg-12">
-					<h2 class="page-header">Parametri izveštaja</h2>
+					<h2 class="page-header">Parametri izveštaja ${currentdate}</h2>
 				</div>
 			</div>
 
@@ -90,6 +90,13 @@
 
 												<form method="POST" action="find_article_for_warehouse.html">
 													<div class='col-lg-6'>
+													
+													<div class='row'> 
+													<div class='col-lg-8'>
+													<h4>Selected warehouses</h4>
+													</div>
+													</div>
+													
 													<div class='row'>
 													<div class='col-lg-8'>
 														<select name="select1" size="10" multiple="multiple"
@@ -113,6 +120,13 @@
 													</div>
 
 													<div class='col-lg-6'>
+													
+													<div class='row'> 
+													<div class='col-lg-8'>
+													<h4>Selected articles</h4>
+													</div>
+													</div>
+													
 													<div class='row'>
 													<div class='col-lg-8'>
 														<select name="select2" size="10" multiple="multiple"
@@ -140,11 +154,11 @@
 											<div class='row spacer-top-20' >
 											<div class='col-lg-6'>
 											<label for="oddana">Od dana: </label>
-												<input id="oddana" type="date" name="oddana" class='form-control'>
+												<input id="oddana" type="date" name="oddana" class='form-control' value='${currentdate}'>
 											</div>
 											<div class='col-lg-6'>
 											<label for="dodana">Do dana: </label>
-												<input id="dodana" type="date" name="dodana" class='form-control'>
+												<input id="dodana" type="date" name="dodana" class='form-control' value='${currentdate}'>
 											</div>																						 
 											</div>
 											
@@ -162,10 +176,31 @@
 
 										</div>
 										
+
+
+										
 									</div>
 								</div>
 
 							</div>
+							
+							<div class='row'>
+							<div class='col-lg-12'>
+										<% if( request.getSession().getAttribute("ev") != null)
+											{
+											%>
+											<h4 class="error-text">
+												<c:out value='${sessionScope.ev}'/>
+											</h4>
+										<%	
+										session.setAttribute("ev", null);	
+										System.out.printf("hello");
+											}
+ 										%>
+ 										
+							</div>
+							</div>
+							
 						</div>
 					</div>
 					<!-- end of panel -->

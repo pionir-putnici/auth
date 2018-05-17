@@ -1,6 +1,8 @@
 package com.hellokoding.auth.repository;
 import com.hellokoding.auth.model.Dokument;
 import com.hellokoding.auth.model.DokumentStavke;
+
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -24,23 +26,24 @@ public interface DokumentStavkeRepository extends JpaRepository<DokumentStavke, 
     		+ " " ) 
     List<DokumentStavke> findArticleInWarehouseForDate(@Param("id_magacin") Long id_magacin,
     		@Param("id_roba") Long id_roba, @Param("oddana") String oddana, @Param("dodana") String dodana);   
+
+    
+    @Query("SELECT t FROM DokumentStavke t where  "
+    		+ " t.magacini.id in (:id_magacin) and "
+    		+ " t.artikli.id in (:id_roba) "
+    		+ " and datum between :oddana and :dodana and t.aktivan=true order by t.magacini.code, t.artikli.code, t.datum" )     
+    List<DokumentStavke> k1 (@Param("id_magacin") List<Long> ids_magacin, @Param("id_roba") List<Long> ids_artikli, 
+    		@Param("oddana") Date oddana, @Param("dodana") Date dodana);   
     
     
-    @Query("SELECT t FROM DokumentStavke t where :conditions  "
-    		+ " " ) 
-    List<DokumentStavke> upitKonacni(
-    		@Param("conditions") String conditions);       
+        
+ //   @NamedQuery(name = Department.getDepartmentsByIds, query = "SELECT tbl FROM Department tbl where tbl.id in (:departmentsIds)")   ; 
     
-//    SELECT   p   FROM Product p WHERE p.type= :type AND (p.available IN 
-//    		('foo', 'bar') OR p.available = :available) 
-    
-    
-    
-//	List<DokumentStavke> findByIdRoba();	
-//	List<DokumentStavke> findByIdDokument(Long id);
-//	List<DokumentStavke> findByIdDokument(String alo);
-//	List<DokumentStavke> findByDokument(Dokument aa1);
-	
-	
+
+    //    @Query("SELECT t FROM DokumentStavke t where :conditions  "
+//    		+ " " ) 
+//    List<DokumentStavke> upitKonacni(
+//    		@Param("conditions") String conditions);       
+    	
 	
 }

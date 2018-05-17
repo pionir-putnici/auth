@@ -226,3 +226,11 @@ table.dataTable.no-footer{
 .inline-button {
 	display:inline-block;
 }
+
+.error-text {
+	color:red; font-size: 1.5em;
+}
+
+#article-info {
+	margin-bottom:10px;
+}

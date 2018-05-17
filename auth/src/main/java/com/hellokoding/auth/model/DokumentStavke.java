@@ -339,9 +339,20 @@ public class DokumentStavke implements Serializable {
         return true;
     }
 
-    @Override
-    public String toString() {
-        return "com.mycompany.mavenwebapplication.DokumentStavke[ id=" + id + " ]";
+    public String toString1() {
+        return "DokumentStavke[ id=" + id + " ]";
     }
+
+	@Override
+	public String toString() {
+		return "DokumentStavke [id=" + id + ", typesofdocuments=" + typesofdocuments + ", datum=" + datum
+				+ ", magacini=" + magacini + ", artikli=" + artikli + ", robaNaziv=" + robaNaziv + ", kolicina="
+				+ kolicina + ", ulaz=" + ulaz + ", izlaz=" + izlaz + ", cena=" + cena + ", iznos=" + iznos + ", duguje="
+				+ duguje + ", potrazuje=" + potrazuje + ", aktivan=" + aktivan + ", datumvreme=" + datumvreme
+				+ ", akcija=" + akcija + ", host=" + host + ", napomena=" + napomena + ", dokumentStavkecol="
+				+ dokumentStavkecol + ", idDokument=" + idDokument + "]";
+	}
+    
+    
     
 }

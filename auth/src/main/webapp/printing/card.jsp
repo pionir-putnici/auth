@@ -3,6 +3,8 @@
 <!DOCTYPE html>
 
 <%@ page import="java.util.Date"%>
+<%@ page import="java.util.TreeMap"%>
+
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
@@ -27,109 +29,223 @@
 	<div class='container-fluid'>
 		<div class='row spacer-top-20' id='article-card-title'>
 			<div class='col-xs-12'>
+			<p>${currentdate}</p>
 				<div class='row text-center'>
-					<h4>Kartica artikla za period od dana ${oddana} do dana ${dodana}</h4> 
+					<h4>Kartica artikla za period od dana ${oddana} do dana
+						${dodana} ${kontrola}</h4> 						
 				</div>
 			</div>
-			<div class='col-xs-12 spacer-top-15' id="document-info">
-				<div class='row'>
-					<div class='col-xs-2'>
-						<p>Datum izrade:</p>
-					</div>
-					<div class='col-xs-2'>
-						<p>${currentdate}</p>
-					</div>
-				</div>
-			</div>
+			
+<!-- 			<div class='col-xs-12 spacer-top-15' id="document-info"> -->
+<!-- 				<div class='row'> -->
+<!-- 					<div class='col-xs-2'> -->
+<!-- 						<p>Datum</p> -->
+<!-- 					</div> -->
+<!-- 					<div class='col-xs-2'> -->
+<%-- 						<p>${currentdate}</p> --%>
+<!-- 					</div> -->
+<!-- 				</div> -->
+<!-- 			</div> -->
+			
 		</div>
-		<div class='row spacer-top-15' id='article-info-storage-location'>
-			<div class='col-xs-2'>
-				<p>Magacin:</p>
+		<c:forEach items="${magkart}" var="magkart">
+
+
+
+
+
+			<div class='row spacer-top-15' id='article-info-storage-location'>
+				<div class='col-xs-2'>
+					<p>Magacin:</p>
+				</div>
 				
-			</div>
-			<div class='col-xs-10'>
+				<div class='col-xs-10'>
 
-				<c:forEach items="${magkart}" var="magkart">
-					
-							<p>	${magkart.code} ${magkart.name} </p>
-							
-				</c:forEach>
-			</div>
-		</div>
-		<div class='row' id='article-info'>
-			<div class='col-xs-2'>
-				<p>Šifra</p>
-			</div>
-			<div class='col-xs-2'>
-				<p>naziv</p>
-			</div>
-		</div>
-		<div class='row'>
-			<div class='col-xs-12'>
-				<table class='tableDocuments'>
-					<thead id="table-head-first-row">
-						<th></th>
-						<th colspan="2">DOKUMENT</th>
-						<th>KOLIČINA</th>
-						<th>KOLIČINA</th>
-						<th></th>
-						<th></th>
-						<th>IZNOS</th>
-						<th>IZNOS</th>
-						<th></th>
-					</thead>
-					<thead id='table-head-second-row'>
-						<th style="width: 5%;">RB</th>
-						<th style="width: 10%;">DATUM</th>
-						<th style="width: 10%;">BROJ</th>
-						<th style="width: 10%;">ULAZ</th>
-						<th style="width: 10%;">IZLAZ</th>
-						<th style="width: 10%;">STANJE</th>
-						<th style="width: 10%;">CENA</th>
-						<th style="width: 10%;">ULAZ</th>
-						<th style="width: 10%;">IZLAZ</th>
-						<th style="width: 10%;">STANJE</th>
-					</thead>
-					<tbody>
-						<tr>
-							<td>1.</td>
-							<td>30.04.2018</td>
-							<td>000001</td>
-							<td>100</td>
-							<td>0</td>
-							<td>100</td>
-							<td>300,00</td>
-							<td>30.000,00</td>
-							<td>0,00</td>
-							<td>100</td>
-						</tr>
+					<p>${magkart.code} ${magkart.name}</p>
 
-						<c:forEach items="${stavke}" var="stavka">
-							<tr>
-								<td>${stavka.id}</td>
-								<td>${stavka.datum}</td>
-								<td>${stavka.idDokument.brojDokumenta}</td>
-								<td>${stavka.ulaz}</td>
-								<td class='text-right'>${stavka.izlaz}</td>
-								<td class='text-right'>${stavka.izlaz}</td>
-								<td class='text-right'>${stavka.cena}</td>
-							</tr>
-						</c:forEach>
-
-						<tr>
-							<td colspan='3'>TOTAL</td>
-							<td>Total ulaz</td>
-							<td>Total izlaz</td>
-							<td>Total stanje</td>
-							<td></td>
-							<td>Total ulaz</td>
-							<td>Total izlaz</td>
-							<td>Total stanje</td>
-						</tr>
-					</tbody>
-				</table>
+				</div>
 			</div>
-		</div>
+
+			<c:forEach items="${artkart}" var="artkart">
+			
+	        
+	        
+	        <c:forEach items="${kontrola}" var="kontrola">
+	            <c:out value="${kontrola}"></c:out>    			
+    			<c:out value="${kontrola.key}"></c:out>
+			</c:forEach>
+			
+			
+			
+				<div class='row' id='article-info'>
+					<div class='col-xs-2'>
+						<p>Šifra: ${artkart.code}</p>
+					</div>
+					<div class='col-xs-2'>
+						<p>${artkart.name}</p>
+					</div>
+				</div>
+
+				<div class='row'>
+					<div class='col-xs-12'>
+						<table class='tableDocuments'>
+							<thead id="table-head-first-row">
+								<th></th>
+								<th colspan="2">DOKUMENT</th>
+								<th class='text-right'>KOLIČINA</th>
+								<th class='text-right'>KOLIČINA</th>
+								<th></th>
+								<th></th>
+								<th class='text-right'>IZNOS</th>
+								<th class='text-right'>IZNOS</th>
+								<th></th>
+							</thead>
+							<thead id='table-head-second-row'>
+								<th style="width: 5%;">RB</th>
+								<th style="width: 10%;">DATUM</th>
+								<th style="width: 10%;">BROJ</th>
+								<th style="width: 10%;" class='text-right'>ULAZ</th>
+								<th style="width: 10%;" class='text-right'>IZLAZ</th>
+								<th style="width: 10%;" class='text-right'>STANJE</th>
+								<th style="width: 10%;" class='text-right'>CENA</th>
+								<th style="width: 10%;" class='text-right'>ULAZ</th>
+								<th style="width: 10%;" class='text-right'>IZLAZ</th>
+								<th style="width: 10%;" class='text-right'>STANJE</th>
+							</thead>
+							<tbody>
+								<c:forEach items="${stavkart}" var="stavka">
+
+<%-- 									<c:set var="salary" scope="session" value="${2000*2}" /> --%>
+									
+									<c:if test="${stavka.magacini.id==magkart.id && stavka.artikli.id==artkart.id}">
+
+ 									<c:set var="totalKol" value="${totalKol + stavka.ulaz-stavka.izlaz}"/>
+ 									<c:set var="totalVred" value="${totalVred + stavka.duguje-stavka.potrazuje}"/>
+ 									<c:set var="totalUlaz" value="${totalUlaz + stavka.ulaz}"/>
+ 									<c:set var="totalIzlaz" value="${totalIzlaz + stavka.izlaz}"/>
+ 									<c:set var="totalDuguje" value="${totalDuguje + stavka.duguje}"/>
+ 									<c:set var="totalPotrazuje" value="${totalPotrazuje + stavka.potrazuje}"/>
+ 									
+										<tr>
+											<td>${stavka.id}</td>
+											<td>${stavka.datum}</td>
+											<td>${stavka.idDokument.brojDokumenta}</td>
+											<td class='text-right'>${stavka.ulaz}</td>
+											<td class='text-right'>${stavka.izlaz}</td>
+											<td class='text-right'>${totalKol}</td>
+											<td class='text-right'>${stavka.cena}</td>
+											<td class='text-right'>${stavka.duguje}</td>
+											<td class='text-right'>${stavka.potrazuje}</td>
+											<td class='text-right'>${totalVred}</td>
+										</tr>
+
+									</c:if>
+
+								</c:forEach>
+
+								<tr>
+									<td colspan='3'>TOTAL</td>
+									<td class='text-right'>${totalUlaz}</td>
+									<td class='text-right'>${totalIzlaz}</td>
+									<td></td>
+									<td></td>
+									<td class='text-right'>${totalDuguje}</td>
+									<td class='text-right'>${totalPotrazuje}</td>
+									<td></td>
+								</tr>
+								
+							</tbody>
+						</table>
+					</div>
+				</div>
+				<br/>
+
+ 									
+ 									<c:set var="totalKolm" value="${totalKolm + totalKol}"/>
+ 									<c:set var="totalVredm" value="${totalVredm + totalVred}"/>
+ 									<c:set var="totalUlazm" value="${totalUlazm + totalUlaz}"/>
+ 									<c:set var="totalIzlazm" value="${totalIzlazm + totalIzlaz}"/>
+ 									<c:set var="totalDugujem" value="${totalDugujem + totalDuguje}"/>
+ 									<c:set var="totalPotrazujem" value="${totalPotrazujem + totalPotrazuje}"/>
+ 									
+ 									<c:set var="totalKols" value="${totalKols + totalKol}"/>
+ 									<c:set var="totalVreds" value="${totalVreds + totalVred}"/>
+ 									<c:set var="totalUlazs" value="${totalUlazs + totalUlaz}"/>
+ 									<c:set var="totalIzlazs" value="${totalIzlazs + totalIzlaz}"/>
+ 									<c:set var="totalDugujes" value="${totalDugujes + totalDuguje}"/>
+ 									<c:set var="totalPotrazujes" value="${totalPotrazujes + totalPotrazuje}"/> 									
+ 									
+ 									<c:set var="totalKol" value="0"/>
+ 									<c:set var="totalVred" value="0"/>
+ 									<c:set var="totalUlaz" value="0"/>
+ 									<c:set var="totalIzlaz" value="0"/>
+ 									<c:set var="totalDuguje" value="0"/>
+ 									<c:set var="totalPotrazuje" value="0"/> 									
+ 													
+			</c:forEach>
+								<table class='tableDocuments'>
+								<thead id='table-head-second-row'>
+								<th style="width: 5%;"></th>
+								<th style="width: 10%;"></th>
+								<th style="width: 10%;"></th>
+								<th style="width: 10%;" class='text-right'></th>
+								<th style="width: 10%;" class='text-right'></th>
+								<th style="width: 10%;" class='text-right'></th>
+								<th style="width: 10%;" class='text-right'></th>
+								<th style="width: 10%;" class='text-right'></th>
+								<th style="width: 10%;" class='text-right'></th>
+								<th style="width: 10%;" class='text-right'></th>
+							    </thead>
+								
+								<tr>
+									<td colspan='3'>SVEGA MAGACIN</td>
+									<td class='text-right'>${totalUlazm}</td>
+									<td class='text-right'>${totalIzlazm}</td>
+									<td></td>
+									<td></td>
+									<td class='text-right'>${totalDugujem}</td>
+									<td class='text-right'>${totalPotrazujem}</td>
+									<td></td>
+								</tr>
+								</table>
+								
+									<c:set var="totalKolm" value="0"/>
+ 									<c:set var="totalVredm" value="0"/>
+ 									<c:set var="totalUlazm" value="0"/>
+ 									<c:set var="totalIzlazm" value="0"/>
+ 									<c:set var="totalDugujem" value="0"/>
+ 									<c:set var="totalPotrazujem" value="0"/> 									
+								
+		</c:forEach>
+
+		</br>
+								<table class='tableDocuments'>
+								<thead id='table-head-second-row'>
+								<th style="width: 5%;"></th>
+								<th style="width: 10%;"></th>
+								<th style="width: 10%;"></th>
+								<th style="width: 10%;" class='text-right'></th>
+								<th style="width: 10%;" class='text-right'></th>
+								<th style="width: 10%;" class='text-right'></th>
+								<th style="width: 10%;" class='text-right'></th>
+								<th style="width: 10%;" class='text-right'></th>
+								<th style="width: 10%;" class='text-right'></th>
+								<th style="width: 10%;" class='text-right'></th>
+							    </thead>
+								
+								<tr>
+									<td colspan='3'>SVEGA </td>
+									<td class='text-right'>${totalUlazs}</td>
+									<td class='text-right'>${totalIzlazs}</td>
+									<td></td>
+									<td></td>
+									<td class='text-right'>${totalDugujes}</td>
+									<td class='text-right'>${totalPotrazujes}</td>
+									<td></td>
+								</tr>
+								</table>
+
+
 	</div>
 	</page>
 	<script>

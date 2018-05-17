@@ -95,8 +95,9 @@ public class ArtikliController {
 
 	@RequestMapping(value = "/save-artikli.html", method = RequestMethod.POST)
 	public String addArtikli(@ModelAttribute("artikli") 
-	@Valid Artikli artikli, 
-			BindingResult result, Model model) { // , @PathVariable int aktivan
+	@Valid Artikli artikli, BindingResult result, Model model) 
+	
+	{ // , @PathVariable int aktivan
 
 //        if (aktivan == 1) {
 //        	vrstePaleta.setAktivan(true);
