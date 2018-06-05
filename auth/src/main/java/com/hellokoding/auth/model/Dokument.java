@@ -72,9 +72,13 @@ public class Dokument implements Serializable {
     @Column(name = "brojDokumenta")
     private String brojDokumenta;
     
+    // @Size(max = 45)
+    @Column(name = "interniBrojDokumenta")
+    private Long interniBrojDokumenta;    
+    
 //    @Column(name = "id_magacin")
 //    private Long idMagacin;
-    
+     
     @ManyToOne(optional = false)
     @JoinColumn(name="id_magacin")
     private Magacini magacini;   
@@ -324,7 +328,15 @@ public class Dokument implements Serializable {
 //        this.dokumentStavkeCollection = dokumentStavkeCollection;
 //    }    
 
-    @Override
+    public Long getInterniBrojDokumenta() {
+		return interniBrojDokumenta;
+	}
+    
+	public void setInterniBrojDokumenta(Long interniBrojDokumenta) {
+		this.interniBrojDokumenta = interniBrojDokumenta;
+	}
+	
+	@Override
     public int hashCode() {
         int hash = 0;
         hash += (id != null ? id.hashCode() : 0);

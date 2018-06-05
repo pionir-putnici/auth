@@ -18,7 +18,7 @@
 			</div>
 
 			<div class="row">
-				<div class="col-lg-6">
+				<div class="col-lg-12">
 					<div class='panel panel-default'>
 						<div class='panel-heading'>${title}</div>
 						<div class='panel-body'>
@@ -47,17 +47,7 @@
 <!-- 											</p> -->
 <!-- 										</div> -->
 
-										<div class='form-group ${error != null ? 'has-error' : ''}'>
-											<label class='font-awesome'>Broj dokumenta</label>
-											<%-- 									<input class="form-control" name='name' path='name' placeholder='Unesite naziv' value="${task.name}"> --%>
 
-											<form:input type="text" class="form-control" id="brojDokumenta"
-												path="brojDokumenta" placeholder='brojDokumenta'
-												value="${dokument.brojDokumenta}" />
-											<p class="help-block">
-												<form:errors path="brojDokumenta" class="help-block" />
-											</p>
-										</div>
 										
 <%-- 										<div class="form-group"${error != null ? 'has-error' : ''}'> --%>
 <!-- 											<label class='font-awesome'>Vrsta dokumenta</label> -->
@@ -83,6 +73,30 @@
 											</p>
 										</div>		
 										
+										<div class='form-group ${error != null ? 'has-error' : ''}'>
+											<label class='font-awesome'>Broj dokumenta</label>
+											<%-- 									<input class="form-control" name='name' path='name' placeholder='Unesite naziv' value="${task.name}"> --%>
+
+											<form:input type="text" class="form-control" id="brojDokumenta"
+												path="brojDokumenta" placeholder='brojDokumenta'
+												value="${dokument.brojDokumenta}" />
+											<p class="help-block">
+												<form:errors path="brojDokumenta" class="help-block" />
+											</p>
+										</div>										
+										
+										<div class='form-group ${error != null ? 'has-error' : ''}'>
+											<label class='font-awesome'>interniBrojDokumenta</label>
+											<%-- 									<input class="form-control" name='name' path='name' placeholder='Unesite naziv' value="${task.name}"> --%>
+
+											<form:input type="text" class="form-control" id="interniBrojDokumenta"
+												path="interniBrojDokumenta" placeholder='interniBrojDokumenta'
+												value="${dokument.interniBrojDokumenta}" readonly="true" />
+											<p class="help-block">
+												<form:errors path="interniBrojDokumenta" class="help-block" />
+											</p>
+										</div>			
+																				
 										<div class='form-group ${error != null ? 'has-error' : ''}'>
 											<label class='font-awesome'>Datum</label>
 

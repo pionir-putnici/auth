@@ -4,6 +4,7 @@ import java.math.BigDecimal;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
@@ -325,7 +326,8 @@ public class CardController {
 			System.out.println("Kontrola " + kontrola);
 			request.setAttribute("kontrola", kontrola);
 			
-			System.out.println("Datum je " + oddana);
+			System.out.println("Datum string je " + oddana);
+			
 			DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
 			Date oddanad = null;
 			try {
@@ -342,9 +344,16 @@ public class CardController {
 				e.printStackTrace();
 			}
 			
+			System.out.println("Datum date je " + oddanad + " " + dodanad);
+			
 			List<DokumentStavke> stavkart = dokumentStavkeRepository.k1(ids_magacin, ids_artikli, oddanad, dodanad);
 
-			System.out.println(stavkart);
+			// List<DokumentStavke> stavkart = dokumentStavkeRepository.k2(ids_magacin, ids_artikli, oddana, dodana);
+			
+//			LocalDate t = LocalDate.now();
+//			List<DokumentStavke> stavkart = dokumentStavkeRepository.k3(ids_magacin, ids_artikli, t, t);			
+			
+			System.out.println("Stavka kard " + stavkart);
 
 			
 			request.setAttribute("stavkart", stavkart);

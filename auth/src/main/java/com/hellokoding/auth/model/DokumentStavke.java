@@ -106,7 +106,8 @@ public class DokumentStavke implements Serializable {
     private BigDecimal duguje;
     @Column(name = "potrazuje")
     private BigDecimal potrazuje;       
-    @Column(name = "aktivan")
+    @Column(name = "aktivan", columnDefinition="tinyint(1) default 1")
+    
     private Boolean aktivan;
     @Column(name = "datumvreme")
     @Temporal(TemporalType.TIMESTAMP)
@@ -203,6 +204,7 @@ public class DokumentStavke implements Serializable {
         return aktivan;
     }
 
+    
     public void setAktivan(Boolean aktivan) {
         this.aktivan = aktivan;
     }

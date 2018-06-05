@@ -32,7 +32,7 @@
 			<p>${currentdate}</p>
 				<div class='row text-center'>
 					<h4>Kartica artikla za period od dana ${oddana} do dana
-						${dodana} ${kontrola}</h4> 						
+						${dodana} </h4> 						
 				</div>
 			</div>
 			
@@ -70,12 +70,11 @@
 			
 	        
 	        
-	        <c:forEach items="${kontrola}" var="kontrola">
-	            <c:out value="${kontrola}"></c:out>    			
-    			<c:out value="${kontrola.key}"></c:out>
-			</c:forEach>
-			
-			
+<%-- 	        <c:forEach items="${kontrola}" var="kontrola"> --%>
+<%-- 	            <c:out value="${kontrola}"></c:out>    			 --%>
+<%--     			<c:out value="${kontrola.key}"></c:out> --%>
+<%-- 			</c:forEach> --%>
+						
 			
 				<div class='row' id='article-info'>
 					<div class='col-xs-2'>

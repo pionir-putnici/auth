@@ -180,11 +180,11 @@
 										<button type="submit" class="btn-lg button-novi">
 											<i class='fa fa-floppy-o'></i> Save
 										</button>
-										<button type="reset" class="btn-lg button-novi">
-											<i class='fa fa-reply'></i> Cancel
-										</button>
+<!-- 										<button type="reset" class="btn-lg button-novi"> -->
+<!-- 											<i class='fa fa-reply'></i> Cancel -->
+<!-- 										</button> -->
 
-
+<input type="button" onclick="location.href='/list-artikli.html';" value="Cancel"  class="btn-lg button-novi"/>
 										<!-- 										</form> -->
 									</form:form>
 								</div>

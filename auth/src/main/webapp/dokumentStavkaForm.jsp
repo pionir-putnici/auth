@@ -21,7 +21,7 @@
 				<div class="col-lg-12">
 					<div class='panel panel-default'>
 					
-						<div class='panel-heading'>${title} </div>
+						<div class='panel-heading'>${title} dat ${dokumentStavke.idDokument.datum} id ${dokumentStavke.idDokument.id}</div>
 <%-- 						<div>${dokumentStavke.typesOfDocuments}</div> --%>
 <%-- 						<div>${typesOfDocuments} aaaaaaaaaaaaa</div> --%>
 <%-- 						<div>${dokumentStavke.magacini} bbbbbbbbbb</div> --%>
@@ -37,6 +37,12 @@
  										<input type="hidden" name="${_csrf.parameterName}" 
  											value="${_csrf.token}" /> 
 
+ 										<input type="hidden" name="aktivan" 
+ 											value="1" /> 
+ 											 											
+<!--  										<input type="hidden" name="datum"  -->
+<%--  											value="${dokumentStavke.idDokument.datum}" />  --%>
+ 											
  										<form:input type="hidden" name="id" path="id" 
  											value="${dokumentStavke.id}" /> 
  											

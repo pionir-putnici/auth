@@ -1,7 +1,9 @@
 package com.hellokoding.auth.model;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -13,12 +15,14 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
 import javax.persistence.Table;
 
 import org.hibernate.validator.constraints.NotEmpty;
 import org.json.JSONObject;
+
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -80,6 +84,11 @@ public class Artikli implements Serializable {
   //  @JsonIgnore
     @JsonBackReference
     private Klasifikacije klasifikacije;
+    
+    
+    @JsonIgnore
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "artikli")
+    private List<DokumentStavke> dokumentstavke = new ArrayList<>();
     
     public Artikli(){
     }
@@ -249,7 +258,17 @@ public class Artikli implements Serializable {
     public Klasifikacije getKlasifikacije(){
     	return this.klasifikacije;
     }     
-    public String toString(){
+    
+	
+    public List<DokumentStavke> getDokumentstavke() {
+		return dokumentstavke;
+	}
+
+	public void setDokumentstavke(List<DokumentStavke> dokumentstavke) {
+		this.dokumentstavke = dokumentstavke;
+	}
+
+	public String toString(){
     	String info = "";
     	
         JSONObject jsonInfo = new JSONObject();

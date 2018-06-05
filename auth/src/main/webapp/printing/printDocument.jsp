@@ -27,11 +27,11 @@
                 </div>
                 <div class='col-xs-5'>
                     <div class='row'>
-                       <div class='col-xs-6'>Magacin otpreme</div>
-                        <div class='col-xs-6'>Magacin</div>
+                       <div class='col-xs-6'>Magacin: ${dokument.magacini.code}</div>
+                        <div class='col-xs-6'>${dokument.magacini.name}</div>
                     </div>
                     <div class='row'>
-                        <div class='col-xs-6'>Adresa</div>
+                        <div class='col-xs-6'>Adresa </div>
                         <div class='col-xs-6'>Adresa</div>
                     </div>
                     <div class='row'>
@@ -51,11 +51,11 @@
                     </div>
                     <div class='row'>
                         <div class='col-xs-6'>Datum izdavanja</div>
-                        <div class='col-xs-6'>10.01.2017.</div>
+                        <div class='col-xs-6'>${dokument.datum}</div>
                     </div>
                     <div class='row'>
                         <div class='col-xs-6'>Datum prometa dobara</div>
-                        <div class='col-xs-6'>10.01.2017.</div>
+                        <div class='col-xs-6'>${dokument.datum}</div>
                     </div>
                 </div>
                 <div class='col-xs-5 border-up'>
@@ -63,13 +63,13 @@
                         <div class='col-xs-12 text-center border-bottom'><h4 >${dokument.partner.name}</h4></div>
                     </div>
                     <div class='row spacer-top-5'>
-                        <div class='col-xs-12 text-center'>Nepostojeca BB</div>
+                        <div class='col-xs-12 text-center'>${dokument.partner.adresa}</div>
                     </div>
                     <div class='row'>
-                        <div class='col-xs-12 text-center'>00001 Nedodjija</div>
+                        <div class='col-xs-12 text-center'>${dokument.partner.name}</div>
                     </div>
                     <div class='row'>
-                        <div class='col-xs-12'>PIB: 123213213</div>
+                        <div class='col-xs-12 text-center'> Pib: ${dokument.partner.pib}</div>
                     </div>
                 </div>
             </div>
@@ -84,7 +84,7 @@
                             <th>SIFRA</th>
                             <th>NAZIV</th>
                             <th>JM</th>
-                            <th class='text-right'>KOLICINA</th>
+                            <th class='text-right'>KOLIČINA</th>
                             <th class='text-right'>CENA</th>
                             <th class='text-right'>IZNOS</th>
                         </thead>
@@ -100,15 +100,8 @@
                                 <td class='text-right'>${dokumentStavke.cena}</td>
                                 <td class='text-right'>${dokumentStavke.iznos}</td>
                             </tr>
-<!--                             <tr> -->
-<!--                                 <td>2.</td> -->
-<!--                                 <td>2345</td> -->
-<!--                                 <td>PALETA OBICNA</td> -->
-<!--                                 <td>KOM</td> -->
-<!--                                 <td class='text-right'>300</td> -->
-<!--                                 <td class='text-right'>329,00</td> -->
-<!--                                 <td class='text-right'>98.700,00</td> -->
-<!--                             </tr> -->
+
+							<c:set var="totalIzn" value="${totalIzn + dokumentStavke.iznos}"/>
                             
                             </c:forEach>
                         </tbody>
@@ -124,25 +117,27 @@
                 </div>
                 <div class='col-xs-5'>
                     <table class='tableDocuments'>
-                        <tr>
-                            <td>Osnovica</td>
-                            <td class='text-right'>1111,00</td>
-                        </tr>
-                        <tr>
-                            <td>PDV</td>
-                            <td class='text-right'>202,22</td>
-                        </tr>
+<!--                         <tr> -->
+<!--                             <td>Osnovica</td> -->
+<!--                             <td class='text-right'>1111,00</td> -->
+<!--                         </tr> -->
+<!--                         <tr> -->
+<!--                             <td>PDV</td> -->
+<!--                             <td class='text-right'>202,22</td> -->
+<!--                         </tr> -->
                         <tr>
                             <td>Ukupno</td>
-                            <td class='text-right'>1.333,20</td>
+                            <td class='text-right'>${totalIzn}</td>
                         </tr>
                     </table>
                 </div>
             </div>
             <div class='row spacer-top-20'>
                         <div class='col-xs-12'><h4 class='remark-heading'>Napomena:</h4></div>
-                        <div class='col-xs-12'><p class='remark-p text-justify'>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris tristique dignissim purus et scelerisque. Duis suscipit placerat mi, eu porttitor eros lacinia et. Etiam et tempor justo, ac fringilla felis. Sed luctus tellus nec eros suscipit, et vehicula massa volutpat. Curabitur facilisis tempor mattis. Aenean ullamcorper magna vitae odio tempus tincidunt. Mauris sapien orci, placerat vitae leo semper, pellentesque pretium metus. Phasellus accumsan quam dolor, non pretium sem dictum sit amet. Ut vitae orci tellus. Phasellus ipsum mauris, congue nec purus eget, bibendum iaculis arcu. Donec nisi diam, elementum nec dui ut, molestie sodales neque. </p></div>
+                        <div class='col-xs-12'>
+                        <p class='remark-p text-justify'>
+							${dokument.napomena}
+						</p></div>
                     </div>
         </div>
     </page>

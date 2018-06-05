@@ -38,6 +38,7 @@ import com.hellokoding.auth.model.JediniceMera;
 import com.hellokoding.auth.model.Klasifikacije;
 import com.hellokoding.auth.model.PoreskeGrupe;
 import com.hellokoding.auth.model.VrsteArtikala;
+import com.hellokoding.auth.repository.ArtikliRepository;
 import com.hellokoding.auth.service.SecurityService;
 import com.hellokoding.auth.service.UserService;
 import com.hellokoding.auth.service.VrsteArtikalaService;
@@ -60,6 +61,9 @@ public class ArtikliController {
     
 	@Autowired
 	private CompanyDetails companyDetails;
+
+	@Autowired
+	private ArtikliRepository artikliRepository;
 	
 //	ArtikliService artikliService = new ArtikliService();
 
@@ -221,10 +225,13 @@ public class ArtikliController {
  //      	boolean tt = SecurityContextHolder.getContext().getAuthentication().isAuthenticated();
       	Authentication tt1 = SecurityContextHolder.getContext().getAuthentication();
 Collection<? extends GrantedAuthority> qq = tt1.getAuthorities();
-       	//    	if (principal instanceof User) {
-//    		return ((User) principal).getUsername();
-//    	}
-//    	return principal.toString();
+
+
+		Artikli aa = artikliRepository.getOne(id);
+		if (!aa.getDokumentstavke().isEmpty()) {	
+			return "redirect:414.html?ops=Article items exist in card report, can't delete article!";
+		}
+		
 		artikliService.delete(id);
 		request.setAttribute("mode", "MODE_TASKS");
 		request.setAttribute("title", "Artikli");
@@ -274,5 +281,16 @@ Collection<? extends GrantedAuthority> qq = tt1.getAuthorities();
         params.put("city",  companyDetails.companyDetails3);
         return new ModelAndView(view, params);
     }
+    
+    @RequestMapping(value="/414.html")
+    public String Error414(Map<String, Object> model, @RequestParam String ops, HttpServletRequest request){
+		request.setAttribute("ops", ops);	
+        return "414";
+    }    
+    
+//    @RequestMapping(value="/414.html")
+//    public String Error414(){
+//        return "414";
+//    }    
 	
 }

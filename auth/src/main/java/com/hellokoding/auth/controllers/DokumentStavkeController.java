@@ -1,5 +1,6 @@
 package com.hellokoding.auth.controllers;
 
+import java.math.BigDecimal;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -138,17 +139,47 @@ public class DokumentStavkeController {
 		// return new ModelAndView("vrstePaletaUnosForm", "vrstePaleta", new VrstePaleta());
 	}	
 
+	
+	@RequestMapping(value = "/delete_dokumentStavke.html")
+	public String deleteDokumentStavka(@RequestParam Long id, @RequestParam Long brDokumenta, HttpServletRequest request) {
+
+		dokumentStavkeRepository.delete(id);
+		
+		Long tt = id; // dokumentStavke.getId();
+		Dokument idDokument;
+		idDokument = dokumentRepository.findOne(brDokumenta);
+		
+		idDokument.setIznos(dokumentStavkeRepository.sum_zaglavlje(brDokumenta));
+		
+		dokumentRepository.save(idDokument);
+		
+//		dokumentStavke.setIdDokument(idDokument);
+		
+//		Long rr2 = null;
+//		
+//		Dokument rr = brDokumenta; // dokumentStavke.getIdDokument();
+//		
+//		if (rr !=null)
+////		if (rr.getId() != null) 
+//			rr2 = rr.getId();
+//		
+//		System.out.println("Broj dokumenta u zaglavlju " + rr2);
+//		
+//		BigDecimal eee = dokumentStavkeRepository.sum_zaglavlje(rr2);
+//		System.out.println("Suma  " + eee);
+//		
+//		rr.setIznos(dokumentStavkeRepository.sum_zaglavlje(rr2));
+
+		return "redirect:dokumentstavkefinal.html?id=" + brDokumenta;
+	}
+		
 	@RequestMapping(value = "/save_dokumentStavke.html", method = RequestMethod.POST)
 	public String saveDokumentStavke(@ModelAttribute("dokumentStavke") 
 	@Valid DokumentStavke dokumentStavke, 
 			BindingResult result, Model model) { // , @PathVariable int aktivan
-
-//        if (aktivan == 1) {
-//        	vrstePaleta.setAktivan(true);
-//        } else {
-//        	vrstePaleta.setAktivan(false);
-//        }
         
+		System.out.println("Save stavke ");
+		
 		if (result.hasErrors()) {
 			model.addAttribute("error", "error");
 			return "dokumentStavkeForm";
@@ -168,15 +199,39 @@ public class DokumentStavkeController {
 //		if (rr.getId() != null) 
 			rr2 = rr.getId();
 		
+		System.out.println("Broj dokumenta u zaglavlju " + rr2);
 		
+		BigDecimal eee = dokumentStavkeRepository.sum_zaglavlje(rr2);
+		System.out.println("Suma  " + eee);
+		
+		rr.setIznos(dokumentStavkeRepository.sum_zaglavlje(rr2));
 		
 	    // provera podredjenih objekata koji su pripremljeni u /dokumentStavke_new.html
 	    //*****************************************************************************
+		
 		dokumentStavke.setTypesOfDocuments(rr.getTypesOfDocuments()); // posto nije moglo preko jsp page
 		dokumentStavke.setMagacini(rr.getMagacini());
 		
 		TypesOfDocuments rr1 = dokumentStavke.getTypesOfDocuments();		
 		Magacini rr3 = dokumentStavke.getMagacini();
+		
+		dokumentStavke.setDatum(dokumentStavke.getIdDokument().getDatum());
+		dokumentStavke.setDatumvreme(new Date());
+		
+		
+		if (rr1.getStrana()==1) {
+			dokumentStavke.setUlaz(dokumentStavke.getKolicina());
+			dokumentStavke.setDuguje(dokumentStavke.getIznos());
+		}
+		else
+		{
+			dokumentStavke.setIzlaz(dokumentStavke.getKolicina());
+			dokumentStavke.setPotrazuje(dokumentStavke.getIznos());			
+		}
+				
+		// dokumentStavke.setIdDokument(rr.setIznos(new BigDecimal("100.00")));
+		// .setIdDokument(idDokument.setIznos(new BigDecimal("100.00")));
+		
 		// kraj punjenja podredjenih objekata
 		
 
@@ -184,13 +239,18 @@ public class DokumentStavkeController {
 //			PttBrojevi pttBrojevi = new PttBrojevi();
 //			pttBrojevi.setDokument(dokumentStavke);
 //		}
+		
 		dokumentStavkeRepository.save(dokumentStavke);
+		
+		rr.setIznos(dokumentStavkeRepository.sum_zaglavlje(rr2));
+		dokumentRepository.save(rr);
 		
 		model.addAttribute("mode", "MODE_TASKS");
 		model.addAttribute("title", "Dokument Items");
 		
 //		List<DokumentStavke> aa = dokumentStavkeRepository.findByIdDokument(dokumentRepository.findOne(rr2));
 //		model.addAtributte("dokumentStavke", aa);
+		
 		model.addAttribute("new_dokumentStavke", "/dokumentStavke_new.html");
 		model.addAttribute("print_dokumentStavke", "/dokumentStavke_pdf.html");
 
@@ -261,14 +321,7 @@ public class DokumentStavkeController {
 		return new ModelAndView("dokumentStavkaForm", "dokumentStavke", dd);
 	}
     
-	@RequestMapping(value = "/delete_dokumentStavke.html")
-	public String deleteDokumentStavka(@RequestParam Long id, @RequestParam Long brDokumenta, HttpServletRequest request) {
 
-		dokumentStavkeRepository.delete(id);
-
-		return "redirect:dokumentstavkefinal.html?id=" + brDokumenta;
-	}
-	
     @RequestMapping(path = "/dokumentStavke_pdf.html", method = RequestMethod.GET)
     public ModelAndView printTypeMeasureReport() {
 

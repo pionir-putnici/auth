@@ -135,12 +135,25 @@ public class DokumentController {
 		}
 
 //		String rr = dokument.getName();
+		
 		Long tt = dokument.getId();
+		System.out.println("tt je  " + tt);
 		
 //		if (dokument.getId() != null) {
 //			PttBrojevi pttBrojevi = new PttBrojevi();
 //			pttBrojevi.setDokument(dokument);
 //		}
+		
+		if (tt == null) {
+		Long ww = dokumentRepository.max_za_vrstu_dokumenta(dokument.getTypesOfDocuments().getId());
+		System.out.println(ww);
+		if (ww == null) {
+			ww=(long) 1;
+		}
+		
+		dokument.setInterniBrojDokumenta(ww);
+		}
+		
 		dokumentRepository.save(dokument);
 
 //		request.setAttribute("mode", "MODE_TASKS");

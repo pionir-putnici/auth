@@ -101,34 +101,39 @@
 										<%-- 										</c:if> --%>
 
 
-										<c:set var="salary" scope="session" value="checked">
+										<!-- setovanje da li se ucitava aktivan ili neaktivan -->
+										
+										<c:set var="rb_active" scope="session" value="checked">
 										</c:set>
-										<c:set var="salary1" scope="session" value="">
+										<c:set var="rb_inactive" scope="session" value="">
 										</c:set>
 
 										<c:if test="${magacini.aktivan == true}">
-											<c:set var="salary" scope="session" value="checked" />
-											<c:set var="salary1" scope="session" value="" />
+											<c:set var="rb_active" scope="session" value="checked" />
+											<c:set var="rb_inactive" scope="session" value="" />
 										</c:if>
 
 										<c:if test="${magacini.aktivan == false}">
-											<c:set var="salary1" scope="session" value="checked" />
-											<c:set var="salary" scope="session" value="" />
+											<c:set var="rb_inactive" scope="session" value="checked" />
+											<c:set var="rb_active" scope="session" value="" />
 										</c:if>
 
-										<c:if test="${(empty salary) and (empty salary1)}">
-											<c:set var="salary" scope="session" value="checked" />
+										<c:if test="${(empty rb_active) and (empty rb_inactive)}">
+											<c:set var="rb_active" scope="session" value="checked" />
 										</c:if>
 
+										
+										<!-- kraj setovanje da li se ucitava aktivan ili neaktivan -->
+										
 										<div class='form-group spacer-bottom-30'>
 											<label>Aktivan</label><br /> <label class="radio-inline">
 												<!--                                     	<input type="radio" name="aktivan"  path='aktivan' -->
 												<%--                                     	 checked  value="${task.aktivan}" >Da   --%>
 												<input type="radio" name="aktivan" value="1" path='aktivan'
-												<c:out value="${salary}"/> />
+												<c:out value="${rb_active}"/> />
 											</label> <label class="radio-inline"> <%--                                     	<input type="radio" class="col-sm-1" name="aktivan"  path='aktivan' value="${task.aktivan}">Ne --%>
 												<input type="radio" class="col-sm-1" name="aktivan"
-												value="0" path='aktivan' <c:out value="${salary1}"/> />
+												value="0" path='aktivan' <c:out value="${rb_inactive}"/> />
 											</label>
 										</div>
 

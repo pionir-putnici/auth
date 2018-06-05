@@ -101,10 +101,7 @@ public class UserController {
         return "404";
     }
     
-    @RequestMapping(value="/414.html")
-    public String Error414(){
-        return "414";
-    }
+
     
     private String getLoggedUserName(ModelMap model) {
     	
