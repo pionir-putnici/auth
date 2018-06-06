@@ -145,7 +145,7 @@ public class DokumentStavkeController {
 
 		dokumentStavkeRepository.delete(id);
 		
-		Long tt = id; // dokumentStavke.getId();
+		// Long tt = id; // dokumentStavke.getId();
 		Dokument idDokument;
 		idDokument = dokumentRepository.findOne(brDokumenta);
 		
