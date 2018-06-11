@@ -54,10 +54,12 @@ import com.hellokoding.auth.model.DokumentStavke;
 import com.hellokoding.auth.model.JediniceMera;
 import com.hellokoding.auth.model.Klasifikacije;
 import com.hellokoding.auth.model.Magacini;
+import com.hellokoding.auth.model.Partner;
 import com.hellokoding.auth.model.PoreskeGrupe;
 import com.hellokoding.auth.model.SumMagacinArtikal;
 import com.hellokoding.auth.model.VrsteArtikala;
 import com.hellokoding.auth.repository.ArtikliRepository;
+import com.hellokoding.auth.repository.CostumersRepository;
 import com.hellokoding.auth.repository.DokumentStavkeRepository;
 import com.hellokoding.auth.repository.MagaciniRepository;
 import com.hellokoding.auth.service.SecurityService;
@@ -77,6 +79,7 @@ public class CardController {
 
 	public ArrayList<Artikli> izabraneVrednostiArtikli = new ArrayList<Artikli>();
 	public ArrayList<Magacini> izabraneVrednostiMagacini = new ArrayList<Magacini>();
+	public ArrayList<Partner> izabraneVrednostiPartneri = new ArrayList<Partner>();	
 	@Autowired
 	private ArtikliService artikliService;
 
@@ -98,6 +101,9 @@ public class CardController {
 	@Autowired
 	private MagaciniRepository magaciniRepository;
 
+	@Autowired
+	private CostumersRepository costumerRepository;
+	
 	// ArtikliService artikliService = new ArtikliService();
 
 	// @Autowired
@@ -200,7 +206,65 @@ public class CardController {
 			System.out.println("Ispis bez uklonjenog" + aa.toString());
 
 			return "redirect:find_all_articles.html";
+		}
+			else if (action.equals("cancel-partner")) {
 
+				try {
+					if (select1.length == 0) {
+						return "redirect:find_all_articles_partners.html";
+					}
+
+				} catch (Exception x) {
+					
+//					String s = "Hi";
+//					Object a =s;
+//					
+//					result.addError((ObjectError) a);
+//					
+//					if (result.hasErrors()) {
+//						model.addAttribute("error", "error");
+//						return "redirect:find_all_articles.html";
+//					}		
+					
+
+					
+					String ev="Odaberite magacin ....";
+					session.setAttribute("ev", ev);				
+					
+					return "redirect:find_all_articles_partners.html";
+				}
+
+				List<Partner> aa = (List<Partner>) session.getAttribute("izabraneVrednostiPartneri");
+
+				int count = 0;
+
+				try {
+
+					for (String mId : select1) {
+
+						Long mIdl = Long.parseLong(mId);
+						count = 0;
+						for (Partner magacini : aa) {
+
+							if (magacini.getId().equals(mIdl)) { // == mIdl
+								// aa.remove(artikli);
+								aa.remove(count);
+								// artikli.setAktivan(false);
+							}
+
+							count++;
+						}
+
+					}
+
+				} catch (Exception x) {
+
+				}
+
+				System.out.println("Ispis bez uklonjenog" + aa.toString());
+
+				return "redirect:find_all_articles_partners.html";						
+			
 		} else if (action.equals("cancel-article")) {
 
 			// System.out.print("cancel article");
@@ -266,6 +330,71 @@ public class CardController {
 
 			return "redirect:find_all_articles.html";
 
+		} else if (action.equals("cancel-articlep")) {
+
+			// System.out.print("cancel article");
+			// System.out.print(select2);
+			// System.out.println(Arrays.toString(select2));
+			//
+
+			// Enumeration e = (Enumeration) (session.getAttributeNames());
+			//
+			// while ( e.hasMoreElements())
+			// {
+			// Object tring;
+			// if((tring = e.nextElement())!=null)
+			// {
+			// System.out.println(e.toString());
+			// System.out.println(session.getValue((String) tring));
+			// System.out.println("<br/>");
+			// }
+			//
+			// }
+
+			try {
+				if (select2.length == 0) {
+					return "redirect:find_all_articles_partners.html";
+				}
+
+			} catch (Exception x) {
+				String ev="Odaberite artikal ....";
+				session.setAttribute("ev", ev);				
+				return "redirect:find_all_articles_partners.html";
+			}
+
+			List<Artikli> aa = (List<Artikli>) session.getAttribute("izabraneVrednostiArtikli");
+
+			System.out.println(aa.toString());
+
+			int count = 0;
+
+			try {
+
+				for (String mId : select2) {
+
+					Long mIdl = Long.parseLong(mId);
+					count = 0;
+					for (Artikli artikli : aa) {
+
+						if (artikli.getId().equals(mIdl)) { // == mIdl
+							// aa.remove(artikli);
+							aa.remove(count);
+							// artikli.setAktivan(false);
+						}
+
+						count++;
+					}
+
+				}
+
+			} catch (Exception x) {
+
+			}
+
+			System.out.println("Ispis bez uklonjenog" + aa.toString());
+
+			return "redirect:find_all_articles_partners.html";			
+			
 		} else if (action.equals("main-submit")) {
 
 			try {
@@ -389,6 +518,131 @@ public class CardController {
 
 		}
 
+		
+		
+		
+	 else if (action.equals("main-submit-artical-partner")) {
+
+		try {
+			if (select1.length == 0) {
+				return "redirect:find_all_articles_partners.html";
+			}
+			if (select2.length == 0) {
+				String ev="Popunite polje artikli ....";
+				session.setAttribute("ev", ev);	
+				return "redirect:find_all_articles_partners.html";
+			}
+			if (oddana.isEmpty()) {
+				String ev="Popunite polje od dana ....";
+				session.setAttribute("ev", ev);	
+				return "redirect:find_all_articles_partners.html";
+			}
+			if (dodana.isEmpty()) {
+				String ev="Popunite polje do dana ....";
+				session.setAttribute("ev", ev);	
+				return "redirect:find_all_articles_partners.html";
+			}
+
+		} catch (Exception x) {
+			String ev="Popunite obavezna polja  ....";
+			session.setAttribute("ev", ev);	
+			return "redirect:find_all_articles_partners.html";
+		}
+
+		request.setAttribute("title", "Update dokumentStavke");
+		request.setAttribute("oddana", oddana);
+		request.setAttribute("dodana", dodana);
+
+		DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+		Date date = new Date();
+		request.setAttribute("currentdate", dateFormat.format(date));
+
+		List<Partner> magkart = (List<Partner>) session.getAttribute("izabraneVrednostiPartneri");
+		request.setAttribute("magkart", magkart);
+
+		List<Artikli> artkart = (List<Artikli>) session.getAttribute("izabraneVrednostiArtikli");
+		request.setAttribute("artkart", artkart);
+
+		List<Long> ids_magacin = new ArrayList<Long>(); // this should be your id column's type
+
+		for (Partner magacini : magkart) {
+			ids_magacin.add(magacini.getId());
+		}
+
+		List<Long> ids_artikli = new ArrayList<Long>(); // this should be your id column's type
+
+		for (Artikli artikli : artkart) {
+			ids_artikli.add(artikli.getId());
+		}
+
+		TreeMap<Integer, SumMagacinArtikal> kontrola = new TreeMap<>();
+		kontrola.put(1, new SumMagacinArtikal(new Long(1), new Long(15), new Long(7), new BigDecimal(10.00)));
+
+		System.out.println("Kontrola " + kontrola);
+		request.setAttribute("kontrola", kontrola);
+		
+		System.out.println("Datum string je " + oddana);
+		
+		DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+		Date oddanad = null;
+		try {
+			oddanad = formatter.parse(oddana);
+		} catch (ParseException e) {
+		
+			e.printStackTrace();
+		}
+		Date dodanad = null;
+		try {
+			dodanad = formatter.parse(dodana);
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		System.out.println("Datum date je " + oddanad + " " + dodanad);
+		
+		List<DokumentStavke> stavkart = dokumentStavkeRepository.k1p(ids_magacin, ids_artikli, oddanad, dodanad);
+
+		// List<DokumentStavke> stavkart = dokumentStavkeRepository.k2(ids_magacin, ids_artikli, oddana, dodana);
+		
+//		LocalDate t = LocalDate.now();
+//		List<DokumentStavke> stavkart = dokumentStavkeRepository.k3(ids_magacin, ids_artikli, t, t);			
+		
+		System.out.println("Stavka kard " + stavkart);
+
+		
+		request.setAttribute("stavkart", stavkart);
+		
+		return ("/printing/cardp");
+
+		// String conditions = null;
+		// boolean firstTime= true;
+		//
+		// for (Magacini magacini : magkart) {
+		//
+		// if (firstTime) {
+		//
+		// conditions = " magacin IN (" + (magacini.getId());
+		// }
+		// else
+		// {
+		// conditions = " AND " + (magacini.getId());
+		// }
+		//
+		// firstTime=false;
+		//
+		// }
+		//
+		// conditions = conditions + ")";
+
+		// for (Artikli artikli : artkart) {
+		// String conditions = null;
+		// List<DokumentStavke> stavkart =
+		// dokumentStavkeRepository.upitKonacni(conditions);
+		// request.setAttribute("stavkart", stavkart);
+		// return ("/printing/card");
+
+	}		
 		// return ("/printing/card");
 
 		// }
@@ -421,6 +675,23 @@ public class CardController {
 
 	}
 
+	@RequestMapping(value = "/find_all_articles_partners.html")
+	public String faap(HttpServletRequest request) {
+
+		List<Artikli> dd = artikliRepository.findAllByOrderByNameAsc();
+		System.out.println("Svi artikli " + dd.toString());
+		List<Partner> dd1 = costumerRepository.findAllByOrderByNameAsc();
+		request.setAttribute("allArticles", dd);
+		request.setAttribute("allWarehouses", dd1);
+		System.out.println("Svi partneri " + dd1.toString());
+		DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+		Date date = new Date();
+		request.setAttribute("currentdate", dateFormat.format(date));
+
+		return ("cardFormPartneri");
+
+	}	
+	
 	@RequestMapping(value = "/add_article_session_parameter.html")
 	public String asp(@RequestParam Long id_roba, HttpServletRequest request) {
 
@@ -474,4 +745,58 @@ public class CardController {
 
 	}
 
+	
+	@RequestMapping(value = "/add_partner_session_parameter.html")
+	public String awpp(@RequestParam Long id_magacin, HttpServletRequest request) {
+
+		HttpSession sess = request.getSession();
+		Map<Long, String> dept = new HashMap<>();
+
+		Partner km = new Partner();
+		try {
+			Partner deptList = costumerRepository.findOne(id_magacin);
+
+			// for (VrsteArtikala d : deptList) {
+			// dept.put(d.getId(), d.getName());
+			// }
+
+			izabraneVrednostiPartneri.add(deptList);
+			// dept.put(deptList.getId(), deptList.getCode() + "*" + deptList.getName());
+			sess.setAttribute("izabraneVrednostiPartneri", izabraneVrednostiPartneri);
+			// request.setAttribute("izabraneVrednosti", izabraneVrednosti);
+		} catch (Exception e) {
+			return "redirect:find_all_articles_partners.html";
+		}
+		// return ("cardForm");
+		return "redirect:find_all_articles_partners.html";
+
+	}
+	
+	@RequestMapping(value = "/add_articlep_session_parameter.html")
+	public String aspp(@RequestParam Long id_roba, HttpServletRequest request) {
+
+		// request.setAttribute("allArticles", dd);
+		// request.setAttribute("allWarehouses", dd1);
+
+		HttpSession sess = request.getSession();
+		Map<Long, String> dept = new HashMap<>();
+		try {
+			Artikli km = new Artikli();
+			Artikli deptList = artikliService.findByOne(id_roba);
+			// for (VrsteArtikala d : deptList) {
+			// dept.put(d.getId(), d.getName());
+			// }
+
+			izabraneVrednostiArtikli.add(deptList);
+			// dept.put(deptList.getId(), deptList.getCode() + "*" + deptList.getName());
+			sess.setAttribute("izabraneVrednostiArtikli", izabraneVrednostiArtikli);
+			// request.setAttribute("izabraneVrednosti", izabraneVrednosti);
+		} catch (Exception e) {
+			return "redirect:find_all_articles_partners.html";
+		}
+		// return ("cardForm");
+		return "redirect:find_all_articles_partners.html";
+
+	}	
+	
 }

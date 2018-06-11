@@ -46,4 +46,5 @@
 			<scope>runtime</scope>
 		</dependency>
 	</dependencies>
+	<packaging>war</packaging>
 </project>

@@ -17,7 +17,7 @@
 <meta http-equiv="Cache-Control" content="no-cache">
 <meta http-equiv="Expires" content="Sat, 01 Dec 2001 00:00:00 GMT">
 
-<title>Costumers</title>
+<title>Types of documents</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="static/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -161,7 +161,7 @@
         </div>
         <div class="col-md-12" ng-show="filteredItems == 0">
             <div class="col-md-12">
-                <h4>No customers found</h4>
+                <h4>No types of documents found</h4>
             </div>
         </div>
         <div class="col-md-12" ng-show="filteredItems > 0">    

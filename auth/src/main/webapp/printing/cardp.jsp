@@ -54,7 +54,7 @@
 
 			<div class='row spacer-top-15' id='article-info-storage-location'>
 				<div class='col-xs-2'>
-					<p>Magacin:</p>
+					<p>Partner:</p>
 				</div>
 				
 				<div class='col-xs-10'>
@@ -114,8 +114,8 @@
 
 <%-- 									<c:set var="salary" scope="session" value="${2000*2}" /> --%>
 									
-									<c:if test="${stavka.magacini.id==magkart.id && stavka.artikli.id==artkart.id}">
-
+<%-- 									<c:if test="${stavka.magacini.id==magkart.id && stavka.artikli.id==artkart.id}"> --%>
+									<c:if test="${stavka.idDokument.partner.id==magkart.id && stavka.artikli.id==artkart.id}">
  									<c:set var="totalKol" value="${totalKol + stavka.ulaz-stavka.izlaz}"/>
  									<c:set var="totalVred" value="${totalVred + stavka.duguje-stavka.potrazuje}"/>
  									<c:set var="totalUlaz" value="${totalUlaz + stavka.ulaz}"/>
