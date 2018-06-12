@@ -78,6 +78,19 @@
 												<form:errors path="vrsteMagacina.id" class="help-block" />
 											</p>
 										</div>
+										
+										<div class="form-group"${error != null ? 'has-error' : ''}'>
+											<label class='font-awesome'>Partner</label>
+
+											<form:select path="partner.id" class="form-control">
+												<form:option value="" label="--- Select ---" />
+												<form:options items="${eDeptPt}" />
+											</form:select>
+
+											<p class="help-block">
+												<form:errors path="partner.id" class="help-block" />
+											</p>
+										</div>										
 
 										<div class='form-group'>
 											<label class='font-roboto'>Napomena</label>

@@ -47,14 +47,14 @@
 					</ul>
 				</li>								
 				
-				<li>
-					<a href='#'><i class="fa fa-info fa-fw"></i> Login<span class="fa arrow"></span></a>
-					<ul class="nav nav-second-level">
-						<li><a href='login.jsp'><i class="fa fa-user fa-fw"></i>Login</a></li>
-						<li><a href='registration'><i class="fa fa-gear fa-fw"></i>Registration</a></li>
-						<li><a href="logout.html"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
-					</ul>
-				</li>				
+<!-- 				<li> -->
+<!-- 					<a href='#'><i class="fa fa-info fa-fw"></i> Login<span class="fa arrow"></span></a> -->
+<!-- 					<ul class="nav nav-second-level"> -->
+<!-- 						<li><a href='login.jsp'><i class="fa fa-user fa-fw"></i>Login</a></li> -->
+<!-- 						<li><a href='registration'><i class="fa fa-gear fa-fw"></i>Registration</a></li> -->
+<!-- 						<li><a href="logout.html"><i class="fa fa-sign-out fa-fw"></i> Logout</a> -->
+<!-- 					</ul> -->
+<!-- 				</li>				 -->
 
 				<li>
 					<a href='#'><i class="fa fa-info fa-fw"></i> Izvestaji<span class="fa arrow"></span></a>
@@ -68,15 +68,15 @@
 	
 
 								
-				<li>
-					<a href='#'><i class="fa fa-info fa-fw"></i> Examples<span class="fa arrow"></span></a>
-					<ul	class='nav nav-second-level'>
+<!-- 				<li> -->
+<!-- 					<a href='#'><i class="fa fa-info fa-fw"></i> Examples<span class="fa arrow"></span></a> -->
+<!-- 					<ul	class='nav nav-second-level'> -->
 
-						<li><a href='/test/angular/statesCRUD/statesDataAngularJS.html'>Angular states </a></li>
-						<li><a href='/test/angular/simplePagination/index.html'>Angular simple pagination</a></li>
-						<li><a href='/test/angular/angularPagination/index.html'>Angular pagination with search</a></li>
-					</ul>
-				</li>
+<!-- 						<li><a href='/test/angular/statesCRUD/statesDataAngularJS.html'>Angular states </a></li> -->
+<!-- 						<li><a href='/test/angular/simplePagination/index.html'>Angular simple pagination</a></li> -->
+<!-- 						<li><a href='/test/angular/angularPagination/index.html'>Angular pagination with search</a></li> -->
+<!-- 					</ul> -->
+<!-- 				</li> -->
 
 <!-- 				<li> -->
 <!-- 					<i class="fa fa-spinner fa-pulse fa-3x fa-fw"></i> -->

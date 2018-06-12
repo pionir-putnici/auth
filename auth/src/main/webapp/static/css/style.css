@@ -234,3 +234,7 @@ table.dataTable.no-footer{
 #article-info {
 	margin-bottom:10px;
 }
+
+.img-height {height:200px; width:auto}
+
+.thumbnail-header a {color:white}

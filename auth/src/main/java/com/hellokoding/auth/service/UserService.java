@@ -3,7 +3,7 @@ package com.hellokoding.auth.service;
 import java.util.List;
 
 import com.hellokoding.auth.model.User;
-import com.hellokoding.auth.model.VrsteArtikala;
+
 
 public interface UserService {
 	

@@ -61,6 +61,14 @@ public class Magacini implements Serializable {
     @JsonBackReference
     private VrsteMagacina vrsteMagacina;
     
+    
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "partner_id" , referencedColumnName = "id")
+  //  @JsonIgnore
+    @JsonBackReference
+    private Partner partner;    
+    
+    
     public Magacini(){
     }
     
@@ -191,4 +199,14 @@ public class Magacini implements Serializable {
         info = jsonInfo.toString();
         return info;
     }
+
+	public Partner getPartner() {
+		return partner;
+	}
+
+	public void setPartner(Partner partner) {
+		this.partner = partner;
+	}
+    
+    
 }

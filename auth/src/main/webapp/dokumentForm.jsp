@@ -64,12 +64,12 @@
 										<div class="form-group"${error != null ? 'has-error' : ''}'>
 											<label class='font-awesome'>Vrsta dokumenta</label>
 
-											<form:select path="TypesOfDocuments" class="form-control">
+											<form:select path="TypesOfDocuments.id" class="form-control">
 												<form:options items="${eTypesOfDocuments}" />
 											</form:select>
 
 											<p class="help-block">
-												<form:errors path="TypesOfDocuments" class="help-block" />
+												<form:errors path="TypesOfDocuments.id" class="help-block" />
 											</p>
 										</div>		
 										
@@ -113,12 +113,12 @@
 									<div class="form-group"${error != null ? 'has-error' : ''}'> 
 											<label class='font-awesome'>Magacin</label> 
 
-											<form:select path="Magacini" class="form-control"> 
+											<form:select path="Magacini.id" class="form-control"> 
 												<form:options items="${eMagacini}" /> 
 											</form:select> 
 
 											<p class="help-block"> 
-												<form:errors path="Magacini" class="help-block" /> 
+												<form:errors path="Magacini.id" class="help-block" /> 
 											</p> 
 
 										</div>		
@@ -126,12 +126,12 @@
 										<div class="form-group"${error != null ? 'has-error' : ''}'>
 											<label class='font-awesome'>Partner</label>
 
-											<form:select path="Partner" class="form-control">
+											<form:select path="Partner.id" class="form-control">
 												<form:options items="${ePartner}" />
 											</form:select>
 
 											<p class="help-block">
-												<form:errors path="Partner" class="help-block" />
+												<form:errors path="Partner.id" class="help-block" />
 											</p>
 										</div>	
 										

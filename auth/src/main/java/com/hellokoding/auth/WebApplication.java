@@ -10,6 +10,7 @@ import org.springframework.boot.context.web.SpringBootServletInitializer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.http.HttpStatus;
 
+
 @SpringBootApplication
 public class WebApplication extends SpringBootServletInitializer {
     @Override
@@ -17,6 +18,7 @@ public class WebApplication extends SpringBootServletInitializer {
         return application.sources(WebApplication.class);
     }
 
+	    
     public static void main(String[] args) throws Exception {
         SpringApplication.run(WebApplication.class, args);
     }

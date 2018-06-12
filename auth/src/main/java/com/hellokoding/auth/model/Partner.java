@@ -1,7 +1,9 @@
 package com.hellokoding.auth.model;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -13,7 +15,9 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.PrePersist;
+import javax.persistence.PreRemove;
 import javax.persistence.PreUpdate;
 import javax.persistence.Table;
 
@@ -58,6 +62,11 @@ public class Partner implements Serializable {
 //    @JsonBackReference
 //    
 //    private Drzave drzave;
+    
+    @JsonIgnore
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "partner") // LAZY is default
+    private List<Magacini> magacini = new ArrayList<>();    
+    
     
     public Partner(){
     }
@@ -214,7 +223,29 @@ public class Partner implements Serializable {
 	}
 	
 	
+	public List<Magacini> getMagacini() {
+		return magacini;
+	}
 
+	public void setMagacini(List<Magacini> magacini) {
+		this.magacini = magacini;
+	}
+
+	
+	
+	
+//	@PreRemove
+//	private void preRemove() {
+//	    if (!magacini.isEmpty()) {
+//	        try {
+//				throw new Exception();
+//			} catch (Exception e) {
+//				// TODO Auto-generated catch block
+//				e.printStackTrace();
+//			}
+//	    }
+//	}
+	
 //	// drzave  
 //	public void setDrzava(Drzave drzave){
 //    	this.drzave = drzave;

@@ -37,12 +37,13 @@ public class VrsteArtikala implements Serializable {
 	private Date timestamp;
 	private boolean aktivan;
     
- //   @OneToMany(mappedBy = "vrsteArtikala", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+
     @Fetch (FetchMode.SELECT)
-    @OneToMany(mappedBy = "vrsteArtikala", orphanRemoval = true, cascade = CascadeType.PERSIST)
-    
+//    @OneToMany(mappedBy = "vrsteArtikala", orphanRemoval = true, cascade = CascadeType.PERSIST)
+    @OneToMany(mappedBy = "vrsteArtikala", fetch = FetchType.LAZY)
     @JsonManagedReference
     private Set<Artikli> artikli;
+    
     
     public VrsteArtikala(){
     }

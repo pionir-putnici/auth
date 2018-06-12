@@ -21,6 +21,7 @@ import com.hellokoding.auth.model.DokumentStavke;
 import com.hellokoding.auth.model.Drzave;
 import com.hellokoding.auth.model.JediniceMera;
 import com.hellokoding.auth.model.Klasifikacije;
+import com.hellokoding.auth.model.Magacini;
 import com.hellokoding.auth.model.Partner;
 import com.hellokoding.auth.model.PoreskeGrupe;
 import com.hellokoding.auth.model.PttBrojevi;
@@ -33,6 +34,7 @@ import com.hellokoding.auth.repository.CostumersRepository;
 import com.hellokoding.auth.repository.DokumentRepository;
 import com.hellokoding.auth.repository.DokumentStavkeRepository;
 import com.hellokoding.auth.repository.DrzaveRepository;
+import com.hellokoding.auth.repository.MagaciniRepository;
 import com.hellokoding.auth.repository.TypesOfDocumentsRepository;
 import com.hellokoding.auth.repository.ZipCodesRepository;
 import com.hellokoding.auth.service.ArtikliService;
@@ -72,6 +74,8 @@ public class RestsController {
 	private CostumersRepository costumersRepository;
 	@Autowired
 	private DokumentRepository dokumentRepository;
+	@Autowired
+	private MagaciniRepository magaciniRepository;
 	
 	@Autowired
 	private DokumentStavkeRepository dokumentStavkeRepository;
@@ -351,7 +355,38 @@ public class RestsController {
 		}
 
 		return aa; 
-	}		
+	}
+	
+	
+	@RequestMapping(path="/magacinii", method=RequestMethod.GET)
+	public List<Magacini> getJsonArticlesTypesM(){
+		
+		List<Magacini> aa = magaciniRepository.findAll();
+	
+		 for (Iterator iterator = aa.iterator(); iterator.hasNext();) {
+			 Magacini magacini = (Magacini) iterator.next();
+			 magacini.setAkcija("<a href=\"update-vrste-artikala.html?id=" + magacini.getId() + "\"> " + "<i class=\"fa fa-pencil-square-o edit-delete-icon\"></i> </a> "
+					+ "            <a href=\"delete-vrste-artikala.html?id=" + magacini.getId() + "\" Onclick=\"return ConfirmDelete();\"> " + "<i class=\"fa fa-trash-o edit-delete-icon\"></i> </a>");
+		}
+
+		return aa; 
+	}	
+	
+	@RequestMapping(path="/partneri", method=RequestMethod.GET)
+	public List<Partner> getJsonArticlesTypesP(){
+		
+		List<Partner> aa = costumersRepository.findAll();
+	
+		 for (Iterator iterator = aa.iterator(); iterator.hasNext();) {
+			 Partner magacini = (Partner) iterator.next();
+			 magacini.setAkcija("<a href=\"update-vrste-artikala.html?id=" + magacini.getId() + "\"> " + "<i class=\"fa fa-pencil-square-o edit-delete-icon\"></i> </a> "
+					+ "            <a href=\"delete-vrste-artikala.html?id=" + magacini.getId() + "\" Onclick=\"return ConfirmDelete();\"> " + "<i class=\"fa fa-trash-o edit-delete-icon\"></i> </a>");
+		}
+
+		return aa; 
+	}	
+	
+	
 	public static Calendar toCalendar(Date date){ 
 		  Calendar cal = Calendar.getInstance();
 		  cal.setTime(date);
