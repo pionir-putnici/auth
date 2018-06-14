@@ -47,6 +47,7 @@ public class Magacini implements Serializable {
 	private String code;
     private String name;
     private String remark;
+    private String adresa;
     private String akcija;
     private Boolean aktivan;
     private Date timestamp;
@@ -67,6 +68,12 @@ public class Magacini implements Serializable {
   //  @JsonIgnore
     @JsonBackReference
     private Partner partner;    
+    
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "ptt_id" , referencedColumnName = "id")
+  //  @JsonIgnore
+    @JsonBackReference
+    private PttBrojevi pttBrojevi;    
     
     
     public Magacini(){
@@ -206,6 +213,22 @@ public class Magacini implements Serializable {
 
 	public void setPartner(Partner partner) {
 		this.partner = partner;
+	}
+
+	public String getAdresa() {
+		return adresa;
+	}
+
+	public void setAdresa(String adresa) {
+		this.adresa = adresa;
+	}
+
+	public PttBrojevi getPttBrojevi() {
+		return pttBrojevi;
+	}
+
+	public void setPttBrojevi(PttBrojevi pttBrojevi) {
+		this.pttBrojevi = pttBrojevi;
 	}
     
     

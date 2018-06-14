@@ -85,7 +85,7 @@ public class CardController {
 
 	@Autowired
 	private MagaciniService magaciniService;
-
+	
 	@Autowired
 	private ApplicationContext appContext;
 
@@ -267,25 +267,6 @@ public class CardController {
 			
 		} else if (action.equals("cancel-article")) {
 
-			// System.out.print("cancel article");
-			// System.out.print(select2);
-			// System.out.println(Arrays.toString(select2));
-			//
-
-			// Enumeration e = (Enumeration) (session.getAttributeNames());
-			//
-			// while ( e.hasMoreElements())
-			// {
-			// Object tring;
-			// if((tring = e.nextElement())!=null)
-			// {
-			// System.out.println(e.toString());
-			// System.out.println(session.getValue((String) tring));
-			// System.out.println("<br/>");
-			// }
-			//
-			// }
-
 			try {
 				if (select2.length == 0) {
 					return "redirect:find_all_articles.html";
@@ -331,25 +312,6 @@ public class CardController {
 			return "redirect:find_all_articles.html";
 
 		} else if (action.equals("cancel-articlep")) {
-
-			// System.out.print("cancel article");
-			// System.out.print(select2);
-			// System.out.println(Arrays.toString(select2));
-			//
-
-			// Enumeration e = (Enumeration) (session.getAttributeNames());
-			//
-			// while ( e.hasMoreElements())
-			// {
-			// Object tring;
-			// if((tring = e.nextElement())!=null)
-			// {
-			// System.out.println(e.toString());
-			// System.out.println(session.getValue((String) tring));
-			// System.out.println("<br/>");
-			// }
-			//
-			// }
 
 			try {
 				if (select2.length == 0) {
@@ -559,9 +521,11 @@ public class CardController {
 
 		List<Partner> magkart = (List<Partner>) session.getAttribute("izabraneVrednostiPartneri");
 		request.setAttribute("magkart", magkart);
-
+		
 		List<Artikli> artkart = (List<Artikli>) session.getAttribute("izabraneVrednostiArtikli");
 		request.setAttribute("artkart", artkart);
+		
+		
 
 		List<Long> ids_magacin = new ArrayList<Long>(); // this should be your id column's type
 
@@ -614,47 +578,101 @@ public class CardController {
 		request.setAttribute("stavkart", stavkart);
 		
 		return ("/printing/cardp");
-
-		// String conditions = null;
-		// boolean firstTime= true;
-		//
-		// for (Magacini magacini : magkart) {
-		//
-		// if (firstTime) {
-		//
-		// conditions = " magacin IN (" + (magacini.getId());
-		// }
-		// else
-		// {
-		// conditions = " AND " + (magacini.getId());
-		// }
-		//
-		// firstTime=false;
-		//
-		// }
-		//
-		// conditions = conditions + ")";
-
-		// for (Artikli artikli : artkart) {
-		// String conditions = null;
-		// List<DokumentStavke> stavkart =
-		// dokumentStavkeRepository.upitKonacni(conditions);
-		// request.setAttribute("stavkart", stavkart);
-		// return ("/printing/card");
-
 	}		
-		// return ("/printing/card");
+	 else if (action.equals("main-submit-artical-partner-magacin")) {
 
-		// }
+		try {
+			if (select1.length == 0) {
+				return "redirect:find_all_articles_partners.html";
+			}
+			if (select2.length == 0) {
+				String ev="Popunite polje artikli ....";
+				session.setAttribute("ev", ev);	
+				return "redirect:find_all_articles_partners.html";
+			}
+			if (oddana.isEmpty()) {
+				String ev="Popunite polje od dana ....";
+				session.setAttribute("ev", ev);	
+				return "redirect:find_all_articles_partners.html";
+			}
+			if (dodana.isEmpty()) {
+				String ev="Popunite polje do dana ....";
+				session.setAttribute("ev", ev);	
+				return "redirect:find_all_articles_partners.html";
+			}
+
+		} catch (Exception x) {
+			String ev="Popunite obavezna polja  ....";
+			session.setAttribute("ev", ev);	
+			return "redirect:find_all_articles_partners.html";
+		}
+
+		request.setAttribute("title", "Cards");
+		request.setAttribute("oddana", oddana);
+		request.setAttribute("dodana", dodana);
+
+		DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+		Date date = new Date();
+		request.setAttribute("currentdate", dateFormat.format(date));
+
+		List<Partner> partkart = (List<Partner>) session.getAttribute("izabraneVrednostiPartneri");
+		request.setAttribute("partkart", partkart);
+
+		List<Magacini> magkart = magaciniRepository.partnerZaMagacin(partkart);
+		request.setAttribute("magkart", magkart );		
+		 sdfgsdf
+		List<Artikli> artkart = (List<Artikli>) session.getAttribute("izabraneVrednostiArtikli");
+		request.setAttribute("artkart", artkart);
+		
+		List<Long> ids_magacin = new ArrayList<Long>(); // this should be your id column's type
+
+		for (Partner magacini : partkart) {
+			ids_magacin.add(magacini.getId());
+		}
+
+		List<Long> ids_artikli = new ArrayList<Long>(); // this should be your id column's type
+
+		for (Artikli artikli : artkart) {
+			ids_artikli.add(artikli.getId());
+		}
+
+		TreeMap<Integer, SumMagacinArtikal> kontrola = new TreeMap<>();
+		kontrola.put(1, new SumMagacinArtikal(new Long(1), new Long(15), new Long(7), new BigDecimal(10.00)));
+
+		System.out.println("Kontrola " + kontrola);
+		request.setAttribute("kontrola", kontrola);
+		
+		System.out.println("Datum string je " + oddana);
+		
+		DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+		Date oddanad = null;
+		try {
+			oddanad = formatter.parse(oddana);
+		} catch (ParseException e) {
+		
+			e.printStackTrace();
+		}
+		Date dodanad = null;
+		try {
+			dodanad = formatter.parse(dodana);
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		System.out.println("Datum date je " + oddanad + " " + dodanad);
+		
+		List<DokumentStavke> stavkart = dokumentStavkeRepository.k1pm(ids_magacin, ids_artikli, oddanad, dodanad);
+
+		System.out.println("Stavka kard " + stavkart); 
+
+		
+		request.setAttribute("stavkart", stavkart);
+		
+		return ("/printing/cardpm");
+	}
 
 		return ("/printing/card");
-
-		// System.out.print("Roba je: " + id_roba);
-		// List<DokumentStavke> dd =
-		// dokumentStavkeRepository.findArticleInWarehouse(id_magacin, id_roba);
-		// System.out.print(dd.toString());
-
-		// request.setAttribute("stavke", dd);
 
 	}
 
@@ -692,11 +710,25 @@ public class CardController {
 
 	}	
 	
+	@RequestMapping(value = "/find_all_articles_partners_magacini.html")
+	public String faapm(HttpServletRequest request) {
+
+		List<Artikli> dd = artikliRepository.findAllByOrderByNameAsc();
+		System.out.println("Svi artikli " + dd.toString());
+		List<Partner> dd1 = costumerRepository.findAllByOrderByNameAsc();
+		request.setAttribute("allArticles", dd);
+		request.setAttribute("allWarehouses", dd1);
+		System.out.println("Svi partneri " + dd1.toString());
+		DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+		Date date = new Date();
+		request.setAttribute("currentdate", dateFormat.format(date));
+
+		return ("cardFormPartneriMagacini");
+
+	}	
+	
 	@RequestMapping(value = "/add_article_session_parameter.html")
 	public String asp(@RequestParam Long id_roba, HttpServletRequest request) {
-
-		// request.setAttribute("allArticles", dd);
-		// request.setAttribute("allWarehouses", dd1);
 
 		HttpSession sess = request.getSession();
 		Map<Long, String> dept = new HashMap<>();
@@ -728,10 +760,6 @@ public class CardController {
 		Magacini km = new Magacini();
 		try {
 			Magacini deptList = magaciniService.findByOne(id_magacin);
-
-			// for (VrsteArtikala d : deptList) {
-			// dept.put(d.getId(), d.getName());
-			// }
 
 			izabraneVrednostiMagacini.add(deptList);
 			// dept.put(deptList.getId(), deptList.getCode() + "*" + deptList.getName());

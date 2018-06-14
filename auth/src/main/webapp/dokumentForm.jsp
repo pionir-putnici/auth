@@ -75,7 +75,7 @@
 										
 										<div class='form-group ${error != null ? 'has-error' : ''}'>
 											<label class='font-awesome'>Broj dokumenta</label>
-											<%-- 									<input class="form-control" name='name' path='name' placeholder='Unesite naziv' value="${task.name}"> --%>
+											<%-- <input class="form-control" name='name' path='name' placeholder='Unesite naziv' value="${task.name}"> --%>
 
 											<form:input type="text" class="form-control" id="brojDokumenta"
 												path="brojDokumenta" placeholder='brojDokumenta'
@@ -110,33 +110,62 @@
 										</div>
 																			
 										
-									<div class="form-group"${error != null ? 'has-error' : ''}'> 
-											<label class='font-awesome'>Magacin</label> 
-
-											<form:select path="Magacini.id" class="form-control"> 
-												<form:options items="${eMagacini}" /> 
-											</form:select> 
-
-											<p class="help-block"> 
-												<form:errors path="Magacini.id" class="help-block" /> 
-											</p> 
-
-										</div>		
+	
 						
-										<div class="form-group"${error != null ? 'has-error' : ''}'>
+										<div class="form-group" ${error != null ? 'has-error' : ''}>
 											<label class='font-awesome'>Partner</label>
 
-											<form:select path="Partner.id" class="form-control">
-												<form:options items="${ePartner}" />
-											</form:select>
+<%-- 											<form:select path="Partner.id" class="form-control"> --%>
+<%-- 												<form:option value="0" label="--- Select One ---"></form:option> --%>
+<%-- 												<form:options  cssClass="${role.getKey()}" items="${ePartner}" /> --%>
+<%-- 											</form:select> --%>
 
+
+											<select id="selectManuf" class="form-control" name="Partner.id" >
+    											<c:forEach var="role" items="${ePartner}">
+      											<option class="${role.getKey()}" value="${role.getKey()}" ${role.getKey() == dokument.partner.id ? 'selected' : ''}> ${role.getValue()}</option>
+    											</c:forEach>
+											</select>
+											
 											<p class="help-block">
 												<form:errors path="Partner.id" class="help-block" />
 											</p>
 										</div>	
 										
-										</div>
+									<div class="form-group"${error != null ? 'has-error' : ''}'> 
+											<label class='font-awesome'>Magacin</label> 
+
+<%-- 											<form:select path="Magacini.id" class="form-control">  --%>
+<%-- 												<form:options items="${eMagacini}" />  --%>
+<%-- 											</form:select>  --%>
+
+<!-- 											<select id="selectModel" class="form-control" name="Magacini.id" > -->
+<%--     											<c:forEach var="role" items="${eMagacini}">    											 --%>
+<%--       											<option class="${role.getKey()}" value="${role.getKey()}" ${role.getKey() == dokument.magacini.id ? 'selected' : ''}> ${role.getValue()}</option> --%>
+<%--     											</c:forEach> --%>
+<!-- 											</select> -->
+
+											<select id="selectModel" class="form-control" name="Magacini.id" >
+    											<c:forEach var="role" items="${eMagacini}">    											
+      											<option class="${role.partner.getId()}" value="${role.getId()}" ${role.getId() == dokument.magacini.id ? 'selected' : ''}> ${role.getName()}</option>
+    											</c:forEach>
+											</select>
+
+
+											<p class="help-block"> 
+												<form:errors path="Magacini.id" class="help-block" /> 
+											</p> 
+
+										</div>											
 										
+										</div>
+										<c:out value="${dokument.partner.id}"/>
+										<c:out value="${dokument.partner.name}"/>
+										<c:out value="${ePartner['key']}"/>
+
+	<c:forEach var="hash" items="${ePartner['key']}">
+        <option></option>
+  </c:forEach>
 										<div class='col-lg-6'>
 										<div class='form-group'>
 											<label class='font-roboto'>Napomena</label>
@@ -295,5 +324,54 @@
 	<script src="https://code.angularjs.org/1.2.32/angular.js"></script>
     <script src="ui-bootstrap-tpls-0.10.0.min.js"></script>
 	<script src="dokumentItems.js"></script>
+	
+<script>
+
+
+
+$(document).ready(function () {    
+    var allOptions = $('#selectModel option')
+    $('#selectManuf').change(function () {
+        $('#selectModel option').remove()
+        var classN = $('#selectManuf option:selected').prop('class');
+        var opts = allOptions.filter('.' + classN);
+        $.each(opts, function (i, j) {
+            $(j).appendTo('#selectModel');
+        });
+    });
+    
+});
+
+$(document).ready(function myFunction1() {
+	var allOptions = $('#selectModel option');
+	// var sviPocetni = allOptions;
+    $('#selectModel option').remove()
+    var classN = $('#selectManuf option:selected').prop('class');
+    var opts = allOptions.filter('.' + classN);
+    $.each(opts, function (i, j) {
+        $(j).appendTo('#selectModel');
+    });
+    // alert("Page is loaded 123");
+    // allOptions = sviPocetni;
+});
+
+
+function myFunction1() {
+		var allOptions = $('#selectModel option');
+		var sviPocetni = allOptions;
+        $('#selectModel option').remove()
+        var classN = $('#selectManuf option:selected').prop('class');
+        var opts = allOptions.filter('.' + classN);
+        $.each(opts, function (i, j) {
+            $(j).appendTo('#selectModel');
+        });
+        alert("Page is loaded 123");
+      //  allOptions = sviPocetni;
+    }
+
+function myFunction() {
+    alert("Page is loaded");
+}
+</script>	
 </body>
 </html>

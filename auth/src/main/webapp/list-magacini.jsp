@@ -35,8 +35,10 @@
 									<tr>
 										<th style="width: 5%;">Id</th>
 										<th style="width: 7%;">Šifra</th>
-										<th style="width: 30%;">Naziv</th>
-										<th style="width: 28%;">Napomena</th>
+										<th style="width: 15%;">Naziv</th>
+										<th style="width: 15%;">Partner</th>										
+										<th style="width: 20%;">Adresa</th>
+										<th style="width: 8%;">Ptt</th>
 										<th style="width: 10%;">Tip</th>
 										<th style="width: 6%;">Act</th>
 										<th style="width: 14%;">Akcija</th>

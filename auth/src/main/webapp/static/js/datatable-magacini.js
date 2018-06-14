@@ -81,7 +81,9 @@ $(document).ready( function () {
 			      { "mData": "id"},
 		          { "mData": "code" },
 				  { "mData": "name" },
-				  { "mData": "remark" },
+				  { "mData": "slika" },				  
+				  { "mData": "adresa" },
+				  { "mData": "zvuk" },
 				  { "mData": "vrste_magacina_naziv"},
 				  { "mData": "aktivan" },
 				  { "mData": "akcija"}

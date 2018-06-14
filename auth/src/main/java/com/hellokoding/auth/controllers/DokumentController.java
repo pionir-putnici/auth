@@ -186,7 +186,7 @@ public class DokumentController {
 		for (Magacini d : deptList) {
 	          dept.put(d.getId(), d.getName());
 	      }
-	      sess.setAttribute("eMagacini", dept);	 
+	      sess.setAttribute("eMagacini", deptList);	 
 	      
 	      List<TypesOfDocuments> tdList = typesOfDocumentsRepository.findAll(); 	      
 		    Map<Long, String> tdl = new HashMap<>();
@@ -201,10 +201,12 @@ public class DokumentController {
 		      List<Partner> partList = partnerRepository.findAll(); 
 		      
 		    Map<Long, String> deptp = new HashMap<>();
+		    
 			// HttpSession sess = request.getSession();
 			
 			for (Partner d : partList) {
 		          deptp.put(d.getId(), d.getName());
+		          String tt = d.getName();
 		      }
 		      sess.setAttribute("ePartner", deptp);	
 		      

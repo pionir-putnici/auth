@@ -1,12 +1,16 @@
 package com.hellokoding.auth.repository;
 
 import com.hellokoding.auth.model.Artikli;
+import com.hellokoding.auth.model.DokumentStavke;
 import com.hellokoding.auth.model.Magacini;
+import com.hellokoding.auth.model.Partner;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 
 public interface MagaciniRepository extends JpaRepository<Magacini, Long> {
 	
@@ -35,7 +39,11 @@ public interface MagaciniRepository extends JpaRepository<Magacini, Long> {
 	
 	@Query(" from Magacini order by name ")	
 	List<Magacini> findAllByOrderByNameAsc();
-	
+	    
+    @Query("SELECT t FROM Magacini t where  "
+    		+ " t.partner.id in (:id_partner) "
+    		+ " and t.aktivan=true " )     
+    List<Magacini> partnerZaMagacin (@Param("id_partner") List<Partner> ids_partner);   	
 	
 //	  @Query("select t from #{#entityName} t where t.attribute = ?1")
 //	  List<T> findAllByAttribute(String attribute);

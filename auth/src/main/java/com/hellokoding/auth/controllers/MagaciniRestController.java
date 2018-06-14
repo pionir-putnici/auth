@@ -56,7 +56,9 @@ public class MagaciniRestController {
 //			System.out.println(magacini.getVrsteMagacina().getName());
 //			System.out.println(magacini.getName());
 //			System.out.println(magacini.getVrste_magacina_naziv());
+			magacini.setSlika(magacini.getPartner().getName());			
 			magacini.setVrste_magacina_naziv(magacini.getVrsteMagacina().getName());
+			magacini.setZvuk(magacini.getPttBrojevi().getName());
 			magacini.setAkcija("<a href=\"update-magacini.html?id=" + magacini.getId() + "\"> " + "<i class=\"fa fa-pencil-square-o edit-delete-icon\"></i> </a> "
 					+ "            <a href=\"delete-magacini.html?id=" + magacini.getId() + "\" Onclick=\"return ConfirmDelete();\"> " + "<i class=\"fa fa-trash-o edit-delete-icon\"></i> </a>");
 		}	

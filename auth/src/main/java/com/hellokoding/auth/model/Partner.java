@@ -63,7 +63,7 @@ public class Partner implements Serializable {
 //    
 //    private Drzave drzave;
     
-    @JsonIgnore
+ //   @JsonIgnore
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "partner") // LAZY is default
     private List<Magacini> magacini = new ArrayList<>();    
     

@@ -92,6 +92,30 @@
 											</p>
 										</div>										
 
+										<div class='form-group ${error != null ? 'has-error' : ''}'>
+											<label class='font-oxygen'>Adresa</label>
+											<form:input type="text" class="form-control " name="adresa"
+												path="adresa" value="${magacini.adresa}" 
+												placeholder='Unesite adresu' />
+
+											<p class="help-block">
+												<form:errors path="adresa" class="help-block text-danger" />
+											</p>
+										</div>
+
+										<div class="form-group"${error != null ? 'has-error' : ''}'>
+											<label class='font-awesome'>Ptt broj</label>
+
+											<form:select path="pttBrojevi.id" class="form-control">
+												<form:option value="" label="--- Select ---" />
+												<form:options items="${eDeptPtt}" />
+											</form:select>
+
+											<p class="help-block">
+												<form:errors path="pttBrojevi.id" class="help-block" />
+											</p>
+										</div>	
+
 										<div class='form-group'>
 											<label class='font-roboto'>Napomena</label>
 											<%-- 									<textarea class="form-control" name='remark' path='remark'  placeholder='Unesite napomenu' value="${task.remark}"></textarea> --%>
