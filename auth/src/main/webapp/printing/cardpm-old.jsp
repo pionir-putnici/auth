@@ -37,30 +37,102 @@
 			</div>
 			
 		</div>
-		
-<%-- 		<c:forEach items="${partkart}" var="partkart"> --%>
+		<c:set value="${true}" var="unCheckFlag1"></c:set>
+		<c:forEach items="${partkart}" var="partkart">
 
 
+			<div class='row spacer-top-15' id='article-info-storage-location'>
+				<div class='col-xs-2'>
+					<p>Partner:</p>
+				</div>
+				
+				<div class='col-xs-10'>
+
+					<p>${partkart.code} ${partkart.name}</p>
+
+				</div>
+			</div>
+
+		<c:forEach items="${magkart}" var="magkart">
 
 
-<%-- 		<c:forEach items="${magkart}" var="magkart"> --%>
+			<div class='row spacer-top-15' id='article-info-storage-location'>
+				<div class='col-xs-2'>
+					<p>Magacin-objekat:</p>
+				</div>
+				
+				<div class='col-xs-10'>
 
+					<p>${magkart.code} ${magkart.name}</p>
 
-
-
-<%-- 			<c:forEach items="${artkart}" var="artkart">				         --%>
+				</div>
+			</div>
+<c:set value="${true}" var="unCheckFlag1"></c:set>
+			<c:forEach items="${artkart}" var="artkart">				        
 	        
 <%-- 	        <c:forEach items="${kontrola}" var="kontrola"> --%>
 <%-- 	            <c:out value="${kontrola}"></c:out>    			 --%>
 <%--     			<c:out value="${kontrola.key}"></c:out> --%>
 <%-- 			</c:forEach> --%>
 									
+<!-- 				<div class='row' id='article-info'> -->
+<!-- 					<div class='col-xs-2'> -->
+<%-- 						<p>Šifra: ${artkart.code}</p> --%>
+<!-- 					</div> -->
+<!-- 					<div class='col-xs-2'> -->
+<%-- 						<p>${artkart.name}</p> --%>
+<!-- 					</div> -->
+<!-- 				</div> -->
 
+<!-- 				<div class='row'> -->
+<!-- 					<div class='col-xs-12'> -->
+<!-- 						<table class='tableDocuments'> -->
+<!-- 							<thead id="table-head-first-row"> -->
+<!-- 								<th></th> -->
+<!-- 								<th colspan="2">DOKUMENT</th> -->
+<!-- 								<th class='text-right'>KOLIČINA</th> -->
+<!-- 								<th class='text-right'>KOLIČINA</th> -->
+<!-- 								<th></th> -->
+<!-- 								<th></th> -->
+<!-- 								<th class='text-right'>IZNOS</th> -->
+<!-- 								<th class='text-right'>IZNOS</th> -->
+<!-- 								<th></th> -->
+<!-- 							</thead> -->
+<!-- 							<thead id='table-head-second-row'> -->
+<!-- 								<th style="width: 5%;">RB</th> -->
+<!-- 								<th style="width: 10%;">DATUM</th> -->
+<!-- 								<th style="width: 10%;">BROJ</th> -->
+<!-- 								<th style="width: 10%;" class='text-right'>ULAZ</th> -->
+<!-- 								<th style="width: 10%;" class='text-right'>IZLAZ</th> -->
+<!-- 								<th style="width: 10%;" class='text-right'>STANJE</th> -->
+<!-- 								<th style="width: 10%;" class='text-right'>CENA</th> -->
+<!-- 								<th style="width: 10%;" class='text-right'>ULAZ</th> -->
+<!-- 								<th style="width: 10%;" class='text-right'>IZLAZ</th> -->
+<!-- 								<th style="width: 10%;" class='text-right'>STANJE</th> -->
+<!-- 							</thead> -->
+<!-- 							<tbody> -->
+								<c:forEach items="${stavkart}" var="stavka">
+
+									<c:set value="${false}" var="unCheckFlag"></c:set>
+	
+									
+									<c:if test="${stavka.idDokument.partner.id==partkart.id && stavka.artikli.id==artkart.id && stavka.idDokument.magacini.id==magkart.id && (stavka.ulaz!=null || stavka.izlaz!=null)}">
+
+									<c:if test="${'unCheckFlag'== false}"> 													
+										<c:set value="${true}" var="unCheckFlag"></c:set> 
+										<c:set value="${false}" var="unCheckFlag1"></c:set>
+				<div class='row' id='article-info'>
+					<div class='col-xs-2'>
+						<p>Šifra: ${artkart.code}</p>
+					</div>
+					<div class='col-xs-2'>
+						<p>${artkart.name}</p>
+					</div>
+				</div>
 
 				<div class='row'>
 					<div class='col-xs-12'>
-					
-						<table class='tableDocuments'>
+						<table class='tableDocuments'>										
 							<thead id="table-head-first-row">
 								<th></th>
 								<th colspan="2">DOKUMENT</th>
@@ -85,139 +157,6 @@
 								<th style="width: 10%;" class='text-right'>STANJE</th>
 							</thead>
 							<tbody>
-							
-							<c:set value="${false}" var="stampaZaglavljaArtikla"></c:set>							
-							<c:set var="aktivniArtikal" value="0" />
-
-							<c:set value="${false}" var="stampaZaglavljaMagacina"></c:set>							
-							<c:set var="aktivniMagacin" value="0" />
-							
-									<c:out value=${stampaZaglavljaMagacina}></c:out>
-									<c:out value="${aktivniMagacin}"></c:out>							
-							
-							<c:set value="${false}" var="stampaZaglavljaPartnera"></c:set>							
-							<c:set var="aktivniPartner" value="0" />
-							
-								<c:forEach items="${stavkart}" var="stavka">
-
-<%-- 								<c:if test="${stavka.idDokument.partner.id==partkart.id && stavka.artikli.id==artkart.id && stavka.idDokument.magacini.id==magkart.id && (stavka.ulaz!=null || stavka.izlaz!=null)}"> --%>
-
-
-									
-									<c:if test="${aktivniArtikal != 'stavka.artikli.id' && stampaZaglavljaPartnera== true}">
-								<tr>
-									<td colspan='3'>Ukupno za artikal:</td>
-									<td class='text-right'>${totalUlaz}</td>
-									<td class='text-right'>${totalIzlaz}</td>
-									<td></td>
-									<td></td>
-									<td class='text-right'>${totalDuguje}</td>
-									<td class='text-right'>${totalPotrazuje}</td>
-									<td></td>
-								</tr>
-								
-									</tbody>
-										</table>
-										<c:set value="${false}" var="stampaZaglavljaArtikla"></c:set>
-										<c:set var="aktivniArtikal" value="${stavka.artikli.id}" />
-									</c:if>
-									
-									<c:if test="${aktivniMagacin != 'stavka.idDokument.magacini.id' && stampaZaglavljaMagacina== true}">
-								<tr>
-									<td colspan='3'>Ukupno za magacin-objekat:</td>
-									<td class='text-right'>${totalUlazm}</td>
-									<td class='text-right'>${totalIzlazm}</td>
-									<td></td>
-									<td></td>
-									<td class='text-right'>${totalDugujem}</td>
-									<td class='text-right'>${totalPotrazujem}</td>
-									<td></td>
-								</tr>
-								
-									</tbody>
-										</table>
-										<c:set value="${false}" var="stampaZaglavljaMagacina"></c:set>
-										<c:set var="aktivniMagacin" value="${stavka.idDokument.magacini.id}" />
-									</c:if> 
-									
-																		
-									
-									
-									
-									<c:if test="${'stampaZaglavljaPartnera'== false}"> 													
-										<c:set value="${true}" var="stampaZaglavljaPartnera"></c:set>
-										<c:set value="${stavka.idDokument.partner.id}" var="aktivniPartner"></c:set>
-
-										<div class='row spacer-top-15'
-											id='article-info-storage-location'>
-											<div class='col-xs-2'>
-												<p>Partner:</p>
-											</div>
-		
-											<div class='col-xs-10'>
-												<p>${partkart.code}${partkart.name}</p>
-											</div>
-										</div>
-									</c:if>
-
-									<c:out value="${stampaZaglavljaMagacina}"></c:out>
-									<c:out value="${aktivniMagacin}"></c:out>
-									
-									<c:if test="${'stampaZaglavljaMagacina'== false}"> 													
-										<c:set value="${true}" var="stampaZaglavljaMagacina"></c:set>
-										<c:set value="${stavka.idDokument.magacini.id}" var="aktivniMagacin"></c:set>	
-										<div class='row spacer-top-15' id='article-info-storage-location'>
-											<div class='col-xs-2'>
-												<p>Magacin-objekat:</p>
-											</div>
-											
-											<div class='col-xs-10'>
-							
-												<p>${magkart.code} ${magkart.name}</p>
-							
-											</div>
-										</div>			
-																													
-									</c:if>
-
-									<c:if test="${'stampaZaglavljaArtikla'== false}"> 	
-																					
-										<c:set value="${true}" var="stampaZaglavljaArtikla"></c:set>
-										<c:set value="${stavka.artikli.id}" var="aktivniArtikal"></c:set>	
-										
-										<div class='row' id='article-info'>
-											<div class='col-xs-2'>
-												<p>Šifra: ${artkart.code}</p>
-											</div>
-											<div class='col-xs-2'>
-												<p>${artkart.name}</p>
-											</div>
-										</div>		
-										<table class='tableDocuments'>
-										<thead id="table-head-first-row">
-											<th></th>
-											<th colspan="2">DOKUMENT</th>
-											<th class='text-right'>KOLIČINA</th>
-											<th class='text-right'>KOLIČINA</th>
-											<th></th>
-											<th></th>
-											<th class='text-right'>IZNOS</th>
-											<th class='text-right'>IZNOS</th>
-											<th></th>
-										</thead>
-										<thead id='table-head-second-row'>
-											<th style="width: 5%;">RB</th>
-											<th style="width: 10%;">DATUM</th>
-											<th style="width: 10%;">BROJ</th>
-											<th style="width: 10%;" class='text-right'>ULAZ</th>
-											<th style="width: 10%;" class='text-right'>IZLAZ</th>
-											<th style="width: 10%;" class='text-right'>STANJE</th>
-											<th style="width: 10%;" class='text-right'>CENA</th>
-											<th style="width: 10%;" class='text-right'>ULAZ</th>
-											<th style="width: 10%;" class='text-right'>IZLAZ</th>
-											<th style="width: 10%;" class='text-right'>STANJE</th>
-										</thead>
-										<tbody>													
 									</c:if>
 									
  									<c:set var="totalKol" value="${totalKol + stavka.ulaz-stavka.izlaz}"/>
@@ -240,18 +179,32 @@
 											<td class='text-right'>${stavka.potrazuje}</td>
 											<td class='text-right'>${totalVred}</td>
 										</tr>
-<%-- 									</c:if> --%>
+									</c:if>
+<!-- 									stavka -->
 <%-- 									</c:if> --%>
 
 								</c:forEach>
-
-
-						
+								<c:if test="${'unCheckFlag1'== false}"> 													
+										<c:set value="${true}" var="unCheckFlag1"></c:set> 
+								<tr>
+									<td colspan='3'>Ukupno za artikal:</td>
+									<td class='text-right'>${totalUlaz}</td>
+									<td class='text-right'>${totalIzlaz}</td>
+									<td></td>
+									<td></td>
+									<td class='text-right'>${totalDuguje}</td>
+									<td class='text-right'>${totalPotrazuje}</td>
+									<td></td>
+								</tr>
+								
+							</tbody>
+						</table>
 					</div>
-				</div> <!-- row -->
-
+				</div>
+				
+				
 				<br/>
- 									
+ 				</c:if>					
  									<c:set var="totalKolm" value="${totalKolm + totalKol}"/>
  									<c:set var="totalVredm" value="${totalVredm + totalVred}"/>
  									<c:set var="totalUlazm" value="${totalUlazm + totalUlaz}"/>
@@ -280,7 +233,7 @@
  									<c:set var="totalDuguje" value="0"/>
  									<c:set var="totalPotrazuje" value="0"/> 									
 <!--  							artkart						 -->
-<%-- 			</c:forEach> --%>
+			</c:forEach>
 								<table class='tableDocuments'>
 								<thead id='table-head-second-row'>
 								<th style="width: 5%;"></th>
@@ -295,7 +248,16 @@
 								<th style="width: 10%;" class='text-right'></th>
 							    </thead>
 								
-
+								<tr>
+									<td colspan='3'>Ukupno za magacin-objekat:</td>
+									<td class='text-right'>${totalUlazm}</td>
+									<td class='text-right'>${totalIzlazm}</td>
+									<td></td>
+									<td></td>
+									<td class='text-right'>${totalDugujem}</td>
+									<td class='text-right'>${totalPotrazujem}</td>
+									<td></td>
+								</tr>
 								</table>
 								
 									<c:set var="totalKolm" value="0"/>
@@ -305,7 +267,7 @@
  									<c:set var="totalDugujem" value="0"/>
  									<c:set var="totalPotrazujem" value="0"/> 									
 <!-- 						magkart		 -->
-<%-- 		</c:forEach> --%>
+		</c:forEach>
 
 <!-- 		</br> -->
 		<div>dodato</div>
@@ -343,7 +305,7 @@
  									<c:set var="totalPotrazujep" value="0"/>
 
 <!-- 								partkart -->
-<%-- 		</c:forEach> --%>
+		</c:forEach>
 
 		</br>		
 								<table class='tableDocuments'>

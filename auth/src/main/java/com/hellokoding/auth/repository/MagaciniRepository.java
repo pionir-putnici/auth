@@ -43,7 +43,7 @@ public interface MagaciniRepository extends JpaRepository<Magacini, Long> {
     @Query("SELECT t FROM Magacini t where  "
     		+ " t.partner.id in (:id_partner) "
     		+ " and t.aktivan=true " )     
-    List<Magacini> partnerZaMagacin (@Param("id_partner") List<Partner> ids_partner);   	
+    List<Magacini> partnerZaMagacin (@Param("id_partner") List<Long> ids_partner);   	
 	
 //	  @Query("select t from #{#entityName} t where t.attribute = ?1")
 //	  List<T> findAllByAttribute(String attribute);

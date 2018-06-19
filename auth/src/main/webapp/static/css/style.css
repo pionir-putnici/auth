@@ -238,3 +238,10 @@ table.dataTable.no-footer{
 .img-height {height:200px; width:auto}
 
 .thumbnail-header a {color:white}
+
+.divider-nesto {
+    height: 1px;
+    margin: 9px 0;
+    overflow: hidden;
+    background-color: #e5e5e5;
+}

@@ -15,6 +15,11 @@
 				<div class="col-lg-12">
 					<h2 class="page-header">Parametri izveštaja Artikal Partner Magacin</h2>
 				</div>
+															<c:forEach items="${izabraneVrednostiPartneriPma}"
+																var="izabraneVrednostiPartneriPma">
+																	${izabraneVrednostiPartneriPma.code}
+																	${izabraneVrednostiPartneriPma.name} vvvvv"/>
+															</c:forEach>
 			</div>
 
 			<div class="row">
@@ -28,10 +33,10 @@
 								<div class='col-lg-12'>
 
 									<div class='row'>
+									
 										<div class='col-lg-5' id='input-warehouse-article'>
 
-
-											<form action="/add_articlep_session_parameter.html">
+											<form action="/add_articlep_session_parameter_pma.html">
 												<div class='row'>
 													<div class='col-lg-6'>
 														<label for="allArticles1">Article: </label> 
@@ -47,7 +52,7 @@
 													</div>
 													<div class='col-lg-6'> <br/>
 													<button type="submit" class="btn-lg button-novi">
-														<i class='glyphicon glyphicon-plus'></i> Dodaj
+														<i class='glyphicon glyphicon-plus'></i> Dodaj artikal
 													</button>
 													</div>
 												</div>
@@ -55,7 +60,7 @@
 											</form>
 
 
-											<form action="/add_partner_session_parameter.html">
+											<form action="/add_partner_session_parameter_pma.html">
 												<div class='row'>
 													<div class='col-lg-6'>
 
@@ -74,7 +79,7 @@
 													<div class='col-lg-6'> <br/>
 													
 													<button type="submit" class="btn-lg button-novi">
-														<i class='glyphicon glyphicon-plus'></i> Dodaj
+														<i class='glyphicon glyphicon-plus'></i> Dodaj partnera
 													</button>
 													</div>
 												</div>
@@ -102,17 +107,17 @@
 														<select name="select1" size="10" multiple="multiple"
 															tabindex="1">
 
-															<c:forEach items="${izabraneVrednostiPartneri}"
-																var="izabraneVrednostiPartneri">
-																<option value="${izabraneVrednostiPartneri.id}" selected>
-																	${izabraneVrednostiPartneri.code}
-																	${izabraneVrednostiPartneri.name}</option>
+															<c:forEach items="${izabraneVrednostiPartneriPma}"
+																var="izabraneVrednostiPartneriPma">
+																<option value="${izabraneVrednostiPartneriPma.id}" selected>
+																	${izabraneVrednostiPartneriPma.code}
+																	${izabraneVrednostiPartneriPma.name}</option>
 															</c:forEach>
 
 														</select>
 														</div>
 													<div class='col-lg-4'>
-													<button type="submit" class="btn-lg button-novi inline-button" name="action" value="cancel-partner">
+													<button type="submit" class="btn-lg button-novi inline-button" name="action" value="cancel-partner-magacin">
 														<i class='glyphicon glyphicon-minus'></i> 
 													</button>
 													</div>
@@ -132,18 +137,18 @@
 														<select name="select2" size="10" multiple="multiple"
 															tabindex="1"  class="inline-button">
 
-															<c:forEach items="${izabraneVrednostiArtikli}"
-																var="izabraneVrednostiArtikli">
-																<option value="${izabraneVrednostiArtikli.id}" selected>
-																	${izabraneVrednostiArtikli.code}
-																	${izabraneVrednostiArtikli.name}
+															<c:forEach items="${izabraneVrednostiArtikliPma}"
+																var="izabraneVrednostiArtikliPma">
+																<option value="${izabraneVrednostiArtikliPma.id}" selected>
+																	${izabraneVrednostiArtikliPma.code}
+																	${izabraneVrednostiArtikliPma.name}
 															     </option>
 															</c:forEach>
 
 														</select>
 														</div>
 														<div class='col-lg-4'>
-													<button type="submit" class="btn-lg button-novi inline-button" name="action" value="cancel-articlep">
+													<button type="submit" class="btn-lg button-novi inline-button" name="action" value="cancel-articlep-magacin">
 														<i class='glyphicon glyphicon-minus'></i> 
 													</button>
 													</div>
@@ -164,12 +169,14 @@
 											
 											<div class='row text-center spacer-top-20'>
 												<div class='col-lg-12'>
-													<button type="submit" class="btn-lg button-novi" name="action" value="main-submit-artical-partner-magacin">
-														<i class='fa fa-floppy-o'></i> Save
+													<button type="submit" formtarget="_blank" class="btn-lg button-novi" name="action" value="main-submit-artical-partner-magacin">
+														<i class='fa fa-floppy-o'></i> Izvestaj
+			
 													</button>
-													<button type="reset" class="btn-lg button-novi">
-														<i class='glyphicon glyphicon-remove'></i> Reset
-													</button>
+<!-- 													<button type="reset" class="btn-lg button-novi"> -->
+<!-- 														<i class='glyphicon glyphicon-remove'></i> Reset -->
+<!-- 													</button> -->
+													<button class="btn-lg button-novi" onclick="goBack()" name="action" value="mainPage">Go Back</button>
 												</div>
 												
 												</form>
@@ -214,5 +221,11 @@
 	</div>
 
 	<%@ include file="scripts.jsp"%>
+	
+	<script>
+		function goBack() {
+    	window.history.back()
+	}
+	</script>
 </body>
 </html>

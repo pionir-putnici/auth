@@ -56,18 +56,19 @@
 <!-- 					</ul> -->
 <!-- 				</li>				 -->
 
+
+
 				<li>
 					<a href='#'><i class="fa fa-info fa-fw"></i> Izvestaji<span class="fa arrow"></span></a>
 					<ul class="nav nav-second-level">
-<!-- 						<li><a href='/printing/card.jsp'><i class="fa fa-list"></i>Kartice</a></li> -->
 						<li><a href='/find_all_articles.html'><i class="fa fa-list"></i>Kartice magacin artikal</a></li>
+						<li class="divider-nesto"></li>
 						<li><a href='/find_all_articles_partners.html'><i class="fa fa-list"></i>Kartice artikal partner</a></li>
-					    <li><a href='/find_all_articles_partners_magacini.html'><i class="fa fa-list"></i>Kartice artikal partner magacin-objekat</a></li>
-<!-- 						<li><a href='cardForm.jsp'><i class="fa fa-list"></i>Kartice2</a></li>						 -->
+						<li class="divider-nesto"></li>
+					    <li><a href='/find_all_articles_partners_magacini.html'><i class="fa fa-list" ></i>Kartice artikal partner magacin-objekat</a></li>					
 					</ul>
 				</li>		
 	
-
 								
 <!-- 				<li> -->
 <!-- 					<a href='#'><i class="fa fa-info fa-fw"></i> Examples<span class="fa arrow"></span></a> -->
