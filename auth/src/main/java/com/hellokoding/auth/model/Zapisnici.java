@@ -37,7 +37,8 @@ public class Zapisnici implements Serializable {
 	private String code;
     private String remark;
     private String predao;
-    private String primio;    
+    private String primio;
+    private String slika_zapisnika;        
     private String akcija;
     private Boolean aktivan;
     private Date timestamp;
@@ -193,4 +194,14 @@ public class Zapisnici implements Serializable {
 	public void setDokument(Dokument dokument) {
 		this.dokument = dokument;
 	}
+
+	public String getSlika_zapisnika() {
+		return slika_zapisnika;
+	}
+
+	public void setSlika_zapisnika(String slika_zapisnika) {
+		this.slika_zapisnika = slika_zapisnika;
+	}
+	
+	
 }
