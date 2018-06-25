@@ -10,7 +10,8 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <html>
 <head>
-<title>Cards of articles grouped by partners, warehouses - object and articles</title>
+<title>Cards of articles grouped by partners, warehouses -
+	object and articles</title>
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
 	integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
@@ -49,8 +50,13 @@
 				<c:set value="${true}" var="stampaZaglavljaMagacina"></c:set>
 				<c:set var="aktivniMagacin" value="0" />
 
-<%-- 								<c:out value='${stavkart}' default='guest' /> --%>
-<!-- 								<br /> -->
+				<c:set value="${true}" var="stampaZaglavljaPartnera"></c:set>
+				<c:set var="aktivniPartner" value="0" />
+
+				<c:set value="${true}" var="prviPut"></c:set>
+				
+<%-- 				<c:out value='${stavkart}' default='guest' /> --%>
+<!-- 				<br /> -->
 
 				<%-- 				<c:out value='${stampaZaglavljaArtikla}' default='guest' /> --%>
 				<%-- 				<c:out value='${aktivniArtikal}' default='guest' /> --%>
@@ -60,87 +66,12 @@
 				<!-- ********************* POCETAK CITANJA STAVAKA ********************************** -->
 
 				<c:forEach items="${stavkart}" var="stavka">
-
-<%-- 					<c:if test="${aktivniArtikal!=stavka.artikli.id }"> --%>
-<%-- 						<c:set value="${true}" var="stampaZaglavljaArtikla"></c:set> --%>
-<%-- 					</c:if> --%>
 					
-<%-- 					<c:if test="${aktivniMagacin!=stavka.idDokument.magacini.id }"> --%>
-<%-- 						<c:set value="${true}" var="stampaZaglavljaMagacina"></c:set> --%>
-<%-- 					</c:if> --%>
-
-					<c:if test="${stampaZaglavljaMagacina==true}">
-
-						<c:set value="${false}" var="stampaZaglavljaMagacina"></c:set>
-						<c:set value="${stavka.idDokument.magacini.id}" var="aktivniMagacin"></c:set>
-
-						<br/>
-						<div class='row' id='article-info'>
-							<div class='col-xs-2'>
-								<p>Magacin Šifra: ${stavka.idDokument.magacini.id}
-									${stavka.idDokument.magacini.code}</p>
-								<%-- <p>Id: ${stavka.artikli.id} aktivni ${aktivniArtikal}</p> --%>
-							</div>
-							<div class='col-xs-2'>
-								<p>${stavka.idDokument.magacini.name}</p>
-							</div>
-						</div>
-
-					</c:if>
 
 
-<!-- ***************** zaglavlje artikla ************* -->
-
-					<c:if test="${stampaZaglavljaArtikla==true}">
-
-						<c:set value="${false}" var="stampaZaglavljaArtikla"></c:set>
-						<c:set value="${stavka.artikli.id}" var="aktivniArtikal"></c:set>
-
-						<div class='row' id='article-info'>
-							<div class='col-xs-2'>
-								<p>Artikal Šifra: ${stavka.artikli.id}
-									${stavka.artikli.code}</p>
-								<%-- <p>Id: ${stavka.artikli.id} aktivni ${aktivniArtikal}</p> --%>
-							</div>
-							<div class='col-xs-2'>
-								<p>${stavka.artikli.name}</p>
-							</div>
-						</div>
-
-						<table class='tableDocuments'>
-							<thead id="table-head-first-row">
-								<th></th>
-								<th colspan="2">DOKUMENT</th>
-								<th class='text-right'>KOLIČINA</th>
-								<th class='text-right'>KOLIČINA</th>
-								<th></th>
-								<th></th>
-								<th class='text-right'>IZNOS</th>
-								<th class='text-right'>IZNOS</th>
-								<th></th>
-							</thead>
-							<thead id='table-head-second-row'>
-								<th style="width: 5%;">RB</th>
-								<th style="width: 10%;">DATUM</th>
-								<th style="width: 10%;">BROJ</th>
-								<th style="width: 10%;" class='text-right'>ULAZ</th>
-								<th style="width: 10%;" class='text-right'>IZLAZ</th>
-								<th style="width: 10%;" class='text-right'>STANJE</th>
-								<th style="width: 10%;" class='text-right'>CENA</th>
-								<th style="width: 10%;" class='text-right'>ULAZ</th>
-								<th style="width: 10%;" class='text-right'>IZLAZ</th>
-								<th style="width: 10%;" class='text-right'>STANJE</th>
-							</thead>
-							<tbody>
-
-								</c:if>
-<!-- ***************** kraj zaglavlje artikla ************* -->
-
-								<!-- ************************* UKUPNO ZA ARTIKAL ********************************  -->
-
-								<c:if test="${aktivniArtikal !=stavka.artikli.id }">
-									<%-- <c:out value="artikli nisu isti" /> --%>
-							</tbody>
+					<c:if test="${aktivniArtikal !=stavka.artikli.id || aktivniMagacin!=stavka.idDokument.magacini.id || aktivniPartner!=stavka.idDokument.partner.id}">
+						<%-- <c:out value="artikli nisu isti" /> --%>
+						</tbody>
 						</table>
 						<table class='tableDocuments'>
 							<thead id="table-head-first-row">
@@ -169,12 +100,11 @@
 						<c:set var="aktivniArtikal" value="${stavka.artikli.id}" />
 
 						<!-- ************************* KRAJ UKUPNO ZA ARTIKAL ********************************  -->
+					</c:if>
+					
+								<!-- ********************* ukupno za magacin ************************ -->
 
-<!-- ispis ukupno za magacin ukoliko je novi magacin -->
-
-							<!-- ********************* ukupno za magacin ************************ -->
-
-								<c:if test="${aktivniMagacin!=stavka.idDokument.magacini.id }">
+								<c:if test="${aktivniMagacin!=stavka.idDokument.magacini.id || aktivniPartner!=stavka.idDokument.partner.id}">
 									<%-- <c:out value="artikli nisu isti" /> --%>
 							</tbody>
 						</table>
@@ -202,37 +132,98 @@
 						<c:set var="totalPotrazujem" value="0" />
 
 						<c:set value="${true}" var="stampaZaglavljaMagacina"></c:set>
-						<c:set var="aktivniMagacin" value="${stavka.idDokument.magacini.id}" />
+						<c:set var="aktivniMagacin"
+							value="${stavka.idDokument.magacini.id}" />
 
 						<!-- ************************* KRAJ UKUPNO ZA MAGACIN ********************************  -->
 
-						<!-- *************** ispis zaglavlja artikla *********************** -->
+
+
+					</c:if>
+					<!--  end if za magacin -->
+										
+					<c:if test="${aktivniPartner!=stavka.idDokument.partner.id }">
+						<%-- <c:out value="artikli nisu isti" /> --%>
+						</tbody>
+						</table>
+						<table class='tableDocuments'>
+							<thead id="table-head-first-row">
+								<th style="width: 5%;"></th>
+								<th style="width: 10%;">Za partnera:</th>
+								<th style="width: 10%;"></th>
+								<th style="width: 10%;" class='text-right'>${totalUlazp}</th>
+								<th style="width: 10%;" class='text-right'>${totalIzlazp}</th>
+								<th style="width: 10%;" class='text-right'></th>
+								<th style="width: 10%;" class='text-right'></th>
+								<th style="width: 10%;" class='text-right'>${totalDugujep}</th>
+								<th style="width: 10%;" class='text-right'>${totalPotrazujep}</th>
+								<th style="width: 10%;" class='text-right'></th>
+							</thead>
+
+						</table>
+
+						<c:set var="totalKolp" value="0" />
+						<c:set var="totalVredp" value="0" />
+						<c:set var="totalUlazp" value="0" />
+						<c:set var="totalIzlazp" value="0" />
+						<c:set var="totalDugujep" value="0" />
+						<c:set var="totalPotrazujep" value="0" />
+
+						<c:set value="${true}" var="stampaZaglavljaPartnera"></c:set>
+						<c:set var="aktivniPartner"
+							value="${stavka.idDokument.partner.id}" />
+
+				</c:if>
+				
+
+				
+					<!-- ***************** zaglavlje partner ************* -->
+
+					<c:if test="${stampaZaglavljaPartnera==true}">
+
+						<c:set value="${false}" var="stampaZaglavljaPartnera"></c:set>
+
+						<br />
+						<div class='row' id='article-info'>
+							<div class='col-xs-2'>
+								<p>Partner sifra: ${stavka.idDokument.partner.id}
+									${stavka.idDokument.partner.code}</p>
+								<%-- <p>Id: ${stavka.artikli.id} aktivni ${aktivniArtikal}</p> --%>
+							</div>
+							<div class='col-xs-6'>
+								<p>${stavka.idDokument.partner.name}</p>
+							</div>
+						</div>
+
+					</c:if>
+
+					<!-- ***************** kraj zaglavlje partner ************* -->
+
+
+					<c:if test="${stampaZaglavljaMagacina==true}">
 
 						<c:set value="${false}" var="stampaZaglavljaMagacina"></c:set>
-						<c:set var="aktivniMagacin" value="${stavka.idDokument.magacini.id}" />
 
+						<!-- 						<br/> -->
 						<div class='row' id='article-info'>
 							<div class='col-xs-2'>
 								<p>Magacin Šifra: ${stavka.idDokument.magacini.id}
 									${stavka.idDokument.magacini.code}</p>
 								<%-- <p>Id: ${stavka.artikli.id} aktivni ${aktivniArtikal}</p> --%>
 							</div>
-							<div class='col-xs-2'>
+							<div class='col-xs-6'>
 								<p>${stavka.idDokument.magacini.name}</p>
 							</div>
 						</div>
 
 					</c:if>
-					
-<!-- ********************* kraj ukupno za magacin ************************ -->
-
-<!-- kraj ukupno za magacin ukoliko je novi magacin -->
 
 
-						<!-- *************** ispis zaglavlja artikla *********************** -->
+					<!-- ***************** zaglavlje artikla ************* -->
+
+					<c:if test="${stampaZaglavljaArtikla==true}">
 
 						<c:set value="${false}" var="stampaZaglavljaArtikla"></c:set>
-						<c:set value="${stavka.artikli.id}" var="aktivniArtikal"></c:set>
 
 						<div class='row' id='article-info'>
 							<div class='col-xs-2'>
@@ -270,80 +261,41 @@
 								<th style="width: 10%;" class='text-right'>STANJE</th>
 							</thead>
 							<tbody>
-					</c:if>
-					
-							<!-- *************** kraj ispis zaglavlja artikla *********************** -->
 
-							<!-- ********************* ukupno za magacin ************************ -->
+						</c:if>
 
-								<c:if test="${aktivniMagacin!=stavka.idDokument.magacini.id }">
-									<%-- <c:out value="artikli nisu isti" /> --%>
-							</tbody>
-						</table>
-						<table class='tableDocuments'>
-							<thead id="table-head-first-row">
-								<th style="width: 5%;"></th>
-								<th style="width: 10%;">Za magacin:</th>
-								<th style="width: 10%;"></th>
-								<th style="width: 10%;" class='text-right'>${totalUlazm}</th>
-								<th style="width: 10%;" class='text-right'>${totalIzlazm}</th>
-								<th style="width: 10%;" class='text-right'></th>
-								<th style="width: 10%;" class='text-right'></th>
-								<th style="width: 10%;" class='text-right'>${totalDugujem}</th>
-								<th style="width: 10%;" class='text-right'>${totalPotrazujem}</th>
-								<th style="width: 10%;" class='text-right'></th>
-							</thead>
-
-						</table>
-
-						<c:set var="totalKolm" value="0" />
-						<c:set var="totalVredm" value="0" />
-						<c:set var="totalUlazm" value="0" />
-						<c:set var="totalIzlazm" value="0" />
-						<c:set var="totalDugujem" value="0" />
-						<c:set var="totalPotrazujem" value="0" />
-
-						<c:set value="${true}" var="stampaZaglavljaMagacina"></c:set>
-						<c:set var="aktivniMagacin" value="${stavka.idDokument.magacini.id}" />
-
-						<!-- ************************* KRAJ UKUPNO ZA MAGACIN ********************************  -->
-
-						<!-- *************** ispis zaglavlja artikla *********************** -->
-
-						<c:set value="${false}" var="stampaZaglavljaMagacina"></c:set>
-						<c:set var="aktivniMagacin" value="${stavka.idDokument.magacini.id}" />
-
-						<div class='row' id='article-info'>
-							<div class='col-xs-2'>
-								<p>Magacin Šifra: ${stavka.idDokument.magacini.id}
-									${stavka.idDokument.magacini.code}</p>
-								<%-- <p>Id: ${stavka.artikli.id} aktivni ${aktivniArtikal}</p> --%>
-							</div>
-							<div class='col-xs-2'>
-								<p>${stavka.idDokument.magacini.name}</p>
-							</div>
-						</div>
-
-					</c:if>
-					
-<!-- ********************* kraj ukupno za magacin ************************ -->
+								<!-- ***************** kraj zaglavlje artikla ************* -->
 
 
-
-
-					<c:set var="totalKol" value="${totalKol + stavka.ulaz-stavka.izlaz}" />
-					<c:set var="totalVred" 	value="${totalVred + stavka.duguje-stavka.potrazuje}" />
+					<c:set var="totalKol"
+						value="${totalKol + stavka.ulaz-stavka.izlaz}" />
+					<c:set var="totalVred"
+						value="${totalVred + stavka.duguje-stavka.potrazuje}" />
 					<c:set var="totalUlaz" value="${totalUlaz + stavka.ulaz}" />
 					<c:set var="totalIzlaz" value="${totalIzlaz + stavka.izlaz}" />
 					<c:set var="totalDuguje" value="${totalDuguje + stavka.duguje}" />
-					<c:set var="totalPotrazuje" value="${totalPotrazuje + stavka.potrazuje}" />
+					<c:set var="totalPotrazuje"
+						value="${totalPotrazuje + stavka.potrazuje}" />
 
-					<c:set var="totalKolm" value="${totalKolm + stavka.ulaz-stavka.izlaz}" />
-					<c:set var="totalVredm" value="${totalVredm + stavka.duguje-stavka.potrazuje}" />
+					<c:set var="totalKolm"
+						value="${totalKolm + stavka.ulaz-stavka.izlaz}" />
+					<c:set var="totalVredm"
+						value="${totalVredm + stavka.duguje-stavka.potrazuje}" />
 					<c:set var="totalUlazm" value="${totalUlazm + stavka.ulaz}" />
 					<c:set var="totalIzlazm" value="${totalIzlazm + stavka.izlaz}" />
 					<c:set var="totalDugujem" value="${totalDugujem + stavka.duguje}" />
-					<c:set var="totalPotrazujem" value="${totalPotrazujem + stavka.potrazuje}" />
+					<c:set var="totalPotrazujem"
+						value="${totalPotrazujem + stavka.potrazuje}" />
+
+					<c:set var="totalKolp"
+						value="${totalKolp + stavka.ulaz-stavka.izlaz}" />
+					<c:set var="totalVredp"
+						value="${totalVredp + stavka.duguje-stavka.potrazuje}" />
+					<c:set var="totalUlazp" value="${totalUlazp + stavka.ulaz}" />
+					<c:set var="totalIzlazp" value="${totalIzlazp + stavka.izlaz}" />
+					<c:set var="totalDugujep" value="${totalDugujep + stavka.duguje}" />
+					<c:set var="totalPotrazujep"
+						value="${totalPotrazujep + stavka.potrazuje}" />
 
 					<!-- 								<table class='tableDocuments'> -->
 					<tr>
@@ -366,7 +318,7 @@
 
 				</tbody>
 				</table>
-				
+
 				<table class='tableDocuments'>
 					<thead id="table-head-first-row">
 						<th style="width: 5%;"></th>
@@ -394,24 +346,60 @@
 				<%-- 									<c:set var="aktivniArtikal" value="${stavka.artikli.id}" /> --%>
 
 				<!-- ************************* KRAJ UKUPNO ZA ARTIKAL ********************************  -->
-				
-						</table>
-						<table class='tableDocuments'>
-							<thead id="table-head-first-row">
-								<th style="width: 5%;"></th>
-								<th style="width: 10%;">Za magacin:</th>
-								<th style="width: 10%;"></th>
-								<th style="width: 10%;" class='text-right'>${totalUlazm}</th>
-								<th style="width: 10%;" class='text-right'>${totalIzlazm}</th>
-								<th style="width: 10%;" class='text-right'></th>
-								<th style="width: 10%;" class='text-right'></th>
-								<th style="width: 10%;" class='text-right'>${totalDugujem}</th>
-								<th style="width: 10%;" class='text-right'>${totalPotrazujem}</th>
-								<th style="width: 10%;" class='text-right'></th>
-							</thead>
 
-						</table>				
+				</table>
+				<table class='tableDocuments'>
+					<thead id="table-head-first-row">
+						<th style="width: 5%;"></th>
+						<th style="width: 10%;">Za magacin:</th>
+						<th style="width: 10%;"></th>
+						<th style="width: 10%;" class='text-right'>${totalUlazm}</th>
+						<th style="width: 10%;" class='text-right'>${totalIzlazm}</th>
+						<th style="width: 10%;" class='text-right'></th>
+						<th style="width: 10%;" class='text-right'></th>
+						<th style="width: 10%;" class='text-right'>${totalDugujem}</th>
+						<th style="width: 10%;" class='text-right'>${totalPotrazujem}</th>
+						<th style="width: 10%;" class='text-right'></th>
+					</thead>
 
+				</table>
+
+				<c:set var="totalKolm" value="0" />
+				<c:set var="totalVredm" value="0" />
+				<c:set var="totalUlazm" value="0" />
+				<c:set var="totalIzlazm" value="0" />
+				<c:set var="totalDugujem" value="0" />
+				<c:set var="totalPotrazujem" value="0" />
+
+				<br />
+				<!-- ************************* UKUPNO ZA PARTNERA ********************************  -->
+
+				</table>
+				<table class='tableDocuments'>
+					<thead id="table-head-first-row">
+						<th style="width: 5%;"></th>
+						<th style="width: 10%;">Za partnera:</th>
+						<th style="width: 10%;"></th>
+						<th style="width: 10%;" class='text-right'>${totalUlazp}</th>
+						<th style="width: 10%;" class='text-right'>${totalIzlazp}</th>
+						<th style="width: 10%;" class='text-right'></th>
+						<th style="width: 10%;" class='text-right'></th>
+						<th style="width: 10%;" class='text-right'>${totalDugujep}</th>
+						<th style="width: 10%;" class='text-right'>${totalPotrazujep}</th>
+						<th style="width: 10%;" class='text-right'></th>
+					</thead>
+
+				</table>
+				<c:set var="totalKolp" value="0" />
+				<c:set var="totalVredp" value="0" />
+				<c:set var="totalUlazp" value="0" />
+				<c:set var="totalIzlazp" value="0" />
+				<c:set var="totalDugujep" value="0" />
+				<c:set var="totalPotrazujep" value="0" />
+
+				<!-- ************************* KRAJ UKUPNO ZA PARTNERA ********************************  -->
+
+				<br />
 			</div>
 		</div>
 	</div>
