@@ -131,6 +131,9 @@ public class TypesOfDocumentsController {
 		
 		dept.put(1L,"Ulaz");
 		dept.put(2L,"Izlaz");
+		dept.put(3L,"Storno ulaz");
+		dept.put(4L,"Storno izlaz");
+		dept.put(0L,"Nista");
 	    sess.setAttribute("eStrana", dept);	 		
 		
 		

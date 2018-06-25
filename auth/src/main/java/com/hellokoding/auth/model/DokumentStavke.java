@@ -347,14 +347,19 @@ public class DokumentStavke implements Serializable {
 
 	@Override
 	public String toString() {
-		return "DokumentStavke [id=" + id + ", typesofdocuments=" + typesofdocuments + ", datum=" + datum
-				+ ", magacini=" + magacini + ", artikli=" + artikli + ", robaNaziv=" + robaNaziv + ", kolicina="
-				+ kolicina + ", ulaz=" + ulaz + ", izlaz=" + izlaz + ", cena=" + cena + ", iznos=" + iznos + ", duguje="
-				+ duguje + ", potrazuje=" + potrazuje + ", aktivan=" + aktivan + ", datumvreme=" + datumvreme
-				+ ", akcija=" + akcija + ", host=" + host + ", napomena=" + napomena + ", dokumentStavkecol="
-				+ dokumentStavkecol + ", idDokument=" + idDokument + "]";
+		return "DokumentStavke [id=" + id + ",  datum=" + datum
+				+ ", magacini=" + idDokument.getMagacini().getName() + ", artikli=" + artikli.getName() + ",  kolicina="
+				+ kolicina + ", cena=" + cena + ", iznos=" + iznos + ", idDokument=" + idDokument + "br/" + "]";
 	}
     
-    
+//	@Override
+//	public String toString() {
+//		return "DokumentStavke [id=" + id + ", typesofdocuments=" + typesofdocuments + ", datum=" + datum
+//				+ ", magacini=" + magacini + ", artikli=" + artikli + ", robaNaziv=" + robaNaziv + ", kolicina="
+//				+ kolicina + ", ulaz=" + ulaz + ", izlaz=" + izlaz + ", cena=" + cena + ", iznos=" + iznos + ", duguje="
+//				+ duguje + ", potrazuje=" + potrazuje + ", aktivan=" + aktivan + ", datumvreme=" + datumvreme
+//				+ ", akcija=" + akcija + ", host=" + host + ", napomena=" + napomena + ", dokumentStavkecol="
+//				+ dokumentStavkecol + ", idDokument=" + idDokument + "]";
+//	} 
     
 }

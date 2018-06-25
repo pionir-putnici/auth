@@ -135,15 +135,15 @@
 											</p>
 										</div>
 														
-										<div class='form-group ${error != null ? 'has-error' : ''}'>
-											<label class='font-oxygen'>Strana</label>
- 											<form:input type="number" class="form-control" id="strana" 
- 												path="name" placeholder='Strana'  tabindex="4"
- 												value="${typesOfDocuments.strana}" /> 
-											<p class="help-block">
- 												<form:errors path="strana" class="help-block" /> 
-											</p>
-										</div>																
+<%-- 										<div class='form-group ${error != null ? 'has-error' : ''}'> --%>
+<!-- 											<label class='font-oxygen'>Strana</label> -->
+<%--  											<form:input type="number" class="form-control" id="strana"  --%>
+<%--  												path="name" placeholder='Strana'  tabindex="4" --%>
+<%--  												value="${typesOfDocuments.strana}"  readonly='true'/>  --%>
+<!-- 											<p class="help-block"> -->
+<%--  												<form:errors path="strana" class="help-block" />  --%>
+<!-- 											</p> -->
+<!-- 										</div>																 -->
 										
 										<div class='form-group ${error != null ? 'has-error' : ''}'>
 											<label class='font-oxygen'>Napomena</label>

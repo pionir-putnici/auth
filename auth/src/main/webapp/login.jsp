@@ -8,6 +8,7 @@
 <div class="container">
 	<div class='row'>
 	<div class='col-lg-4 col-lg-offset-4'>
+	
     <form method="POST" action="${contextPath}/login" class="login-form">
     <div class='row'>
 	    <div class='col-lg-12 login-form-heading'>
@@ -30,6 +31,7 @@
     </div>
 	</div>
     </form>
+    
     </div>
 	</div>
 </div>

@@ -133,13 +133,14 @@
  												<form:errors path="cena" class="help-block" /> 
 											</p>
 										</div>
-																
+										
+										<c:set var = "iznos" scope = "session" value = "${dokumentStavke.cena*dokumentStavke.kolicina}"/>
 										
 										<div class='form-group ${error != null ? 'has-error' : ''}'>
 											<label class='font-oxygen'>Iznos</label>
- 											<form:input type="text" class="form-control" id="kolicina" 
+ 											<form:input type="text" class="form-control" id="iznos" 
  												path="iznos" placeholder='Iznos' tabindex="4"
- 												value="${dokumentStavke.iznos}" /> 
+ 												value="${dokumentStavke.cena*dokumentStavke.kolicina}" readonly="true"/> 
 											<p class="help-block">
  												<form:errors path="iznos" class="help-block" /> 
 											</p>

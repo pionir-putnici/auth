@@ -107,6 +107,7 @@ public class DokumentStavkeController {
 	    aa.setMagacini(dokumentRepository.findOne(brDokumenta).getMagacini());
 	    aa.setTypesOfDocuments(dokumentRepository.findOne(brDokumenta).getTypesOfDocuments()); 
 	    
+	    
 		Artikli km = new Artikli();
 	    List<Artikli> deptList = artikliRepository.findAll(); 
 	      
@@ -217,7 +218,7 @@ public class DokumentStavkeController {
 		
 		dokumentStavke.setDatum(dokumentStavke.getIdDokument().getDatum());
 		dokumentStavke.setDatumvreme(new Date());
-		
+		dokumentStavke.setIznos(dokumentStavke.getKolicina().multiply(dokumentStavke.getCena()));
 		
 		if (rr1.getStrana()==1) {
 			dokumentStavke.setUlaz(dokumentStavke.getKolicina());

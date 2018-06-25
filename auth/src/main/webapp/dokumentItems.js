@@ -17,7 +17,7 @@ app.controller('ctrl', function ($scope, $http, $timeout, $routeParams) {
 		method: 'Get',
 		params:{id: "id"},
 		// url: 'http://10.11.124.46:8080/view_dokumentStavke.html'})
-		url: 'http://localhost:8080/view_dokumentStavke.html'})		
+		 url: 'http://localhost:8080/view_dokumentStavke.html'})		
 		.then(function(response)
 		{
 			$scope.names = response.data;

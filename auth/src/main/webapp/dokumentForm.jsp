@@ -145,9 +145,14 @@
 <%--     											</c:forEach> --%>
 <!-- 											</select> -->
 
+
 											<select id="selectModel" class="form-control" name="Magacini.id" >
-    											<c:forEach var="role" items="${eMagacini}">    											
+    											<c:forEach var="role" items="${eMagacini}">  
+    																						
       											<option class="${role.partner.getId()}" value="${role.getId()}" ${role.getId() == dokument.magacini.id ? 'selected' : ''}> ${role.getName()}</option>
+      											<c:out value="${role.partner.getId()}"/>
+<%--       											<option class="${role.partner.getId()}" value="${role.getId()}" ${role.getId() == dokument.magacini.id ? 'selected' : ''}> ${role.getName()}</option> --%>
+
     											</c:forEach>
 											</select>
 
@@ -159,6 +164,7 @@
 										</div>											
 										
 										</div>
+										
 										<c:out value="${dokument.partner.id}"/>
 										<c:out value="${dokument.partner.name}"/>
 										<c:out value="${ePartner['key']}"/>

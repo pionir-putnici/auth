@@ -1,0 +1,41 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ include file="../top.jsp"%>
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+<title>Angular Practice</title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+<link rel='stylesheet' href='login.css' type='text/css' />
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+</head>
+
+<body class='background-image'>
+    <section id='credential-container' class='blured-content'>
+        <div class='container blured'>
+            <div class='row'>
+                <div class='col-xs-6 col-lg-offset-3' style='height:350px;' id='credential-form'>
+                    
+                    <div class='row'>
+                        <div class='col-lg-12' id='credential-form-title'>
+                            <h1>Login</h1>
+                        </div>
+                    </div>
+                    <div class='row'>
+                        <div class='col-lg-12' id='credential-form-fields'>
+                            <form method='POST' action='#'>
+                                <input type='text' name='' placeholder='Username...' />
+                                <input type='password' name='' placeholder='Password...' />
+                                <input type='submit' name='' value='Login' />
+                                <input type='reset' name='' value='Reset' />
+                            </form>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+    </section>
+    
+</body>
