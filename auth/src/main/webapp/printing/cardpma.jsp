@@ -73,7 +73,7 @@
 						<%-- <c:out value="artikli nisu isti" /> --%>
 						</tbody>
 						</table>
-						<table class='tableDocuments'>
+						<table class='tableDocuments spacer-bottom-10'>
 							<thead id="table-head-first-row">
 								<th style="width: 5%;"></th>
 								<th style="width: 10%;">Za artikal</th>
@@ -108,7 +108,7 @@
 									<%-- <c:out value="artikli nisu isti" /> --%>
 							</tbody>
 						</table>
-						<table class='tableDocuments'>
+						<table class='tableDocuments spacer-top-20 spacer-bottom-10'>
 							<thead id="table-head-first-row">
 								<th style="width: 5%;"></th>
 								<th style="width: 10%;">Za magacin:</th>
@@ -184,7 +184,12 @@
 						<c:set value="${false}" var="stampaZaglavljaPartnera"></c:set>
 
 						<br />
-						<div class='row' id='article-info'>
+						<div class='row'>
+							<div class='col-xs-12'>
+								<hr />
+							</div>
+						</div>
+						<div class='row page-break-print' id='article-info'>
 							<div class='col-xs-2'>
 								<p>Partner sifra: ${stavka.idDokument.partner.id}
 									${stavka.idDokument.partner.code}</p>
@@ -348,7 +353,7 @@
 				<!-- ************************* KRAJ UKUPNO ZA ARTIKAL ********************************  -->
 
 				</table>
-				<table class='tableDocuments'>
+				<table class='tableDocuments spacer-top-20'>
 					<thead id="table-head-first-row">
 						<th style="width: 5%;"></th>
 						<th style="width: 10%;">Za magacin:</th>
@@ -371,7 +376,6 @@
 				<c:set var="totalDugujem" value="0" />
 				<c:set var="totalPotrazujem" value="0" />
 
-				<br />
 				<!-- ************************* UKUPNO ZA PARTNERA ********************************  -->
 
 				</table>

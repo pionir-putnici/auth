@@ -118,6 +118,14 @@ html, body{
     font-size:11px;
 }
 
+.spacer-bottom-10{
+	margin-bottom:10px;
+}
+
+.page-break-print{
+	page-break-before: always;
+}
+
 
     
 }
