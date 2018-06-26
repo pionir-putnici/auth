@@ -43,7 +43,7 @@
 					<ul class="nav nav-second-level">
 						<li><a href='/dokument.html'>Dokument</a></li>
 						<li><a href='/typesOfDocuments.html'>Tipovi dokumenata</a></li>
-						<li><a href='#'></a></li>
+						<li><a href='/lista-zapisnika.html'>Reklamacioni zapisnici</a></li>
 					</ul>
 				</li>								
 				
