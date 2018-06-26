@@ -4,6 +4,10 @@
 
 <%@ page import="java.util.Date"%>
 <%@ page import="java.util.TreeMap"%>
+<%@ page import="com.hellokoding.auth.model.SpecifikacijaKartica"%>
+<%@ page import="java.util.ArrayList"%>
+<%@ page import="java.math.BigDecimal"%>
+
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
@@ -46,17 +50,27 @@
 
 				<c:set value="${true}" var="stampaZaglavljaArtikla"></c:set>
 				<c:set var="aktivniArtikal" value="0" />
+				<c:set var="aktivniArtikalCode" value="0" />
+				<c:set var="aktivniArtikalName" value="0" />
 
 				<c:set value="${true}" var="stampaZaglavljaMagacina"></c:set>
 				<c:set var="aktivniMagacin" value="0" />
+				<c:set var="aktivniMagacinCode" value="0" />
+				<c:set var="aktivniMagacinName" value="0" />
 
 				<c:set value="${true}" var="stampaZaglavljaPartnera"></c:set>
 				<c:set var="aktivniPartner" value="0" />
+				<c:set var="aktivniPartnerCode" value="0" />
+				<c:set var="aktivniPartnerName" value="0" />
 
-				<c:set value="${true}" var="prviPut"></c:set>
+				<c:set value="${true}" var="firstTime"></c:set>
+
+				<%
+					ArrayList<SpecifikacijaKartica> theArray = new ArrayList<SpecifikacijaKartica>();
+				%>
 				
-<%-- 				<c:out value='${stavkart}' default='guest' /> --%>
-<!-- 				<br /> -->
+				<%-- 				<c:out value='${stavkart}' default='guest' /> --%>
+				<!-- 				<br /> -->
 
 				<%-- 				<c:out value='${stampaZaglavljaArtikla}' default='guest' /> --%>
 				<%-- 				<c:out value='${aktivniArtikal}' default='guest' /> --%>
@@ -64,30 +78,59 @@
 
 
 				<!-- ********************* POCETAK CITANJA STAVAKA ********************************** -->
+				<%
+					SpecifikacijaKartica sk1 = new SpecifikacijaKartica();
+				%>
 
 				<c:forEach items="${stavkart}" var="stavka">
-					
 
+ 					<c:out value="${receiveNewsletter}" /> 
 
-					<c:if test="${aktivniArtikal !=stavka.artikli.id || aktivniMagacin!=stavka.idDokument.magacini.id || aktivniPartner!=stavka.idDokument.partner.id}">
+					<c:if
+						test="${(aktivniArtikal !=stavka.artikli.id || aktivniMagacin!=stavka.idDokument.magacini.id || aktivniPartner!=stavka.idDokument.partner.id) && firstTime==false}">
 						<%-- <c:out value="artikli nisu isti" /> --%>
 						</tbody>
 						</table>
 						<table class='tableDocuments'>
 							<thead id="table-head-first-row">
-								<th style="width: 5%;"></th>
-								<th style="width: 10%;">Za artikal</th>
-								<th style="width: 10%;"></th>
+								<th style="width: 5%;">Artikal</th>
+<!-- 								<th style="width: 10%;"></th> -->
+								<th colspan="2" style="width: 20%;">${aktivniArtikalName}</th>
 								<th style="width: 10%;" class='text-right'>${totalUlaz}</th>
 								<th style="width: 10%;" class='text-right'>${totalIzlaz}</th>
-								<th style="width: 10%;" class='text-right'></th>
+								<th style="width: 10%;" class='text-right'>${totalKol}</th>
 								<th style="width: 10%;" class='text-right'></th>
 								<th style="width: 10%;" class='text-right'>${totalDuguje}</th>
 								<th style="width: 10%;" class='text-right'>${totalPotrazuje}</th>
-								<th style="width: 10%;" class='text-right'></th>
+								<th style="width: 10%;" class='text-right'>${totalVred}</th>
 							</thead>
 
 						</table>
+						<%
+							SpecifikacijaKartica sk = new SpecifikacijaKartica();
+									try {
+										// 				long s = Long.parseLong(dic[1]);
+										Long mm = (Long) pageContext.getAttribute("aktivniArtikal");
+										System.out.println(" mm " + mm);
+										sk.setIdArtikal(mm);
+										sk.setIdArtikal((Long) pageContext.getAttribute("aktivniArtikal"));
+										sk.setIdMagacin((Long) pageContext.getAttribute("aktivniMagacin"));
+										sk.setIdPartner((Long) pageContext.getAttribute("aktivniPartner"));
+
+										sk.setUlaz((BigDecimal) pageContext.getAttribute("totalUlaz"));
+										sk.setIzlaz((BigDecimal) pageContext.getAttribute("totalIzlaz"));
+										sk.setDuguje((BigDecimal) pageContext.getAttribute("totalDuguje"));
+										sk.setPotrazuje((BigDecimal) pageContext.getAttribute("totalPotrazuje"));
+									} catch (Exception nfe) {
+										System.out.println("NumberFormatException: " + nfe.getMessage());
+									}
+									if (sk.getIdArtikal() == null) {
+										
+									}
+									else {
+									theArray.add(sk);
+									}
+						%>
 
 						<c:set var="totalKol" value="0" />
 						<c:set var="totalVred" value="0" />
@@ -98,28 +141,30 @@
 
 						<c:set value="${true}" var="stampaZaglavljaArtikla"></c:set>
 						<c:set var="aktivniArtikal" value="${stavka.artikli.id}" />
-
+						<c:set var="aktivniArtikalName" value="${stavka.artikli.name}" />
+						
 						<!-- ************************* KRAJ UKUPNO ZA ARTIKAL ********************************  -->
 					</c:if>
-					
-								<!-- ********************* ukupno za magacin ************************ -->
 
-								<c:if test="${aktivniMagacin!=stavka.idDokument.magacini.id || aktivniPartner!=stavka.idDokument.partner.id}">
-									<%-- <c:out value="artikli nisu isti" /> --%>
-							</tbody>
+					<!-- ********************* ukupno za magacin ************************ -->
+
+					<c:if
+						test="${(aktivniMagacin!=stavka.idDokument.magacini.id || aktivniPartner!=stavka.idDokument.partner.id) && firstTime==false}">
+						<%-- <c:out value="artikli nisu isti" /> --%>
+						</tbody>
 						</table>
 						<table class='tableDocuments'>
 							<thead id="table-head-first-row">
-								<th style="width: 5%;"></th>
-								<th style="width: 10%;">Za magacin:</th>
-								<th style="width: 10%;"></th>
+<!-- 								<th style="width: 5%;"></th> -->
+								<th style="width: 5%;">Mag:</th>
+								<th colspan="2" style="width: 20%;">${aktivniMagacinName}</th>
 								<th style="width: 10%;" class='text-right'>${totalUlazm}</th>
 								<th style="width: 10%;" class='text-right'>${totalIzlazm}</th>
-								<th style="width: 10%;" class='text-right'></th>
+								<th style="width: 10%;" class='text-right'>${totalKolm}</th>
 								<th style="width: 10%;" class='text-right'></th>
 								<th style="width: 10%;" class='text-right'>${totalDugujem}</th>
 								<th style="width: 10%;" class='text-right'>${totalPotrazujem}</th>
-								<th style="width: 10%;" class='text-right'></th>
+								<th style="width: 10%;" class='text-right'>${totalVredm}</th>
 							</thead>
 
 						</table>
@@ -132,32 +177,32 @@
 						<c:set var="totalPotrazujem" value="0" />
 
 						<c:set value="${true}" var="stampaZaglavljaMagacina"></c:set>
-						<c:set var="aktivniMagacin"
-							value="${stavka.idDokument.magacini.id}" />
-
+						<c:set var="aktivniMagacin" value="${stavka.idDokument.magacini.id}" />
+						<c:set var="aktivniMagacinName" value="${stavka.idDokument.magacini.name}" />
+						
 						<!-- ************************* KRAJ UKUPNO ZA MAGACIN ********************************  -->
-
 
 
 					</c:if>
 					<!--  end if za magacin -->
-										
-					<c:if test="${aktivniPartner!=stavka.idDokument.partner.id }">
+
+					<c:if
+						test="${aktivniPartner!=stavka.idDokument.partner.id  && firstTime==false}">
 						<%-- <c:out value="artikli nisu isti" /> --%>
 						</tbody>
 						</table>
 						<table class='tableDocuments'>
 							<thead id="table-head-first-row">
-								<th style="width: 5%;"></th>
-								<th style="width: 10%;">Za partnera:</th>
-								<th style="width: 10%;"></th>
+<!-- 								<th style="width: 5%;"></th> -->
+								<th style="width: 5%;">Part:</th>
+								<th colspan="2" style="width: 20%;">${AktivniParnerName}"</th>
 								<th style="width: 10%;" class='text-right'>${totalUlazp}</th>
 								<th style="width: 10%;" class='text-right'>${totalIzlazp}</th>
-								<th style="width: 10%;" class='text-right'></th>
+								<th style="width: 10%;" class='text-right'>${totalKolp}</th>
 								<th style="width: 10%;" class='text-right'></th>
 								<th style="width: 10%;" class='text-right'>${totalDugujep}</th>
 								<th style="width: 10%;" class='text-right'>${totalPotrazujep}</th>
-								<th style="width: 10%;" class='text-right'></th>
+								<th style="width: 10%;" class='text-right'>${totalVredp}</th>
 							</thead>
 
 						</table>
@@ -170,13 +215,13 @@
 						<c:set var="totalPotrazujep" value="0" />
 
 						<c:set value="${true}" var="stampaZaglavljaPartnera"></c:set>
-						<c:set var="aktivniPartner"
-							value="${stavka.idDokument.partner.id}" />
+						<c:set var="aktivniPartner" value="${stavka.idDokument.partner.id}" />
+						<c:set var="aktivniPartnerName" value="${stavka.idDokument.partner.name}" />
+						
+					</c:if>
 
-				</c:if>
-				
 
-				
+
 					<!-- ***************** zaglavlje partner ************* -->
 
 					<c:if test="${stampaZaglavljaPartnera==true}">
@@ -262,144 +307,204 @@
 							</thead>
 							<tbody>
 
-						</c:if>
+								</c:if>
 
 								<!-- ***************** kraj zaglavlje artikla ************* -->
 
 
-					<c:set var="totalKol"
-						value="${totalKol + stavka.ulaz-stavka.izlaz}" />
-					<c:set var="totalVred"
-						value="${totalVred + stavka.duguje-stavka.potrazuje}" />
-					<c:set var="totalUlaz" value="${totalUlaz + stavka.ulaz}" />
-					<c:set var="totalIzlaz" value="${totalIzlaz + stavka.izlaz}" />
-					<c:set var="totalDuguje" value="${totalDuguje + stavka.duguje}" />
-					<c:set var="totalPotrazuje"
-						value="${totalPotrazuje + stavka.potrazuje}" />
+								<c:set var="totalKol"
+									value="${totalKol + stavka.ulaz-stavka.izlaz}" />
+								<c:set var="totalVred"
+									value="${totalVred + stavka.duguje-stavka.potrazuje}" />
+								<c:set var="totalUlaz" value="${totalUlaz + stavka.ulaz}" />
+								<c:set var="totalIzlaz" value="${totalIzlaz + stavka.izlaz}" />
+								<c:set var="totalDuguje" value="${totalDuguje + stavka.duguje}" />
+								<c:set var="totalPotrazuje"
+									value="${totalPotrazuje + stavka.potrazuje}" />
 
-					<c:set var="totalKolm"
-						value="${totalKolm + stavka.ulaz-stavka.izlaz}" />
-					<c:set var="totalVredm"
-						value="${totalVredm + stavka.duguje-stavka.potrazuje}" />
-					<c:set var="totalUlazm" value="${totalUlazm + stavka.ulaz}" />
-					<c:set var="totalIzlazm" value="${totalIzlazm + stavka.izlaz}" />
-					<c:set var="totalDugujem" value="${totalDugujem + stavka.duguje}" />
-					<c:set var="totalPotrazujem"
-						value="${totalPotrazujem + stavka.potrazuje}" />
+								<c:set var="totalKolm" value="${totalKolm + stavka.ulaz-stavka.izlaz}" />
+								<c:set var="totalVredm" value="${totalVredm + stavka.duguje-stavka.potrazuje}" />
+								<c:set var="totalUlazm" value="${totalUlazm + stavka.ulaz}" />
+								<c:set var="totalIzlazm" value="${totalIzlazm + stavka.izlaz}" />
+								<c:set var="totalDugujem" value="${totalDugujem + stavka.duguje}" />
+								<c:set var="totalPotrazujem" value="${totalPotrazujem + stavka.potrazuje}" />
 
-					<c:set var="totalKolp"
-						value="${totalKolp + stavka.ulaz-stavka.izlaz}" />
-					<c:set var="totalVredp"
-						value="${totalVredp + stavka.duguje-stavka.potrazuje}" />
-					<c:set var="totalUlazp" value="${totalUlazp + stavka.ulaz}" />
-					<c:set var="totalIzlazp" value="${totalIzlazp + stavka.izlaz}" />
-					<c:set var="totalDugujep" value="${totalDugujep + stavka.duguje}" />
-					<c:set var="totalPotrazujep"
-						value="${totalPotrazujep + stavka.potrazuje}" />
+								<c:set var="totalKolp"
+									value="${totalKolp + stavka.ulaz-stavka.izlaz}" />
+								<c:set var="totalVredp"
+									value="${totalVredp + stavka.duguje-stavka.potrazuje}" />
+								<c:set var="totalUlazp" value="${totalUlazp + stavka.ulaz}" />
+								<c:set var="totalIzlazp" value="${totalIzlazp + stavka.izlaz}" />
+								<c:set var="totalDugujep"
+									value="${totalDugujep + stavka.duguje}" />
+								<c:set var="totalPotrazujep"
+									value="${totalPotrazujep + stavka.potrazuje}" />
 
-					<!-- 								<table class='tableDocuments'> -->
-					<tr>
-						<td style="width: 5%;">${stavka.id}</td>
-						<td style="width: 10%;">${stavka.datum}</td>
-						<td style="width: 10%;">${stavka.idDokument.brojDokumenta}</td>
-						<td style="width: 10%;" class='text-right'>${stavka.ulaz}</td>
-						<td style="width: 10%;" class='text-right'>${stavka.izlaz}</td>
-						<td style="width: 10%;" class='text-right'>${totalKol}</td>
-						<td style="width: 10%;" class='text-right'>${stavka.cena}</td>
-						<td style="width: 10%;" class='text-right'>${stavka.duguje}</td>
-						<td style="width: 10%;" class='text-right'>${stavka.potrazuje}</td>
-						<td style="width: 10%;" class='text-right'>${totalVred}</td>
-					</tr>
+								<c:set var="totalKols"
+									value="${totalKols + stavka.ulaz-stavka.izlaz}" />
+								<c:set var="totalVreds"
+									value="${totalVreds + stavka.duguje-stavka.potrazuje}" />
+								<c:set var="totalUlazs" value="${totalUlazs + stavka.ulaz}" />
+								<c:set var="totalIzlazs" value="${totalIzlazs + stavka.izlaz}" />
+								<c:set var="totalDugujes"
+									value="${totalDugujes + stavka.duguje}" />
+								<c:set var="totalPotrazujes"
+									value="${totalPotrazujes + stavka.potrazuje}" />
+
+								<!-- 								<table class='tableDocuments'> -->
+								<tr>
+									<td style="width: 5%;">${stavka.id}</td>
+									<td style="width: 10%;">${stavka.datum}</td>
+									<td style="width: 10%;">${stavka.idDokument.brojDokumenta}</td>
+									<td style="width: 10%;" class='text-right'>${stavka.ulaz}</td>
+									<td style="width: 10%;" class='text-right'>${stavka.izlaz}</td>
+									<td style="width: 10%;" class='text-right'>${totalKol}</td>
+									<td style="width: 10%;" class='text-right'>${stavka.cena}</td>
+									<td style="width: 10%;" class='text-right'>${stavka.duguje}</td>
+									<td style="width: 10%;" class='text-right'>${stavka.potrazuje}</td>
+									<td style="width: 10%;" class='text-right'>${totalVred}</td>
+								</tr>
+
+								<c:set value="${false}" var="firstTime"></c:set>
+
+								</c:forEach>
+
+								<!-- ************************* UKUPNO ZA ARTIKAL ********************************  -->
+
+							</tbody>
+						</table>
+
+						<table class='tableDocuments'>
+							<thead id="table-head-first-row">
+<!-- 								<th style="width: 5%;"></th> -->
+								<th style="width: 5%;">Artikal</th>
+								<th colspan="2" style="width: 20%;">${aktivniArtikalName}</th>
+								<th style="width: 10%;" class='text-right'>${totalUlaz}</th>
+								<th style="width: 10%;" class='text-right'>${totalIzlaz}</th>
+								<th style="width: 10%;" class='text-right'>${totalKol}</th>
+								<th style="width: 10%;" class='text-right'></th>
+								<th style="width: 10%;" class='text-right'>${totalDuguje}</th>
+								<th style="width: 10%;" class='text-right'>${totalPotrazuje}</th>
+								<th style="width: 10%;" class='text-right'>${totalVred}</th>
+							</thead>
+
+						</table>
+
+						<c:set var="totalKol" value="0" />
+						<c:set var="totalVred" value="0" />
+						<c:set var="totalUlaz" value="0" />
+						<c:set var="totalIzlaz" value="0" />
+						<c:set var="totalDuguje" value="0" />
+						<c:set var="totalPotrazuje" value="0" />
+
+						<%-- 									<c:set value="${true}" var="stampaZaglavljaArtikla"></c:set> --%>
+						<%-- 									<c:set var="aktivniArtikal" value="${stavka.artikli.id}" /> --%>
+
+						<!-- ************************* KRAJ UKUPNO ZA ARTIKAL ********************************  -->
+
+						</table>
+						<table class='tableDocuments'>
+							<thead id="table-head-first-row">
+<!-- 								<th style="width: 5%;"></th> -->
+								<th style="width: 5%;">Mag:</th>
+								<th colspan="2" style="width: 20%;">${aktivniMagacinName}</th>
+								<th style="width: 10%;" class='text-right'>${totalUlazm}</th>
+								<th style="width: 10%;" class='text-right'>${totalIzlazm}</th>
+								<th style="width: 10%;" class='text-right'>${totalKolm}</th>
+								<th style="width: 10%;" class='text-right'></th>
+								<th style="width: 10%;" class='text-right'>${totalDugujem}</th>
+								<th style="width: 10%;" class='text-right'>${totalPotrazujem}</th>
+								<th style="width: 10%;" class='text-right'>${totalVredm}</th>
+							</thead>
+
+						</table>
+
+						<c:set var="totalKolm" value="0" />
+						<c:set var="totalVredm" value="0" />
+						<c:set var="totalUlazm" value="0" />
+						<c:set var="totalIzlazm" value="0" />
+						<c:set var="totalDugujem" value="0" />
+						<c:set var="totalPotrazujem" value="0" />
+
+						<br />
+						<!-- ************************* UKUPNO ZA PARTNERA ********************************  -->
+
+						</table>
+						<table class='tableDocuments'>
+							<thead id="table-head-first-row">
+<!-- 								<th style="width: 5%;"></th> -->
+								<th style="width: 5%;">Part:</th>
+								<th style="width: 20%;" colspan="2";">${aktivniPartnerName}</th>
+								<th style="width: 10%;" class='text-right'>${totalUlazp}</th>
+								<th style="width: 10%;" class='text-right'>${totalIzlazp}</th>
+								<th style="width: 10%;" class='text-right'>${totalKolp}</th>
+								<th style="width: 10%;" class='text-right'></th>
+								<th style="width: 10%;" class='text-right'>${totalDugujep}</th>
+								<th style="width: 10%;" class='text-right'>${totalPotrazujep}</th>
+								<th style="width: 10%;" class='text-right'>${totalVredp}</th>
+							</thead>
+
+						</table>
+						<c:set var="totalKolp" value="0" />
+						<c:set var="totalVredp" value="0" />
+						<c:set var="totalUlazp" value="0" />
+						<c:set var="totalIzlazp" value="0" />
+						<c:set var="totalDugujep" value="0" />
+						<c:set var="totalPotrazujep" value="0" />
+
+						<!-- ************************* KRAJ UKUPNO ZA PARTNERA ********************************  -->
+
+						<br />
 
 
-				</c:forEach>
+						<!-- ************************* UKUPNO SVEGA ********************************  -->
 
-				<!-- ************************* UKUPNO ZA ARTIKAL ********************************  -->
+						</table>
+						<table class='tableDocuments'>
+							<thead id="table-head-first-row">
+								<th style="width: 5%;"></th>
+								<th style="width: 10%;">SVEGA:</th>
+								<th style="width: 10%;"></th>
+								<th style="width: 10%;" class='text-right'>${totalUlazs}</th>
+								<th style="width: 10%;" class='text-right'>${totalIzlazs}</th>
+								<th style="width: 10%;" class='text-right'>${totalKols}</th>
+								<th style="width: 10%;" class='text-right'></th>
+								<th style="width: 10%;" class='text-right'>${totalDugujes}</th>
+								<th style="width: 10%;" class='text-right'>${totalPotrazujes}</th>
+								<th style="width: 10%;" class='text-right'>${totalVreds}</th>
+							</thead>
 
-				</tbody>
-				</table>
+						</table>
+						<c:set var="totalKolp" value="0" />
+						<c:set var="totalVredp" value="0" />
+						<c:set var="totalUlazp" value="0" />
+						<c:set var="totalIzlazp" value="0" />
+						<c:set var="totalDugujep" value="0" />
+						<c:set var="totalPotrazujep" value="0" />
 
-				<table class='tableDocuments'>
-					<thead id="table-head-first-row">
-						<th style="width: 5%;"></th>
-						<th style="width: 10%;">Za artikal</th>
-						<th style="width: 10%;"></th>
-						<th style="width: 10%;" class='text-right'>${totalUlaz}</th>
-						<th style="width: 10%;" class='text-right'>${totalIzlaz}</th>
-						<th style="width: 10%;" class='text-right'></th>
-						<th style="width: 10%;" class='text-right'></th>
-						<th style="width: 10%;" class='text-right'>${totalDuguje}</th>
-						<th style="width: 10%;" class='text-right'>${totalPotrazuje}</th>
-						<th style="width: 10%;" class='text-right'></th>
-					</thead>
+						<!-- ************************* KRAJ SVEGA ********************************  -->
 
-				</table>
+						<br />
 
-				<c:set var="totalKol" value="0" />
-				<c:set var="totalVred" value="0" />
-				<c:set var="totalUlaz" value="0" />
-				<c:set var="totalIzlaz" value="0" />
-				<c:set var="totalDuguje" value="0" />
-				<c:set var="totalPotrazuje" value="0" />
+						<%
+							for (SpecifikacijaKartica sk : theArray) {
+								System.out.println(" ovo je ispis " + sk.getIdArtikal() + " " + sk.getIdMagacin());
+								// do your work
+							}
+						%>
+									
+						<table>
+							<th></th>
+							<th></th>
+							<c:forEach items="${theArray}" var="current">
+								<tr>
+									<td><c:out value="${current.ulaz}" />
 
-				<%-- 									<c:set value="${true}" var="stampaZaglavljaArtikla"></c:set> --%>
-				<%-- 									<c:set var="aktivniArtikal" value="${stavka.artikli.id}" /> --%>
+									<td><c:out value="${current.idMagacin}" />
 
-				<!-- ************************* KRAJ UKUPNO ZA ARTIKAL ********************************  -->
-
-				</table>
-				<table class='tableDocuments'>
-					<thead id="table-head-first-row">
-						<th style="width: 5%;"></th>
-						<th style="width: 10%;">Za magacin:</th>
-						<th style="width: 10%;"></th>
-						<th style="width: 10%;" class='text-right'>${totalUlazm}</th>
-						<th style="width: 10%;" class='text-right'>${totalIzlazm}</th>
-						<th style="width: 10%;" class='text-right'></th>
-						<th style="width: 10%;" class='text-right'></th>
-						<th style="width: 10%;" class='text-right'>${totalDugujem}</th>
-						<th style="width: 10%;" class='text-right'>${totalPotrazujem}</th>
-						<th style="width: 10%;" class='text-right'></th>
-					</thead>
-
-				</table>
-
-				<c:set var="totalKolm" value="0" />
-				<c:set var="totalVredm" value="0" />
-				<c:set var="totalUlazm" value="0" />
-				<c:set var="totalIzlazm" value="0" />
-				<c:set var="totalDugujem" value="0" />
-				<c:set var="totalPotrazujem" value="0" />
-
-				<br />
-				<!-- ************************* UKUPNO ZA PARTNERA ********************************  -->
-
-				</table>
-				<table class='tableDocuments'>
-					<thead id="table-head-first-row">
-						<th style="width: 5%;"></th>
-						<th style="width: 10%;">Za partnera:</th>
-						<th style="width: 10%;"></th>
-						<th style="width: 10%;" class='text-right'>${totalUlazp}</th>
-						<th style="width: 10%;" class='text-right'>${totalIzlazp}</th>
-						<th style="width: 10%;" class='text-right'></th>
-						<th style="width: 10%;" class='text-right'></th>
-						<th style="width: 10%;" class='text-right'>${totalDugujep}</th>
-						<th style="width: 10%;" class='text-right'>${totalPotrazujep}</th>
-						<th style="width: 10%;" class='text-right'></th>
-					</thead>
-
-				</table>
-				<c:set var="totalKolp" value="0" />
-				<c:set var="totalVredp" value="0" />
-				<c:set var="totalUlazp" value="0" />
-				<c:set var="totalIzlazp" value="0" />
-				<c:set var="totalDugujep" value="0" />
-				<c:set var="totalPotrazujep" value="0" />
-
-				<!-- ************************* KRAJ UKUPNO ZA PARTNERA ********************************  -->
-
-				<br />
+								</tr>
+							</c:forEach>
+						</table>
 			</div>
 		</div>
 	</div>

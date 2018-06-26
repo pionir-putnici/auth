@@ -166,7 +166,21 @@
 												<input id="dodana" type="date" name="dodana" class='form-control' value='${currentdate}'>
 											</div>																						 
 											</div>
+
+											<div class='row spacer-top-20' >
+											<div class='col-lg-12'>
+											<div class="form-group"${error != null ? 'has-error' : ''}'>
+												<label class='font-awesome'>Stanje: </label>
+												<form:checkbox path="receiveNewsletter" value='${receiveNewsletter}'/>
+	
+												<p class="help-block">
+													<form:errors path="receiveNewsletter" class="help-block" />
+												</p>
+											</div>	
+											</div>																						 
+											</div>
 											
+
 											<div class='row text-center spacer-top-20'>
 												<div class='col-lg-12'>
 													<button type="submit" formtarget="_blank" class="btn-lg button-novi" name="action" value="main-submit-artical-partner-magacin">

@@ -146,6 +146,7 @@ public class CardController {
 			@RequestParam(value = "select1", required = false) String[] select1,
 			@RequestParam(value = "oddana", required = false) String oddana,
 			@RequestParam(value = "dodana", required = false) String dodana,
+			@RequestParam(value = "receiveNewsletter", required = false) boolean receiveNewsletter,
 			// @RequestParam String[] select1 ,
 			HttpServletRequest request
 //			BindingResult result, Model model
@@ -724,6 +725,7 @@ public class CardController {
 		request.setAttribute("oddana", oddana);
 		request.setAttribute("dodana", dodana);
 
+
 		DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
 		Date date = new Date();
 		request.setAttribute("currentdate", dateFormat.format(date));
@@ -731,7 +733,7 @@ public class CardController {
 		List<Partner> partkart = (List<Partner>) session.getAttribute("izabraneVrednostiPartneriPma");
 		request.setAttribute("partkart", partkart);
 
-		System.out.println("partkart string je " + partkart);
+		// System.out.println("partkart string je " + partkart);
 		
 		List<Long> id_partners = new ArrayList<Long>();
 
@@ -788,11 +790,11 @@ public class CardController {
 		List<DokumentStavke> stavkart = dokumentStavkeRepository.k1pm(ids_magacin, ids_artikli, oddanad, dodanad);
 
 		System.out.println("Stavka kard " + stavkart); 
-
 		
 		request.setAttribute("stavkart", stavkart);
-		
-		return ("/printing/cardpma");
+		request.setAttribute("receiveNewsletter", receiveNewsletter);
+		System.out.println("receiveNewsletter " + receiveNewsletter);
+		return ("/printing/cardpma"); 
 	}
 	 	else if (action.equals("mainPage")) {
 	 		return "redirect:/";
@@ -844,7 +846,8 @@ public class CardController {
 		List<Partner> dd1 = costumerRepository.findAllByOrderByNameAsc();
 		request.setAttribute("allArticles", dd);
 		request.setAttribute("allWarehouses", dd1);
-		System.out.println("Svi partneri " + dd1.toString());
+		request.setAttribute("receiveNewsletter", true);
+		// System.out.println("Svi partneri " + dd1.toString());
 		DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 		Date date = new Date();
 		request.setAttribute("currentdate", dateFormat.format(date));
