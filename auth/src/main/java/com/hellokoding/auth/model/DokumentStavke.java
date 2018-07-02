@@ -106,8 +106,7 @@ public class DokumentStavke implements Serializable {
     private BigDecimal duguje;
     @Column(name = "potrazuje")
     private BigDecimal potrazuje;       
-    @Column(name = "aktivan", columnDefinition="tinyint(1) default 1")
-    
+    @Column(name = "aktivan", columnDefinition="tinyint(1) default 1")    
     private Boolean aktivan;
     @Column(name = "datumvreme")
     @Temporal(TemporalType.TIMESTAMP)
@@ -124,6 +123,8 @@ public class DokumentStavke implements Serializable {
     @Size(max = 45)
     @Column(name = "dokument_stavkecol")
     private String dokumentStavkecol;
+    @Column(name = "povratna", columnDefinition="tinyint(1) default 1")    
+    private Boolean povratna;
     
     @JoinColumn(name = "id_dokument", referencedColumnName = "id")
     @ManyToOne
@@ -362,4 +363,11 @@ public class DokumentStavke implements Serializable {
 //				+ dokumentStavkecol + ", idDokument=" + idDokument + "]";
 //	} 
     
+	public Boolean getPovratna() {
+		return povratna;
+	}
+
+	public void setPovratna(Boolean povratna) {
+		this.povratna = povratna;
+	}	
 }

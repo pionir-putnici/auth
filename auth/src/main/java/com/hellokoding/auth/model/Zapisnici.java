@@ -49,8 +49,9 @@ public class Zapisnici implements Serializable {
     
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "dokument_id", referencedColumnName = "id")
+    
   //  @JsonIgnore
-    @JsonBackReference
+  //  @JsonBackReference
     
     private Dokument dokument;
     

@@ -132,14 +132,46 @@
                     </table>
                 </div>
             </div>
-            <div class='row spacer-top-20'>
-                        <div class='col-xs-12'><h4 class='remark-heading'>Napomena:</h4></div>
-                        <div class='col-xs-12'>
-                        <p class='remark-p text-justify'>
-							${dokument.napomena}
-						</p></div>
-                    </div>
-        </div>
+            
+		<div class='row spacer-top-20'>
+			<div class='col-xs-12'>
+				<h4 class='remark-heading'>Napomena:</h4>
+			</div>
+			<div class='col-xs-12'>
+				<p class='remark-p text-justify'>${dokument.napomena}</p>
+			</div>
+		</div>
+
+		<div class='row spacer-top-20'>
+			<div class='col-xs-12'>
+				<h4 class='remark-heading'>Osnov:</h4>
+			</div>
+			<div class='col-xs-12'>
+				<p class='remark-p text-justify'>${dokument.osnov}</p>
+			</div>
+		</div>
+
+		
+		<div class='row spacer-top-20'>
+		<div class='col-xs-10'>
+			<div class='col-xs-12'>
+				<h4 class='remark-heading'>Predao:</h4>
+			</div>
+			<div class='col-xs-12'>
+				<p class='remark-p text-justify'>${dokument.predao}</p>
+			</div>
+		</div>
+		<div class='col-xs-2'>
+			<div class='col-xs-12'>
+				<h4 class='remark-heading'>Primio:</h4>
+			</div>
+			<div class='col-xs-12'>
+				<p class='remark-p text-justify'>${dokument.primio}</p>
+			</div>
+		</div>			
+		</div>
+				
+	</div>
     </page>
     
     <a href="#" class="noprint btn btn-lg btn-primary btn-flat" onClick="window.print()">Print </a>

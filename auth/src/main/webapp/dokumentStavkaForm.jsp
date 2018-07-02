@@ -145,6 +145,18 @@
  												<form:errors path="iznos" class="help-block" /> 
 											</p>
 										</div>
+										
+										<div class='form-group spacer-bottom-30'>
+											<label>Aktivan</label><br /> <label class="radio-inline">
+												<!--                                     	<input type="radio" name="aktivan"  path='aktivan' -->
+												<%--                                     	 checked  value="${task.aktivan}" >Da   --%>
+												<input type="radio" name="aktivan" value="1" path='aktivan'
+												<c:out value="${salary}"/> />
+											</label> <label class="radio-inline"> <%--                                     	<input type="radio" class="col-sm-1" name="aktivan"  path='aktivan' value="${task.aktivan}">Ne --%>
+												<input type="radio" class="col-sm-1" name="aktivan" value="0"
+												path='aktivan' <c:out value="${salary1}"/> />
+											</label>
+										</div>										
 												
 									<a href='<c:out value="${param.id}" />'></a>												
 																												
