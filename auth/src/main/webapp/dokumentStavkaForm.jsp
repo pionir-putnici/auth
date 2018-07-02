@@ -146,17 +146,38 @@
 											</p>
 										</div>
 										
-										<div class='form-group spacer-bottom-30'>
-											<label>Aktivan</label><br /> <label class="radio-inline">
-												<!--                                     	<input type="radio" name="aktivan"  path='aktivan' -->
-												<%--                                     	 checked  value="${task.aktivan}" >Da   --%>
-												<input type="radio" name="aktivan" value="1" path='aktivan'
-												<c:out value="${salary}"/> />
-											</label> <label class="radio-inline"> <%--                                     	<input type="radio" class="col-sm-1" name="aktivan"  path='aktivan' value="${task.aktivan}">Ne --%>
-												<input type="radio" class="col-sm-1" name="aktivan" value="0"
-												path='aktivan' <c:out value="${salary1}"/> />
-											</label>
-										</div>										
+<%-- 									<c:out value="${dokumentStavke.povratna}"/> --%>
+										
+									<c:set var="salary" scope="session" value="checked">
+									</c:set>
+									<c:set var="salary1" scope="session" value="">
+									</c:set>
+
+									<c:if test="${dokumentStavke.povratna == true}">
+										<c:set var="salary" scope="session" value="checked" />
+										<c:set var="salary1" scope="session" value="" />
+									</c:if>
+
+									<c:if test="${dokumentStavke.povratna == false}">
+										<c:set var="salary1" scope="session" value="checked" />
+										<c:set var="salary" scope="session" value="" />
+									</c:if>
+
+									<c:if test="${(empty salary) and (empty salary1)}">
+										<c:set var="salary" scope="session" value="checked" />
+									</c:if>
+
+									<div class='form-group spacer-bottom-30'>
+										<label>Povratna - nepovratna ambalaza</label><br /> <label class="radio-inline">
+											<!--                                     	<input type="radio" name="aktivan"  path='aktivan' -->
+											<%--                                     	 checked  value="${task.aktivan}" >Da   --%>
+											<input type="radio" name="povratna" value="1" path='povratna'
+											<c:out value="${salary}"/> />
+										</label> <label class="radio-inline"> <%--                                     	<input type="radio" class="col-sm-1" name="aktivan"  path='aktivan' value="${task.aktivan}">Ne --%>
+											<input type="radio" class="col-sm-1" name="povratna" value="0"
+											path='povratna' <c:out value="${salary1}"/> />
+										</label>
+									</div>								
 												
 									<a href='<c:out value="${param.id}" />'></a>												
 																												

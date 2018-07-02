@@ -111,4 +111,18 @@ public class UserController {
     	}
     	return principal.toString();
     }
+    
+    @RequestMapping(value = "/login/login2", method = RequestMethod.GET)
+    public String login2(Model model, String error, String logout) {
+        if (error != null)
+            model.addAttribute("error", "Your username and password is invalid.");
+
+        if (logout != null)
+            model.addAttribute("message", "You have been logged out successfully.");
+  //      return "redirect:/";  //index
+        
+        return "login/login2";
+    }    
+    
+    
 }
