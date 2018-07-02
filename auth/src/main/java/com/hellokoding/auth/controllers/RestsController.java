@@ -30,12 +30,14 @@ import com.hellokoding.auth.model.User;
 import com.hellokoding.auth.model.VrsteArtikala;
 import com.hellokoding.auth.model.VrsteMagacina;
 import com.hellokoding.auth.model.VrstePaleta;
+import com.hellokoding.auth.model.Zapisnici;
 import com.hellokoding.auth.repository.CostumersRepository;
 import com.hellokoding.auth.repository.DokumentRepository;
 import com.hellokoding.auth.repository.DokumentStavkeRepository;
 import com.hellokoding.auth.repository.DrzaveRepository;
 import com.hellokoding.auth.repository.MagaciniRepository;
 import com.hellokoding.auth.repository.TypesOfDocumentsRepository;
+import com.hellokoding.auth.repository.ZapisniciRepository;
 import com.hellokoding.auth.repository.ZipCodesRepository;
 import com.hellokoding.auth.service.ArtikliService;
 import com.hellokoding.auth.service.JediniceMeraService;
@@ -76,6 +78,9 @@ public class RestsController {
 	private DokumentRepository dokumentRepository;
 	@Autowired
 	private MagaciniRepository magaciniRepository;
+	
+	@Autowired
+	private ZapisniciRepository zapisniciRepository;
 	
 	@Autowired
 	private DokumentStavkeRepository dokumentStavkeRepository;
@@ -294,7 +299,30 @@ public class RestsController {
 		}
 
 		return aa; 
-	}		
+	}
+	
+	@RequestMapping(path="/zapisnici", method=RequestMethod.GET)
+	public List<Zapisnici> getJsonZapisnici(){
+		
+		List<Zapisnici> aa = zapisniciRepository.findAll();
+	
+		 for (Iterator iterator = aa.iterator(); iterator.hasNext();) {
+			 Zapisnici zapisnik = (Zapisnici) iterator.next();
+			 zapisnik.setAkcija("<a href=\"update-zapisnik.html?id=" + zapisnik.getId() + "\"> " + "<i class=\"fa fa-pencil-square-o edit-delete-icon\"></i> </a> "
+					+ "    <a href=\"delete_dokument.html?id=" + zapisnik.getId() + "\" Onclick=\"return ConfirmDelete();\"> " + "<i class=\"fa fa-trash-o edit-delete-icon\"></i> </a>"
+					+  "<a href=\"www.w3schools.com\">Visit W3Schools</a> "
+					+ "     <a href=\"view_dokument_items.html?id=" + zapisnik.getId()  + "\"> " + "<i class=\"fa fa-id-card-o\"></i> </a>");
+			 
+		        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy'");
+//		        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy' 'HH:mm:ss:S");
+
+		        //Date tt = zapisnik.getDatumVreme();
+//		        dokument.setVideo(simpleDateFormat.format(tt));
+
+		}
+
+		return aa; 
+	}	
 	
 	@RequestMapping(path="/dokumentstavketest1", method=RequestMethod.GET)
 	public List<DokumentStavke> getJsonDokumentiStavkeRest(@RequestParam(value="id") Long id){
