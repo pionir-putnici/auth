@@ -139,6 +139,9 @@ public class Dokument implements Serializable {
     private String slika;
     private String video;
     private String zvuk;
+    private String predao;
+    private String primio;
+    private String osnov;
     
 //    @OneToMany(mappedBy = "idDokument", orphanRemoval = true, cascade = CascadeType.ALL)
 //    @JsonManagedReference
@@ -360,5 +363,31 @@ public class Dokument implements Serializable {
     public String toString() {
         return "Dokument[ id=" + id + " ]";
     }
+	public String getPredao() {
+		return predao;
+	}
+	public void setPredao(String predao) {
+		this.predao = predao;
+	}
+	public String getPrimio() {
+		return primio;
+	}
+	public void setPrimio(String primio) {
+		this.primio = primio;
+	}
+	public String getOsnov() {
+		return osnov;
+	}
+	public void setOsnov(String osnov) {
+		this.osnov = osnov;
+	}
+	public TypesOfDocuments getTypesofdocuments() {
+		return typesofdocuments;
+	}
+	public void setTypesofdocuments(TypesOfDocuments typesofdocuments) {
+		this.typesofdocuments = typesofdocuments;
+	}
+    
+    
     
 }

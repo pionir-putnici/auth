@@ -245,3 +245,5 @@ table.dataTable.no-footer{
     overflow: hidden;
     background-color: #e5e5e5;
 }
+
+.clear-padding {padding: 0 5px 0 0;}

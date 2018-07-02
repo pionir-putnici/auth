@@ -99,7 +99,7 @@
 								<thead id="table-head-first-row">
 									<th style="width: 5%;">Artikal</th>
 									<!-- 								<th style="width: 10%;"></th> -->
-									<th colspan="2" style="width: 20%;">${aktivniArtikalName}</th>
+									<th style="width: 22.5%;">${aktivniArtikalName}</th>
 									<th style="width: 10%;" class='text-right'>${totalUlaz}</th>
 									<th style="width: 10%;" class='text-right'>${totalIzlaz}</th>
 									<th style="width: 10%;" class='text-right'>${totalKol}</th>
@@ -163,7 +163,7 @@
 								<thead id="table-head-first-row">
 									<!-- 								<th style="width: 5%;"></th> -->
 									<th style="width: 5%;">Mag:</th>
-									<th colspan="2" style="width: 20%;">${aktivniMagacinName}</th>
+									<th style="width: 22.5%;">${aktivniMagacinName}</th>
 									<th style="width: 10%;" class='text-right'>${totalUlazm}</th>
 									<th style="width: 10%;" class='text-right'>${totalIzlazm}</th>
 									<th style="width: 10%;" class='text-right'>${totalKolm}</th>
@@ -204,7 +204,7 @@
 								<thead id="table-head-first-row">
 									<!-- 								<th style="width: 5%;"></th> -->
 									<th style="width: 5%;">Part:</th>
-									<th colspan="2" style="width: 20%;">${aktivniPartnerName}</th>
+									<th style="width: 22.5%;">${aktivniPartnerName}</th>
 									<th style="width: 10%;" class='text-right'>${totalUlazp}</th>
 									<th style="width: 10%;" class='text-right'>${totalIzlazp}</th>
 									<th style="width: 10%;" class='text-right'>${totalKolp}</th>
@@ -241,8 +241,8 @@
 
 						<br />
 						<div class='row' id='article-info'>
-							<div class='col-xs-2'>
-								<p>Partner sifra: ${stavka.idDokument.partner.id}
+							<div class='col-xs-3'>
+								<p>Partner Šifra: ${stavka.idDokument.partner.id}
 									${stavka.idDokument.partner.code}</p>
 								<%-- <p>Id: ${stavka.artikli.id} aktivni ${aktivniArtikal}</p> --%>
 							</div>
@@ -262,7 +262,7 @@
 
 						<!-- 						<br/> -->
 						<div class='row' id='article-info'>
-							<div class='col-xs-2'>
+							<div class='col-xs-3'>
 								<p>Magacin Šifra: ${stavka.idDokument.magacini.id}
 									${stavka.idDokument.magacini.code}</p>
 								<%-- <p>Id: ${stavka.artikli.id} aktivni ${aktivniArtikal}</p> --%>
@@ -282,7 +282,7 @@
 						<c:set value="${false}" var="stampaZaglavljaArtikla"></c:set>
 
 						<div class='row' id='article-info'>
-							<div class='col-xs-2'>
+							<div class='col-xs-3'>
 								<p>Artikal Šifra: ${stavka.artikli.id}
 									${stavka.artikli.code}</p>
 								<%-- <p>Id: ${stavka.artikli.id} aktivni ${aktivniArtikal}</p> --%>
@@ -295,7 +295,7 @@
 						<table class='tableDocuments'>
 							<thead id="table-head-first-row">
 								<th></th>
-								<th colspan="2">DOKUMENT</th>
+								<th colspan="3">DOKUMENT</th>
 								<th class='text-right'>KOLIČINA</th>
 								<th class='text-right'>KOLIČINA</th>
 								<th></th>
@@ -307,7 +307,8 @@
 							<thead id='table-head-second-row'>
 								<th style="width: 5%;">RB</th>
 								<th style="width: 10%;">DATUM</th>
-								<th style="width: 10%;">BROJ</th>
+								<th style="width: 5%;">VD</th>
+								<th style="width: 5%;">BROJ</th>
 								<th style="width: 10%;" class='text-right'>ULAZ</th>
 								<th style="width: 10%;" class='text-right'>IZLAZ</th>
 								<th style="width: 10%;" class='text-right'>STANJE</th>
@@ -365,13 +366,15 @@
 									value="${totalDugujes + stavka.duguje}" />
 								<c:set var="totalPotrazujes"
 									value="${totalPotrazujes + stavka.potrazuje}" />
-
+								<c:set var="tipDokumentaIBrojDokumenta"
+									value="${stavka.idDokument.typesOfDocuments.name || stavka.idDokument.brojDokumenta}" />
 								<!-- 								<table class='tableDocuments'> -->
 					<c:if test="${karticeStanje=='kartice'}">
 								<tr>
 									<td style="width: 5%;">${stavka.id}</td>
 									<td style="width: 10%;">${stavka.datum}</td>
-									<td style="width: 10%;">${stavka.idDokument.brojDokumenta}</td>
+									<td style="width: 5%;">${stavka.idDokument.typesOfDocuments.name}</td>
+									<td style="width: 5%;">${stavka.idDokument.brojDokumenta}</td>
 									<td style="width: 10%;" class='text-right'>${stavka.ulaz}</td>
 									<td style="width: 10%;" class='text-right'>${stavka.izlaz}</td>
 									<td style="width: 10%;" class='text-right'>${totalKol}</td>
@@ -394,7 +397,7 @@
 							<thead id="table-head-first-row">
 								<!-- 								<th style="width: 5%;"></th> -->
 								<th style="width: 5%;">Artikal</th>
-								<th colspan="2" style="width: 20%;">${aktivniArtikalName}</th>
+								<th style="width: 22.5%;">${aktivniArtikalName}</th>
 								<th style="width: 10%;" class='text-right'>${totalUlaz}</th>
 								<th style="width: 10%;" class='text-right'>${totalIzlaz}</th>
 								<th style="width: 10%;" class='text-right'>${totalKol}</th>
@@ -423,7 +426,7 @@
 							<thead id="table-head-first-row">
 								<!-- 								<th style="width: 5%;"></th> -->
 								<th style="width: 5%;">Mag:</th>
-								<th colspan="2" style="width: 20%;">${aktivniMagacinName}</th>
+								<th style="width: 22.5%;">${aktivniMagacinName}</th>
 								<th style="width: 10%;" class='text-right'>${totalUlazm}</th>
 								<th style="width: 10%;" class='text-right'>${totalIzlazm}</th>
 								<th style="width: 10%;" class='text-right'>${totalKolm}</th>
@@ -450,7 +453,7 @@
 							<thead id="table-head-first-row">
 								<!-- 								<th style="width: 5%;"></th> -->
 								<th style="width: 5%;">Part:</th>
-								<th style="width: 20%;" colspan="2";">${aktivniPartnerName}</th>
+								<th style="width: 22.5%;" colspan="3";">${aktivniPartnerName}</th>
 								<th style="width: 10%;" class='text-right'>${totalUlazp}</th>
 								<th style="width: 10%;" class='text-right'>${totalIzlazp}</th>
 								<th style="width: 10%;" class='text-right'>${totalKolp}</th>
@@ -472,9 +475,11 @@
 						</table>
 						<table class='tableDocuments'>
 							<thead id="table-head-first-row">
+<!-- 								<th style="width: 5%;"></th> -->
+<!-- 								<th style="width: 10%;">SVEGA:</th> -->
+<!-- 								<th style="width: 10%;"></th> -->
 								<th style="width: 5%;"></th>
-								<th style="width: 10%;">SVEGA:</th>
-								<th style="width: 10%;"></th>
+								<th style="width: 22.5%;">SVEGA:</th>								
 								<th style="width: 10%;" class='text-right'>${totalUlazs}</th>
 								<th style="width: 10%;" class='text-right'>${totalIzlazs}</th>
 								<th style="width: 10%;" class='text-right'>${totalKols}</th>
