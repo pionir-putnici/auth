@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.jasperreports.JasperReportsPdfView;
+
 import com.hellokoding.auth.model.CompanyDetails;
 import com.hellokoding.auth.model.Drzave;
 import com.hellokoding.auth.model.PttBrojevi;
@@ -65,8 +66,8 @@ public class PttBrojeviController {
 	    Date date = new Date();
 	    aa.setTimestamp(date);
 	    
-	      Drzave km = new Drzave();
-	      List<Drzave> deptList = drzaveRepository.findAll(); 
+	    //  Drzave km = new Drzave();
+	    List<Drzave> deptList = drzaveRepository.findAll(); 
 	      
 	    Map<Long, String> dept = new HashMap<>();
 		HttpSession sess = request.getSession();
@@ -74,7 +75,7 @@ public class PttBrojeviController {
 		for (Drzave d : deptList) {
 	          dept.put(d.getId(), d.getName());
 	      }
-	      sess.setAttribute("eDept", dept);	    
+	    sess.setAttribute("eDept", dept);	    
 	    
 		return new ModelAndView("zipCodesForm", "zipCodes", aa);
 		// return new ModelAndView("vrstePaletaUnosForm", "vrstePaleta", new VrstePaleta());
@@ -117,6 +118,17 @@ public class PttBrojeviController {
 		request.setAttribute("zipCodes", zipCodesRepository.findOne(id));
 		request.setAttribute("mode", "MODE_UPDATE");
 		request.setAttribute("title", "Update zipCodes");	
+		
+	    List<Drzave> deptList = drzaveRepository.findAll(); 
+	      
+	    Map<Long, String> dept = new HashMap<>();
+		HttpSession sess = request.getSession();
+		
+		for (Drzave d : deptList) {
+	          dept.put(d.getId(), d.getName());
+	      }
+	    sess.setAttribute("eDept", dept);
+	    
 		return "zipCodesForm";
 	}
     
@@ -124,8 +136,18 @@ public class PttBrojeviController {
 	@RequestMapping(value = "/delete_zipCodes.html")
 	public String deleteTypeMeasure(@RequestParam Long id, HttpServletRequest request) {
 
+		PttBrojevi aa = zipCodesRepository.getOne(id);
+	    if (!aa.getPartners().isEmpty()) {	
+	    	return "redirect:414.html?ops=Projection exist, can't delete theatre!";
+	    }
+	    
+	    try {
 		zipCodesRepository.delete(id);
-
+	    }
+		catch (Exception ex)
+		{
+		    return "redirect:414.html?ops=Can't delete record!";
+		}
 		return "redirect:zipCodes.html";
 	}
 	

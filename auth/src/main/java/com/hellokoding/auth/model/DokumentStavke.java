@@ -347,7 +347,7 @@ public class DokumentStavke implements Serializable {
 
 	@Override
 	public String toString() {
-		return "DokumentStavke [id=" + id + ",  datum=" + datum
+		return "DokumentStavke [id=" + id + ",  datum=" + datum + ", partner=" + idDokument.getPartner().getName()
 				+ ", magacini=" + idDokument.getMagacini().getName() + ", artikli=" + artikli.getName() + ",  kolicina="
 				+ kolicina + ", cena=" + cena + ", iznos=" + iznos + ", idDokument=" + idDokument + "br/" + "]";
 	}

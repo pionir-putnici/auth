@@ -145,15 +145,18 @@
 <%--     											</c:forEach> --%>
 <!-- 											</select> -->
 
-
+<%-- <c:out value="${eMagacini}"/> --%>
+<%-- <c:out value="${dokument.id}"/> --%>
+<%-- <c:if test="${dokument.id==null}"> --%>
+<%-- <c:out value="dokument.id je null"/> --%>
+<%-- </c:if> --%>
 											<select id="selectModel" class="form-control" name="Magacini.id" >
-    											<c:forEach var="role" items="${eMagacini}">  
-    																						
-      											<option class="${role.partner.getId()}" value="${role.getId()}" ${role.getId() == dokument.magacini.id ? 'selected' : ''}> ${role.getName()}</option>
-      											<c:out value="${role.partner.getId()}"/>
-<%--       											<option class="${role.partner.getId()}" value="${role.getId()}" ${role.getId() == dokument.magacini.id ? 'selected' : ''}> ${role.getName()}</option> --%>
 
+    											<c:forEach var="role" items="${eMagacini}">  											
+       											<option class="${role.partner.getId()}" value="${role.getId()}" ${role.getId() == dokument.magacini.id ? 'selected' : ''}> ${role.getName()}</option> 
+      											<c:out value="${role.partner.getId()}"/>
     											</c:forEach>
+
 											</select>
 
 
@@ -165,13 +168,13 @@
 										
 										</div>
 										
-										<c:out value="${dokument.partner.id}"/>
-										<c:out value="${dokument.partner.name}"/>
-										<c:out value="${ePartner['key']}"/>
+<%-- 										<c:out value="${dokument.partner.id}"/> --%>
+<%-- 										<c:out value="${dokument.partner.name}"/> --%>
+<%-- 										<c:out value="${ePartner['key']}"/> --%>
 
-	<c:forEach var="hash" items="${ePartner['key']}">
-        <option></option>
-  </c:forEach>
+<%-- 	<c:forEach var="hash" items="${ePartner['key']}"> --%>
+<!--         <option></option> -->
+<%--   </c:forEach> --%>
 										<div class='col-lg-6'>
 										<div class='form-group'>
 											<label class='font-roboto'>Napomena</label>

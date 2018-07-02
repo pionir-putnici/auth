@@ -92,7 +92,7 @@ public class DokumentController {
 		sess.setAttribute("ePartner", deptp);
 
 		// magacini
-		Magacini km = new Magacini();
+		// Magacini km = new Magacini();
 		List<Magacini> deptList = magaciniRepository.findAll();
 
 		Map<Long, String> dept = new HashMap<>();
@@ -101,7 +101,9 @@ public class DokumentController {
 		for (Magacini d : deptList) {
 			dept.put(d.getId(), d.getName());
 		}
-		sess.setAttribute("eMagacini", dept);
+		
+		// sess.setAttribute("eMagacini", dept);
+		sess.setAttribute("eMagacini", deptList);
 
 		// Vrste dokumenata
 		// TypesOfDocuments km = new TypesOfDocuments();
@@ -176,7 +178,7 @@ public class DokumentController {
 		request.setAttribute("mode", "MODE_UPDATE");
 		request.setAttribute("title", "Update dokument");
 
-		Magacini km = new Magacini();
+		// Magacini km = new Magacini();
 		List<Magacini> deptList = magaciniRepository.findAll();
 
 		Map<Long, String> dept = new HashMap<>();
@@ -215,8 +217,13 @@ public class DokumentController {
 	@RequestMapping(value = "/delete_dokument.html")
 	public String deleteTypeMeasure(@RequestParam Long id, HttpServletRequest request) {
 
+		try {
 		dokumentRepository.delete(id);
-
+    }
+	catch (Exception ex)
+	{
+	    return "redirect:414.html?ops=Can't delete record!";
+	}
 		return "redirect:dokument.html";
 	}
 

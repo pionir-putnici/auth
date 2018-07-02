@@ -137,7 +137,9 @@
             <thead>
             <th style="width: 7%;">ID&nbsp;<a ng-click="sort_by('id');"><i class="glyphicon glyphicon-sort sort-arrows"></i></a></th>
             <th style="width: 15%;">ŠIFRA&nbsp;<a ng-click="sort_by('code');"><i class="glyphicon glyphicon-sort sort-arrows"></i></a></th>
-            <th style="width: 35%;">NAZIV&nbsp;<a ng-click="sort_by('name');"><i class="glyphicon glyphicon-sort sort-arrows"></i></a></th>
+            <th style="width: 20%;">NAZIV&nbsp;<a ng-click="sort_by('name');"><i class="glyphicon glyphicon-sort sort-arrows"></i></a></th>
+            <th style="width: 15%;">PTT&nbsp;<a ng-click="sort_by('name');"><i class="glyphicon glyphicon-sort sort-arrows"></i></a></th>
+             
             <th style="width: 20%;">NAPOMENA&nbsp;<a ng-click="sort_by('remark');"><i class="glyphicon glyphicon-sort sort-arrows"></i></a></th>
             <th style="width: 6%;">AKTIVAN&nbsp;<a ng-click="sort_by('akcija');"><i class="glyphicon glyphicon-sort sort-arrows"></i></a></th>
             <th style="width: 12%;">AKCIJA&nbsp;<a ng-click="sort_by('akcija');"><i class="glyphicon glyphicon-sort sort-arrows"></i></a></th>
@@ -149,6 +151,7 @@
                     <td>{{data.id}}</td>
                     <td>{{data.code}}</td>
                     <td>{{data.name}}</td>
+                    <td>{{data.pttbrojevi.name}}</td>
                     <td>{{data.remark}}</td>
                     <td>{{data.aktivan}}</td>
                     <td><a href="update_partner.html?id={{data.id}}"><i class="fa fa-pencil-square-o edit-delete-icon"></i></a> <a href="delete_partner.html?id={{data.id}}" onClick="return ConfirmDelete();"><i class="fa fa-trash-o edit-delete-icon"></i></a></td>

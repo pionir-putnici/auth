@@ -146,6 +146,7 @@ public class CardController {
 			@RequestParam(value = "select1", required = false) String[] select1,
 			@RequestParam(value = "oddana", required = false) String oddana,
 			@RequestParam(value = "dodana", required = false) String dodana,
+			@RequestParam(value = "karticeStanje", required = false) String karticeStanje,
 			@RequestParam(value = "receiveNewsletter", required = false) boolean receiveNewsletter,
 			// @RequestParam String[] select1 ,
 			HttpServletRequest request
@@ -793,7 +794,9 @@ public class CardController {
 		
 		request.setAttribute("stavkart", stavkart);
 		request.setAttribute("receiveNewsletter", receiveNewsletter);
+		request.setAttribute("karticeStanje", karticeStanje);
 		System.out.println("receiveNewsletter " + receiveNewsletter);
+		System.out.println("karticeStanje " + karticeStanje);
 		return ("/printing/cardpma"); 
 	}
 	 	else if (action.equals("mainPage")) {

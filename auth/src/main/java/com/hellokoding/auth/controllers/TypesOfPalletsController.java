@@ -154,7 +154,14 @@ public class TypesOfPalletsController {
 	public String deleteTypePallet(@RequestParam Long id, HttpServletRequest request) {
 //      request.setAttribute("vrstePaleta", vrstePaletaDao.findByUid(id)); //  dao.getAllProdajeId("where id = " + sid));
 //		vrstePaletaService.save(vrstePaleta);
+		try {
 		vrstePaletaService.delete(id);
+		
+    }
+	catch (Exception ex)
+	{
+	    return "redirect:414.html?ops=Can't delete record!";
+	}
 		request.setAttribute("mode", "MODE_TASKS");
 		request.setAttribute("title", "Types of pallets");
 		// return "vrstePaletaForm";

@@ -23,6 +23,7 @@ import javax.persistence.Table;
 
 import org.json.JSONObject;
 
+
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -68,6 +69,9 @@ public class Partner implements Serializable {
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "partner") // LAZY is default
     private List<Magacini> magacini = new ArrayList<>();    
     
+    @ManyToOne(optional = false)
+    @JoinColumn(name="ptt_id") 
+    private PttBrojevi pttbrojevi;  
     
     public Partner(){
     }
@@ -270,4 +274,14 @@ public class Partner implements Serializable {
         info = jsonInfo.toString();
         return info;
     }
+
+	public PttBrojevi getPttbrojevi() {
+		return pttbrojevi;
+	}
+
+	public void setPttbrojevi(PttBrojevi pttbrojevi) {
+		this.pttbrojevi = pttbrojevi;
+	}
+	
+	
 }

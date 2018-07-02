@@ -15,11 +15,11 @@
 				<div class="col-lg-12">
 					<h2 class="page-header">Parametri izveštaja Artikal Partner Magacin</h2>
 				</div>
-															<c:forEach items="${izabraneVrednostiPartneriPma}"
-																var="izabraneVrednostiPartneriPma">
-																	${izabraneVrednostiPartneriPma.code}
-																	${izabraneVrednostiPartneriPma.name} vvvvv"/>
-															</c:forEach>
+<%-- 															<c:forEach items="${izabraneVrednostiPartneriPma}" --%>
+<%-- 																var="izabraneVrednostiPartneriPma"> --%>
+<%-- 																	${izabraneVrednostiPartneriPma.code} --%>
+<%-- 																	${izabraneVrednostiPartneriPma.name} vvvvv"/> --%>
+<%-- 															</c:forEach> --%>
 			</div>
 
 			<div class="row">
@@ -167,19 +167,28 @@
 											</div>																						 
 											</div>
 
-											<div class='row spacer-top-20' >
-											<div class='col-lg-12'>
-											<div class="form-group"${error != null ? 'has-error' : ''}'>
-												<label class='font-awesome'>Stanje: </label>
-												<form:checkbox path="receiveNewsletter" value='${receiveNewsletter}'/>
-	
-												<p class="help-block">
-													<form:errors path="receiveNewsletter" class="help-block" />
-												</p>
-											</div>	
-											</div>																						 
-											</div>
+<!-- 											<div class='row spacer-top-20' > -->
+<!-- 											<div class='col-lg-12'> -->
+<%-- 											<div class="form-group"${error != null ? 'has-error' : ''}'> --%>
+<!-- 												<label class='font-awesome'>Stanje: </label> -->
+<%-- 												<form:checkbox path="receiveNewsletter" value='${receiveNewsletter}'/> --%>
+<!-- 												<p class="help-block"> -->
+<%-- 													<form:errors path="receiveNewsletter" class="help-block" /> --%>
+<!-- 												</p> -->
+<!-- 											</div>	 -->
+<!-- 											</div>																						  -->
+<!-- 											</div> -->
 											
+													<div class='row spacer-top-20'>
+													<div class='col-lg-8'>
+													<label class='font-awesome'>Stanje: </label>
+														<select name="karticeStanje">
+														<option>kartice</option>
+														<option>stanje</option>
+
+														</select>
+														</div>
+														</div>
 
 											<div class='row text-center spacer-top-20'>
 												<div class='col-lg-12'>

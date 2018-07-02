@@ -74,12 +74,12 @@
 										<div class="form-group"${error != null ? 'has-error' : ''}'>
 											<label class='font-awesome'>Ptt broj</label>
 
-											<form:select path="ptt_broj_id" class="form-control">
+											<form:select path="pttbrojevi.id" class="form-control">
 												<form:options items="${eDept}" />
 											</form:select>
 
 											<p class="help-block">
-												<form:errors path="ptt_broj_id" class="help-block" />
+												<form:errors path="pttbrojevi.id" class="help-block" />
 											</p>
 
 										</div>										
@@ -134,10 +134,10 @@
 										<button type="submit" class="btn-lg button-novi">
 											<i class='fa fa-floppy-o'></i> Save
 										</button>
-										<button type="reset" class="btn-lg button-novi">
-											<i class='fa fa-reply'></i> Cancel
-										</button>
-
+<!-- 										<button type="reset" class="btn-lg button-novi"> -->
+<!-- 											<i class='fa fa-reply'></i> Cancel -->
+<!-- 										</button> -->
+										<input type="button" onclick="location.href='partner.html';" value="Cancel"  class="btn-lg button-novi"/>
 									</form:form>
 								</div>
 							</div>
