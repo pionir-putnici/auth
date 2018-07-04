@@ -39,7 +39,12 @@
 				<div class='row text-center'>
 					<h4>Kartica artikla za period od dana ${oddana} do dana
 						${dodana}</h4>
-
+<!-- 					<h4> -->
+<!-- 						Kartica artikla za period od dana -->
+<%-- 						<fmt:formatDate value="${oddana}" type="both" dateStyle="medium" /> --%>
+<!-- 						do dana -->
+<%-- 						<fmt:formatDate value="${dodana}" type="both" dateStyle="medium" /> --%>
+<!-- 					</h4> -->
 				</div>
 			</div>
 
@@ -228,14 +233,15 @@
 							value="${stavka.idDokument.partner.id}" />
 						<c:set var="aktivniPartnerName"
 							value="${stavka.idDokument.partner.name}" />
-<br/>
+						<br />
 					</c:if>
 
 
 
 					<!-- ***************** zaglavlje partner ************* -->
 
-					<c:if test="${stampaZaglavljaPartnera==true && karticeStanje=='kartice'}">
+					<c:if
+						test="${stampaZaglavljaPartnera==true && karticeStanje=='kartice'}">
 
 						<c:set value="${false}" var="stampaZaglavljaPartnera"></c:set>
 
@@ -256,7 +262,8 @@
 					<!-- ***************** kraj zaglavlje partner ************* -->
 
 
-					<c:if test="${stampaZaglavljaMagacina==true && karticeStanje=='kartice'}">
+					<c:if
+						test="${stampaZaglavljaMagacina==true && karticeStanje=='kartice'}">
 
 						<c:set value="${false}" var="stampaZaglavljaMagacina"></c:set>
 
@@ -277,7 +284,8 @@
 
 					<!-- ***************** zaglavlje artikla ************* -->
 
-					<c:if test="${stampaZaglavljaArtikla==true && karticeStanje=='kartice'}">
+					<c:if
+						test="${stampaZaglavljaArtikla==true && karticeStanje=='kartice'}">
 
 						<c:set value="${false}" var="stampaZaglavljaArtikla"></c:set>
 
@@ -369,21 +377,21 @@
 								<c:set var="tipDokumentaIBrojDokumenta"
 									value="${stavka.idDokument.typesOfDocuments.name || stavka.idDokument.brojDokumenta}" />
 								<!-- 								<table class='tableDocuments'> -->
-					<c:if test="${karticeStanje=='kartice'}">
-								<tr>
-									<td style="width: 5%;">${stavka.id}</td>
-									<td style="width: 10%;">${stavka.datum}</td>
-									<td style="width: 5%;">${stavka.idDokument.typesOfDocuments.name}</td>
-									<td style="width: 5%;">${stavka.idDokument.brojDokumenta}</td>
-									<td style="width: 10%;" class='text-right'>${stavka.ulaz}</td>
-									<td style="width: 10%;" class='text-right'>${stavka.izlaz}</td>
-									<td style="width: 10%;" class='text-right'>${totalKol}</td>
-									<td style="width: 10%;" class='text-right'>${stavka.cena}</td>
-									<td style="width: 10%;" class='text-right'>${stavka.duguje}</td>
-									<td style="width: 10%;" class='text-right'>${stavka.potrazuje}</td>
-									<td style="width: 10%;" class='text-right'>${totalVred}</td>
-								</tr>
-</c:if>
+								<c:if test="${karticeStanje=='kartice'}">
+									<tr>
+										<td style="width: 5%;">${stavka.id}</td>
+										<td style="width: 10%;">${stavka.datum}</td>
+										<td style="width: 5%;">${stavka.idDokument.typesOfDocuments.name}</td>
+										<td style="width: 5%;">${stavka.idDokument.brojDokumenta}</td>
+										<td style="width: 10%;" class='text-right'>${stavka.ulaz}</td>
+										<td style="width: 10%;" class='text-right'>${stavka.izlaz}</td>
+										<td style="width: 10%;" class='text-right'>${totalKol}</td>
+										<td style="width: 10%;" class='text-right'>${stavka.cena}</td>
+										<td style="width: 10%;" class='text-right'>${stavka.duguje}</td>
+										<td style="width: 10%;" class='text-right'>${stavka.potrazuje}</td>
+										<td style="width: 10%;" class='text-right'>${totalVred}</td>
+									</tr>
+								</c:if>
 								<c:set value="${false}" var="firstTime"></c:set>
 
 								</c:forEach>
@@ -475,11 +483,11 @@
 						</table>
 						<table class='tableDocuments'>
 							<thead id="table-head-first-row">
-<!-- 								<th style="width: 5%;"></th> -->
-<!-- 								<th style="width: 10%;">SVEGA:</th> -->
-<!-- 								<th style="width: 10%;"></th> -->
+								<!-- 								<th style="width: 5%;"></th> -->
+								<!-- 								<th style="width: 10%;">SVEGA:</th> -->
+								<!-- 								<th style="width: 10%;"></th> -->
 								<th style="width: 5%;"></th>
-								<th style="width: 22.5%;">SVEGA:</th>								
+								<th style="width: 22.5%;">SVEGA:</th>
 								<th style="width: 10%;" class='text-right'>${totalUlazs}</th>
 								<th style="width: 10%;" class='text-right'>${totalIzlazs}</th>
 								<th style="width: 10%;" class='text-right'>${totalKols}</th>

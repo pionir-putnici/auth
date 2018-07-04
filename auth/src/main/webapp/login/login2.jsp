@@ -49,7 +49,7 @@
                     
                     <div class='row'>
                         <div class='col-lg-12' id='credential-form-title'>
-                            <h1>Login</h1>
+                            <h1>Evidencija paleta</h1>
                         </div>
                     </div>
                     <div class='row'>

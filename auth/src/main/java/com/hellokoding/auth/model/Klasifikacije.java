@@ -44,12 +44,14 @@ public class Klasifikacije implements Serializable {
 	private Date timestamp;
 	private boolean aktivan;
     
- //   @OneToMany(mappedBy = "klasifikacije", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @OneToMany(mappedBy = "klasifikacije", orphanRemoval = true, cascade = CascadeType.ALL)
-       
+//  @OneToMany(mappedBy = "klasifikacije", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	
+//  @OneToMany(mappedBy = "klasifikacije", orphanRemoval = true, cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "klasifikacije", fetch = FetchType.LAZY)	
     @Fetch (FetchMode.SELECT)
     @JsonManagedReference
     private Set<Artikli> artikli;
+       
     
     public Klasifikacije(){
     }
