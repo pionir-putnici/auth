@@ -58,7 +58,7 @@
 						<div class='panel-body'>
 							<div class='row'>
 								<div class='col-lg-12'>
-									<form:form method="POST" action="save-zapisnik"
+									<form:form method="POST" action="zapisnici-save"
 										modelAttribute="zapisnici">
 										
 										
@@ -70,13 +70,14 @@
 										<!-- *********************************** -->
 										
 										<!-- Dodati FK zapisnici.dokument_id ->dokument.id -->
+										<c:out value="cout: ${zapisnici.remark}" />
 										
 										<div class='form-group'>
 											<label class='font-roboto'>Dokument na koji se odnosi zapisnik</label>
 											<%-- 									<textarea class="form-control" name='napomena' path='napomena'  placeholder='Unesite napomenu' value="${task.napomena}"></textarea> --%>
 											<select id="selectManuf" class="form-control" name="zapisnikBrDokumenta" >
     											<c:forEach var="role" items="${eDokument}">
-      											<option class="${role.getKey()}" value="${role.getKey()}" ${role.getKey() == zapisnik.dokument_id ? 'selected' : ''}> ${role.getValue()}</option>
+      											<option class="${role.getKey()}" value="${role.getKey()}" ${role.getKey() == zapisnici.dokument.id ? 'selected' : ''}> ${role.getValue()}</option>
     											</c:forEach>
 											</select>
 											<p class="help-block">
@@ -112,6 +113,14 @@
 											<p class="help-block">
 												<form:errors path="remark" class="help-block" />
 											</p>
+										</div>
+										
+										<div class='form-group'>
+										<button type="submit" class="btn-lg button-novi">
+										<i class='fa fa-floppy-o'></i> Save
+										</button>
+											<input type="button" onclick="location.href='dokument.html';"
+										value="Cancel" class="btn-lg button-novi" />
 										</div>
 										
 										</div>

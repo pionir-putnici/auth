@@ -132,7 +132,7 @@
                     <td>{{data.id}}</td>
                     <td>{{data.code}}</td>
                     
-                    <td>{{data.magacini.name}}</td>
+                    <td>{{data.dokument.name}}</td>
                     <td>{{data.partner.name}}</td>
                     <td>{{data.datum | date:"dd.MM.yyyy"}}</td>
                     <td>{{data.iznos | number:2}}</td>

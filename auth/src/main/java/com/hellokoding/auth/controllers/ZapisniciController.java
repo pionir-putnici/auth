@@ -37,6 +37,9 @@ public class ZapisniciController {
 	@Autowired
 	private DokumentRepository dokumentRepository;
 	
+	@Autowired
+	private ZapisniciRepository zapisniciRepository;
+	
 	@RequestMapping(value = "/lista-zapisnika.html")
 	public String MeasureTypesDisplay(HttpServletRequest request) {
 
@@ -71,4 +74,47 @@ public class ZapisniciController {
 
 		return new ModelAndView("zapisniciForm", "zapisnici", aa);
 	}
+	
+	// save zapisnik
+	@RequestMapping(value = "/zapisnici-save", method = RequestMethod.POST)
+	public String addTypeMeasure(@ModelAttribute("zapisnik") @Valid Zapisnici zapisnici, BindingResult result,
+			Model model) { // , @PathVariable int aktivan
+
+		// if (aktivan == 1) {
+		// vrstePaleta.setAktivan(true);
+		// } else {
+		// vrstePaleta.setAktivan(false);
+		// }
+
+		if (result.hasErrors()) {
+			model.addAttribute("error", "error");
+			return "zapisniciForm";
+		}
+
+		// String rr = dokument.getName();
+
+		Long tt = zapisnici.getId();
+		System.out.println("tt je  " + tt);
+
+		// if (dokument.getId() != null) {
+		// PttBrojevi pttBrojevi = new PttBrojevi();
+		// pttBrojevi.setDokument(dokument);
+		// }
+
+		zapisniciRepository.save(zapisnici);
+
+		// request.setAttribute("mode", "MODE_TASKS");
+		// request.setAttribute("title", "Vrste artikala");
+		// request.setAttribute("new_dokument ", "/dokument _new.html");
+		// request.setAttribute("print_dokument ", "/dokument _pdf.html");
+
+		model.addAttribute("mode", "MODE_TASKS");
+		model.addAttribute("title", "Dokuments");
+		model.addAttribute("new_dokument", "/dokument_new.html");
+		model.addAttribute("print_dokument", "/dokument_pdf.html");
+
+		return "redirect:lista-zapisnika.html";
+
+	}
+	// end save zapisnik
 }
