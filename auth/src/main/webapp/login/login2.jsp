@@ -45,11 +45,11 @@
     <section id='credential-container' class='blured-content'>
         <div class='container blured'>
             <div class='row'>
-                <div class='col-xs-6 col-lg-offset-3' style='height:350px;' id='credential-form'>
-                    
+                <div class='col-xs-6 col-xs-offset-3' style='height:350px;' id='credential-form'>                    
                     <div class='row'>
                         <div class='col-lg-12' id='credential-form-title'>
-                            <h1>Evidencija paleta</h1>
+                            <h1>Evidencija ambalaze</h1>
+                            <h3>Pionir d.o.o. Subotica</h3>
                         </div>
                     </div>
                     <div class='row'>

@@ -34,7 +34,7 @@
 						<li><a href='/partner.html'>Komitenti</a></li>
 						<li><a href='/states.html'>Drzave</a></li>	
 						<li><a href='/zipCodes.html'>Zip codes</a></li>
-						<li><a href='/statesAngular.jsp'>States</a>
+<!-- 						<li><a href='/statesAngular.jsp'>States</a> -->
 					</ul>
 				</li>
 				
