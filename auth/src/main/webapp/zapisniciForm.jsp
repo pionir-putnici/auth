@@ -70,24 +70,22 @@
 										<!-- *********************************** -->
 										
 										<!-- Dodati FK zapisnici.dokument_id ->dokument.id -->
-										<c:out value="cout: ${zapisnici.remark}" />
 										
 										<div class='form-group'>
 											<label class='font-roboto'>Dokument na koji se odnosi zapisnik</label>
 											<%-- 									<textarea class="form-control" name='napomena' path='napomena'  placeholder='Unesite napomenu' value="${task.napomena}"></textarea> --%>
-											<select id="selectManuf" class="form-control" name="zapisnikBrDokumenta" >
+											<select id="selectManuf" class="form-control" name="dokument.id" >
     											<c:forEach var="role" items="${eDokument}">
       											<option class="${role.getKey()}" value="${role.getKey()}" ${role.getKey() == zapisnici.dokument.id ? 'selected' : ''}> ${role.getValue()}</option>
     											</c:forEach>
 											</select>
 											<p class="help-block">
-												<form:errors path="remark" class="help-block" />
+												<form:errors path="dokument.id" class="help-block" />
 											</p>
 										</div>
 										
 										<div class='form-group'>
 											<label class='font-roboto'>Napomena</label>
-											<%-- 									<textarea class="form-control" name='napomena' path='napomena'  placeholder='Unesite napomenu' value="${task.napomena}"></textarea> --%>
 											<form:textarea type="text" class="form-control" id="napomena"
 												path="remark" value="zapisnici.remark" rows="4"/>
 											<p class="help-block">
@@ -101,7 +99,7 @@
 											<form:input type="text" class="form-control" id="predao"
 												path="predao" value="${zapisnici.predao}" />
 											<p class="help-block">
-												<form:errors path="remark" class="help-block" />
+												<form:errors path="predao" class="help-block" />
 											</p>
 										</div>
 										
@@ -109,9 +107,9 @@
 											<label class='font-roboto'>Primio</label>
 											<%-- 									<textarea class="form-control" name='napomena' path='napomena'  placeholder='Unesite napomenu' value="${task.napomena}"></textarea> --%>
 											<form:input type="text" class="form-control" id="predao"
-												path="predao" value="${zapisnici.primio}" />
+												path="primio" value="${zapisnici.primio}" />
 											<p class="help-block">
-												<form:errors path="remark" class="help-block" />
+												<form:errors path="predao" class="help-block" />
 											</p>
 										</div>
 										
@@ -119,7 +117,7 @@
 										<button type="submit" class="btn-lg button-novi">
 										<i class='fa fa-floppy-o'></i> Save
 										</button>
-											<input type="button" onclick="location.href='dokument.html';"
+											<input type="button" onclick="location.href='reklamacioni-zapisnici.html';"
 										value="Cancel" class="btn-lg button-novi" />
 										</div>
 										

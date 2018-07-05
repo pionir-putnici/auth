@@ -30,16 +30,15 @@ import com.hellokoding.auth.model.Zapisnici;
 import com.hellokoding.auth.repository.ZapisniciRepository;
 import com.hellokoding.auth.repository.DokumentRepository;
 
-
 @Controller
 public class ZapisniciController {
-	
+
 	@Autowired
 	private DokumentRepository dokumentRepository;
-	
+
 	@Autowired
 	private ZapisniciRepository zapisniciRepository;
-	
+
 	@RequestMapping(value = "/lista-zapisnika.html")
 	public String MeasureTypesDisplay(HttpServletRequest request) {
 
@@ -49,7 +48,7 @@ public class ZapisniciController {
 		request.setAttribute("zapisnici_pdf", "/zapisnici-pdf.html");
 		return "reklamacioni-zapisnici";
 	}
-	
+
 	@RequestMapping(value = "/zapisnici-unos.html", method = RequestMethod.GET)
 	public ModelAndView newTypeArticles(Model model, HttpServletRequest request) {
 		model.addAttribute("title", "Novi reklamacioni zapisnik");
@@ -58,7 +57,7 @@ public class ZapisniciController {
 		// da bi default aktivan bio checked
 		aa.setAktivan(true);
 		Date date = new Date();
-		//aa.setDatumVreme(date);
+		// aa.setDatumVreme(date);
 
 		// dokument
 		Dokument kmp = new Dokument();
@@ -74,7 +73,7 @@ public class ZapisniciController {
 
 		return new ModelAndView("zapisniciForm", "zapisnici", aa);
 	}
-	
+
 	// save zapisnik
 	@RequestMapping(value = "/zapisnici-save", method = RequestMethod.POST)
 	public String addTypeMeasure(@ModelAttribute("zapisnik") @Valid Zapisnici zapisnici, BindingResult result,
@@ -117,4 +116,26 @@ public class ZapisniciController {
 
 	}
 	// end save zapisnik
+
+	// edit zapisnik
+	@RequestMapping(value = "/zapisnici-update.html")
+	public String updateTypeMeasure(@RequestParam Long id, HttpServletRequest request) {
+		request.setAttribute("zapisnici", zapisniciRepository.findById(id));
+		request.setAttribute("mode", "MODE_UPDATE");
+		request.setAttribute("title", "Izmeni zapisnik");
+
+				List<Dokument> dokList = dokumentRepository.findAll();
+
+				Map<Long, String> dokMap = new HashMap<>();
+				HttpSession sess = request.getSession();
+
+				for (Dokument d : dokList) {
+					dokMap.put(d.getId(), d.getBrojDokumenta());
+				}
+				sess.setAttribute("eDokument", dokMap);
+
+				return "zapisniciForm";
+
+	}
+	// end edit zapisnik
 }
