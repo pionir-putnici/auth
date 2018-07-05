@@ -21,9 +21,9 @@ html, body{
         margin-bottom:0;
 }
 
-    .border-bottom-dotted{
+.border-bottom-dotted{
         border-bottom:1px dotted lightgrey;
-    }
+}
     
 .border-bottom{
     border-bottom:1px solid lightgrey;
@@ -53,24 +53,33 @@ html, body{
     margin-top:30px;
 }
 
-    .tableDocuments{
+.tableDocuments{
         width:100%;
         border:1px solid lightgrey;
         font-size:10px;
-    }
+}
     
-    .tableDocuments th{
-        border-top:1px solid lightgrey;
-        border-bottom:1px solid lightgrey;
+.tableDocuments th{
+        border-top:1px solid #51A39D;
+        border-bottom:1px solid #51A39D;
+		border:0;
         padding: 0 2px 0 2px;
-        background-color:lightgrey;
-        color:#fff;
-    }
+        background-color: #51A39D;
+        color: #F2F2F2;
+}
     
-    .tableDocuments tr > td{
-        border-bottom:1px solid lightgrey;
+.tableDocuments tr > td{
+        border-bottom:1px solid #51A39D;
         padding: 0 2px 0 2px;
-    }
+}
+
+#totalAll th{
+	background-color: #06425C;
+}
+
+#article-info p{
+	color: #06425C;
+}
     
 }
 

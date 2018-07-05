@@ -102,8 +102,7 @@
 							</table>
 							<table class='tableDocuments'>
 								<thead id="table-head-first-row">
-									<th style="width: 5%;">Artikal</th>
-									<!-- 								<th style="width: 10%;"></th> -->
+									<th style="width: 5%;">Art:</th>
 									<th style="width: 22.5%;">${aktivniArtikalName}</th>
 									<th style="width: 10%;" class='text-right'>${totalUlaz}</th>
 									<th style="width: 10%;" class='text-right'>${totalIzlaz}</th>
@@ -247,12 +246,12 @@
 
 						<br />
 						<div class='row' id='article-info'>
-							<div class='col-xs-3'>
+							<div class='col-xs-2'>
 								<p>Partner Šifra: ${stavka.idDokument.partner.id}
 									${stavka.idDokument.partner.code}</p>
 								<%-- <p>Id: ${stavka.artikli.id} aktivni ${aktivniArtikal}</p> --%>
 							</div>
-							<div class='col-xs-6'>
+							<div class='col-xs-10'>
 								<p>${stavka.idDokument.partner.name}</p>
 							</div>
 						</div>
@@ -262,19 +261,18 @@
 					<!-- ***************** kraj zaglavlje partner ************* -->
 
 
-					<c:if
-						test="${stampaZaglavljaMagacina==true && karticeStanje=='kartice'}">
+					<c:if test="${stampaZaglavljaMagacina==true && karticeStanje=='kartice'}">
 
 						<c:set value="${false}" var="stampaZaglavljaMagacina"></c:set>
 
 						<!-- 						<br/> -->
 						<div class='row' id='article-info'>
-							<div class='col-xs-3'>
+							<div class='col-xs-2'>
 								<p>Magacin Šifra: ${stavka.idDokument.magacini.id}
 									${stavka.idDokument.magacini.code}</p>
 								<%-- <p>Id: ${stavka.artikli.id} aktivni ${aktivniArtikal}</p> --%>
 							</div>
-							<div class='col-xs-6'>
+							<div class='col-xs-10'>
 								<p>${stavka.idDokument.magacini.name}</p>
 							</div>
 						</div>
@@ -290,12 +288,12 @@
 						<c:set value="${false}" var="stampaZaglavljaArtikla"></c:set>
 
 						<div class='row' id='article-info'>
-							<div class='col-xs-3'>
+							<div class='col-xs-2'>
 								<p>Artikal Šifra: ${stavka.artikli.id}
 									${stavka.artikli.code}</p>
 								<%-- <p>Id: ${stavka.artikli.id} aktivni ${aktivniArtikal}</p> --%>
 							</div>
-							<div class='col-xs-2'>
+							<div class='col-xs-10'>
 								<p>${stavka.artikli.name}</p>
 							</div>
 						</div>
@@ -404,7 +402,7 @@
 						<table class='tableDocuments'>
 							<thead id="table-head-first-row">
 								<!-- 								<th style="width: 5%;"></th> -->
-								<th style="width: 5%;">Artikal</th>
+								<th style="width: 5%;">Art:</th>
 								<th style="width: 22.5%;">${aktivniArtikalName}</th>
 								<th style="width: 10%;" class='text-right'>${totalUlaz}</th>
 								<th style="width: 10%;" class='text-right'>${totalIzlaz}</th>
@@ -481,7 +479,7 @@
 						<br />
 						<!-- ************************* UKUPNO SVEGA ********************************  -->
 						</table>
-						<table class='tableDocuments'>
+						<table class='tableDocuments' id='totalAll'>
 							<thead id="table-head-first-row">
 								<!-- 								<th style="width: 5%;"></th> -->
 								<!-- 								<th style="width: 10%;">SVEGA:</th> -->
