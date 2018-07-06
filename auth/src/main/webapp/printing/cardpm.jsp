@@ -92,8 +92,8 @@
 							<c:set value="${false}" var="stampaZaglavljaMagacina"></c:set>							
 							<c:set var="aktivniMagacin" value="0" />
 							
-									<c:out value=${stampaZaglavljaMagacina}></c:out>
-									<c:out value="${aktivniMagacin}"></c:out>							
+<%-- 									<c:out value=${stampaZaglavljaMagacina}></c:out> --%>
+<%-- 									<c:out value="${aktivniMagacin}"></c:out>							 --%>
 							
 							<c:set value="${false}" var="stampaZaglavljaPartnera"></c:set>							
 							<c:set var="aktivniPartner" value="0" />
@@ -159,11 +159,8 @@
 											</div>
 										</div>
 									</c:if>
-
-									<c:out value="${stampaZaglavljaMagacina}"></c:out>
-									<c:out value="${aktivniMagacin}"></c:out>
-									
-									<c:if test="${'stampaZaglavljaMagacina'== false}"> 													
+									 
+									<c:if test="${'stampaZaglavljaMagacina'== false}"> 		 											
 										<c:set value="${true}" var="stampaZaglavljaMagacina"></c:set>
 										<c:set value="${stavka.idDokument.magacini.id}" var="aktivniMagacin"></c:set>	
 										<div class='row spacer-top-15' id='article-info-storage-location'>

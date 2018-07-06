@@ -147,13 +147,11 @@ ul>li, a {
 														<td>{{data.dokument.partner.name}}</td>
 														<td>{{data.timestamp | date:"dd.MM.yyyy"}}</td>
 														<td><a
-															href="dokumentstavkefinal.html?page=0&id={{data.id}}"><i
-																class="fa fa-clone edit-delete-icon"></i></a> <a
 															href="printZapisnik.html?id={{data.id}}" target="_blank">
 																<i class="fa fa-print edit-delete-icon"></i>
 														</a> <a href="zapisnici-update.html?id={{data.id}}"><i
 																class="fa fa-pencil-square-o edit-delete-icon"></i></a> <a
-															href="zapisnik-delete.html?id={{data.id}}"
+															href="zapisnici-delete.html?id={{data.id}}"
 															onClick="return ConfirmDelete();"><i
 																class="fa fa-trash-o edit-delete-icon"></i></a></td>
 													</tr>

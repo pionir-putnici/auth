@@ -1,5 +1,6 @@
 package com.hellokoding.auth.controllers;
 
+import java.util.Collection;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -12,6 +13,10 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -22,6 +27,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.jasperreports.JasperReportsPdfView;
 
+import com.hellokoding.auth.model.Artikli;
 import com.hellokoding.auth.model.Dokument;
 import com.hellokoding.auth.model.Magacini;
 import com.hellokoding.auth.model.Partner;
@@ -40,7 +46,7 @@ public class ZapisniciController {
 	private ZapisniciRepository zapisniciRepository;
 
 	@RequestMapping(value = "/lista-zapisnika.html")
-	public String MeasureTypesDisplay(HttpServletRequest request) {
+	public String ZapisniciDisplay(HttpServletRequest request) {
 
 		request.setAttribute("mode", "MODE_TASKS");
 		request.setAttribute("title", "Zapisnici");
@@ -50,7 +56,7 @@ public class ZapisniciController {
 	}
 
 	@RequestMapping(value = "/zapisnici-unos.html", method = RequestMethod.GET)
-	public ModelAndView newTypeArticles(Model model, HttpServletRequest request) {
+	public ModelAndView newZapisnici(Model model, HttpServletRequest request) {
 		model.addAttribute("title", "Novi reklamacioni zapisnik");
 
 		Zapisnici aa = new Zapisnici();
@@ -76,7 +82,7 @@ public class ZapisniciController {
 
 	// save zapisnik
 	@RequestMapping(value = "/zapisnici-save", method = RequestMethod.POST)
-	public String addTypeMeasure(@ModelAttribute("zapisnik") @Valid Zapisnici zapisnici, BindingResult result,
+	public String addZapisnici(@ModelAttribute("zapisnici") @Valid Zapisnici zapisnici, BindingResult result,
 			Model model) { // , @PathVariable int aktivan
 
 		// if (aktivan == 1) {
@@ -119,7 +125,8 @@ public class ZapisniciController {
 
 	// edit zapisnik
 	@RequestMapping(value = "/zapisnici-update.html")
-	public String updateTypeMeasure(@RequestParam Long id, HttpServletRequest request) {
+	public String updateZapisnici(@RequestParam Long id, HttpServletRequest request) {
+		
 		request.setAttribute("zapisnici", zapisniciRepository.findById(id));
 		request.setAttribute("mode", "MODE_UPDATE");
 		request.setAttribute("title", "Izmeni zapisnik");
@@ -137,5 +144,25 @@ public class ZapisniciController {
 				return "zapisniciForm";
 
 	}
+	
+@PreAuthorize("hasAnyRole('ADMIN')")
+    
+	@RequestMapping(value = "/zapisnici-delete.html")
+	public String deleteZapisnici(@RequestParam Long id, HttpServletRequest request) {
+
+		Zapisnici aa = zapisniciRepository.findById(id);
+		
+//		if (!aa.getDokument().isEmpty()) {	
+//			return "redirect:414.html?ops=Article items exist in card report, can't delete article!";
+//		}
+		
+		zapisniciRepository.delete(aa);
+		request.setAttribute("mode", "MODE_TASKS");
+		request.setAttribute("title", "Artikli");
+
+		return "redirect:lista-zapisnika.html"; 
+
+	}
+		
 	// end edit zapisnik
 }

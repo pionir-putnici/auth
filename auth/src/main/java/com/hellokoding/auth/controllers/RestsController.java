@@ -281,7 +281,7 @@ public class RestsController {
 	@RequestMapping(path="/dokumenti", method=RequestMethod.GET)
 	public List<Dokument> getJsonDokumenti(){
 		
-		List<Dokument> aa = dokumentRepository.findAll();
+		List<Dokument> aa = dokumentRepository.findAll(); // .findAllByOrderByIdDesc(); //
 	
 		 for (Iterator iterator = aa.iterator(); iterator.hasNext();) {
 			 Dokument dokument = (Dokument) iterator.next();

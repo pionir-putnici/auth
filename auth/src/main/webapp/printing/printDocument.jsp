@@ -32,7 +32,7 @@
                     </div>
                     <div class='row'>
                         <div class='col-xs-6'>Adresa </div>
-                        <div class='col-xs-6'>Adresa</div>
+                        <div class='col-xs-6'>${dokument.magacini.adresa}</div>
                     </div>
                     <div class='row'>
                         <div class='col-xs-6'>Telefon</div>

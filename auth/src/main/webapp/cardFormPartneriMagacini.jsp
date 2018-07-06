@@ -55,7 +55,7 @@
 													<div class='col-lg-6'>
 														<br />
 														<button type="submit" class="btn-lg button-novi">
-															<i class='glyphicon glyphicon-plus'></i> Dodaj artikal
+															<i class='glyphicon glyphicon-plus'></i> Izaberi artikal
 														</button>
 													</div>
 												</div>
@@ -70,7 +70,7 @@
 														<label for="allWarehouses">Partner: </label> <input
 															class='input-warehouse-article form-control'
 															list="allWarehouses" name="id_magacin" multiple
-															placeholder='Insert warehouses' autocomplete='off'>
+															placeholder='Insert partner' autocomplete='off'>
 														<datalist id="allWarehouses">
 															<c:forEach items="${allWarehouses}" var="warehouse">
 																<option value="${warehouse.id}">${warehouse.code}
@@ -83,7 +83,7 @@
 														<br />
 
 														<button type="submit" class="btn-lg button-novi">
-															<i class='glyphicon glyphicon-plus'></i> Dodaj partnera
+															<i class='glyphicon glyphicon-plus'></i> Izaberi partnera
 														</button>
 													</div>
 												</div>
@@ -98,6 +98,7 @@
 											<div class='row' id='selected-warehouse-articles'>
 
 												<form method="POST" action="find_article_for_warehouse.html">
+												
 													<div class='col-lg-6'>
 
 														<div class='row'>
@@ -107,7 +108,7 @@
 														</div>
 
 														<div class='row'>
-															<div class='col-lg-8'>
+															<div class='col-lg-10'>
 																<select name="select1" size="10" multiple="multiple"
 																	tabindex="1">
 
@@ -121,7 +122,7 @@
 
 																</select>
 															</div>
-															<div class='col-lg-4'>
+															<div class='col-lg-2'>
 																<button type="submit"
 																	class="btn-lg button-novi inline-button" name="action"
 																	value="cancel-partner-magacin">
@@ -138,23 +139,22 @@
 																<h4>Selected articles</h4>
 															</div>
 														</div>
-														
-													<div class='row'>
-															<div class='col-lg-8'>
+
+														<div class='row'>
+															<div class='col-lg-10'>
 																<select name="select2" size="10" multiple="multiple"
 																	tabindex="1" class="inline-button">
 
-																	<c:forEach items="${sessionScope.izabraneVrednostiArtikliPma}"
+																	<c:forEach
+																		items="${sessionScope.izabraneVrednostiArtikliPma}"
 																		var="pera">
-																		<option value="${pera.id}"
-																			selected>
-																			${pera.code}
-																			${pera.name}</option>
+																		<option value="${pera.id}" selected>
+																			${pera.code} ${pera.name}</option>
 																	</c:forEach>
 
 																</select>
 															</div>
-															<div class='col-lg-4'>
+															<div class='col-lg-2'>
 																<button type="submit"
 																	class="btn-lg button-novi inline-button" name="action"
 																	value="cancel-articlep-magacin">
@@ -244,41 +244,41 @@
 										}
 									%>
 
-<!-- 									<h2>Session Info From A JSP</h2> -->
+									<!-- 									<h2>Session Info From A JSP</h2> -->
 
-<!-- 									The session id: -->
+									<!-- 									The session id: -->
 
-<%-- 									<c:out value="${pageContext.session.id}" /> --%>
+									<%-- 									<c:out value="${pageContext.session.id}" /> --%>
 
-<!-- 									<h3>Session date values formatted as Dates</h3> -->
+									<!-- 									<h3>Session date values formatted as Dates</h3> -->
 
-<%-- 									<jsp:useBean id="timeValues" class="java.util.Date" /> --%>
+									<%-- 									<jsp:useBean id="timeValues" class="java.util.Date" /> --%>
 
-<%-- 									<c:set target="${timeValues}" --%>
-<%-- 										value="${pageContext.session.creationTime}" property="time" /> --%>
-<!-- 									The creation time: -->
-<%-- 									<fmt:formatDate value="${timeValues}" type="both" --%>
-<%-- 										dateStyle="medium" /> --%>
+									<%-- 									<c:set target="${timeValues}" --%>
+									<%-- 										value="${pageContext.session.creationTime}" property="time" /> --%>
+									<!-- 									The creation time: -->
+									<%-- 									<fmt:formatDate value="${timeValues}" type="both" --%>
+									<%-- 										dateStyle="medium" /> --%>
 
-<!-- 									<br> -->
-<!-- 									<br> -->
+									<!-- 									<br> -->
+									<!-- 									<br> -->
 
-<%-- 									<c:set target="${timeValues}" --%>
-<%-- 										value="${pageContext.session.lastAccessedTime}" --%>
-<%-- 										property="time" /> --%>
-<!-- 									The last accessed time: -->
+									<%-- 									<c:set target="${timeValues}" --%>
+									<%-- 										value="${pageContext.session.lastAccessedTime}" --%>
+									<%-- 										property="time" /> --%>
+									<!-- 									The last accessed time: -->
 
-<%-- 									<fmt:formatDate value="${timeValues}" type="both" --%>
-<%-- 										dateStyle="short" /> --%>
+									<%-- 									<fmt:formatDate value="${timeValues}" type="both" --%>
+									<%-- 										dateStyle="short" /> --%>
 
-<%-- 									<c:out value="${timeValues}" /> --%>
-									
-<!-- 									<h2>izabraneVrednostiArtikliPma</h2> -->
-<%-- 									<c:out value="${sessionScope.izabraneVrednostiArtikliPma}" /> --%>
+									<%-- 									<c:out value="${timeValues}" /> --%>
 
-<!-- 									<h2>izabraneVrednostiArtikliPma1</h2> -->
-<%-- 									<c:out value="${izabraneVrednostiArtikliPma1}" /> --%>
-									
+									<!-- 									<h2>izabraneVrednostiArtikliPma</h2> -->
+									<%-- 									<c:out value="${sessionScope.izabraneVrednostiArtikliPma}" /> --%>
+
+									<!-- 									<h2>izabraneVrednostiArtikliPma1</h2> -->
+									<%-- 									<c:out value="${izabraneVrednostiArtikliPma1}" /> --%>
+
 								</div>
 							</div>
 

@@ -86,7 +86,35 @@
 				<%
 					SpecifikacijaKartica sk1 = new SpecifikacijaKartica();
 				%>
-
+					<c:if
+						test="${karticeStanje=='stanje'}">
+						<table class='tableDocuments'>
+							<thead id="table-head-first-row">
+								<th></th>
+								<th colspan="3"></th>
+								<th class='text-right'>KOLICINA</th>
+								<th class='text-right'>KOLICINA</th>
+								<th></th>
+								<th></th>
+								<th class='text-right'>IZNOS</th>
+								<th class='text-right'>IZNOS</th>
+								<th></th>
+							</thead>
+							<thead id='table-head-second-row'>
+								<th style="width: 5%;"></th>
+								<th style="width: 10%;"></th>
+								<th style="width: 5%;"></th>
+								<th style="width: 5%;"></th>
+								<th style="width: 10%;" class='text-right'>ULAZ</th>
+								<th style="width: 10%;" class='text-right'>IZLAZ</th>
+								<th style="width: 10%;" class='text-right'>STANJE</th>
+								<th style="width: 10%;" class='text-right'>CENA</th>
+								<th style="width: 10%;" class='text-right'>ULAZ</th>
+								<th style="width: 10%;" class='text-right'>IZLAZ</th>
+								<th style="width: 10%;" class='text-right'>STANJE</th>
+							</thead>
+							</c:if>
+							
 				<c:forEach items="${stavkart}" var="stavka">
 
 					<%--  					<c:out value="${receiveNewsletter}" />  --%>
@@ -102,8 +130,15 @@
 							</table>
 							<table class='tableDocuments'>
 								<thead id="table-head-first-row">
-									<th style="width: 5%;">Art:</th>
+									<th style="width: 5%;"></th>
+					<c:if
+						test="${karticeStanje=='stanje'}">									
 									<th style="width: 22.5%;">${aktivniArtikalName}</th>
+					</c:if>
+					<c:if
+						test="${karticeStanje=='kartice'}">									
+									<th style="width: 22.5%;">Svega artikal:</th>
+					</c:if>					
 									<th style="width: 10%;" class='text-right'>${totalUlaz}</th>
 									<th style="width: 10%;" class='text-right'>${totalIzlaz}</th>
 									<th style="width: 10%;" class='text-right'>${totalKol}</th>
@@ -166,8 +201,15 @@
 							<table class='tableDocuments'>
 								<thead id="table-head-first-row">
 									<!-- 								<th style="width: 5%;"></th> -->
-									<th style="width: 5%;">Mag:</th>
+ 									<th style="width: 5%;"></th>     
+					<c:if
+						test="${karticeStanje=='stanje'}">									
 									<th style="width: 22.5%;">${aktivniMagacinName}</th>
+					</c:if>
+					<c:if
+						test="${karticeStanje=='kartice'}">									
+									<th style="width: 22.5%;">Svega magacin:</th>
+					</c:if>					
 									<th style="width: 10%;" class='text-right'>${totalUlazm}</th>
 									<th style="width: 10%;" class='text-right'>${totalIzlazm}</th>
 									<th style="width: 10%;" class='text-right'>${totalKolm}</th>
@@ -192,7 +234,7 @@
 							value="${stavka.idDokument.magacini.id}" />
 						<c:set var="aktivniMagacinName"
 							value="${stavka.idDokument.magacini.name}" />
-
+						<br/>
 						<!-- ************************* KRAJ UKUPNO ZA MAGACIN ********************************  -->
 
 
@@ -201,6 +243,7 @@
 
 					<c:if test="${aktivniPartner!=stavka.idDokument.partner.id }">
 						<%-- <c:out value="artikli nisu isti" /> --%>
+
 						</tbody>
 						</table>
 						<c:if test="${firstTime==false}">
@@ -208,7 +251,14 @@
 								<thead id="table-head-first-row">
 									<!-- 								<th style="width: 5%;"></th> -->
 									<th style="width: 5%;">Part:</th>
+					<c:if
+						test="${karticeStanje=='stanje'}">			
 									<th style="width: 22.5%;">${aktivniPartnerName}</th>
+					</c:if>				
+					<c:if
+						test="${karticeStanje=='kartice'}">									
+									<th style="width: 22.5%;"></th>
+					</c:if>					
 									<th style="width: 10%;" class='text-right'>${totalUlazp}</th>
 									<th style="width: 10%;" class='text-right'>${totalIzlazp}</th>
 									<th style="width: 10%;" class='text-right'>${totalKolp}</th>
@@ -232,7 +282,7 @@
 							value="${stavka.idDokument.partner.id}" />
 						<c:set var="aktivniPartnerName"
 							value="${stavka.idDokument.partner.name}" />
-						<br />
+<!-- 						<br /> -->
 					</c:if>
 
 
@@ -247,7 +297,7 @@
 						<br />
 						<div class='row' id='article-info'>
 							<div class='col-xs-2'>
-								<p>Partner Šifra: ${stavka.idDokument.partner.id}
+								<p>Partner: ${stavka.idDokument.partner.id}
 									${stavka.idDokument.partner.code}</p>
 								<%-- <p>Id: ${stavka.artikli.id} aktivni ${aktivniArtikal}</p> --%>
 							</div>
@@ -268,7 +318,7 @@
 						<!-- 						<br/> -->
 						<div class='row' id='article-info'>
 							<div class='col-xs-2'>
-								<p>Magacin Šifra: ${stavka.idDokument.magacini.id}
+								<p>Magacin: ${stavka.idDokument.magacini.id}
 									${stavka.idDokument.magacini.code}</p>
 								<%-- <p>Id: ${stavka.artikli.id} aktivni ${aktivniArtikal}</p> --%>
 							</div>
@@ -289,7 +339,7 @@
 
 						<div class='row' id='article-info'>
 							<div class='col-xs-2'>
-								<p>Artikal Šifra: ${stavka.artikli.id}
+								<p>Artikal: ${stavka.artikli.id}
 									${stavka.artikli.code}</p>
 								<%-- <p>Id: ${stavka.artikli.id} aktivni ${aktivniArtikal}</p> --%>
 							</div>
@@ -403,7 +453,14 @@
 							<thead id="table-head-first-row">
 								<!-- 								<th style="width: 5%;"></th> -->
 								<th style="width: 5%;">Art:</th>
+					<c:if
+						test="${karticeStanje=='stanje'}">								
 								<th style="width: 22.5%;">${aktivniArtikalName}</th>
+					</c:if>
+					<c:if
+						test="${karticeStanje=='kartice'}">									
+									<th style="width: 22.5%;"></th>
+					</c:if>					
 								<th style="width: 10%;" class='text-right'>${totalUlaz}</th>
 								<th style="width: 10%;" class='text-right'>${totalIzlaz}</th>
 								<th style="width: 10%;" class='text-right'>${totalKol}</th>
@@ -432,7 +489,14 @@
 							<thead id="table-head-first-row">
 								<!-- 								<th style="width: 5%;"></th> -->
 								<th style="width: 5%;">Mag:</th>
+					<c:if
+						test="${karticeStanje=='stanje'}">								
 								<th style="width: 22.5%;">${aktivniMagacinName}</th>
+					</c:if>
+					<c:if
+						test="${karticeStanje=='kartice'}">									
+									<th style="width: 22.5%;"></th>
+					</c:if>								
 								<th style="width: 10%;" class='text-right'>${totalUlazm}</th>
 								<th style="width: 10%;" class='text-right'>${totalIzlazm}</th>
 								<th style="width: 10%;" class='text-right'>${totalKolm}</th>
@@ -450,7 +514,9 @@
 						<c:set var="totalIzlazm" value="0" />
 						<c:set var="totalDugujem" value="0" />
 						<c:set var="totalPotrazujem" value="0" />
-
+						
+						<br/>
+						
 						<!-- 						<br /> -->
 						<!-- ************************* UKUPNO ZA PARTNERA ********************************  -->
 
@@ -459,7 +525,14 @@
 							<thead id="table-head-first-row">
 								<!-- 								<th style="width: 5%;"></th> -->
 								<th style="width: 5%;">Part:</th>
+					<c:if
+						test="${karticeStanje=='stanje'}">								
 								<th style="width: 22.5%;" colspan="3";">${aktivniPartnerName}</th>
+					</c:if>
+					<c:if
+						test="${karticeStanje=='stanje'}">									
+									<th style="width: 22.5%;"></th>
+					</c:if>					
 								<th style="width: 10%;" class='text-right'>${totalUlazp}</th>
 								<th style="width: 10%;" class='text-right'>${totalIzlazp}</th>
 								<th style="width: 10%;" class='text-right'>${totalKolp}</th>

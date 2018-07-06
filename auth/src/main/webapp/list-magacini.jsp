@@ -14,7 +14,7 @@
 
 				<div class='col-lg-12 '>
 					<div class='panel panel-default margin-top-10 border-radius-0'>
-						<div class='panel-heading'>Magacini</div>
+						<div class='panel-heading'>Magacini - objekti</div>
 						<div class='panel-body'>
 							<div class='row spacer-bottom'>
 								<div class='col-lg-12'>

@@ -71,6 +71,9 @@
 										
 										<!-- Dodati FK zapisnici.dokument_id ->dokument.id -->
 										
+										<form:input type="hidden" name="id" path="id"
+											value="${zapisnici.id}" />										
+										
 										<div class='form-group'>
 											<label class='font-roboto'>Dokument na koji se odnosi zapisnik</label>
 											<%-- 									<textarea class="form-control" name='napomena' path='napomena'  placeholder='Unesite napomenu' value="${task.napomena}"></textarea> --%>
