@@ -1,8 +1,14 @@
 
-@page{
-    margin: 5mm 10mm 5mm 10mm;
-    width:100%;
-    padding:0;
+/* @page{ */
+/*     margin: 5mm 10mm 5mm 10mm; */
+/*     width:100%; */
+/*     padding:0; */
+/* } */
+
+@media print{
+	.noprint{
+		display: none; !important
+	}
 }
 
 
@@ -15,6 +21,20 @@ html, body{
     margin:0 auto;
     -webkit-print-color-adjust: exact;
 
+}
+
+#signatureLine #signatureHolder1, #signatureHolder2{
+	padding:0;
+	margin:0;
+}
+
+.clear-padding-margin{
+	padding:0;
+	margin:0;
+}
+
+.clear-padding{
+	padding:0;
 }
     
 .partner-heading{
@@ -52,26 +72,8 @@ html, body{
 .spacer-top-30{
     margin-top:30px;
 }
+    
 
-.tableDocuments{
-        width:100%;
-        border:1px solid lightgrey;
-        font-size:10px;
-}
-    
-.tableDocuments th{
-        border-top:1px solid #51A39D;
-        border-bottom:1px solid #51A39D;
-		border:0;
-        padding: 0 2px 0 2px;
-        background-color: #51A39D;
-        color: #F2F2F2;
-}
-    
-.tableDocuments tr > td{
-        border-bottom:1px solid #51A39D;
-        padding: 0 2px 0 2px;
-}
 
 #totalAll th{
 	background-color: #06425C;
@@ -79,8 +81,6 @@ html, body{
 
 #article-info p{
 	color: #06425C;
-}
-    
 }
 
 .remark-heading{
@@ -135,10 +135,112 @@ html, body{
 	page-break-before: always;
 }
 
+/* Page header start */
+
+#printPageHeader{
+	font-size:12px;
+}
+
+#printPageHeader ul{
+	list-style-type:none;
+	text-decoration:none;
+	padding:0;
+	margin:0;
+	font-size:12px;
+}
+
+#printPageHeader h2{
+	font-size:18px;
+	letter-spacing:1px;
+	text-decoration:underline;
+	font-weight:bold;
+	margin:15px 0 0 0;
+	padding:0;
+	text-transform:uppercase;
+}
+
+#pageHeaderContainer{
+	display:flex;
+}
+
+#pageHeaderContainer .topHeaderContainer{
+	flex: 1;
+}
+
+/* Page header end */
+
+/* Page body start */
+
+.tableDocuments{
+    width:100%;
+    border:1px solid #51A39D;
+}
+
+.tableDocuments th{
+	font-size:12px;
+	border:1px solid #51A39D;
+    padding: 0 2px 0 2px;
+    background-color: #51A39D;
+    color: #F2F2F2;
+}
+    
+.tableDocuments tr > td{
+	font-size:11px;
+    border-bottom:1px solid #51A39D;
+    padding: 0 2px 0 2px;
+}
+
+#totalAmount .tableDocuments{
+	border: 1px solid #51A39D;
+}
+
+#totalAmount .tableDocuments tr>td{
+	font-size:12px;
+	background-color: #51A39D;
+	color:#f2f2f2;
+	font-weight:bold;
+}
+
+/* Page body end */
+
+/* Page footer start */
+
+#printPageFooter #remarkTitle{
+	
+}
+
+#printPageFooter #remarkTitle h3{
+	font-size:13px;
+	font-weight:bold;
+}
+
+#printPageFooter hr {
+    display: block;
+    height: 1px;
+    border: 0;
+    border-top: 1px solid #51A39D;
+    margin: 1em 0;
+    padding: 0; 
+}
+
+
+#printPageFooter #remarkBody p{
+	font-size:11px;
+}
+
+#printPageFooter #signatureLineLeft, #signatureLineRight{
+	margin-top:20px;
+}
+
+
+
+/* Page footer end */
+
+
+
+
 
     
 }
-
-*/
 
     
