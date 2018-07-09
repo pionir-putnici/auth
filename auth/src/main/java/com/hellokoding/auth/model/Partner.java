@@ -50,8 +50,8 @@ public class Partner implements Serializable {
     private String telefon;    
     private Boolean aktivan;
     private Date timestamp;
-    private Long ptt_broj_id;
-    private String ptt_broj_naziv;
+    // private Long ptt_broj_id;
+    // private String ptt_broj_naziv;
     private String slika;
     private String video;
     private String zvuk;
@@ -187,21 +187,21 @@ public class Partner implements Serializable {
 		this.telefon = telefon;
 	}
 
-	public Long getPtt_broj_id() {
-		return ptt_broj_id;
-	}
+//	public Long getPtt_broj_id() {
+//		return ptt_broj_id;
+//	}
+//
+//	public void setPtt_broj_id(Long ptt_broj_id) {
+//		this.ptt_broj_id = ptt_broj_id;
+//	}
 
-	public void setPtt_broj_id(Long ptt_broj_id) {
-		this.ptt_broj_id = ptt_broj_id;
-	}
-
-	public String getPtt_broj_naziv() {
-		return ptt_broj_naziv;
-	}
-
-	public void setPtt_broj_naziv(String ptt_broj_naziv) {
-		this.ptt_broj_naziv = ptt_broj_naziv;
-	}
+//	public String getPtt_broj_naziv() {
+//		return ptt_broj_naziv;
+//	}
+//
+//	public void setPtt_broj_naziv(String ptt_broj_naziv) {
+//		this.ptt_broj_naziv = ptt_broj_naziv;
+//	}
 
 	public String getSlika() {
 		return slika;

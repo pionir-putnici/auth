@@ -36,7 +36,7 @@ import com.hellokoding.auth.repository.MagaciniRepository;
 import com.hellokoding.auth.repository.TypesOfDocumentsRepository;
 
 @Controller
-public class DokumentController {
+public class MmpController {
 	@Autowired
 	private DokumentRepository dokumentRepository;
 
@@ -58,18 +58,18 @@ public class DokumentController {
 	@Autowired
 	private DokumentStavkeRepository dokumentStavkeRepository;
 
-	@RequestMapping(value = "/dokument.html")
-	public String MeasureTypesDisplay(HttpServletRequest request) {
+	@RequestMapping(value = "/mmp.html")
+	public String MmpDisplay(HttpServletRequest request) {
 
 		request.setAttribute("mode", "MODE_TASKS");
-		request.setAttribute("title", "Dokuments");
-		request.setAttribute("new_item", "/dokument_new.html");
-		request.setAttribute("print_item", "/dokument_pdf.html");
-		return "dokument";
+		request.setAttribute("title", "Medjumagacinski dokumenti");
+		request.setAttribute("new_item", "/mmp_new.html");
+		request.setAttribute("print_item", "/mmp_pdf.html");
+		return "mmp";
 	}
 
-	@RequestMapping(value = "/dokument_new.html", method = RequestMethod.GET)
-	public ModelAndView newTypeArticles(Model model, HttpServletRequest request) {
+	@RequestMapping(value = "/mmp_new.html", method = RequestMethod.GET)
+	public ModelAndView newMmp(Model model, HttpServletRequest request) {
 		model.addAttribute("title", "New dokument");
 		// model.addAttribute("model_atribut", "dokument");
 
@@ -91,8 +91,6 @@ public class DokumentController {
 		}
 		sess.setAttribute("ePartner", deptp);
 
-		// magacini
-		// Magacini km = new Magacini();
 		List<Magacini> deptList = magaciniRepository.findAll();
 
 		Map<Long, String> dept = new HashMap<>();
@@ -102,12 +100,11 @@ public class DokumentController {
 			dept.put(d.getId(), d.getName());
 		}
 		
-		// sess.setAttribute("eMagacini", dept);
 		sess.setAttribute("eMagacini", deptList);
 
 		// Vrste dokumenata
 		// TypesOfDocuments km = new TypesOfDocuments();
-		List<TypesOfDocuments> tdList = typesOfDocumentsRepository.dokTypeNot2(); // .findAll();
+		List<TypesOfDocuments> tdList = typesOfDocumentsRepository.dokTypeIs2(); // .findAll();
 
 		Map<Long, String> tdl = new HashMap<>();
 
@@ -116,24 +113,17 @@ public class DokumentController {
 		}
 		sess.setAttribute("eTypesOfDocuments", tdl);
 
-		return new ModelAndView("dokumentForm", "dokument", aa);
-		// return new ModelAndView("vrstePaletaUnosForm", "vrstePaleta", new
-		// VrstePaleta());
+		return new ModelAndView("mmpForm", "dokument", aa);
+
 	}
 
-	@RequestMapping(value = "/save_dokument.html", method = RequestMethod.POST)
-	public String addTypeMeasure(@ModelAttribute("dokument") @Valid Dokument dokument, BindingResult result,
+	@RequestMapping(value = "/save_mmp.html", method = RequestMethod.POST)
+	public String addMmp(@ModelAttribute("dokument") @Valid Dokument dokument, BindingResult result,
 			Model model) { // , @PathVariable int aktivan
-
-		// if (aktivan == 1) {
-		// vrstePaleta.setAktivan(true);
-		// } else {
-		// vrstePaleta.setAktivan(false);
-		// }
 
 		if (result.hasErrors()) {
 			model.addAttribute("error", "error");
-			return "dokumentForm";
+			return "mmpForm";
 		}
 
 		// String rr = dokument.getName();
@@ -141,10 +131,6 @@ public class DokumentController {
 		Long tt = dokument.getId();
 		System.out.println("tt je  " + tt);
 
-		// if (dokument.getId() != null) {
-		// PttBrojevi pttBrojevi = new PttBrojevi();
-		// pttBrojevi.setDokument(dokument);
-		// }
 
 		if (tt == null) {
 			Long ww = dokumentRepository.max_za_vrstu_dokumenta(dokument.getTypesOfDocuments().getId());
@@ -156,27 +142,25 @@ public class DokumentController {
 			dokument.setInterniBrojDokumenta(ww);
 		}
 
+		dokument.setPartner2(dokument.getPartner());
+		dokument.setTypesofdocuments2(dokument.getTypesOfDocuments());
+		
 		dokumentRepository.save(dokument);
-
-		// request.setAttribute("mode", "MODE_TASKS");
-		// request.setAttribute("title", "Vrste artikala");
-		// request.setAttribute("new_dokument ", "/dokument _new.html");
-		// request.setAttribute("print_dokument ", "/dokument _pdf.html");
 
 		model.addAttribute("mode", "MODE_TASKS");
 		model.addAttribute("title", "Dokuments");
-		model.addAttribute("new_dokument", "/dokument_new.html");
-		model.addAttribute("print_dokument", "/dokument_pdf.html");
+		model.addAttribute("new_mmp", "/mmp_new.html");
+		model.addAttribute("print_mmp", "/mmp_pdf.html");
 
-		return "redirect:dokument.html";
+		return "redirect:mmp.html";
 
 	}
 
-	@RequestMapping(value = "/update_dokument.html")
-	public String updateTypeMeasure(@RequestParam Long id, HttpServletRequest request) {
+	@RequestMapping(value = "/update_mmp.html")
+	public String updateMmp(@RequestParam Long id, HttpServletRequest request) {
 		request.setAttribute("dokument", dokumentRepository.findOne(id));
 		request.setAttribute("mode", "MODE_UPDATE");
-		request.setAttribute("title", "Update dokument");
+		request.setAttribute("title", "Update MMP dokument");
 
 		// Magacini km = new Magacini();
 		List<Magacini> deptList = magaciniRepository.findAll();
@@ -203,19 +187,17 @@ public class DokumentController {
 
 		Map<Long, String> deptp = new HashMap<>();
 
-		// HttpSession sess = request.getSession();
-
 		for (Partner d : partList) {
 			deptp.put(d.getId(), d.getName());
 			String tt = d.getName();
 		}
 		sess.setAttribute("ePartner", deptp);
 
-		return "dokumentForm";
+		return "mmpForm";
 	}
 
-	@RequestMapping(value = "/delete_dokument.html")
-	public String deleteTypeMeasure(@RequestParam Long id, HttpServletRequest request) {
+	@RequestMapping(value = "/delete_mmp.html")
+	public String deleteMmp(@RequestParam Long id, HttpServletRequest request) {
 
 		try {
 		dokumentRepository.delete(id);
@@ -224,11 +206,11 @@ public class DokumentController {
 	{
 	    return "redirect:414.html?ops=Can't delete record!";
 	}
-		return "redirect:dokument.html";
+		return "redirect:mmp.html";
 	}
 
-	@RequestMapping(path = "/dokument_pdf.html", method = RequestMethod.GET)
-	public ModelAndView printTypeMeasureReport() {
+	@RequestMapping(path = "/mmp_pdf.html", method = RequestMethod.GET)
+	public ModelAndView printMmpReport() {
 
 		JasperReportsPdfView view = new JasperReportsPdfView();
 		view.setUrl("classpath:rpt_Items1.jrxml");
@@ -244,40 +226,40 @@ public class DokumentController {
 		return new ModelAndView(view, params);
 	}
 
-	@RequestMapping(path = "/printing/printDocument.html", method = RequestMethod.GET)
-	public ModelAndView printDocumentReport() {
+//	@RequestMapping(path = "/printing/printDocument.html", method = RequestMethod.GET) 
+//	public ModelAndView printMmpPOReport123() {
+//
+//		JasperReportsPdfView view = new JasperReportsPdfView();
+//		view.setUrl("classpath:rpt_Items1.jrxml");
+//		view.setApplicationContext(appContext);
+//
+//		Map<String, Object> params = new HashMap<>();
+//		params.put("datasource", dokumentRepository.findAllByOrderByIdDesc());
+//		params.put("title", "Dokuments - angular");
+//
+//		params.put("company", companyDetails.companyDetails1);
+//		params.put("adress", companyDetails.companyDetails2);
+//		params.put("city", companyDetails.companyDetails3);
+//		return new ModelAndView(view, params);
+//	}
 
-		JasperReportsPdfView view = new JasperReportsPdfView();
-		view.setUrl("classpath:rpt_Items1.jrxml");
-		view.setApplicationContext(appContext);
-
-		Map<String, Object> params = new HashMap<>();
-		params.put("datasource", dokumentRepository.findAllByOrderByIdDesc());
-		params.put("title", "Dokuments - angular");
-
-		params.put("company", companyDetails.companyDetails1);
-		params.put("adress", companyDetails.companyDetails2);
-		params.put("city", companyDetails.companyDetails3);
-		return new ModelAndView(view, params);
-	}
-
-	@RequestMapping(value = "printDocument.html")
-	public ModelAndView selectTag(@RequestParam Long id, HttpServletRequest request) {
-		ModelAndView mav = new ModelAndView("/printing/printDocument");
-
-		Dokument dokument = dokumentRepository.findOne(id);
-		List<DokumentStavke> dokumentStavke = dokumentStavkeRepository.findByIdDokument(dokument);
-
-		Map<String, String> phones = new HashMap<String, String>();
-		phones.put("samsung", "SAMSUNG");
-		phones.put("nokia", "NOKIA");
-		phones.put("iphone", "IPHONE");
-
-		mav.addObject("dokument", dokument);
-		mav.addObject("dokumentStavke", dokumentStavke);
-
-		// mav.addObject("smartphone", new Smartphone());
-
-		return mav;
-	}
+//	@RequestMapping(value = "printDocument.html")
+//	public ModelAndView selectTag(@RequestParam Long id, HttpServletRequest request) {
+//		ModelAndView mav = new ModelAndView("/printing/printDocument");
+//
+//		Dokument dokument = dokumentRepository.findOne(id);
+//		List<DokumentStavke> dokumentStavke = dokumentStavkeRepository.findByIdDokument(dokument);
+//
+//		Map<String, String> phones = new HashMap<String, String>();
+//		phones.put("samsung", "SAMSUNG");
+//		phones.put("nokia", "NOKIA");
+//		phones.put("iphone", "IPHONE");
+//
+//		mav.addObject("dokument", dokument);
+//		mav.addObject("dokumentStavke", dokumentStavke);
+//
+//		// mav.addObject("smartphone", new Smartphone());
+//
+//		return mav;
+//	}
 }

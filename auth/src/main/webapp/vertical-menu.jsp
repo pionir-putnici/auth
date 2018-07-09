@@ -41,7 +41,8 @@
 				<li>				
 					<a href='#'><i class="fa fa-th-large" aria-hidden="true"></i> Dokumenti<span class="fa arrow"></span></a>
 					<ul class="nav nav-second-level">
-						<li><a href='/dokument.html'>Dokument</a></li>
+						<li><a href='/mmp.html'>Medjumagacinski prenos</a></li>					
+						<li><a href='/dokument.html'>Prijemnice - Otpremnice</a></li>
 						<li><a href='/typesOfDocuments.html'>Tipovi dokumenata</a></li>
 						<li><a href='/lista-zapisnika.html'>Reklamacioni zapisnici</a></li>
 					</ul>

@@ -71,8 +71,8 @@ public class Magacini implements Serializable {
     
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "ptt_id" , referencedColumnName = "id")
-  //  @JsonIgnore
-    @JsonBackReference
+//  @JsonIgnore
+//    @JsonBackReference
     private PttBrojevi pttBrojevi;    
     
     

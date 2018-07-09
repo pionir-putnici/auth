@@ -86,16 +86,24 @@ public class Dokument implements Serializable {
     @ManyToOne(optional = false)
     @JoinColumn(name="id_vrsta_dokumenta")
     private TypesOfDocuments typesofdocuments;
-    
-//    @Column(name = "id_vrsta_dokumenta")
-//    private Long idVrstaDokumenta;
-    
+        
     @ManyToOne(optional = false)
     @JoinColumn(name="id_komitent")
     private Partner partner;  
     
-//    @Column(name = "id_komitent")
-//    private Long idKomitent;
+    @ManyToOne(optional = false)
+    @JoinColumn(name="id_komitent2")
+    private Partner partner2;  
+
+    @ManyToOne(optional = false)
+    @JoinColumn(name="id_magacin2")
+    private Magacini magacini2;   
+    
+    @ManyToOne(optional = false)
+    @JoinColumn(name="id_vrsta_dokumenta2")
+    private TypesOfDocuments typesofdocuments2;
+
+    
     
     @Column(name = "datum")
     @Temporal(TemporalType.DATE)
@@ -142,6 +150,7 @@ public class Dokument implements Serializable {
     private String predao;
     private String primio;
     private String osnov;
+
     
 //    @OneToMany(mappedBy = "idDokument", orphanRemoval = true, cascade = CascadeType.ALL)
 //    @JsonManagedReference
@@ -386,6 +395,24 @@ public class Dokument implements Serializable {
 	}
 	public void setTypesofdocuments(TypesOfDocuments typesofdocuments) {
 		this.typesofdocuments = typesofdocuments;
+	}
+	public Partner getPartner2() {
+		return partner2;
+	}
+	public void setPartner2(Partner partner2) {
+		this.partner2 = partner2;
+	}
+	public Magacini getMagacini2() {
+		return magacini2;
+	}
+	public void setMagacini2(Magacini magacini2) {
+		this.magacini2 = magacini2;
+	}
+	public TypesOfDocuments getTypesofdocuments2() {
+		return typesofdocuments2;
+	}
+	public void setTypesofdocuments2(TypesOfDocuments typesofdocuments2) {
+		this.typesofdocuments2 = typesofdocuments2;
 	}
     
     

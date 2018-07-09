@@ -267,10 +267,11 @@ public class RestsController {
 					+ "            <a href=\"delete_customer.html?id=" + partner.getId() + "\" Onclick=\"return ConfirmDelete();\"> " + "<i class=\"fa fa-trash-o edit-delete-icon\"></i> </a>");
 			 
 		        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy'");
+		        
 //		        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy' 'HH:mm:ss:S");
 
-		        Date tt = partner.getTimestamp();
-		        partner.setVideo(simpleDateFormat.format(tt));
+//		        Date tt = partner.getTimestamp();
+//		        partner.setVideo(simpleDateFormat.format(tt));
 
 		}
 
@@ -281,8 +282,8 @@ public class RestsController {
 	@RequestMapping(path="/dokumenti", method=RequestMethod.GET)
 	public List<Dokument> getJsonDokumenti(){
 		
-		List<Dokument> aa = dokumentRepository.findAll(); // .findAllByOrderByIdDesc(); //
-	
+		 List<Dokument> aa = dokumentRepository.findAll(); // .findAllByOrderByIdDesc(); //
+				
 		 for (Iterator iterator = aa.iterator(); iterator.hasNext();) {
 			 Dokument dokument = (Dokument) iterator.next();
 			 dokument.setAkcija("<a href=\"update_dokument.html?id=" + dokument.getId() + "\"> " + "<i class=\"fa fa-pencil-square-o edit-delete-icon\"></i> </a> "
@@ -300,6 +301,26 @@ public class RestsController {
 
 		return aa; 
 	}
+	
+	@RequestMapping(path="/dokumentiTypeNot2", method=RequestMethod.GET)
+	public List<Dokument> getTypeNot2(){
+		
+		// List<Dokument> aa = dokumentRepository.findAll(); // .findAllByOrderByIdDesc(); //
+		
+		List<Dokument> aa = dokumentRepository.findDokTypeNot2();
+		 for (Iterator iterator = aa.iterator(); iterator.hasNext();) {
+			 Dokument dokument = (Dokument) iterator.next();
+			 dokument.setAkcija("<a href=\"update_dokument.html?id=" + dokument.getId() + "\"> " + "<i class=\"fa fa-pencil-square-o edit-delete-icon\"></i> </a> "
+					+ "    <a href=\"delete_dokument.html?id=" + dokument.getId() + "\" Onclick=\"return ConfirmDelete();\"> " + "<i class=\"fa fa-trash-o edit-delete-icon\"></i> </a>"
+					+  "<a href=\"www.w3schools.com\">Visit W3Schools</a> "
+					+ "     <a href=\"view_dokument_items.html?id=" + dokument.getId()  + "\"> " + "<i class=\"fa fa-id-card-o\"></i> </a>");
+			 
+		        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy'");
+		        Date tt = dokument.getDatumVreme();
+		}
+
+		return aa; 
+	}	
 	
 	@RequestMapping(path="/zapisnici", method=RequestMethod.GET)
 	public List<Zapisnici> getJsonZapisnici(){

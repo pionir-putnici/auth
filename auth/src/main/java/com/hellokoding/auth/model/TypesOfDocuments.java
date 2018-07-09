@@ -43,7 +43,8 @@ public class TypesOfDocuments implements Serializable {
     private String code;
     private String remark;
 	private String akcija;
-	private Long strana;	
+	private Long strana;
+	private String type;		
 	private Date timestamp;
 	private boolean aktivan;
 	private String slika;
@@ -185,6 +186,14 @@ public class TypesOfDocuments implements Serializable {
 		return "Types of documents [id=" + id + ", name=" + name + ", code=" + code + ", remark=" + remark + ", akcija=" + akcija
 				+ ", timestamp=" + timestamp + ", aktivan=" + aktivan + ", slika=" + slika + ", video=" + video
 				+ ", zvuk=" + zvuk + "]";
+	}
+
+	public String getType() {
+		return type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
 	}
 
 	
