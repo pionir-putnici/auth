@@ -91,19 +91,17 @@ public class Dokument implements Serializable {
     @JoinColumn(name="id_komitent")
     private Partner partner;  
     
-    @ManyToOne(optional = false)
+    @ManyToOne(optional = true)
     @JoinColumn(name="id_komitent2")
     private Partner partner2;  
 
-    @ManyToOne(optional = false)
+    @ManyToOne(optional = true)
     @JoinColumn(name="id_magacin2")
     private Magacini magacini2;   
     
-    @ManyToOne(optional = false)
+    @ManyToOne(optional = true)
     @JoinColumn(name="id_vrsta_dokumenta2")
     private TypesOfDocuments typesofdocuments2;
-
-    
     
     @Column(name = "datum")
     @Temporal(TemporalType.DATE)

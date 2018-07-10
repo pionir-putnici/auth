@@ -158,6 +158,8 @@ public class MmpController {
 
 	@RequestMapping(value = "/update_mmp.html")
 	public String updateMmp(@RequestParam Long id, HttpServletRequest request) {
+		
+		Dokument TT = dokumentRepository.findOne(id);
 		request.setAttribute("dokument", dokumentRepository.findOne(id));
 		request.setAttribute("mode", "MODE_UPDATE");
 		request.setAttribute("title", "Update MMP dokument");
@@ -173,7 +175,7 @@ public class MmpController {
 		}
 		sess.setAttribute("eMagacini", deptList);
 
-		List<TypesOfDocuments> tdList = typesOfDocumentsRepository.findAll();
+		List<TypesOfDocuments> tdList = typesOfDocumentsRepository.dokTypeIs2();
 		Map<Long, String> tdl = new HashMap<>();
 
 		for (TypesOfDocuments d : tdList) {

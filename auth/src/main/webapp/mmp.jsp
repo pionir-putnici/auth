@@ -145,10 +145,10 @@
 
 <!-- radi                    <td> <a href="dokumentstavkefinal.html?page=0&id={{data.id}}"><i class="fa fa-clone edit-delete-icon"></i></a>   <a href="/printing/index.html?id={{data.id}}" target="_blank"> <i class="fa fa-print edit-delete-icon"></i></a> <a href="update_dokument.html?id={{data.id}}"><i class="fa fa-pencil-square-o edit-delete-icon"></i></a> <a href="delete_dokument.html?id={{data.id}}" onClick="return ConfirmDelete();"><i class="fa fa-trash-o edit-delete-icon"></i></a></td> -->
                     
-                    <td> <a href="dokumentstavkefinal.html?page=0&id={{data.id}}" title="Stavke"><i class="fa fa-clone edit-delete-icon"></i></a>
-                          <a href="update_dokument.html?id={{data.id}}" title="Izmena"><i class="fa fa-pencil-square-o edit-delete-icon"></i></a>
-                         <a href="printDocument.html?id={{data.id}}" target="_blank" title="Stampa"> <i class="fa fa-print edit-delete-icon"></i></a>                          
-                         <a href="delete_dokument.html?id={{data.id}}" onClick="return ConfirmDelete();" title="Brisanje"><i class="fa fa-trash-o edit-delete-icon"></i></a>
+                    <td> <a href="dokumentstavke_mmp.html?page=0&id={{data.id}}" title="Stavke"><i class="fa fa-clone edit-delete-icon"></i></a>
+                          <a href="update_mmp.html?id={{data.id}}" title="Izmena"><i class="fa fa-pencil-square-o edit-delete-icon"></i></a>
+                         <a href="print_mmp.html?id={{data.id}}" target="_blank" title="Stampa"> <i class="fa fa-print edit-delete-icon"></i></a>                          
+                         <a href="delete_mmp.html?id={{data.id}}" onClick="return ConfirmDelete();" title="Brisanje"><i class="fa fa-trash-o edit-delete-icon"></i></a>
                      </td>
                     
 <!--                     <td> <a href="view_dokumentStavke.html?id={{data.id}}"><i class="fa fa-clone edit-delete-icon"></i></a>   <a href="/printing/index.html?id={{data.id}}" target="_blank"> <i class="fa fa-print edit-delete-icon"></i></a> <a href="update_dokument.html?id={{data.id}}"><i class="fa fa-pencil-square-o edit-delete-icon"></i></a> <a href="delete_dokument.html?id={{data.id}}" onClick="return ConfirmDelete();"><i class="fa fa-trash-o edit-delete-icon"></i></a></td> -->

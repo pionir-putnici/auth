@@ -157,7 +157,7 @@
 												
 																						
 										<div class='form-group ${error != null ? 'has-error' : ''}'>
-											<label class='font-oxygen'>Tip dokumenta</label>
+											<label class='font-oxygen'>Tip dokumenta (1-prijemnica, otpremnica, 2 - medjumagacinski dokument)</label>
  											<form:input type="text" class="form-control" id="type" 
  												path="type" placeholder='tip dokumenta 1-prijemnica, otpremnica, 2 - medjumagacinski dokument' tabindex="5"
  												value="${typesOfDocuments.type}" onclick="location.href='typesOfDocuments.html" /> 

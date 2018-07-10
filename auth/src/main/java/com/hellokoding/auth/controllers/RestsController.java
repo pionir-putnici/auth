@@ -248,7 +248,7 @@ public class RestsController {
 //		        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy' 'HH:mm:ss:S");
 
 		        Date tt = pttBrojevi.getTimestamp();
-		        pttBrojevi.setVideo(simpleDateFormat.format(tt));
+//		        pttBrojevi.setVideo(simpleDateFormat.format(tt));
 
 		}
 
