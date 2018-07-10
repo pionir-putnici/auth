@@ -30,45 +30,76 @@
 				</div>
 				<div class='col-xs-6'>
 					<div class='row'>
-						<div class='col-xs-4'>
-						Magacin
-						</div>
-						<div class='col-xs-8'>
-						${dokument.magacini.code} ${dokument.magacini.name}
-						</div>
-					</div>
-					<div class='row'>
-						<div class='col-xs-4'>
-						Adresa
-						</div>
-						<div class='col-xs-8'>
-						${dokument.magacini.adresa}
-						</div>
-					</div>
-					<div class='row'>
-						<div class='col-xs-4'>
-						Mesto
-						</div>
-						<div class='col-xs-8'>
-						Subotica
+						<div class='col-xs-12'>
+							<h2>Međumagacinski prenos</h2>
+							<p>Broj: 1550/18</p>
 						</div>
 					</div>
 				</div>
 			</div>
 			<div class='row' id='pageHeaderContainerBottom'>
 				<div class='col-xs-6'>
-					<h2>${dokument.typesOfDocuments.name } br. ${dokument.brojDokumenta }</h2>
-					<ul>
-						<li>Mesto: ${dokument.magacini.adresa }</li>
-						<li>Datum: ${dokument.datum }</li>
-					</ul>
+					<div class='row'>
+						<div class='col-xs-12'>
+							<h2>Magacin otpreme</h2>
+						</div>
+					</div>
+					<div class='row spacer-top-10'>
+						<div class='col-xs-3'>
+						Dokument
+						</div>
+						<div class='col-xs-9'>
+						1320/18
+						</div>
+					</div>
+					<div class='row'>
+						<div class='col-xs-3'>
+						Magacin
+						</div>
+						<div class='col-xs-9'>
+						0105
+						</div>
+					</div>
+					<div class='row'>
+						<div class='col-xs-3'>
+						Datum
+						</div>
+						<div class='col-xs-9'>
+						09.07.2018.
+						</div>
+					</div>
 				</div>
 				<div class='col-xs-6'>
-					<h2>${dokument.partner.name}</h2>
-					<ul>
-						<li>PIB: ${dokument.partner.pib }</li>
-						<li>Adresa: ${dokument.partner.adresa }</li>
-					</ul>
+					<div class='row'>
+						<div class='col-xs-12'>
+							<h2>Magacin prijema</h2>
+						</div>
+					</div>
+					<div class='row spacer-top-10'>
+						<div class='col-xs-3'>
+						Dokument
+						</div>
+						<div class='col-xs-9'>
+						3220/18
+						</div>
+					</div>
+					<div class='row'>
+						<div class='col-xs-3'>
+						Magacin
+						</div>
+						<div class='col-xs-9'>
+						0125
+						</div>
+					</div>
+					<div class='row'>
+						<div class='col-xs-3'>
+						Datum
+						</div>
+						<div class='col-xs-9'>
+						09.07.2018.
+						</div>
+					</div>
+				</div>
 				</div>
 			</div>
 		</div>
