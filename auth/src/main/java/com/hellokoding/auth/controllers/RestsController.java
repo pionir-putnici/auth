@@ -321,6 +321,26 @@ public class RestsController {
 
 		return aa; 
 	}	
+
+	@RequestMapping(path="/dokumentiTypeIs2", method=RequestMethod.GET)
+	public List<Dokument> getTypeIs2(){
+		
+		// List<Dokument> aa = dokumentRepository.findAll(); // .findAllByOrderByIdDesc(); //
+		
+		List<Dokument> aa = dokumentRepository.findDokTypeIs2();
+		 for (Iterator iterator = aa.iterator(); iterator.hasNext();) {
+			 Dokument dokument = (Dokument) iterator.next();
+			 dokument.setAkcija("<a href=\"update_mmp.html?id=" + dokument.getId() + "\"> " + "<i class=\"fa fa-pencil-square-o edit-delete-icon\"></i> </a> "
+					+ "    <a href=\"delete_mmp.html?id=" + dokument.getId() + "\" Onclick=\"return ConfirmDelete();\"> " + "<i class=\"fa fa-trash-o edit-delete-icon\"></i> </a>"
+					+  "<a href=\"www.w3schools.com\">Visit W3Schools</a> "
+					+ "     <a href=\"view_dokument_items.html?id=" + dokument.getId()  + "\"> " + "<i class=\"fa fa-id-card-o\"></i> </a>");
+			 
+		        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy'");
+		        Date tt = dokument.getDatumVreme();
+		}
+
+		return aa; 
+	}	
 	
 	@RequestMapping(path="/zapisnici", method=RequestMethod.GET)
 	public List<Zapisnici> getJsonZapisnici(){

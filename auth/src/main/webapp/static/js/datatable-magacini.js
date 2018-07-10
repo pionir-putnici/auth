@@ -76,13 +76,14 @@ $(document).ready( function () {
 	 var table = $('#magaciniTable').DataTable({
 			"sAjaxSource": "/magacini",
 			"sAjaxDataProp": "",
-			"order": [[ 0, "asc" ]],
+			"order": [[ 0, "desc" ]],
 			"aoColumns": [
 			      { "mData": "id"},
 		          { "mData": "code" },
 				  { "mData": "name" },
 				  { "mData": "slika" },				  
 				  { "mData": "adresa" },
+				  { "mData": "objekat" },				  
 				  { "mData": "zvuk" },
 				  { "mData": "vrste_magacina_naziv"},
 				  { "mData": "aktivan" },

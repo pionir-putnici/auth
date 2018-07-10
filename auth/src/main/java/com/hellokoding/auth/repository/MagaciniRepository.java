@@ -33,8 +33,7 @@ public interface MagaciniRepository extends JpaRepository<Magacini, Long> {
 	
 
 	@Query(" from Magacini p "
-			+ "  " )	
-	
+			+ "  " )		
 	List<Magacini> findMagacinisWithoutRelations();
 	
 	@Query(" from Magacini order by name ")	
@@ -45,6 +44,9 @@ public interface MagaciniRepository extends JpaRepository<Magacini, Long> {
     		+ " and t.aktivan=true " )     
     List<Magacini> partnerZaMagacin (@Param("id_partner") List<Long> ids_partner);   	
 	
+	@Query(" from Magacini t where t.objekat=true and aktivan=true")	
+	List<Magacini> findInterniObjekti();    
+    
 //	  @Query("select t from #{#entityName} t where t.attribute = ?1")
 //	  List<T> findAllByAttribute(String attribute);
 	

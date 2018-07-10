@@ -48,8 +48,9 @@ public class Magacini implements Serializable {
     private String name;
     private String remark;
     private String adresa;
+    private Boolean objekat;    
     private String akcija;
-    private Boolean aktivan;
+    private Boolean aktivan;    
     private Date timestamp;
     private String vrste_magacina_naziv;
     private String slika;
@@ -230,6 +231,16 @@ public class Magacini implements Serializable {
 	public void setPttBrojevi(PttBrojevi pttBrojevi) {
 		this.pttBrojevi = pttBrojevi;
 	}
+
+	public Boolean getObjekat() {
+		return objekat;
+	}
+
+	public void setObjekat(Boolean objekat) {
+		this.objekat = objekat;
+	}
+	
+	
     
     
 }

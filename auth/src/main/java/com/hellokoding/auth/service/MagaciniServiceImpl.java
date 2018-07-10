@@ -61,13 +61,18 @@ public class MagaciniServiceImpl implements MagaciniService {
     {
     	magaciniRepository.delete(id);
     }
-
+    
 	@Override
 	public List<Magacini> findMagacinisWithoutRelations() {
-		return magaciniRepository.findMagacinisWithoutRelations();
-		
+		return magaciniRepository.findMagacinisWithoutRelations();		
 	}
 
+	@Override
+	public List<Magacini> findInterniObjekti() {
+		return magaciniRepository.findInterniObjekti();		
+	}
+
+	
 //	@Override
 //	public List<Magacini> rptMagacini() {
 //		return magaciniRepository.rtpMagacini();

@@ -22,43 +22,24 @@ public class MagaciniRestController {
 	private MagaciniService magaciniService;
 	
 	@RequestMapping(path="/magacini", method=RequestMethod.GET)
-	public List<Magacini> getAllMagacini(){
+	public List<Magacini> getAllMagacini4(){
 		
-		List<Magacini> aa = (List<Magacini>) magaciniService.findMagacinisWithoutRelations();
-		
-//		List<Magacini> aa = magaciniService.getAllMagacini();
-//	
-//		 for (Iterator<Magacini> iterator = aa.iterator(); iterator.hasNext();) {
-//			Magacini magacini = (Magacini) iterator.next();
-//			System.out.println(magacini.getVrsteMagacina().getName());
-//			System.out.println(magacini.getName());
-//			System.out.println(magacini.getVrste_magacina_naziv());
-//			magacini.setAkcija("<a href=\"update-magacini.html?id=" + magacini.getId() + "\"> " + "<i class=\"fa fa-pencil-square-o edit-delete-icon\"></i> </a> "
-//					+ "            <a href=\"delete-magacini.html?id=" + magacini.getId() + "\" Onclick=\"return ConfirmDelete();\"> " + "<i class=\"fa fa-trash-o edit-delete-icon\"></i> </a>");
-//		}
-		
+		List<Magacini> aa = (List<Magacini>) magaciniService.getAllMagacini(); // .findMagacinisWithoutRelations();
 
-//		List<Magacini> cusList = new ArrayList<Magacini>();
-//
-//		for(Object o: aa){        
-//		    cusList.add((Magacini)o);        
-//		}
-//
-//		return cusList; 
-//		List<Object> aab = (List<Object>) magaciniService.findMagacinisWithoutRelations();
-//	
-//		List<Magacini> cusList = new ArrayList<Magacini>();
-//
-//		
 		 for (Iterator<Magacini> iterator = aa.iterator(); iterator.hasNext();) {
 			 
 			Magacini magacini = iterator.next();
+			
 //			System.out.println(magacini.getVrsteMagacina().getName());
 //			System.out.println(magacini.getName());
 //			System.out.println(magacini.getVrste_magacina_naziv());
+//			System.out.println("Magacini to string " + magacini.toString());
+//			System.out.println("Magacini partner " + magacini.getPartner().getName());
+			
 			magacini.setSlika(magacini.getPartner().getName());			
 			magacini.setVrste_magacina_naziv(magacini.getVrsteMagacina().getName());
 			magacini.setZvuk(magacini.getPttBrojevi().getName());
+			
 			magacini.setAkcija("<a href=\"update-magacini.html?id=" + magacini.getId() + "\"> " + "<i class=\"fa fa-pencil-square-o edit-delete-icon\"></i> </a> "
 					+ "            <a href=\"delete-magacini.html?id=" + magacini.getId() + "\" Onclick=\"return ConfirmDelete();\"> " + "<i class=\"fa fa-trash-o edit-delete-icon\"></i> </a>");
 		}	
@@ -78,9 +59,10 @@ public class MagaciniRestController {
 //		
 //		return aab; // vrstePaletaService.getAllVrstePaleta();
 	}
+	
 //    @RequestMapping(value = "/employee/{id}", method = RequestMethod.GET)
-//	public Employee getEmployeeById(@PathVariable("id") long id){
-//		return employeeService.getEmployeeById(id);
+//	  public Employee getEmployeeById(@PathVariable("id") long id){
+//	  return employeeService.getEmployeeById(id);
 //	}
 
 }

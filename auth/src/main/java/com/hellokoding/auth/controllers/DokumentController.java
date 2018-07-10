@@ -91,8 +91,6 @@ public class DokumentController {
 		}
 		sess.setAttribute("ePartner", deptp);
 
-		// magacini
-		// Magacini km = new Magacini();
 		List<Magacini> deptList = magaciniRepository.findAll();
 
 		Map<Long, String> dept = new HashMap<>();
@@ -105,6 +103,17 @@ public class DokumentController {
 		// sess.setAttribute("eMagacini", dept);
 		sess.setAttribute("eMagacini", deptList);
 
+		List<Magacini> eMI = magaciniRepository.findInterniObjekti();
+
+		Map<Long, String> deptEmi = new HashMap<>();
+		// HttpSession sess = request.getSession();
+
+		for (Magacini d : eMI) {
+			deptEmi.put(d.getId(), d.getName());
+		}
+		
+		sess.setAttribute("eMagaciniInterni", eMI);		
+		
 		// Vrste dokumenata
 		// TypesOfDocuments km = new TypesOfDocuments();
 		List<TypesOfDocuments> tdList = typesOfDocumentsRepository.dokTypeNot2(); // .findAll();

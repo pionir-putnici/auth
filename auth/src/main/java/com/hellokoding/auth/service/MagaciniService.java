@@ -18,11 +18,12 @@ public interface MagaciniService {
 	
 	public List<Magacini> findMagacinisWithoutRelations();
 	
-//	public List<Magacini> rptMagacini();
+	public List<Magacini> findInterniObjekti();
+	
+	
+	//	public List<Magacini> rptMagacini();
 	
 	// public List<Employee> getAllEmployees();
-    
-    
-    
-//    void update(VrstePaleta vrstepaleta);
+            
+	// void update(VrstePaleta vrstepaleta);
 }

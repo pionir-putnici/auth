@@ -136,6 +136,27 @@
 										</div>
 
 										<div class="form-group"${error != null ? 'has-error' : ''}'>
+											<label class='font-awesome'>Magacin - objekat</label>
+																						
+											<select id="selectModel" class="form-control"
+												name="Magacini2.id">
+
+												<c:forEach var="role" items="${eMagacini}">
+													<option class="${role.partner.getId()}"
+														value="${role.getId()}"
+														${role.getId() == dokument.magacini.id ? 'selected' : ''}>
+														${role.getName()}</option>
+													<c:out value="${role.partner.getId()}" />
+												</c:forEach>
+
+											</select>
+
+											<p class="help-block">
+												<form:errors path="Magacini2.id" class="help-block" />
+											</p>
+										</div>	
+
+										<div class="form-group"${error != null ? 'has-error' : ''}'>
 											<label class='font-awesome'>Magacin</label>
 
 											<%-- 											<form:select path="Magacini.id" class="form-control">  --%>
@@ -153,10 +174,12 @@
 											<%-- <c:if test="${dokument.id==null}"> --%>
 											<%-- <c:out value="dokument.id je null"/> --%>
 											<%-- </c:if> --%>
-											<select id="selectModel" class="form-control"
+											
+											
+											<select id="selectModel2" class="form-control"
 												name="Magacini.id">
 
-												<c:forEach var="role" items="${eMagacini}">
+												<c:forEach var="role" items="${eMagaciniInterni}">
 													<option class="${role.partner.getId()}"
 														value="${role.getId()}"
 														${role.getId() == dokument.magacini.id ? 'selected' : ''}>
@@ -166,12 +189,14 @@
 
 											</select>
 
-
 											<p class="help-block">
 												<form:errors path="Magacini.id" class="help-block" />
 											</p>
 
 										</div>
+										
+									
+										
 								</div>
 
 								<%-- 										<c:out value="${dokument.partner.id}"/> --%>

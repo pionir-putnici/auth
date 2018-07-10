@@ -145,6 +145,44 @@
 										<c:set var="rb_inactive" scope="session" value="">
 										</c:set>
 
+										<c:if test="${magacini.objekat == true}">
+											<c:set var="rb_active" scope="session" value="checked" />
+											<c:set var="rb_inactive" scope="session" value="" />
+										</c:if>
+
+										<c:if test="${magacini.objekat == false}">
+											<c:set var="rb_inactive" scope="session" value="checked" />
+											<c:set var="rb_active" scope="session" value="" />
+										</c:if>
+
+										<c:if test="${(empty rb_active) and (empty rb_inactive)}">
+											<c:set var="rb_active" scope="session" value="checked" />
+										</c:if>
+
+										
+										<!-- kraj setovanje da li se ucitava aktivan ili neaktivan -->
+										
+										<div class='form-group spacer-bottom-30'>
+											<label>Interni / eksterni objekat</label><br /> <label class="radio-inline">
+										<!--                                     	<input type="radio" name="aktivan"  path='aktivan' -->
+										<%--                                     	 checked  value="${task.aktivan}" >Da   --%>
+												<input type="radio" name="objekat" value="1" path='objekat'
+												<c:out value="${rb_active}"/> />
+											</label> <label class="radio-inline"> <%--                                     	<input type="radio" class="col-sm-1" name="aktivan"  path='aktivan' value="${task.aktivan}">Ne --%>
+												<input type="radio" class="col-sm-1" name="objekat"
+												value="0" path='objekat' <c:out value="${rb_inactive}"/> />
+											</label>
+										</div>
+										
+										<!-- kraj setovanje da li se ucitava aktivan ili neaktivan -->									
+
+										<!-- setovanje da li se ucitava aktivan ili neaktivan -->
+										
+										<c:set var="rb_active" scope="session" value="checked">
+										</c:set>
+										<c:set var="rb_inactive" scope="session" value="">
+										</c:set>
+
 										<c:if test="${magacini.aktivan == true}">
 											<c:set var="rb_active" scope="session" value="checked" />
 											<c:set var="rb_inactive" scope="session" value="" />
@@ -185,14 +223,14 @@
 											onclick="location.href='/list-magacini.jsp'" value="Cancel"
 											class="btn-lg button-novi" />
 
-										<!-- 										<button type="reset" class="btn-lg button-novi"> -->
-										<!-- 											<i class='fa fa-reply'></i> Cancel -->
-										<!-- 										</button> -->
+										<!-- 			<button type="reset" class="btn-lg button-novi"> -->
+										<!-- 			<i class='fa fa-reply'></i> Cancel -->
+										<!-- 			</button> -->
 
-										<!-- 										<button type="reset" class="btn-md button-novi"><i class='fa fa-reply'></i> Cancel</button> -->
+										<!-- 			<button type="reset" class="btn-md button-novi"><i class='fa fa-reply'></i> Cancel</button> -->
 
 
-										<!-- 										</form> -->
+										<!--  			</form> -->
 									</form:form>
 								</div>
 							</div>
