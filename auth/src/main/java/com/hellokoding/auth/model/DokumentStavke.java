@@ -22,6 +22,8 @@ import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 
@@ -92,8 +94,10 @@ public class DokumentStavke implements Serializable {
     @Column(name = "roba_naziv")
     private String robaNaziv;
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
+    
     @Column(name = "kolicina")
     private BigDecimal kolicina;
+    @Min(0)
     @Column(name = "ulaz")
     private BigDecimal ulaz;
     @Column(name = "izlaz")

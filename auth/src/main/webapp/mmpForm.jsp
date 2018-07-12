@@ -24,16 +24,27 @@
 						<div class='panel-body'>
 
 							<div class='row'>
+
 								<div class='col-lg-6'>
 
+<c:out value="${dokument.typesofdocuments.id}"/>								
+<c:out value="${dokument.partner.id}"/>
+<c:out value="${dokument.magacini.id}"/>
+
+
+<c:out value="${dokument.typesofdocuments2.id}"/> 
+<c:out value="${dokument.partner2.id}"/>
+<c:out value="${dokument.magacini2.id}"/>
+
+ 
 									<form:form method="POST" action="save_mmp.html"
 										modelAttribute="dokument">
 
 										<input type="hidden" name="${_csrf.parameterName}"
 											value="${_csrf.token}" />
 
-<%-- 										<form:input type="hidden" name="id" path="id" --%>
-<%-- 											value="${dokument.id}" /> --%>
+										<%-- 										<form:input type="hidden" name="id" path="id" --%>
+										<%-- 											value="${dokument.id}" /> --%>
 
 										<%-- 										<div class='form-group ${error != null ? 'has-error' : ''}'> --%>
 										<!-- 											<label class='font-oxygen'>Šifra dokumenta</label> -->
@@ -63,10 +74,8 @@
 
 										<div class='form-group ${error != null ? 'has-error' : ''}'>
 											<label class='font-awesome'>Id</label>
-											<form:input type="text" class="form-control"
-												id="id" path="id"
-												placeholder='id'
-												value="${dokument.id}" />
+											<form:input type="text" class="form-control" id="id"
+												path="id" placeholder='id' value="${id}" readonly="true" />
 											<p class="help-block">
 												<form:errors path="id" class="help-block" />
 											</p>
@@ -75,53 +84,21 @@
 										<div class="form-group"${error != null ? 'has-error' : ''}'>
 											<label class='font-awesome'>Vrsta dokumenta</label>
 
-											<form:select path="TypesOfDocuments.id" class="form-control">
+											<form:select id="selectVd" path="TypesOfDocuments.id"
+												class="form-control">
 												<form:options items="${eTypesOfDocuments}" />
+												<c:forEach var="role" items="${eTypesOfDocuments}">
+													<option class="${role.getKey()}" value="${role.getKey()}"
+														${role.getKey() == dokument.partner.id ? 'selected' : ''}>
+														${role.getValue()}</option>
+												</c:forEach>
+
 											</form:select>
 
 											<p class="help-block">
 												<form:errors path="TypesOfDocuments.id" class="help-block" />
 											</p>
 										</div>
-
-										<div class='form-group ${error != null ? 'has-error' : ''}'>
-											<label class='font-awesome'>Broj dokumenta</label>
-											<%-- <input class="form-control" name='name' path='name' placeholder='Unesite naziv' value="${task.name}"> --%>
-
-											<form:input type="text" class="form-control"
-												id="brojDokumenta" path="brojDokumenta"
-												placeholder='brojDokumenta'
-												value="${dokument.brojDokumenta}" />
-											<p class="help-block">
-												<form:errors path="brojDokumenta" class="help-block" />
-											</p>
-										</div>
-
-										<div class='form-group ${error != null ? 'has-error' : ''}'>
-											<label class='font-awesome'>interniBrojDokumenta</label>
-											<%-- 									<input class="form-control" name='name' path='name' placeholder='Unesite naziv' value="${task.name}"> --%>
-
-											<form:input type="text" class="form-control"
-												id="interniBrojDokumenta" path="interniBrojDokumenta"
-												placeholder='interniBrojDokumenta'
-												value="${dokument.interniBrojDokumenta}" readonly="true" />
-											<p class="help-block">
-												<form:errors path="interniBrojDokumenta" class="help-block" />
-											</p>
-										</div>
-
-										<div class='form-group ${error != null ? 'has-error' : ''}'>
-											<label class='font-awesome'>Datum</label>
-
-											<form:input type="date" class="form-control" id="datum"
-												path="datum" placeholder='Datum' value="${dokument.datum}" />
-											<p class="help-block">
-												<form:errors path="datum" class="help-block" />
-											</p>
-										</div>
-
-
-
 
 										<div class="form-group" ${error != null ? 'has-error' : ''}>
 											<label class='font-awesome'>Partner</label>
@@ -146,81 +123,169 @@
 											</p>
 										</div>
 
-<%-- 										<c:out value="${dokument.magacini2}" /> --%>
-										
-										<div class="form-group"${error != null ? 'has-error' : ''}>
-											<label class='font-awesome'>Magacin - Objekat partnera</label>
-																						
-											<select id="selectModel" class="form-control"
+										<%-- 										<c:out value="${dokument.magacini2}" /> --%>
+
+										<div class="form-group" ${error != null ? 'has-error' : ''}>
+											<label class='font-awesome'>Magacin - Objekat
+												partnera</label> 
+												<select id="selectModel" class="form-control"
+												name="magacini.id">
+
+												<c:forEach var="maga" items="${eMagacini}">
+
+													<option class="${maga.partner.getId()}"
+														value="${maga.getId()}"
+														${maga.getId() == dokument.magacini.id ? 'selected' : ''}>
+														${maga.getName()}</option>
+<%-- 													<c:out value="${maga.partner.getId()}" /> --%>
+												</c:forEach>
+
+											</select>
+
+											<p class="help-block">
+												<form:errors path="magacini.id" class="help-block" />
+											</p>
+										</div>
+
+
+
+
+
+										<div class="form-group" ${error != null ? 'has-error' : ''}>
+											<label class='font-awesome'>Vrsta dokumenta2</label> 
+											<select
+												id="selectVd2" class="form-control" name="typesofdocuments2.id">
+												<c:forEach var="role" items="${eTypesOfDocuments}">
+													<option class="${role.getKey()}" value="${role.getKey()}"
+														${role.getKey() == dokument.typesofdocuments2.id ? 'selected' : ''}>
+														${role.getValue()}</option>
+												</c:forEach>
+											</select>
+
+											<p class="help-block">
+												<form:errors path="typesofdocuments2.id" class="help-block" />
+											</p>
+										</div>
+
+										<div class="form-group" ${error != null ? 'has-error' : ''}>
+											<label class='font-awesome'>Partner2</label> <select
+												id="selectManuf2" class="form-control" name="Partner2.id">
+												<c:forEach var="role" items="${ePartner}">
+													<option class="${role.getKey()}" value="${role.getKey()}"
+														${role.getKey() == dokument.partner2.id ? 'selected' : ''}>
+														${role.getValue()}</option>
+												</c:forEach>
+											</select>
+
+											<p class="help-block">
+												<form:errors path="Partner2.id" class="help-block" />
+											</p>
+										</div>
+
+
+										<div class="form-group" ${error != null ? 'has-error' : ''}>
+											<label class='font-awesome'>Magacin2 - Objekat2
+												partnera</label> <select id="selectModel2" class="form-control"
 												name="magacini2.id">
 
 												<c:forEach var="maga" items="${eMagacini}">
-											
+
 													<option class="${maga.partner.getId()}"
 														value="${maga.getId()}"
 														${maga.getId() == dokument.magacini2.id ? 'selected' : ''}>
 														${maga.getName()}</option>
 													<c:out value="${maga.partner.getId()}" />
 												</c:forEach>
-
 											</select>
-
 											<p class="help-block">
 												<form:errors path="magacini2.id" class="help-block" />
 											</p>
-										</div>	
-
-
-
-											<%-- 											<form:select path="Magacini.id" class="form-control">  --%>
-											<%-- 												<form:options items="${eMagacini}" />  --%>
-											<%-- 											</form:select>  --%>
-
-											<!-- 											<select id="selectModel" class="form-control" name="Magacini.id" > -->
-											<%--     											<c:forEach var="role" items="${eMagacini}">    											 --%>
-											<%--       											<option class="${role.getKey()}" value="${role.getKey()}" ${role.getKey() == dokument.magacini.id ? 'selected' : ''}> ${role.getValue()}</option> --%>
-											<%--     											</c:forEach> --%>
-											<!-- 											</select> -->
-
-											<%-- <c:out value="${eMagacini}"/> --%>
-											<%-- <c:out value="${dokument.id}"/> --%>
-											<%-- <c:if test="${dokument.id==null}"> --%>
-											<%-- <c:out value="dokument.id je null"/> --%>
-											<%-- </c:if> --%>
-											
-									<div class="form-group"${error != null ? 'has-error' : ''}>
-											<label class='font-awesome'>Magacin</label>										
-											<select id="selectModel2" class="form-control"
-												name="Magacini.id">
-
-												<c:forEach var="role" items="${eMagaciniInterni}">
-													<option class="${role.partner.getId()}"
-														value="${role.getId()}"
-														${role.getId() == dokument.magacini.id ? 'selected' : ''}>
-														${role.getName()}</option>
-												</c:forEach>
-
-											</select>
-
-											<p class="help-block">
-												<form:errors path="Magacini.id" class="help-block" />
-											</p>
-
 										</div>
-										
-									
-										
 								</div>
 
-								<%-- 										<c:out value="${dokument.partner.id}"/> --%>
-								<%-- 										<c:out value="${dokument.partner.name}"/> --%>
-								<%-- 										<c:out value="${ePartner['key']}"/> --%>
 
-								<%-- 	<c:forEach var="hash" items="${ePartner['key']}"> --%>
-								<!--         <option></option> -->
-								<%--   </c:forEach> --%>
-								
 								<div class='col-lg-6'>
+
+									<div class='col-lg-6'>
+										<div class='form-group ${error != null ? 'has-error' : ''}'>
+											<label class='font-awesome'>Broj dokumenta</label>
+											<%-- <input class="form-control" name='name' path='name' placeholder='Unesite naziv' value="${task.name}"> --%>
+
+											<form:input type="text" class="form-control"
+												id="brojDokumenta" path="brojDokumenta"
+												placeholder='brojDokumenta'
+												value="${dokument.brojDokumenta}" />
+											<p class="help-block">
+												<form:errors path="brojDokumenta" class="help-block" />
+											</p>
+										</div>
+									</div>
+									<div class='col-lg-6'>
+										<div class='form-group ${error != null ? 'has-error' : ''}'>
+											<label class='font-awesome'>interniBrojDokumenta</label>
+											<%-- 									<input class="form-control" name='name' path='name' placeholder='Unesite naziv' value="${task.name}"> --%>
+
+											<form:input type="text" class="form-control"
+												id="interniBrojDokumenta" path="interniBrojDokumenta"
+												placeholder='interniBrojDokumenta'
+												value="${dokument.interniBrojDokumenta}" readonly="true" />
+											<p class="help-block">
+												<form:errors path="interniBrojDokumenta" class="help-block" />
+											</p>
+										</div>
+									</div>
+									<div class='col-lg-6'>
+										<div class='form-group ${error != null ? 'has-error' : ''}'>
+											<label class='font-awesome'>Datum</label>
+
+											<form:input type="date" class="form-control" id="datum"
+												path="datum" placeholder='Datum' value="${dokument.datum}" />
+											<p class="help-block">
+												<form:errors path="datum" class="help-block" />
+											</p>
+										</div>
+									</div>
+									<div class='col-lg-6'>
+										<div class='form-group ${error != null ? 'has-error' : ''}'>
+											<label class='font-awesome'>Osnov prijema:</label>
+
+											<form:input type="text" class="form-control" id="osnov"
+												path="osnov" placeholder='osnov' value="${dokument.osnov}" />
+											<p class="help-block">
+												<form:errors path="osnov" class="help-block" />
+											</p>
+										</div>
+
+									</div>
+
+
+
+									<%-- 											<form:select path="Magacini.id" class="form-control">  --%>
+									<%-- 												<form:options items="${eMagacini}" />  --%>
+									<%-- 											</form:select>  --%>
+
+									<!-- 											<select id="selectModel" class="form-control" name="Magacini.id" > -->
+									<%--     											<c:forEach var="role" items="${eMagacini}">    											 --%>
+									<%--       											<option class="${role.getKey()}" value="${role.getKey()}" ${role.getKey() == dokument.magacini.id ? 'selected' : ''}> ${role.getValue()}</option> --%>
+									<%--     											</c:forEach> --%>
+									<!-- 											</select> -->
+
+									<%-- <c:out value="${eMagacini}"/> --%>
+									<%-- <c:out value="${dokument.id}"/> --%>
+									<%-- <c:if test="${dokument.id==null}"> --%>
+									<%-- <c:out value="dokument.id je null"/> --%>
+									<%-- </c:if> --%>
+
+
+									<%-- 										<c:out value="${dokument.partner.id}"/> --%>
+									<%-- 										<c:out value="${dokument.partner.name}"/> --%>
+									<%-- 										<c:out value="${ePartner['key']}"/> --%>
+
+									<%-- 	<c:forEach var="hash" items="${ePartner['key']}"> --%>
+									<!--         <option></option> -->
+									<%--   </c:forEach> --%>
+
+
 									<div class='form-group'>
 										<label class='font-roboto'>Napomena</label>
 										<%-- 									<textarea class="form-control" name='napomena' path='napomena'  placeholder='Unesite napomenu' value="${task.napomena}"></textarea> --%>
@@ -242,15 +307,7 @@
 									</div>
 
 
-									<div class='form-group ${error != null ? 'has-error' : ''}'>
-										<label class='font-awesome'>Osnov prijema:</label>
 
-										<form:input type="text" class="form-control" id="osnov"
-											path="osnov" placeholder='osnov' value="${dokument.osnov}" />
-										<p class="help-block">
-											<form:errors path="osnov" class="help-block" />
-										</p>
-									</div>
 
 									<div class='col-lg-6 clear-padding'>
 										<div class='form-group ${error != null ? 'has-error' : ''}'>
@@ -264,7 +321,7 @@
 											</p>
 										</div>
 									</div>
-									
+
 									<div class='col-lg-6 clear-padding'>
 										<div class='form-group ${error != null ? 'has-error' : ''}'>
 											<label class='font-awesome'>Primio:</label>
@@ -419,6 +476,8 @@
 		<script src="ui-bootstrap-tpls-0.10.0.min.js"></script>
 		<script src="dokumentItems.js"></script>
 
+
+
 		<script>
 			$(document).ready(
 					function() {
@@ -435,39 +494,86 @@
 									});
 								});
 					});
+		</script>
 
-			
-			// bez change partnera
-			
-// 			$(document).ready(function myFunction1() {
-// 				var allOptions = $('#selectModel option');
-// 				// var sviPocetni = allOptions;
-// 				$('#selectModel option').remove()
-// 				var classN = $('#selectManuf option:selected').prop('class');
-// 				var opts = allOptions.filter('.' + classN);
-// 				$.each(opts, function(i, j) {
-// 					$(j).appendTo('#selectModel');
+		<script type="text/javascript">
+			//	 script za drugi par tip dokumenta, partner, magacin
+			$(document).ready(
+					function() {
+						var allOptions = $('#selectModel2 option')
+						$('#selectManuf2').change(
+								function() {
+									$('#selectModel2 option').remove()
+									var classN2 = $(
+											'#selectManuf2 option:selected')
+											.prop('class');
+									var opts2 = allOptions
+											.filter('.' + classN2);
+									$.each(opts2, function(i, j) {
+										$(j).appendTo('#selectModel2');
+									});
+								});
+					});
+		</script>
+
+		<script type="text/javascript">
+// 			$(document).ready(function() {
+// 				$('#selectVd').change(function() {
+// 					// $("#selectVd2").remove();
+// 					// $("#selectVd2").append('<option value="6">Medjumagacinski prijem</option>');
+// 					// $("#selectVd2").append('<option value="7">Medjumagacinski izlaz</option>');									
+// 					var x = document.getElementById("selectVd");
+// 					var y = document.getElementById("selectVd2");
+// 					y.remove(x.selectedIndex);
 // 				});
-// 				// alert("Page is loaded 123");
-// 				// allOptions = sviPocetni;
 // 			});
+		</script>
 
-// 			function myFunction1() {
-// 				var allOptions = $('#selectModel option');
-// 				var sviPocetni = allOptions;
-// 				$('#selectModel option').remove()
-// 				var classN = $('#selectManuf option:selected').prop('class');
-// 				var opts = allOptions.filter('.' + classN);
-// 				$.each(opts, function(i, j) {
-// 					$(j).appendTo('#selectModel');
-// 				});
-// 				alert("Page is loaded 123");
-// 				//  allOptions = sviPocetni;
-// 			}
+		<script type="text/javascript">
+			// 			//	 script za drugi par tip dokumenta, partner, magacin
+			// 			$(document).ready(
+			// 					function() {
+			// 						var allOptions = $('#selectVd2 option')
+			// 						$('#selectVd').change( 
+			// 								function() {
+			// 									$('#selectVd2 option').remove()
+			// 									$("#selectVd2").append('<option value="6">Medjumagacinski prijem</option>');
+			// 								});
+			// 					});
+		</script>
 
-// 			function myFunction() {
-// 				alert("Page is loaded");
-// 			}
+		<script type="text/javascript">
+			// bez change partnera
+
+			// 			$(document).ready(function myFunction1() {
+			// 				var allOptions = $('#selectModel option');
+			// 				// var sviPocetni = allOptions;
+			// 				$('#selectModel option').remove()
+			// 				var classN = $('#selectManuf option:selected').prop('class');
+			// 				var opts = allOptions.filter('.' + classN);
+			// 				$.each(opts, function(i, j) {
+			// 					$(j).appendTo('#selectModel');
+			// 				});
+			// 				// alert("Page is loaded 123");
+			// 				// allOptions = sviPocetni;
+			// 			});
+
+			// 			function myFunction1() {
+			// 				var allOptions = $('#selectModel option');
+			// 				var sviPocetni = allOptions;
+			// 				$('#selectModel option').remove()
+			// 				var classN = $('#selectManuf option:selected').prop('class');
+			// 				var opts = allOptions.filter('.' + classN);
+			// 				$.each(opts, function(i, j) {
+			// 					$(j).appendTo('#selectModel');
+			// 				});
+			// 				alert("Page is loaded 123");
+			// 				//  allOptions = sviPocetni;
+			// 			}
+
+			// 			function myFunction() {
+			// 				alert("Page is loaded");
+			// 			}
 		</script>
 </body>
 </html>

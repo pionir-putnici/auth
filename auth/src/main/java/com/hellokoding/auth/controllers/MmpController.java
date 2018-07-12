@@ -142,8 +142,8 @@ public class MmpController {
 			dokument.setInterniBrojDokumenta(ww);
 		}
 
-		dokument.setPartner2(dokument.getPartner());
-		dokument.setTypesofdocuments2(dokument.getTypesOfDocuments());
+		// dokument.setPartner2(dokument.getPartner());
+		// dokument.setTypesofdocuments2(dokument.getTypesOfDocuments());
 		
 		dokumentRepository.save(dokument);
 
@@ -159,10 +159,14 @@ public class MmpController {
 	@RequestMapping(value = "/update_mmp.html")
 	public String updateMmp(@RequestParam Long id, HttpServletRequest request) {
 		
-		Dokument TT = dokumentRepository.findOne(id);
 		request.setAttribute("dokument", dokumentRepository.findOne(id));
 		request.setAttribute("mode", "MODE_UPDATE");
 		request.setAttribute("title", "Update MMP dokument");
+		
+//		Dokument TT = dokumentRepository.findById(id);
+//		request.setAttribute("dokument", dokumentRepository.findOne(id));
+//		request.setAttribute("mode", "MODE_UPDATE");
+//		request.setAttribute("title", "Update MMP dokument");
 
 		// Magacini km = new Magacini();
 		List<Magacini> deptList = magaciniRepository.findAll();

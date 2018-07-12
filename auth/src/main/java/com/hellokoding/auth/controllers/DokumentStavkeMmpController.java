@@ -170,18 +170,18 @@ public class DokumentStavkeMmpController {
 		//
 		// rr.setIznos(dokumentStavkeRepository.sum_zaglavlje(rr2));
 
-		return "redirect:dokumentStavkeMmpfinal.html?id=" + brDokumenta;
+		return "redirect:dokumentStavkefinalmmp.html?id=" + brDokumenta;
 	}
 
 	@RequestMapping(value = "/save_dokumentStavkeMmp.html", method = RequestMethod.POST)
 	public String savedokumentStavkeMmp(@ModelAttribute("dokumentStavke") @Valid DokumentStavke dokumentStavke,
 			BindingResult result, Model model) { // , @PathVariable int aktivan
 
-		System.out.println("Save stavke ");
+//		System.out.println("Save stavke ");
 
 		if (result.hasErrors()) {
 			model.addAttribute("error", "error");
-			return "dokumentStavkeMmpForm";
+			return "dokumentStavkaMmpForm";
 		}
 
 		// String rr = dokumentStavke.getName();
@@ -251,7 +251,7 @@ public class DokumentStavkeMmpController {
 		model.addAttribute("new_dokumentStavkeMmp", "/dokumentStavkeMmp_new.html");
 		model.addAttribute("print_dokumentStavkeMmp", "/dokumentStavkeMmp_pdf.html");
 
-		return "redirect:dokumentStavkeMmpfinal.html?id=" + rr2;
+		return "redirect:dokumentStavkefinalmmp.html?id=" + rr2;
 
 	}
 
@@ -312,7 +312,7 @@ public class DokumentStavkeMmpController {
 		sess.setAttribute("eMagacini", ml);
 
 		// return "dokumentStavkaForm";
-		return new ModelAndView("dokumentStavkaForm", "dokumentStavkeMmp", dd);
+		return new ModelAndView("dokumentStavkaMmpForm", "dokumentStavke", dd);
 	}
 
 	@RequestMapping(path = "/dokumentStavkeMmp_pdf.html", method = RequestMethod.GET)
@@ -369,20 +369,24 @@ public class DokumentStavkeMmpController {
 	}
 
 	// prikaz stavki dokumenta
-	@RequestMapping(path = "/dokumentStavkeMmpfinal.html", method = RequestMethod.GET)
+	@RequestMapping(path = "/dokumentStavkefinalmmp.html", method = RequestMethod.GET)
 	public String dokumentStavkeMmpfinal(Model model, @RequestParam(defaultValue = "0") int page,
 			@RequestParam(defaultValue = "0") Long id) {
 
 		// dokumentRepository.findById(id);
 		Dokument ee = dokumentRepository.findOne(id);
+		Dokument ee1 = dokumentRepository.getOne(id);
 		// Dokument ss = dokumentRepository.findById(id);
 		List<DokumentStavke> aa = dokumentStavkeRepository.findByIdDokument(dokumentRepository.findOne(id));
+		List<DokumentStavke> aa1 = dokumentStavkeRepository.findByIdDokument(ee1);
 		// Page<DokumentStavke> mm = dokumentStavkeRepository.findAll(new
 		// PageRequest(page,4));
 		model.addAttribute("dokumentStavke", aa);
-		model.addAttribute("title", "Stavke dokumenta - Document items");
+		model.addAttribute("title", "Stavke mmp dokumenta");
+		model.addAttribute("new_item", "/dokumentStavkeMmp_new.html");
+//		request.setAttribute("print_item", "/dokumentStavkeMmp_pdf.html");
 
-		return "dokumentStavka";
+		return "dokumentStavkaMmp";
 	}
 
 

@@ -136,7 +136,8 @@
                     <td>{{data.iznos | number:2}}</td>
 <!--                     <td>{{data.iznos | number:2}}</td> -->
 <!--                     <td>{{data.aktivan}}</td> -->
-                    <td>  <a href="view_dokument_items.html?id={{data.id}}"><i class="fa fa-file-text-o edit-delete-icon"></i></a>   <a href="update_dokument.html?id={{data.id}}"><i class="fa fa-pencil-square-o edit-delete-icon"></i></a> <a href="delete_dokument.html?id={{data.id}}" onClick="return ConfirmDelete();"><i class="fa fa-trash-o edit-delete-icon"></i></a></td>
+                    <td>  <a href="view_dokument_items.html?id={{data.id}}"><i class="fa fa-file-text-o edit-delete-icon"></i></a>   
+                    <a href="update_dokument.html?id={{data.id}}"><i class="fa fa-pencil-square-o edit-delete-icon"></i></a> <a href="delete_dokument.html?id={{data.id}}" onClick="return ConfirmDelete();"><i class="fa fa-trash-o edit-delete-icon"></i></a></td>
                 </tr>
             </tbody>
             </table>
