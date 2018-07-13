@@ -116,6 +116,7 @@
     <br/>
     <div class="row">
         <div class="col-md-12" ng-show="filteredItems > 0">
+
             <table class="display table table-striped table-bordered table-hover border-radius-0">
             <thead>
             <th style="width: 3%;">ID&nbsp;<a ng-click="sort_by('id');"><i class="glyphicon glyphicon-sort sort-arrows"></i></a></th>
@@ -130,33 +131,40 @@
             <th style="width: 5%;">Datum&nbsp;<a ng-click="sort_by('remark');"><i class="glyphicon glyphicon-sort sort-arrows"></i></a></th>
             <th style="width: 10%;">Iznos&nbsp;<a ng-click="sort_by('iznos');"><i class="glyphicon glyphicon-sort sort-arrows"></i></a> </th>
             <th style="width: 15%;">AKCIJA&nbsp;<a ng-click="sort_by('akcija');"><i class="glyphicon glyphicon-sort sort-arrows"></i></a></th>
+<!--            <th style="width: 2%;">S&nbsp;<a ng-click="sort_by('name');"><i class="glyphicon glyphicon-sort sort-arrows"></i></a></th>    -->         
 <!--             <th>Country&nbsp;<a ng-click="sort_by('zvuk');"><i class="glyphicon glyphicon-sort"></i></a></th> -->
 <!--             <th>Credit Limit&nbsp;<a ng-click="sort_by('slika');"><i class="glyphicon glyphicon-sort"></i></a></th> -->
             </thead>
             <tbody>
 <!--                 <tr ng-repeat="data in filtered = (list | filter:search | orderBy : predicate :reverse) | startFrom:(currentPage-1)*entryLimit | limitTo:entryLimit"> -->
-                <tr ng-repeat="data in filtered = (list | filter:search | orderBy : predicate :reverse) | startFrom:(currentPage-1)*entryLimit | limitTo:entryLimit">
-                
+
+
+
+ 
+
+                <tr ng-repeat="data in filtered = (list | filter:search | orderBy : predicate :reverse) | startFrom:(currentPage-1)*entryLimit | limitTo:entryLimit"
+                 >
+
                     <td ng-init="init({{data.id}}">{{data.id}} </td>
                     <td>{{data.typesofdocuments.name}}</td>
-                    <td>{{data.magacini.name}}</td>
+                    <td style="background-color:red">{{data.magacini.name}}</td>
                     <td>{{data.partner.name}}</td>
+
                     <td>{{data.typesofdocuments2.name}}</td>
                     <td>{{data.magacini2.name}}</td>
                     <td>{{data.partner2.name}}</td>                                       
-                    <td>{{data.brojDokumenta}}</td>
-                    
-
+                    <td>{{data.brojDokumenta}}</td>                    
                     <td>{{data.datum | date:"dd.MM.yyyy"}}</td>
                     <td>{{data.iznos | number:2}}</td>
-<!--                     <td>{{data.aktivan}}</td> -->
+<!--                     <td ng-if="{{data.status == 0}}">{{data.status}}</td> -->
 
 <!-- radi                    <td> <a href="dokumentstavkefinal.html?page=0&id={{data.id}}"><i class="fa fa-clone edit-delete-icon"></i></a>   <a href="/printing/index.html?id={{data.id}}" target="_blank"> <i class="fa fa-print edit-delete-icon"></i></a> <a href="update_dokument.html?id={{data.id}}"><i class="fa fa-pencil-square-o edit-delete-icon"></i></a> <a href="delete_dokument.html?id={{data.id}}" onClick="return ConfirmDelete();"><i class="fa fa-trash-o edit-delete-icon"></i></a></td> -->
                     
-                    <td> <a href="/dokumentStavkefinalmmp.html?page=0&id={{data.id}}" title="Stavke"><i class="fa fa-clone edit-delete-icon"></i></a>
-                          <a href="update_mmp.html?id={{data.id}}" title="Izmena"><i class="fa fa-pencil-square-o edit-delete-icon"></i></a>
+                    <td style="color:green"> <a href="/dokumentStavkefinalmmp.html?page=0&id={{data.id}}" title="Stavke"><i class="fa fa-clone edit-delete-icon"></i></a>
+                         <a href="update_mmp.html?id={{data.id}}" title="Izmena"><i class="fa fa-pencil-square-o edit-delete-icon"></i></a>
                          <a href="print_mmp.html?id={{data.id}}" target="_blank" title="Stampa"> <i class="fa fa-print edit-delete-icon"></i></a>                          
-                         <a href="delete_mmp.html?id={{data.id}}" onClick="return ConfirmDelete();" title="Brisanje"><i class="fa fa-trash-o edit-delete-icon"></i></a>
+                         <a href="delete_mmp.html?id={{data.id}}" onClick="return ConfirmDelete();" title="Brisanje"><i class="fa fa-trash-o edit-delete-icon" style="color:red"></i></a>
+                         <a href="ozvanicenje_mmp.html?id={{data.id}}" onClick="return ConfirmOzvanicenje();" title="Ozvanicenje"><i class="fa fa-mixcloud" style="color:green" ></i></a>                         
                      </td>
                     
 <!--                     <td> <a href="view_dokumentStavke.html?id={{data.id}}"><i class="fa fa-clone edit-delete-icon"></i></a>   <a href="/printing/index.html?id={{data.id}}" target="_blank"> <i class="fa fa-print edit-delete-icon"></i></a> <a href="update_dokument.html?id={{data.id}}"><i class="fa fa-pencil-square-o edit-delete-icon"></i></a> <a href="delete_dokument.html?id={{data.id}}" onClick="return ConfirmDelete();"><i class="fa fa-trash-o edit-delete-icon"></i></a></td> -->
@@ -199,7 +207,7 @@
 <script src="mmp.js"></script>
 
 
-<script>
+	<script>
 		function ConfirmDelete() {
 			var x = confirm("Are you sure you want to delete?");
 			if (x)
@@ -207,6 +215,19 @@
 			else
 				return false;
 		}
-	</script>         
+	</script>  
+	
+	<script>
+function ConfirmOzvanicenje() {
+
+    var r = confirm("Ozvaniciti dokument?");
+	if (r)
+		return true;
+	else
+		return false;
+}
+//    document.getElementById("demo").innerHTML = txt;
+
+</script>       
     </body>
 </html>

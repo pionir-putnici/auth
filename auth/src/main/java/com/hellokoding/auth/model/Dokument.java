@@ -34,6 +34,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
@@ -148,6 +149,9 @@ public class Dokument implements Serializable {
     private String predao;
     private String primio;
     private String osnov;
+    @Value("0")
+    @Column(name = "status")
+    private int status;
 
     
 //    @OneToMany(mappedBy = "idDokument", orphanRemoval = true, cascade = CascadeType.ALL)
@@ -411,6 +415,12 @@ public class Dokument implements Serializable {
 	}
 	public void setTypesofdocuments2(TypesOfDocuments typesofdocuments2) {
 		this.typesofdocuments2 = typesofdocuments2;
+	}
+	public int getStatus() {
+		return status;
+	}
+	public void setStatus(int status) {
+		this.status = status;
 	}
     
     

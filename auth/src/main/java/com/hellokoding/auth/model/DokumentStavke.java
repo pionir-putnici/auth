@@ -27,6 +27,8 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 
+import org.springframework.beans.factory.annotation.Value;
+
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
 /**
@@ -94,10 +96,10 @@ public class DokumentStavke implements Serializable {
     @Column(name = "roba_naziv")
     private String robaNaziv;
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
-    
+    @NotNull @Min(1)
     @Column(name = "kolicina")
     private BigDecimal kolicina;
-    @Min(0)
+    
     @Column(name = "ulaz")
     private BigDecimal ulaz;
     @Column(name = "izlaz")
@@ -129,6 +131,9 @@ public class DokumentStavke implements Serializable {
     private String dokumentStavkecol;
     @Column(name = "povratna", columnDefinition="tinyint(1) default 1")    
     private Boolean povratna;
+    @Value("0")
+    @Column(name = "status")
+    private int status;
     
     @JoinColumn(name = "id_dokument", referencedColumnName = "id")
     @ManyToOne
@@ -373,5 +378,18 @@ public class DokumentStavke implements Serializable {
 
 	public void setPovratna(Boolean povratna) {
 		this.povratna = povratna;
-	}	
+	}
+
+	public int getStatus() {
+		return status;
+	}
+
+	public void setStatus(int status) {
+		this.status = status;
+	}
+
+	
+	
+
+	
 }

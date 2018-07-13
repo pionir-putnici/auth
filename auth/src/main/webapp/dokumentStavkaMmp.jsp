@@ -3,8 +3,6 @@
 
 <%@ include file="top.jsp"%>
 
-<!-- youtube thymeleaf, spring controller, jquery -->
-<!-- https://www.youtube.com/watch?v=lIgFe20dYq4&t=1849s -->
 
 <body>
 
@@ -12,15 +10,11 @@
 		<%@ include file="horizontal-navigation.html"%>
 		<%@ include file="vertical-menu.jsp"%>
 
-
-
-
 		<div id="page-wrapper">
 			<div class='row'>
 
 				<div class='col-lg-12 '>
 					<div class='panel panel-default margin-top-10 border-radius-0'>
-
 
 						<div class='panel-heading'>${title}</div>
 
@@ -83,8 +77,7 @@
 								<tbody>
 									<tr th:each="country :${data}">
 										<td th:text="${country.id}"></td>
-										<!-- <td th:text="${country.id}"></td> -->
-										<!-- <td th:text="${country.id}"></td> -->
+
 									</tr>
 									<c:forEach items="${dokumentStavke}" var="tester">
 										<tr>
@@ -92,9 +85,12 @@
 											<td>${tester.artikli.code}</td>
 											<td>${tester.artikli.name}</td>
 											<td>${tester.artikli.jediniceMera.name}</td>
-											<td>${tester.kolicina}</td>
+
+											<td><fmt:setLocale value = "sr_RS"/> <fmt:formatNumber value = "${tester.kolicina}" type = "currency"/> </td>
 											<td>${tester.cena}</td>
-											<td>${tester.iznos}</td>
+											
+											<td><fmt:setLocale value = "sr_RS"/> <fmt:formatNumber value = "${tester.iznos}" type = "currency"/> </td>
+											         
 											<td>${tester.idDokument.id}</td>
 											<%-- 											<a href="/Portfolio/${page}">Click Here</a> --%>
 											<td><a

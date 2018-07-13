@@ -325,9 +325,8 @@ public class RestsController {
 	@RequestMapping(path="/dokumentiTypeIs2", method=RequestMethod.GET)
 	public List<Dokument> getTypeIs2(){
 		
-		// List<Dokument> aa = dokumentRepository.findAll(); // .findAllByOrderByIdDesc(); //
-		
 		List<Dokument> aa = dokumentRepository.findDokTypeIs2();
+		
 		 for (Iterator iterator = aa.iterator(); iterator.hasNext();) {
 			 Dokument dokument = (Dokument) iterator.next();
 			 dokument.setAkcija("<a href=\"update_mmp.html?id=" + dokument.getId() + "\"> " + "<i class=\"fa fa-pencil-square-o edit-delete-icon\"></i> </a> "
