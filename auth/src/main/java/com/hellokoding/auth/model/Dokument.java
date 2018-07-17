@@ -152,7 +152,7 @@ public class Dokument implements Serializable {
     @Value("0")
     @Column(name = "status")
     private int status;
-
+    private Long veza;
     
 //    @OneToMany(mappedBy = "idDokument", orphanRemoval = true, cascade = CascadeType.ALL)
 //    @JsonManagedReference
@@ -422,7 +422,12 @@ public class Dokument implements Serializable {
 	public void setStatus(int status) {
 		this.status = status;
 	}
-    
+	public Long getVeza() {
+		return veza;
+	}
+	public void setVeza(Long veza) {
+		this.veza = veza;
+	}   
     
     
 }

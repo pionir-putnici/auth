@@ -289,4 +289,32 @@ public class DokumentController {
 
 		return mav;
 	}
+	
+	@RequestMapping(value = "/ozvanicenje_dokumenta.html")
+	public String ozvanicenjeDokumenta(@RequestParam Long id, HttpServletRequest request) {
+
+		Dokument d = dokumentRepository.findOne(id);
+		
+		// Dokument aa = new Dokument();
+		
+		List<DokumentStavke> dd = dokumentStavkeRepository.findByIdDokument(d);
+
+			d.setStatus(1);
+		Dokument myobject1 = dokumentRepository.saveAndFlush(d);
+			System.out.println(myobject1);
+			
+			for (DokumentStavke ds : dd) {
+				
+
+				ds.setStatus(1);
+				
+				DokumentStavke myobjectStavke = dokumentStavkeRepository.saveAndFlush(ds);
+				System.out.println(myobjectStavke);				
+			}
+			
+//		}
+
+		return "redirect:dokument.html";
+	}	
+	
 }

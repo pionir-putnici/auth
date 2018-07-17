@@ -91,7 +91,7 @@
 						<table class='tableDocuments'>
 							<thead id="table-head-first-row">
 								<th></th>
-								<th colspan="3"></th>
+								<th colspan="3">ARTIKAL / MAGACIN</th>
 								<th class='text-right'>KOLICINA</th>
 								<th class='text-right'>KOLICINA</th>
 								<th></th>
@@ -102,7 +102,7 @@
 							</thead>
 							<thead id='table-head-second-row'>
 								<th style="width: 5%;"></th>
-								<th style="width: 10%;"></th>
+								<th style="width: 10%;"> / PARTNER</th>
 								<th style="width: 5%;"></th>
 								<th style="width: 5%;"></th>
 								<th style="width: 10%;" class='text-right'>ULAZ</th>

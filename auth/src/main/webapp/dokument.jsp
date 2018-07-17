@@ -146,9 +146,9 @@
         <div class="col-md-12" ng-show="filteredItems > 0">
             <table class="display table table-striped table-bordered table-hover border-radius-0">
             <thead>
-            <th style="width: 7%;">ID&nbsp;<a ng-click="sort_by('id');"><i class="glyphicon glyphicon-sort sort-arrows"></i></a></th>
+            <th style="width: 4%;">ID&nbsp;<a ng-click="sort_by('id');"><i class="glyphicon glyphicon-sort sort-arrows"></i></a></th>
             <th style="width: 10%;">VD&nbsp;<a ng-click="sort_by('code');"><i class="glyphicon glyphicon-sort sort-arrows"></i></a></th>
-            <th style="width: 15%;">Broj dokumenta&nbsp;<a ng-click="sort_by('name');"><i class="glyphicon glyphicon-sort sort-arrows"></i></a></th>
+            <th style="width: 7%;">Broj dokumenta&nbsp;<a ng-click="sort_by('name');"><i class="glyphicon glyphicon-sort sort-arrows"></i></a></th>
             <th style="width: 19%;">Magacin&nbsp;<a ng-click="sort_by('code');"><i class="glyphicon glyphicon-sort sort-arrows"></i></a></th>
             <th style="width: 11%;">Partner&nbsp;<a ng-click="sort_by('code');"><i class="glyphicon glyphicon-sort sort-arrows"></i></a></th>
             <th style="width: 10%;">Datum&nbsp;<a ng-click="sort_by('remark');"><i class="glyphicon glyphicon-sort sort-arrows"></i></a></th>
@@ -176,7 +176,10 @@
                     <td> <a href="dokumentstavkefinal.html?page=0&id={{data.id}}" title="Stavke"><i class="fa fa-clone edit-delete-icon"></i></a>
                           <a href="update_dokument.html?id={{data.id}}" title="Izmena"><i class="fa fa-pencil-square-o edit-delete-icon"></i></a>
                          <a href="printDocument.html?id={{data.id}}" target="_blank" title="Stampa"> <i class="fa fa-print edit-delete-icon"></i></a>                          
-                         <a href="delete_dokument.html?id={{data.id}}" onClick="return ConfirmDelete();" title="Brisanje"><i class="fa fa-trash-o edit-delete-icon"></i></a>
+                         <a href="delete_dokument.html?id={{data.id}}" onClick="return ConfirmDelete();" title="Brisanje"><i class="fa fa-trash-o edit-delete-icon" style="color:red"></i></a>
+                         <span ng-if="data.status == '0' ">
+                         <a href="ozvanicenje_dokumenta.html?id={{data.id}}" onClick="return ConfirmOzvanicenje();" title="Ozvanicenje"><i class="fa fa-envelope edit-delete-icon" style="color:green" ></i></a>                         
+						 </span>                         
                      </td>
                     
 <!--                     <td> <a href="view_dokumentStavke.html?id={{data.id}}"><i class="fa fa-clone edit-delete-icon"></i></a>   <a href="/printing/index.html?id={{data.id}}" target="_blank"> <i class="fa fa-print edit-delete-icon"></i></a> <a href="update_dokument.html?id={{data.id}}"><i class="fa fa-pencil-square-o edit-delete-icon"></i></a> <a href="delete_dokument.html?id={{data.id}}" onClick="return ConfirmDelete();"><i class="fa fa-trash-o edit-delete-icon"></i></a></td> -->

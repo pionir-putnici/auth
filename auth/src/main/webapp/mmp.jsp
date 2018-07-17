@@ -44,7 +44,6 @@
 
 	<div id="wrapper">
 
-
 		<%@ include file="../horizontal-navigation.html"%> 
   		<%@ include file="../vertical-menu.jsp"%> 
 
@@ -69,8 +68,7 @@
 											class='btn btn-lg btn-success button-novi border-radius-0'>
 											<span class='glyphicon glyphicon-arrow-left'></span> Back
 										</button>										
-									</a> 
-								
+									</a> 								
 								
 									<a href="${new_item}">
 										<button
@@ -127,19 +125,20 @@
             <th style="width: 10%;">Magacin&nbsp;<a ng-click="sort_by('code');"><i class="glyphicon glyphicon-sort sort-arrows"></i></a></th>
             <th style="width: 10%;">Partner&nbsp;<a ng-click="sort_by('code');"><i class="glyphicon glyphicon-sort sort-arrows"></i></a></th>
 
-            <th style="width: 7%;">Broj dokumenta&nbsp;<a ng-click="sort_by('name');"><i class="glyphicon glyphicon-sort sort-arrows"></i></a></th>
+            <th style="width: 5%;">Br.dok.&nbsp;<a ng-click="sort_by('name');"><i class="glyphicon glyphicon-sort sort-arrows"></i></a></th>
+            <th style="width: 5%;">Veza&nbsp;<a ng-click="sort_by('name');"><i class="glyphicon glyphicon-sort sort-arrows"></i></a></th>            
             <th style="width: 5%;">Datum&nbsp;<a ng-click="sort_by('remark');"><i class="glyphicon glyphicon-sort sort-arrows"></i></a></th>
-            <th style="width: 10%;">Iznos&nbsp;<a ng-click="sort_by('iznos');"><i class="glyphicon glyphicon-sort sort-arrows"></i></a> </th>
-            <th style="width: 15%;">AKCIJA&nbsp;<a ng-click="sort_by('akcija');"><i class="glyphicon glyphicon-sort sort-arrows"></i></a></th>
+            <th style="width: 8%;">Iznos&nbsp;<a ng-click="sort_by('iznos');"><i class="glyphicon glyphicon-sort sort-arrows"></i></a> </th>
+<!-- 			<th style="width: 3%;">Status&nbsp;<a ng-click="sort_by('iznos');"><i class="glyphicon glyphicon-sort sort-arrows"></i></a> </th>             -->
+            <th style="width: 10%;">AKCIJA&nbsp;<a ng-click="sort_by('akcija');"><i class="glyphicon glyphicon-sort sort-arrows"></i></a></th>
+            
 <!--            <th style="width: 2%;">S&nbsp;<a ng-click="sort_by('name');"><i class="glyphicon glyphicon-sort sort-arrows"></i></a></th>    -->         
-<!--             <th>Country&nbsp;<a ng-click="sort_by('zvuk');"><i class="glyphicon glyphicon-sort"></i></a></th> -->
-<!--             <th>Credit Limit&nbsp;<a ng-click="sort_by('slika');"><i class="glyphicon glyphicon-sort"></i></a></th> -->
+<!--            <th>Country&nbsp;<a ng-click="sort_by('zvuk');"><i class="glyphicon glyphicon-sort"></i></a></th> -->
+<!--            <th>Credit Limit&nbsp;<a ng-click="sort_by('slika');"><i class="glyphicon glyphicon-sort"></i></a></th> -->
+
             </thead>
             <tbody>
 <!--                 <tr ng-repeat="data in filtered = (list | filter:search | orderBy : predicate :reverse) | startFrom:(currentPage-1)*entryLimit | limitTo:entryLimit"> -->
-
-
-
  
 
                 <tr ng-repeat="data in filtered = (list | filter:search | orderBy : predicate :reverse) | startFrom:(currentPage-1)*entryLimit | limitTo:entryLimit"
@@ -147,24 +146,31 @@
 
                     <td ng-init="init({{data.id}}">{{data.id}} </td>
                     <td>{{data.typesofdocuments.name}}</td>
-                    <td style="background-color:red">{{data.magacini.name}}</td>
+                    <td>{{data.magacini.name}}</td>
                     <td>{{data.partner.name}}</td>
 
                     <td>{{data.typesofdocuments2.name}}</td>
                     <td>{{data.magacini2.name}}</td>
                     <td>{{data.partner2.name}}</td>                                       
-                    <td>{{data.brojDokumenta}}</td>                    
+                    <td>{{data.brojDokumenta}}</td>
+                                                           
+                    <td>{{data.veza}}</td> 
                     <td>{{data.datum | date:"dd.MM.yyyy"}}</td>
                     <td>{{data.iznos | number:2}}</td>
-<!--                     <td ng-if="{{data.status == 0}}">{{data.status}}</td> -->
-
-<!-- radi                    <td> <a href="dokumentstavkefinal.html?page=0&id={{data.id}}"><i class="fa fa-clone edit-delete-icon"></i></a>   <a href="/printing/index.html?id={{data.id}}" target="_blank"> <i class="fa fa-print edit-delete-icon"></i></a> <a href="update_dokument.html?id={{data.id}}"><i class="fa fa-pencil-square-o edit-delete-icon"></i></a> <a href="delete_dokument.html?id={{data.id}}" onClick="return ConfirmDelete();"><i class="fa fa-trash-o edit-delete-icon"></i></a></td> -->
+<!--                     <td>{{data.status}}</td> -->
                     
-                    <td style="color:green"> <a href="/dokumentStavkefinalmmp.html?page=0&id={{data.id}}" title="Stavke"><i class="fa fa-clone edit-delete-icon"></i></a>
+<!--                     <td ng-if="{{data.status == 0}}">{{data.status}}</td> -->
+<!-- radi                <td> <a href="dokumentstavkefinal.html?page=0&id={{data.id}}"><i class="fa fa-clone edit-delete-icon"></i></a>   <a href="/printing/index.html?id={{data.id}}" target="_blank"> <i class="fa fa-print edit-delete-icon"></i></a> <a href="update_dokument.html?id={{data.id}}"><i class="fa fa-pencil-square-o edit-delete-icon"></i></a> <a href="delete_dokument.html?id={{data.id}}" onClick="return ConfirmDelete();"><i class="fa fa-trash-o edit-delete-icon"></i></a></td> -->
+
+                    
+                    <td style="background-color:#F5F5DC"> <a href="/dokumentStavkefinalmmp.html?page=0&id={{data.id}}" title="Stavke"><i class="fa fa-clone edit-delete-icon"></i></a>
                          <a href="update_mmp.html?id={{data.id}}" title="Izmena"><i class="fa fa-pencil-square-o edit-delete-icon"></i></a>
                          <a href="print_mmp.html?id={{data.id}}" target="_blank" title="Stampa"> <i class="fa fa-print edit-delete-icon"></i></a>                          
                          <a href="delete_mmp.html?id={{data.id}}" onClick="return ConfirmDelete();" title="Brisanje"><i class="fa fa-trash-o edit-delete-icon" style="color:red"></i></a>
-                         <a href="ozvanicenje_mmp.html?id={{data.id}}" onClick="return ConfirmOzvanicenje();" title="Ozvanicenje"><i class="fa fa-mixcloud" style="color:green" ></i></a>                         
+<!--                          <div ng-if="myVar"> -->
+                         <span ng-if="data.status == '0' ">
+                         <a href="ozvanicenje_mmp.html?id={{data.id}}" onClick="return ConfirmOzvanicenje();" title="Ozvanicenje"><i class="fa fa-envelope edit-delete-icon" style="color:green" ></i></a>                         
+						 </span>
                      </td>
                     
 <!--                     <td> <a href="view_dokumentStavke.html?id={{data.id}}"><i class="fa fa-clone edit-delete-icon"></i></a>   <a href="/printing/index.html?id={{data.id}}" target="_blank"> <i class="fa fa-print edit-delete-icon"></i></a> <a href="update_dokument.html?id={{data.id}}"><i class="fa fa-pencil-square-o edit-delete-icon"></i></a> <a href="delete_dokument.html?id={{data.id}}" onClick="return ConfirmDelete();"><i class="fa fa-trash-o edit-delete-icon"></i></a></td> -->

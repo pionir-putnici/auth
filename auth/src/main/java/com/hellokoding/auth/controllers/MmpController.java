@@ -99,7 +99,7 @@ public class MmpController {
 		for (Magacini d : deptList) {
 			dept.put(d.getId(), d.getName());
 		}
-		
+
 		sess.setAttribute("eMagacini", deptList);
 
 		// Vrste dokumenata
@@ -117,9 +117,103 @@ public class MmpController {
 
 	}
 
+	@RequestMapping(value = "/ozvanicenje_mmp.html")
+	public String ozvanicenjeMmp(@RequestParam Long id, HttpServletRequest request) {
+
+		Dokument d = dokumentRepository.findOne(id);
+		Dokument aa = new Dokument();
+		
+		List<DokumentStavke> dd = dokumentStavkeRepository.findByIdDokument(d);
+
+		// stavke dobijaju status 1
+		for (DokumentStavke ds : dd) {			
+			ds.setStatus(1);
+			DokumentStavke myobjectStavke = dokumentStavkeRepository.saveAndFlush(ds);
+			System.out.println(myobjectStavke);				
+		}		
+		
+//		if (d.getTypesOfDocuments().getId()==6) {
+			
+			// aa.setId(null);
+
+			TypesOfDocuments tod = d.getTypesofdocuments();
+			Magacini mag = d.getMagacini();
+			Partner part = d.getPartner();
+			
+			TypesOfDocuments tod2 = d.getTypesofdocuments2();
+			Magacini mag2 = d.getMagacini2();
+			Partner part2 = d.getPartner2();
+			
+			aa.setTypesOfDocuments(tod2);
+			aa.setMagacini(mag2);
+			aa.setPartner(part2);
+			
+			aa.setTypesofdocuments2(tod);
+			aa.setMagacini2(mag);
+			aa.setPartner2(part);
+			
+			aa.setAkcija(d.getAkcija());
+			aa.setAktivan(d.getAktivan());
+			aa.setBrojDokumenta(d.getBrojDokumenta());
+			aa.setDatum(d.getDatum());
+			aa.setInterniBrojDokumenta(d.getInterniBrojDokumenta());
+			aa.setIznos(d.getIznos());
+			aa.setIznos_bez_poreza(d.getIznos_bez_poreza());
+			aa.setNapomena(d.getNapomena());
+			aa.setOsnov(d.getOsnov());
+			aa.setPorez(d.getPorez());
+			aa.setPredao(d.getPredao());
+			aa.setPrimio(d.getPrimio());
+			aa.setVideo(d.getVideo());
+			aa.setZvuk(d.getZvuk());
+			aa.setSlika(d.getSlika());
+			aa.setStatus(1);
+			aa.setVeza(d.getId());
+			
+			Dokument myobject = dokumentRepository.saveAndFlush(aa);
+			System.out.println(myobject);
+			
+			d.setVeza(myobject.getId());
+			d.setStatus(1);
+			Dokument myobject1 = dokumentRepository.saveAndFlush(d);
+			System.out.println(myobject1);
+			
+			for (DokumentStavke ds : dd) {
+				
+				DokumentStavke ddd = new DokumentStavke();
+				ddd.setAkcija(ds.getAkcija());
+				ddd.setAktivan(ds.getAktivan());
+				ddd.setArtikli(ds.getArtikli());
+				ddd.setCena(ds.getCena());
+				ddd.setDatum(ds.getDatum());
+				ddd.setDuguje(ds.getDuguje());
+				ddd.setHost(ds.getHost());
+				ddd.setIdDokument(myobject);
+				ddd.setIzlaz(ds.getIzlaz());
+				ddd.setIznos(ds.getIznos());
+				ddd.setKolicina(ds.getKolicina());
+				ddd.setMagacini(myobject.getMagacini());
+				ddd.setNapomena(ds.getNapomena());
+				ddd.setPotrazuje(ds.getPotrazuje());
+				ddd.setPovratna(ds.getPovratna());
+				ddd.setStatus(ds.getStatus());
+				ddd.setTypesOfDocuments(myobject.getTypesofdocuments());
+				ddd.setUlaz(ds.getUlaz());
+				ddd.setStatus(1);
+				DokumentStavke myobjectStavke = dokumentStavkeRepository.saveAndFlush(ddd);
+				System.out.println(myobjectStavke);				
+			}
+			
+//		}
+
+		return "redirect:mmp.html";
+	}
+
 	@RequestMapping(value = "/save_mmp.html", method = RequestMethod.POST)
-	public String addMmp(@ModelAttribute("dokument") @Valid Dokument dokument, BindingResult result,
-			Model model) { // , @PathVariable int aktivan
+	public String addMmp(@ModelAttribute("dokument") @Valid Dokument dokument, BindingResult result, Model model) { // ,
+																													// @PathVariable
+																													// int
+																													// aktivan
 
 		if (result.hasErrors()) {
 			model.addAttribute("error", "error");
@@ -129,8 +223,8 @@ public class MmpController {
 		// String rr = dokument.getName();
 
 		Long tt = dokument.getId();
-		System.out.println("tt je  " + tt);
-
+		
+		// System.out.println("tt je  " + tt);
 
 		if (tt == null) {
 			Long ww = dokumentRepository.max_za_vrstu_dokumenta(dokument.getTypesOfDocuments().getId());
@@ -144,7 +238,7 @@ public class MmpController {
 
 		// dokument.setPartner2(dokument.getPartner());
 		// dokument.setTypesofdocuments2(dokument.getTypesOfDocuments());
-		
+
 		dokumentRepository.save(dokument);
 
 		model.addAttribute("mode", "MODE_TASKS");
@@ -158,15 +252,15 @@ public class MmpController {
 
 	@RequestMapping(value = "/update_mmp.html")
 	public String updateMmp(@RequestParam Long id, HttpServletRequest request) {
-		
+
 		request.setAttribute("dokument", dokumentRepository.findOne(id));
 		request.setAttribute("mode", "MODE_UPDATE");
 		request.setAttribute("title", "Update MMP dokument");
-		
-//		Dokument TT = dokumentRepository.findById(id);
-//		request.setAttribute("dokument", dokumentRepository.findOne(id));
-//		request.setAttribute("mode", "MODE_UPDATE");
-//		request.setAttribute("title", "Update MMP dokument");
+
+		// Dokument TT = dokumentRepository.findById(id);
+		// request.setAttribute("dokument", dokumentRepository.findOne(id));
+		// request.setAttribute("mode", "MODE_UPDATE");
+		// request.setAttribute("title", "Update MMP dokument");
 
 		// Magacini km = new Magacini();
 		List<Magacini> deptList = magaciniRepository.findAll();
@@ -206,12 +300,10 @@ public class MmpController {
 	public String deleteMmp(@RequestParam Long id, HttpServletRequest request) {
 
 		try {
-		dokumentRepository.delete(id);
-    }
-	catch (Exception ex)
-	{
-	    return "redirect:414.html?ops=Can't delete record!";
-	}
+			dokumentRepository.delete(id);
+		} catch (Exception ex) {
+			return "redirect:414.html?ops=Can't delete record!";
+		}
 		return "redirect:mmp.html";
 	}
 
@@ -232,40 +324,43 @@ public class MmpController {
 		return new ModelAndView(view, params);
 	}
 
-//	@RequestMapping(path = "/printing/printDocument.html", method = RequestMethod.GET) 
-//	public ModelAndView printMmpPOReport123() {
-//
-//		JasperReportsPdfView view = new JasperReportsPdfView();
-//		view.setUrl("classpath:rpt_Items1.jrxml");
-//		view.setApplicationContext(appContext);
-//
-//		Map<String, Object> params = new HashMap<>();
-//		params.put("datasource", dokumentRepository.findAllByOrderByIdDesc());
-//		params.put("title", "Dokuments - angular");
-//
-//		params.put("company", companyDetails.companyDetails1);
-//		params.put("adress", companyDetails.companyDetails2);
-//		params.put("city", companyDetails.companyDetails3);
-//		return new ModelAndView(view, params);
-//	}
+	// @RequestMapping(path = "/printing/printDocument.html", method =
+	// RequestMethod.GET)
+	// public ModelAndView printMmpPOReport123() {
+	//
+	// JasperReportsPdfView view = new JasperReportsPdfView();
+	// view.setUrl("classpath:rpt_Items1.jrxml");
+	// view.setApplicationContext(appContext);
+	//
+	// Map<String, Object> params = new HashMap<>();
+	// params.put("datasource", dokumentRepository.findAllByOrderByIdDesc());
+	// params.put("title", "Dokuments - angular");
+	//
+	// params.put("company", companyDetails.companyDetails1);
+	// params.put("adress", companyDetails.companyDetails2);
+	// params.put("city", companyDetails.companyDetails3);
+	// return new ModelAndView(view, params);
+	// }
 
-//	@RequestMapping(value = "printDocument.html")
-//	public ModelAndView selectTag(@RequestParam Long id, HttpServletRequest request) {
-//		ModelAndView mav = new ModelAndView("/printing/printDocument");
-//
-//		Dokument dokument = dokumentRepository.findOne(id);
-//		List<DokumentStavke> dokumentStavke = dokumentStavkeRepository.findByIdDokument(dokument);
-//
-//		Map<String, String> phones = new HashMap<String, String>();
-//		phones.put("samsung", "SAMSUNG");
-//		phones.put("nokia", "NOKIA");
-//		phones.put("iphone", "IPHONE");
-//
-//		mav.addObject("dokument", dokument);
-//		mav.addObject("dokumentStavke", dokumentStavke);
-//
-//		// mav.addObject("smartphone", new Smartphone());
-//
-//		return mav;
-//	}
+	// @RequestMapping(value = "printDocument.html")
+	// public ModelAndView selectTag(@RequestParam Long id, HttpServletRequest
+	// request) {
+	// ModelAndView mav = new ModelAndView("/printing/printDocument");
+	//
+	// Dokument dokument = dokumentRepository.findOne(id);
+	// List<DokumentStavke> dokumentStavke =
+	// dokumentStavkeRepository.findByIdDokument(dokument);
+	//
+	// Map<String, String> phones = new HashMap<String, String>();
+	// phones.put("samsung", "SAMSUNG");
+	// phones.put("nokia", "NOKIA");
+	// phones.put("iphone", "IPHONE");
+	//
+	// mav.addObject("dokument", dokument);
+	// mav.addObject("dokumentStavke", dokumentStavke);
+	//
+	// // mav.addObject("smartphone", new Smartphone());
+	//
+	// return mav;
+	// }
 }

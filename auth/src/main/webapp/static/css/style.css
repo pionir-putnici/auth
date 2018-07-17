@@ -16,7 +16,8 @@
 }
 
 .edit-delete-icon {font-size: 20px;
-	margin: 0 15px 0 15px;
+	margin: 0 0px 0 10px; 
+/* 	0 15 0 15 */
 }
 
 .button-novi{
