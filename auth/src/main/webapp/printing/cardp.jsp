@@ -78,7 +78,7 @@
 					<div class='col-xs-2'>
 						<p>Šifra: ${artkart.code}</p>
 					</div>
-					<div class='col-xs-2'>
+					<div class='col-xs-6'>
 						<p>${artkart.name}</p>
 					</div>
 				</div>
@@ -144,11 +144,11 @@
 									<td colspan='3'>TOTAL</td>
 									<td class='text-right'>${totalUlaz}</td>
 									<td class='text-right'>${totalIzlaz}</td>
-									<td></td>
+									<td class='text-right'>${totalUlaz-totalIzlaz}</td>
 									<td></td>
 									<td class='text-right'>${totalDuguje}</td>
 									<td class='text-right'>${totalPotrazuje}</td>
-									<td></td>
+									<td class='text-right'>${totalDuguje-totalPotrazuje}</td>
 								</tr>
 								
 							</tbody>
@@ -198,11 +198,11 @@
 									<td colspan='3'>SVEGA MAGACIN</td>
 									<td class='text-right'>${totalUlazm}</td>
 									<td class='text-right'>${totalIzlazm}</td>
-									<td></td>
+									<td class='text-right'>${totalUlazm-totalIzlazm}</td>
 									<td></td>
 									<td class='text-right'>${totalDugujem}</td>
 									<td class='text-right'>${totalPotrazujem}</td>
-									<td></td>
+									<td class='text-right'>${totalDugujem-totalPotrazujem}</td>
 								</tr>
 								</table>
 								
@@ -234,11 +234,11 @@
 									<td colspan='3'>SVEGA </td>
 									<td class='text-right'>${totalUlazs}</td>
 									<td class='text-right'>${totalIzlazs}</td>
-									<td></td>
+									<td class='text-right'>${totalUlazs-totalIzlazs}</td>
 									<td></td>
 									<td class='text-right'>${totalDugujes}</td>
 									<td class='text-right'>${totalPotrazujes}</td>
-									<td></td>
+									<td class='text-right'>${totalDugujes-totalPotrazujes}</td>
 								</tr>
 								</table>
 

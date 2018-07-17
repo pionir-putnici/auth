@@ -230,6 +230,20 @@
 			else
 				return false;
 		}
-	</script>         
+	</script>   
+	
+	<script>
+function ConfirmOzvanicenje() {
+
+    var r = confirm("Ozvaniciti dokument?");
+	if (r)
+		return true;
+	else
+		return false;
+}
+//    document.getElementById("demo").innerHTML = txt;
+
+</script>    	
+	      
     </body>
 </html>
