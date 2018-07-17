@@ -323,6 +323,26 @@ public class MmpController {
 		params.put("city", companyDetails.companyDetails3);
 		return new ModelAndView(view, params);
 	}
+	
+	@RequestMapping(value = "print_mmp.html")
+	public ModelAndView selectTag(@RequestParam Long id, HttpServletRequest request) {
+		ModelAndView mav = new ModelAndView("/printing/print_mmp");
+
+		Dokument dokument = dokumentRepository.findOne(id);
+		List<DokumentStavke> dokumentStavke = dokumentStavkeRepository.findByIdDokument(dokument);
+
+		Map<String, String> phones = new HashMap<String, String>();
+		phones.put("samsung", "SAMSUNG");
+		phones.put("nokia", "NOKIA");
+		phones.put("iphone", "IPHONE");
+
+		mav.addObject("dokument", dokument);
+		mav.addObject("dokumentStavke", dokumentStavke);
+
+		// mav.addObject("smartphone", new Smartphone());
+
+		return mav;
+	}
 
 	// @RequestMapping(path = "/printing/printDocument.html", method =
 	// RequestMethod.GET)

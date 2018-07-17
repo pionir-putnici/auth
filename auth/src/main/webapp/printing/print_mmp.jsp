@@ -32,7 +32,6 @@
 					<div class='row'>
 						<div class='col-xs-12'>
 							<h2>Međumagacinski prenos</h2>
-							<p>Broj: 1550/18</p>
 						</div>
 					</div>
 				</div>
@@ -49,15 +48,15 @@
 						Dokument
 						</div>
 						<div class='col-xs-9'>
-						1320/18
+						${dokument.id }
 						</div>
 					</div>
 					<div class='row'>
 						<div class='col-xs-3'>
 						Magacin
 						</div>
-						<div class='col-xs-9'>
-						0105
+						<div class='col-xs-9' style='height:3em;'>
+						${dokument.magacini.id } - ${dokument.magacini.name}
 						</div>
 					</div>
 					<div class='row'>
@@ -65,7 +64,7 @@
 						Datum
 						</div>
 						<div class='col-xs-9'>
-						09.07.2018.
+						${dokument.datum }
 						</div>
 					</div>
 				</div>
@@ -80,15 +79,15 @@
 						Dokument
 						</div>
 						<div class='col-xs-9'>
-						3220/18
+						${dokument.veza }
 						</div>
 					</div>
 					<div class='row'>
 						<div class='col-xs-3'>
 						Magacin
 						</div>
-						<div class='col-xs-9'>
-						0125
+						<div class='col-xs-9' style='height:3em;'>
+						${dokument.magacini2.id } - ${dokument.magacini2.name }
 						</div>
 					</div>
 					<div class='row'>
@@ -96,7 +95,7 @@
 						Datum
 						</div>
 						<div class='col-xs-9'>
-						09.07.2018.
+						${dokument.datum }
 						</div>
 					</div>
 				</div>
