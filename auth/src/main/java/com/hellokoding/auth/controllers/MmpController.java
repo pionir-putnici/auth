@@ -326,6 +326,7 @@ public class MmpController {
 	
 	@RequestMapping(value = "print_mmp.html")
 	public ModelAndView selectTag(@RequestParam Long id, HttpServletRequest request) {
+		
 		ModelAndView mav = new ModelAndView("/printing/print_mmp");
 
 		Dokument dokument = dokumentRepository.findOne(id);
@@ -335,6 +336,7 @@ public class MmpController {
 		phones.put("samsung", "SAMSUNG");
 		phones.put("nokia", "NOKIA");
 		phones.put("iphone", "IPHONE");
+
 
 		mav.addObject("dokument", dokument);
 		mav.addObject("dokumentStavke", dokumentStavke);

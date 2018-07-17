@@ -40,7 +40,7 @@
 				<div class='col-xs-6'>
 					<div class='row'>
 						<div class='col-xs-12'>
-							<h2>Magacin otpreme</h2>
+							<h2>${dokument.typesofdocuments.name}</h2>
 						</div>
 					</div>
 					<div class='row spacer-top-10'>
@@ -64,14 +64,14 @@
 						Datum
 						</div>
 						<div class='col-xs-9'>
-						${dokument.datum }
+						<fmt:formatDate pattern = "dd.MM.yyyy" value = "${dokument.datum}" />
 						</div>
 					</div>
 				</div>
 				<div class='col-xs-6'>
 					<div class='row'>
 						<div class='col-xs-12'>
-							<h2>Magacin prijema</h2>
+							<h2>${dokument.typesofdocuments2.name}</h2>
 						</div>
 					</div>
 					<div class='row spacer-top-10'>
@@ -95,7 +95,7 @@
 						Datum
 						</div>
 						<div class='col-xs-9'>
-						${dokument.datum }
+                          <fmt:formatDate pattern = "dd.MM.yyyy" value = "${dokument.datum}" />					
 						</div>
 					</div>
 				</div>
