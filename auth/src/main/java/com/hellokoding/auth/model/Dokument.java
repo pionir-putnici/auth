@@ -28,6 +28,7 @@ import javax.persistence.PreUpdate;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
@@ -106,7 +107,8 @@ public class Dokument implements Serializable {
     
     @Column(name = "datum")
     @Temporal(TemporalType.DATE)
-    @DateTimeFormat(pattern = "yyyy-MM-dd") 
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @NotNull
     private Date datum;
     @Size(max = 255)
     @Column(name = "napomena")
@@ -149,7 +151,7 @@ public class Dokument implements Serializable {
     private String predao;
     private String primio;
     private String osnov;
-    @Value("0")
+    // @Value("0")
     @Column(name = "status")
     private int status;
     private Long veza;
@@ -329,8 +331,6 @@ public class Dokument implements Serializable {
 	public void setIznos_bez_poreza(BigDecimal iznos_bez_poreza) {
 		this.iznos_bez_poreza = iznos_bez_poreza;
 	}
-	
-	
 	
 // if you have one to many
 //	@XmlTransient
