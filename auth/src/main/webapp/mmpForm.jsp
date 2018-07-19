@@ -27,14 +27,14 @@
 
 								<div class='col-lg-6'>
 
-<c:out value="${dokument.typesofdocuments.id}"/>								
-<c:out value="${dokument.partner.id}"/>
-<c:out value="${dokument.magacini.id}"/>
+<%-- <c:out value="${dokument.typesofdocuments.id}"/>								 --%>
+<%-- <c:out value="${dokument.partner.id}"/> --%>
+<%-- <c:out value="${dokument.magacini.id}"/> --%>
 
 
-<c:out value="${dokument.typesofdocuments2.id}"/> 
-<c:out value="${dokument.partner2.id}"/>
-<c:out value="${dokument.magacini2.id}"/>
+<%-- <c:out value="${dokument.typesofdocuments2.id}"/>  --%>
+<%-- <c:out value="${dokument.partner2.id}"/> --%>
+<%-- <c:out value="${dokument.magacini2.id}"/> --%>
 
  
 									<form:form method="POST" action="save_mmp.html"

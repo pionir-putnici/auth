@@ -168,7 +168,7 @@
                          <a href="print_mmp.html?id={{data.id}}" target="_blank" title="Stampa"> <i class="fa fa-print edit-delete-icon"></i></a>                          
                          <a href="delete_mmp.html?id={{data.id}}" onClick="return ConfirmDelete();" title="Brisanje"><i class="fa fa-trash-o edit-delete-icon" style="color:red"></i></a>
 <!--                          <div ng-if="myVar"> -->
-                         <span ng-if="data.status == '0' ">
+                         <span ng-if="data.status == '0' && data.typesofdocuments.id == '6'">
                          <a href="ozvanicenje_mmp.html?id={{data.id}}" onClick="return ConfirmOzvanicenje();" title="Ozvanicenje"><i class="fa fa-envelope edit-delete-icon" style="color:green" ></i></a>                         
 						 </span>
                      </td>

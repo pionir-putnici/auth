@@ -33,7 +33,8 @@ public interface DokumentStavkeRepository extends JpaRepository<DokumentStavke, 
     @Query("SELECT t FROM DokumentStavke t where  "
     		+ " t.magacini.id in (:id_magacin) and "
     		+ " t.artikli.id in (:id_roba) "
-    		+ " and t.idDokument.datum between :oddana and :dodana and t.aktivan=true order by t.idDokument.magacini.code, t.artikli.code, t.idDokument.datum" )     
+    		+ " and t.idDokument.datum between :oddana and :dodana and t.aktivan=true " 
+    		+ " and t.idDokument.status=1 order by t.idDokument.magacini.code, t.artikli.code, t.idDokument.datum" )     
     List<DokumentStavke> k1 (@Param("id_magacin") List<Long> ids_magacin, @Param("id_roba") List<Long> ids_artikli, 
     		@Param("oddana") Date oddana, @Param("dodana") Date dodana);   
 

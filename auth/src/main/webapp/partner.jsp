@@ -74,6 +74,9 @@
 						<div class='panel-body'>
 							<div class='row spacer-bottom'>
 								<div class='col-lg-12'>
+													<button class="btn-lg button-novi" onclick="goBack()"
+														name="action" value="mainPage">Go Back
+													</button>
 									<a href="${new_item}">
 										<button
 											class='btn btn-lg btn-success button-novi border-radius-0'>
@@ -196,6 +199,12 @@
 			else
 				return false;
 		}
-	</script>         
+	</script>     
+	
+	<script>
+		function goBack() {
+			window.history.back()
+		}
+	</script>	    
     </body>
 </html>

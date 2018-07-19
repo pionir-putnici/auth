@@ -63,13 +63,11 @@
 					<a href='#'><i class="fa fa-info fa-fw"></i> Izvestaji<span class="fa arrow"></span></a>
 					<ul class="nav nav-second-level">
 						<li class="divider-nesto"></li>
-					    <li><a href='/find_all_articles_partners_magacini.html'><i class="fa fa-list" ></i>Kartice artikal partner magacin-objekat</a></li>	
+					    <li><a href='/find_all_articles_partners_magacini.html' target="_blank"><i class="fa fa-list" ></i>Kartice artikal partner magacin-objekat</a></li>	
 						<li class="divider-nesto"></li>
-						<li><a href='/find_all_articles_partners.html'><i class="fa fa-list"></i>Kartice artikal partner</a></li>
+						<li><a href='/find_all_articles_partners.html' target="_blank"><i class="fa fa-list"></i>Kartice artikal partner</a></li>
 						<li class="divider-nesto"></li>
-						<li><a href='/find_all_articles.html'><i class="fa fa-list"></i>Kartice magacin artikal</a></li>
-						
-				
+						<li><a href='/find_all_articles.html'><i class="fa fa-list"></i>Kartice magacin artikal</a></li>										
 					</ul>
 				</li>		
 	

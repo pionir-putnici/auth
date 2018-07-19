@@ -213,7 +213,8 @@
 													<!-- 														<i class='glyphicon glyphicon-remove'></i> Reset -->
 													<!-- 													</button> -->
 													<button class="btn-lg button-novi" onclick="goBack()"
-														name="action" value="mainPage">Go Back</button>
+														name="action" value="mainPage">Go Back
+													</button>
 												</div>
 
 												</form>

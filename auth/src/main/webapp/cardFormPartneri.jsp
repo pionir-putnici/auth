@@ -13,7 +13,7 @@
 
 			<div class="row">
 				<div class="col-lg-12">
-					<h2 class="page-header">Parametri izveštaja </h2>
+					<h2 class="page-header">Parametri izveštaja Partner Artikal</h2>
 				</div>
 			</div>
 
@@ -62,7 +62,7 @@
 														<label for="allWarehouses">Partner: </label> 
 														<input class='input-warehouse-article form-control'
 															list="allWarehouses" name="id_magacin" multiple
-															placeholder='Insert warehouses' autocomplete='off'>
+															placeholder='Insert partner' autocomplete='off'>
 														<datalist id="allWarehouses">
 															<c:forEach items="${allWarehouses}" var="warehouse">
 																<option value="${warehouse.id}">${warehouse.code}
@@ -165,8 +165,10 @@
 											<div class='row text-center spacer-top-20'>
 												<div class='col-lg-12'>
 													<button type="submit" class="btn-lg button-novi" name="action" value="main-submit-artical-partner">
-														<i class='fa fa-floppy-o'></i> Save
+														<i class='fa fa-floppy-o'></i> Izvestaj
 													</button>
+													<button class="btn-lg button-novi" onclick="goBack()"
+														name="action" value="mainPage">Go Back</button>
 													<button type="reset" class="btn-lg button-novi">
 														<i class='glyphicon glyphicon-remove'></i> Reset
 													</button>
@@ -214,5 +216,10 @@
 	</div>
 
 	<%@ include file="scripts.jsp"%>
+		<script>
+		function goBack() {
+			window.history.back()
+		}
+	</script>
 </body>
 </html>

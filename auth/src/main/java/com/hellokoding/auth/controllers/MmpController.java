@@ -102,8 +102,6 @@ public class MmpController {
 
 		sess.setAttribute("eMagacini", deptList);
 
-		// Vrste dokumenata
-		// TypesOfDocuments km = new TypesOfDocuments();
 		List<TypesOfDocuments> tdList = typesOfDocumentsRepository.dokTypeIs2(); // .findAll();
 
 		Map<Long, String> tdl = new HashMap<>();
@@ -132,7 +130,7 @@ public class MmpController {
 			System.out.println(myobjectStavke);				
 		}		
 		
-//		if (d.getTypesOfDocuments().getId()==6) {
+		if (d.getTypesOfDocuments().getId()==6) {
 			
 			// aa.setId(null);
 
@@ -186,25 +184,28 @@ public class MmpController {
 				ddd.setArtikli(ds.getArtikli());
 				ddd.setCena(ds.getCena());
 				ddd.setDatum(ds.getDatum());
-				ddd.setDuguje(ds.getDuguje());
+				ddd.setDuguje(ds.getPotrazuje());
 				ddd.setHost(ds.getHost());
 				ddd.setIdDokument(myobject);
-				ddd.setIzlaz(ds.getIzlaz());
+				ddd.setIzlaz(ds.getUlaz());
 				ddd.setIznos(ds.getIznos());
 				ddd.setKolicina(ds.getKolicina());
 				ddd.setMagacini(myobject.getMagacini());
 				ddd.setNapomena(ds.getNapomena());
-				ddd.setPotrazuje(ds.getPotrazuje());
+				ddd.setPotrazuje(ds.getDuguje()); 
 				ddd.setPovratna(ds.getPovratna());
-				ddd.setStatus(ds.getStatus());
+				// ddd.setStatus(ds.getStatus());
 				ddd.setTypesOfDocuments(myobject.getTypesofdocuments());
-				ddd.setUlaz(ds.getUlaz());
+				ddd.setUlaz(ds.getIzlaz());
 				ddd.setStatus(1);
 				DokumentStavke myobjectStavke = dokumentStavkeRepository.saveAndFlush(ddd);
 				System.out.println(myobjectStavke);				
 			}
 			
-//		}
+		}
+		else {
+			
+		}
 
 		return "redirect:mmp.html";
 	}

@@ -494,7 +494,11 @@
 
 							</tbody>
 						</table>
+						
 
+						
+<c:if test="${firstTime==false}">	
+						
 						<table class='tableDocuments' style='border-top:none'; >
 								<tr id="table-head-first-row">									
 								<td style="width: 5%;"></td>
@@ -716,6 +720,8 @@
 						<c:set var="totalPotrazujep" value="0" />
 						<!-- ************************* KRAJ SVEGA ********************************  -->
 						<br />
+</c:if>						
+<!-- 						if ako ima promet -->
 						<%
 							for (SpecifikacijaKartica sk : theArray) {
 								System.out.println(" ovo je ispis " + sk.getIdArtikal() + " " + sk.getIdMagacin());
