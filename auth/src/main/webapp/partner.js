@@ -10,8 +10,8 @@ app.filter('startFrom', function() {
     }
 });
 app.controller('customersCrtl', function ($scope, $http, $timeout) {
-      // $http.get('http://10.11.124.46:8080/costumers').success(function(data){
-        $http.get('http://localhost:8080/costumers').success(function(data){    	
+        $http.get('http://10.11.124.46:8080/costumers').success(function(data){
+        // $http.get('http://localhost:8080/costumers').success(function(data){    	
         $scope.list = data;
         $scope.currentPage = 1; //current page
         $scope.entryLimit = 10; //max no of items to display in a page
